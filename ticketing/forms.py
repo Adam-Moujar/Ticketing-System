@@ -1,12 +1,20 @@
-from ticketing.utility import form_fields
 from ticketing.models import User
-
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
-class LoginForm(forms.ModelForm):
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
 
-    password = form_fields.password
+    username = forms.EmailField(widget=forms.TextInput(
+        attrs = {'class': 'form-control', 'id': 'email', 'placeholder': 'Email'})
+    )
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs = {'class': 'form-control', 'id': 'password', 'placeholder': 'Password'})
+    )
 
+class SignupForm(UserCreationForm):
+    email = forms.EmailField()
     class Meta:
         model = User
-        fields = ['email', 'password']
+        fields = ['email', 'first_name', 'last_name']

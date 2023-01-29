@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>Login</h1>
+    <h1>Signup</h1>
     <form method="post">
         {% csrf_token %}
         <!-- <div class="form-group">
@@ -23,6 +23,6 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <button type="submit">Log In</button>
+        <button type="submit">Sign up</button>
     </form>
 {% endblock %}
