@@ -1,6 +1,9 @@
 <header>
     <div>
         <a href="{% url 'home' %}">Home</a>
+        {% if user.role == 2 %}
+        <a href="{% url 'specialist_dashboard' %}">Dashboard</a>
+        {% endif %}
         {% if user.is_authenticated %}
             Welcome back, {{ user.first_name }}
         <a href="{% url 'logout' %}">Logout</a>
