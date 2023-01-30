@@ -14,9 +14,6 @@ class SignupView(SuccessMessageMixin, CreateView):
     form_class = SignupForm
     success_message = "Your account was created successfully"
 
-    def test_func(self):
-        return not self.request.user.is_authenticated
-
 class CustomLoginView(LoginView):
     def get_success_url(self):
         match self.request.user.role:
