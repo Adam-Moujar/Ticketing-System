@@ -8,7 +8,8 @@ urlpatterns = [
     path('', home.home, name='home'),
     path('login/', auth.CustomLoginView.as_view(
             template_name="login.html",
-            authentication_form=LoginForm
+            authentication_form=LoginForm,
+            redirect_authenticated_user=True
         ),
         name = 'login'
     ),
