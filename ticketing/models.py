@@ -52,24 +52,24 @@ class User(AbstractUser):
         return super(User, self).save(*args, **kwargs)
 
 class Department(models.Model):
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100, blank = False)
 
 class SpecialistDepartment(models.Model):
-    specialist_id = models.ForeignKey(User, on_delete= models.CASCADE)
-    department_id = models.ForeignKey(Department, on_delete= models.CASCADE)
+    specialist = models.ForeignKey('User', on_delete= models.CASCADE)
+    department = models.ForeignKey('Department', on_delete= models.CASCADE)
 
 class SpecialistInbox(models.Model):
-    specialist_id = models.ForeignKey(User, on_delete= models.CASCADE)
-    ticket_id = models.ForeignKey('Ticket', on_delete= models.CASCADE)
+    specialist = models.ForeignKey('User', on_delete= models.CASCADE)
+    ticket = models.ForeignKey('Ticket', on_delete= models.CASCADE)
 
 class Ticket(models.Model):
-    student_id = models.ForeignKey('User', on_delete= models.CASCADE)
-    department = models.ForeignKey(Department, on_delete = models.CASCADE)
+    student = models.ForeignKey('User', on_delete= models.CASCADE)
+    department = models.ForeignKey('Department', on_delete = models.CASCADE)
     header = models.CharField(max_length = 100, blank = False)
     ## status: for open closed archived bla bla bla 
 
 class Message(models.Model):
-    ticket_id = models.ForeignKey('Ticket', on_delete = models.CASCADE)
+    ticket = models.ForeignKey('Ticket', on_delete = models.CASCADE)
     content = models.TextField(blank = False)
     date_time = models.DateTimeField(auto_now_add=True)
 
@@ -77,4 +77,4 @@ class StudentMessage(Message):
     pass
 
 class SpecialistMessage(Message):
-    responder_id = models.ForeignKey(User, on_delete= models.CASCADE)
+    responder = models.ForeignKey('User', on_delete= models.CASCADE)
