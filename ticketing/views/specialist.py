@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from ticketing import mixins
+from django.utils.decorators import method_decorator
+from ticketing.decorators import *
+from django.contrib.auth.decorators import login_required
 
-class DashboardView(LoginRequiredMixin, mixins.RoleRequiredMixin, View):
-    raise_exception = True
-    required_roles = ['SP', 'DI']
+class DashboardView(View):
+    @method_decorator(roles_allowed(allowed_roles = ['SP', 'DI']), login_required)
     def get(self, request, *args, **kwargs):
         return render(request, 'specialist_db.html')
-    # def test_func(self):
-    #     return self.request.user.role in ['SP', 'DI']
