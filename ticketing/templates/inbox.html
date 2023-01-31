@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block body %}
+{% block inbox %}
 <h1>Inbox</h1>
     <h2>Tickets</h2>
     <ul> 
@@ -7,4 +6,22 @@
             <li>{{ticket.header}}</li>
         {% endfor %}
     </ul>
+
+    <div class="col-sm-3">
+        <table class="table table-bordered " border="1">
+            <tr>
+                <td colspan="4">Tickets</td>
+            </tr>
+            {% for ticket in object_list %}
+                <tr>
+                    <td>{{ticket.student}}</td>
+                    <td>{{ticket.department.name}}</td>
+                    <td>{{ticket.header}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+
 {% endblock %}
