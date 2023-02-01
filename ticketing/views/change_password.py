@@ -1,4 +1,4 @@
-from ticketing.forms2.edit_user import EditUserForm
+from ticketing.forms2.change_password import ChangePasswordForm
 from ticketing.models import User
 from ticketing.utility import get
 #from ticketing.utility.user import get_user
@@ -12,33 +12,35 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 
 
-def update_user(user, first_name, last_name, email, role):
-    user.first_name = first_name
-    user.last_name = last_name
-    user.email = email
-    user.role = role
-
+def change_password(user, new_password):
+    user.password = make_password(new_password)
+    
     user.save()
 
 
-class EditUserView(View):
+class ChangePasswordView(View):
+
+    PERMISSION_MSG = "You do not have permission to do this"
 
     error_str = ""
 
     def handle_id_param_error(self, request, error_str):
-        print("error is: ", error_str)
-        return render(request, "edit_user.html", {"error_str" : error_str})
-    
+        print("ERROR_STR IS ", error_str)
+        return render(request, "change_password.html", {"error_str" : error_str})
+
+
     def start(self, request, user = None):
 
         self.user = user
 
-        self.form = EditUserForm(user = user,
-                        initial = {"update_email" : user.email,
-                                    "first_name" : user.first_name,
-                                    "last_name": user.last_name,
-                                    "edit_account_role": user.role})
+        self.form = ChangePasswordForm()
 
+        print("USER IS ", request.user.is_anonymous)
+        if request.user.is_anonymous or (request.user.role != User.Role.DIRECTOR and self.user.id != request.user.id):
+            print("SHOULD BE IN HERE")
+            return self.handle_id_param_error(request, self.PERMISSION_MSG)
+
+            print("WE GET AFRTER???")
 
     @get_user_from_id_param(handle_id_param_error)
     def get(self, request, user = None):
@@ -51,18 +53,15 @@ class EditUserView(View):
     def post(self, request, user = None):
         self.start(request, user)
 
-        if request.POST.get("save"):
-            self.form = EditUserForm(request.POST, user = self.user)
+        if request.POST.get("change"):
+            self.form = ChangePasswordForm(request.POST)
 
             if not self.form.is_valid():
                 return self.end(request)
 
-            first_name = self.form.cleaned_data["first_name"]
-            last_name = self.form.cleaned_data["last_name"]
-            email = self.form.cleaned_data["update_email"]
-            account_role = self.form.cleaned_data["edit_account_role"]
+            password = self.form.cleaned_data["password"]
 
-            update_user(self.user, first_name, last_name, email, account_role)
+            change_password(self.user, password)
 
             return get.redirect_to_director_panel_with_saved_params(request)
 
@@ -76,7 +75,7 @@ class EditUserView(View):
         if len(self.error_str) > 0:
             messages.add_message(request, messages.ERROR, self.error_str)
 
-        return render(request, "edit_user.html", {"id" : request.GET.get("id"),
+        return render(request, "change_password.html", {"id" : request.GET.get("id"),
                                                   "user" : self.user,
                                                   "form" : self.form,
                                                   "error_str" : self.error_str})

@@ -1,5 +1,7 @@
 from ticketing.utility.user import get_user
 
+from django.shortcuts import render, redirect
+
 from types import SimpleNamespace
 
 def get_user_from_id_param(end):
@@ -14,7 +16,7 @@ def get_user_from_id_param(end):
             if not request.GET.get("id"):
                 error_str = INVALID_ID_MSG
 
-                return end(ptr, request)
+                return end(ptr, request, error_str)
 
             try:
                 id = int(request.GET.get("id"))
@@ -22,21 +24,32 @@ def get_user_from_id_param(end):
             except ValueError:
                 error_str = INVALID_ID_MSG
 
-                return end(ptr, request)
+                return end(ptr, request, error_str)
 
             if id < 0:
                 error_str = INVALID_ID_MSG
 
-                return end(ptr, request)
+                return end(ptr, request, error_str)
 
             user = get_user(id)
             if not user:
                 error_str = UNASSIGNED_ID_MSG
 
-                return end(ptr, request)
+                return end(ptr, request, error_str)
         
 
             return function(ptr, request, user)
             
         return inner
     return decorator
+
+
+def redirect_to_director_panel_with_saved_params(request):
+    response = redirect("director_panel")
+
+    get_query = request.session.get("director_panel_get_query")
+
+    if get_query:
+        response['Location'] += "?" + get_query
+
+    return response

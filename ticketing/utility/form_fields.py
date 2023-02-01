@@ -22,13 +22,28 @@ email_unique = User._meta.get_field("email").formfield()
 email = copy.copy(email_unique)
 email.unique = False
 
-password = SignupForm().fields["password1"]
+# password = SignupForm().fields["password1"]
 
-confirm_password = SignupForm().fields["password2"]
+# confirm_password = SignupForm().fields["password2"]
+
+password = forms.CharField(
+    label = "Password:",
+    widget = forms.PasswordInput(),
+    min_length = 8,
+    validators = [
+        RegexValidator(
+            regex = r'^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$',
+            message = ("Your password must contain an uppercase character, a lowercase "
+                        "character and a number")
+            )]
+)
+
+confirm_password = copy.copy(password)
+confirm_password.label = "Confirm Password"
 
 account_role = forms.ChoiceField(choices = [(User.Role.STUDENT, "Student"),
                                             (User.Role.SPECIALIST, "Specialist"),
-                                            (User.Role.DIRECTOR, "Directors")],
+                                            (User.Role.DIRECTOR, "Director")],
                                             
                                  widget = custom_widgets.ClearableRadioSelect(),
                                  label = "Account Role:",
