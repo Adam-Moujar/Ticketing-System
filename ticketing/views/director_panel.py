@@ -3,6 +3,7 @@ from ticketing.models import User
 
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
@@ -62,9 +63,18 @@ def delete_users(user_id_strings):
     return not wasNonExistentUser
 
 
-class DirectorPanelView(View):
+class DirectorPanelView(ListView):
+
+    paginate_by = 10
+    #context_object_name = 'page_obj'
+    #queryset = User.objects.all()
+    model = User
 
     NON_EXISTENT_USER_MSG = "One or more of the selected users did not exist"
+
+    #def get_queryset(self):
+        #print("ABOUT TO RETURN: " + User.objects.all())
+     #   return User.objects.all()
 
     def start(self, request):
         self.error_str = ""
@@ -85,7 +95,11 @@ class DirectorPanelView(View):
 
 
     def get(self, request):
+        #print("WE ARE IN GET")
+        self.context = super().get(request).context_data
+
         self.start(request)
+
         return self.end(request)
 
 
@@ -183,12 +197,13 @@ class DirectorPanelView(View):
         if len(self.error_str) > 0:
             messages.add_message(request, messages.ERROR, self.error_str)
 
-        context = {"error_str" : self.error_str,
+
+        self.context.update({"error_str" : self.error_str,
                    "users" : users,
                    "form": self.form,
                    "commands_form": DirectorCommandsForm(),
-                   "add_user_form": self.add_user_form}
+                   "add_user_form": self.add_user_form})
 
-        return render(request, "director_panel.html", context)
+        return render(request, "director_panel.html", self.context)
 
 
