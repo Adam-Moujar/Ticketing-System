@@ -18,5 +18,6 @@ urlpatterns = [
     path('specialist_dashboard/', specialist.DashboardView.as_view(), name = 'specialist_dashboard'),
     path('director_panel/', director_panel.DirectorPanelView.as_view(), name = 'director_panel'),
     path('edit_user/', edit_user.EditUserView.as_view(), name = 'edit_user'),
-    path('change_password/', change_password.ChangePasswordView.as_view(), name = 'change_password')
+    path('change_password/', change_password.ChangePasswordView.as_view(), name = 'change_password'),
+    path('department_manager/', department_manager.DepartmentManagerView.as_view(), name = 'department_manager')
 ]
