@@ -66,27 +66,11 @@ def delete_users(user_id_strings):
 class DirectorPanelView(ListView):
 
     paginate_by = 10
-    #context_object_name = 'page_obj'
-    #queryset = User.objects.all()
     model = User
 
+    context = {}
+
     NON_EXISTENT_USER_MSG = "One or more of the selected users did not exist"
-
-    def get_queryset(self):
-
-        users = User.objects.filter(email__istartswith = self.get_email,
-                                   first_name__istartswith = self.get_first_name,
-                                   last_name__istartswith = self.get_last_name)
-
-        # We filter ID and account type exactly so we must make sure
-        # they have a value before filtering.
-        if self.get_id:
-            users = users.filter(id__exact = self.get_id)
-
-        if self.get_role:
-            users = users.filter(role__exact = self.get_role)
-
-        return users
 
     def start(self, request):
         self.error_str = ""
@@ -103,19 +87,30 @@ class DirectorPanelView(ListView):
         self.get_last_name = self.form.cleaned_data.get("last_name", "")
         self.get_email = self.form.cleaned_data.get("email", "")
         self.get_role = self.form.cleaned_data.get("account_role")
-        
+
+    
+    def get_queryset(self):
+
+        users = User.objects.filter(email__istartswith = self.get_email,
+                                   first_name__istartswith = self.get_first_name,
+                                   last_name__istartswith = self.get_last_name)
+
+        # We filter ID and account type exactly so we must make sure
+        # they have a value before filtering.
+        if self.get_id:
+            users = users.filter(id__exact = self.get_id)
+
+        if self.get_role:
+            users = users.filter(role__exact = self.get_role)
+
+        return users
 
 
     def get(self, request):
-        #print("WE ARE IN GET")
-
+        
         self.start(request)
 
-        self.context = super().get(request).context_data
-
         return self.end(request)
-
-
 
     def post(self, request):
         self.start(request)
@@ -157,7 +152,7 @@ class DirectorPanelView(ListView):
             response['Location'] += '?id=' + change_id
             return response
 
-        print("LEN SELECTED IS: ", len(selected))
+        #print("LEN SELECTED IS: ", len(selected))
         if len(selected) == 0:
             # Remaining possible POST requests rely on there being users selected
             self.error_str = "No users have been selected"
@@ -195,24 +190,13 @@ class DirectorPanelView(ListView):
 
     def end(self, request):
 
-        # users = User.objects.filter(email__istartswith = self.get_email,
-        #                            first_name__istartswith = self.get_first_name,
-        #                            last_name__istartswith = self.get_last_name)
-
-        # # We filter ID and account type exactly so we must make sure
-        # # they have a value before filtering.
-        # if self.get_id:
-        #     users = users.filter(id__exact = self.get_id)
-
-        # if self.get_role:
-        #     users = users.filter(role__exact = self.get_role)
+        self.context.update(super().get(request).context_data)
 
         if len(self.error_str) > 0:
             messages.add_message(request, messages.ERROR, self.error_str)
 
 
         self.context.update({"error_str" : self.error_str,
-                   #"users" : users,
                    "form": self.form,
                    "commands_form": DirectorCommandsForm(),
                    "add_user_form": self.add_user_form})
