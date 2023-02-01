@@ -15,5 +15,6 @@ urlpatterns = [
     ),
     path('logout/', views.LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name="logout"),
     path('signup/', auth.SignupView.as_view(), name = 'signup'),
-    path('specialist_dashboard/', specialist.DashboardView.as_view(), name = 'specialist_dashboard')
+    path('specialist_dashboard/', specialist.DashboardView.as_view(), name = 'specialist_dashboard'),
+    path('director_panel/', director_panel.DirectorPanelView.as_view(), name = 'director_panel')
 ]

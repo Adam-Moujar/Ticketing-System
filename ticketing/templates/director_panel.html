@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<html>
+  {% load user_role_filters %}
+  <head>
+    <title> Director Panel </title>
+  </head>
+  
+  <body>
+
+
+    <h1>Director Panel</h1>
+
+    <h3>Add User</h3>
+
+    <form method="post" style="display: inline;" class="login-form">
+    {% csrf_token %}
+    {{ add_user_form.as_p }}
+
+    <input type="submit" name="add" value="Add" class="btn btn-outline-dark btn-lg">
+
+    </form>
+
+
+    <h3>Filters</h3>
+
+    <form method="get" style="display: inline;" class="login-form">
+        {{ form.as_p }}
+
+        <input type="submit" value="Apply" class="btn btn-outline-dark btn-lg">
+
+    </form>
+
+    <form method="post" style="display: inline;" class="login-form">
+        {% csrf_token %}
+
+
+        <input type="submit" name="reset" value="Reset" class="btn btn-outline-dark btn-lg">
+
+    </form>
+
+    <br>
+    <br>
+
+    <form method="post" style="display:inline;">
+    {% csrf_token %}
+    
+    <table border="1">
+        <thead>
+            <th>ID</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Role</th>
+            <th>✓</th>
+            <th>Edit</th>
+            <th>Password</th>
+        </thead>
+        {% for user in users %}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.role|user_role_string}}</td>
+            <td><input type="checkbox" id="select" name="select" value="{{user.id}}"></td>
+            <form method="post" style="display:inline;">
+            {% csrf_token %}
+            <td><button type="submit" name="edit" value={{user.id}}>✎</button></td>
+            <td><button type="submit" name="password" value={{user.id}}>
+                <div style="margin-bottom: -2px; margin-top: 4px; padding-left: 2px; padding-right: 2px;">*</div></button></td>
+            </form>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+
+    <h3>Commands</h3>
+    {{ commands_form.as_p }}
+
+    <input type="submit" name="set_account_role" value="Set Account Role">
+    <input type="submit" name="delete" value="Delete">
+
+    <br><br>
+
+    </form>
+
+    {% if messages %}
+    <div class="m-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.level_tag }}" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+      
+  </body>
+
+</html>
+{% endblock %}
