@@ -52,7 +52,7 @@ class User(AbstractUser):
         return super(User, self).save(*args, **kwargs)
 
 class Department(models.Model):
-    name = models.CharField(max_length = 100, blank = False)
+    name = models.CharField(max_length = 100, blank = False, unique = True)
 
 class SpecialistDepartment(models.Model):
     specialist = models.ForeignKey('User', on_delete= models.CASCADE)
