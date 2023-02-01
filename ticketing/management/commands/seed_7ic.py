@@ -14,7 +14,7 @@ from django.db.models import Q
 class Command(BaseCommand):
     PASSWORD = "Hello123%"
 
-    COUNT = 100
+    COUNT = 15
 
     def __init__(self):
         super().__init__()
