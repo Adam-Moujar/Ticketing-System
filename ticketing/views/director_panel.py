@@ -72,9 +72,21 @@ class DirectorPanelView(ListView):
 
     NON_EXISTENT_USER_MSG = "One or more of the selected users did not exist"
 
-    #def get_queryset(self):
-        #print("ABOUT TO RETURN: " + User.objects.all())
-     #   return User.objects.all()
+    def get_queryset(self):
+
+        users = User.objects.filter(email__istartswith = self.get_email,
+                                   first_name__istartswith = self.get_first_name,
+                                   last_name__istartswith = self.get_last_name)
+
+        # We filter ID and account type exactly so we must make sure
+        # they have a value before filtering.
+        if self.get_id:
+            users = users.filter(id__exact = self.get_id)
+
+        if self.get_role:
+            users = users.filter(role__exact = self.get_role)
+
+        return users
 
     def start(self, request):
         self.error_str = ""
@@ -96,9 +108,10 @@ class DirectorPanelView(ListView):
 
     def get(self, request):
         #print("WE ARE IN GET")
-        self.context = super().get(request).context_data
 
         self.start(request)
+
+        self.context = super().get(request).context_data
 
         return self.end(request)
 
@@ -182,24 +195,24 @@ class DirectorPanelView(ListView):
 
     def end(self, request):
 
-        users = User.objects.filter(email__istartswith = self.get_email,
-                                   first_name__istartswith = self.get_first_name,
-                                   last_name__istartswith = self.get_last_name)
+        # users = User.objects.filter(email__istartswith = self.get_email,
+        #                            first_name__istartswith = self.get_first_name,
+        #                            last_name__istartswith = self.get_last_name)
 
-        # We filter ID and account type exactly so we must make sure
-        # they have a value before filtering.
-        if self.get_id:
-            users = users.filter(id__exact = self.get_id)
+        # # We filter ID and account type exactly so we must make sure
+        # # they have a value before filtering.
+        # if self.get_id:
+        #     users = users.filter(id__exact = self.get_id)
 
-        if self.get_role:
-            users = users.filter(role__exact = self.get_role)
+        # if self.get_role:
+        #     users = users.filter(role__exact = self.get_role)
 
         if len(self.error_str) > 0:
             messages.add_message(request, messages.ERROR, self.error_str)
 
 
         self.context.update({"error_str" : self.error_str,
-                   "users" : users,
+                   #"users" : users,
                    "form": self.form,
                    "commands_form": DirectorCommandsForm(),
                    "add_user_form": self.add_user_form})
