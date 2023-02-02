@@ -1,4 +1,4 @@
-# Team Bear Small Group project
+# Team Fox Major Group project
 
 ## Team members
 The members of the team are:<br />
