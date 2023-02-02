@@ -10,6 +10,7 @@ class SeededTestCase(TestCase):
         self.user_list = []
 
         # Emails must be unique so only make as many users as emails to avoid looping on emails
+        # ID will 
         for i in range(len(test_data.valid_emails)):
             user = User.objects.create_custom_user(test_data.valid_emails[i % len(test_data.valid_emails)],
                                                     test_data.valid_passwords[i % len(test_data.valid_passwords)],
