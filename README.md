@@ -32,6 +32,11 @@ Install all required packages:
 ```
 $ pip3 install -r requirements.txt
 ```
+Run the Server:
+
+```
+$ python3 manage.py runserver
+```
 
 Migrate the database:
 
