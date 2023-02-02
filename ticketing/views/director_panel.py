@@ -12,8 +12,8 @@ def add_user(user, role):
     user.password = make_password(user.password)
     user.role = role
 
-    if(role == User.ROLE.SPECIALIST):
-        pass
+    #if(role == User.ROLE.SPECIALIST):
+       # pass
         #SpecialistDepartment(specialist = user, department = )
 
     user.save()

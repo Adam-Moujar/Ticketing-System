@@ -32,12 +32,12 @@ class AddUserForm(forms.ModelForm):
 
     add_user_role = form_fields.role
 
-    add_user_department = form_fields.department
+    #add_user_department = form_fields.department
 
     class Meta:
 
         model = User
-        fields = ['email', 'first_name', 'last_name', 'password', "add_user_role", "add_user_department"]
+        fields = ['email', 'first_name', 'last_name', 'password', "add_user_role"]
 
         labels = {
             'first_name': "First Name",
