@@ -1,4 +1,4 @@
-from ticketing.models import User
+from ticketing.models import User, Department
 from ticketing.utility import custom_widgets
 from ticketing.forms import SignupForm
 
@@ -38,10 +38,17 @@ password = forms.CharField(
 confirm_password = copy.copy(password)
 confirm_password.label = "Confirm Password"
 
-account_role = forms.ChoiceField(choices = [(User.Role.STUDENT, "Student"),
+role = forms.ChoiceField(choices = [(User.Role.STUDENT, "Student"),
                                             (User.Role.SPECIALIST, "Specialist"),
                                             (User.Role.DIRECTOR, "Director")],
                                             
                                  widget = custom_widgets.ClearableRadioSelect(),
                                  label = "Account Role:",
                                  required = True)
+                                 
+department = forms.ModelChoiceField(queryset = Department.objects.all())
+department.label = "Department"
+department.disabled = True
+
+#forms.ChoiceField(choices = Department.objects.all().
+#            SpecialistDepartment._meta.get_field("department")

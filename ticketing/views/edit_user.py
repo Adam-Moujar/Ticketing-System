@@ -34,7 +34,7 @@ class EditUserView(View):
                         initial = {"update_email" : user.email,
                                     "first_name" : user.first_name,
                                     "last_name": user.last_name,
-                                    "edit_account_role": user.role})
+                                    "edit_role": user.role})
 
 
     @get_user_from_id_param(handle_id_param_error)
@@ -57,9 +57,9 @@ class EditUserView(View):
             first_name = self.form.cleaned_data["first_name"]
             last_name = self.form.cleaned_data["last_name"]
             email = self.form.cleaned_data["update_email"]
-            account_role = self.form.cleaned_data["edit_account_role"]
+            role = self.form.cleaned_data["edit_role"]
 
-            update_user(self.user, first_name, last_name, email, account_role)
+            update_user(self.user, first_name, last_name, email, role)
 
             return get.redirect_to_director_panel_with_saved_params(request)
 

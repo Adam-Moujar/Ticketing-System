@@ -1,5 +1,5 @@
 from ticketing.forms2.director_panel import DirectorFilterForm, DirectorCommandsForm, AddUserForm
-from ticketing.models import User
+from ticketing.models import User, Department
 
 from django.shortcuts import render, redirect
 from django.views import View
@@ -11,6 +11,10 @@ from django.contrib.auth.hashers import make_password
 def add_user(user, role):
     user.password = make_password(user.password)
     user.role = role
+
+    if(role == User.ROLE.SPECIALIST):
+        pass
+        #SpecialistDepartment(specialist = user, department = )
 
     user.save()
 
@@ -80,7 +84,7 @@ class DirectorPanelView(ListView):
         self.get_first_name = self.form.cleaned_data.get("first_name", "")
         self.get_last_name = self.form.cleaned_data.get("last_name", "")
         self.get_email = self.form.cleaned_data.get("email", "")
-        self.get_role = self.form.cleaned_data.get("account_role")
+        self.get_role = self.form.cleaned_data.get("role")
 
     
     def get_queryset(self):
@@ -125,7 +129,7 @@ class DirectorPanelView(ListView):
 
             user = self.add_user_form.save(commit = False)
 
-            add_user(user, self.add_user_form.cleaned_data.get("add_user_account_role"))
+            add_user(user, self.add_user_form.cleaned_data.get("add_user_role"))
 
             self.add_user_form = AddUserForm()
 
@@ -152,9 +156,9 @@ class DirectorPanelView(ListView):
 
             return self.end(request)
 
-        if request.POST.get('set_account_role'):
+        if request.POST.get('set_role'):
 
-            role = request.POST.get('commands_account_role')
+            role = request.POST.get('commands_role')
             if not role:
                 self.error = "You have not selected a role for the user"
 

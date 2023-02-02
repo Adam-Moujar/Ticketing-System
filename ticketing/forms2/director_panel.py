@@ -17,25 +17,27 @@ class DirectorFilterForm(forms.Form):
 
     email = forms.CharField(label = form_fields.email.label, required = False)
 
-    account_role = copy.copy(form_fields.account_role)
-    account_role.required = False
+    role = copy.copy(form_fields.role)
+    role.required = False
 
 class DirectorCommandsForm(forms.Form):
 
-    commands_account_role = copy.copy(form_fields.account_role)
-    commands_account_role.required = False
+    commands_role = copy.copy(form_fields.role)
+    commands_role.required = False
 
 
 class AddUserForm(forms.ModelForm):
 
     password = form_fields.password
 
-    add_user_account_role = form_fields.account_role
+    add_user_role = form_fields.role
+
+    add_user_department = form_fields.department
 
     class Meta:
 
         model = User
-        fields = ['email', 'first_name', 'last_name', 'password', "add_user_account_role"]
+        fields = ['email', 'first_name', 'last_name', 'password', "add_user_role", "add_user_department"]
 
         labels = {
             'first_name': "First Name",
