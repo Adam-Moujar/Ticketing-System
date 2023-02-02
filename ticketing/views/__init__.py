@@ -1,3 +1,1 @@
-from . import auth
-from . import home
-from . import specialist
+from . import auth, home, specialist, student_inbox, student_ticket

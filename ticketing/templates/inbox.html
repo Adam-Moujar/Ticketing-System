@@ -1,0 +1,9 @@
+{% block body %}
+<h1>Inbox</h1>
+    <h2>Tickets</h2>
+    <ul> 
+        {% for ticket in object_list %}
+            <li>{{ticket.header}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

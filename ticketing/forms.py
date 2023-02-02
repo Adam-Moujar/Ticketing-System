@@ -1,4 +1,4 @@
-from ticketing.models import User
+from ticketing.models import *
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
@@ -14,7 +14,21 @@ class LoginForm(AuthenticationForm):
     )
 
 class SignupForm(UserCreationForm):
-    email = forms.EmailField()
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name']
+
+class StudentTicketForm(forms.ModelForm):
+    content = forms.CharField(widget=forms.Textarea, max_length=500)
+    def custom_save(self, student, department, header, content): 
+        ticket = Ticket.objects.create(student = student, 
+                                    department = department, 
+                                    header = header)
+        StudentMessage.objects.create(ticket = ticket, 
+                                    content = content)
+
+
+    class Meta: 
+        model = Ticket
+        fields = ['header', 'department']
+
