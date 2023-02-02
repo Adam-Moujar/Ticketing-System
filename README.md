@@ -7,7 +7,7 @@ The members of the team are:<br />
 - Harshit Sharma (harshit.sharma@kcl.ac.uk)<br />
 - Tsz Chang (tsz.chang@kcl.ac.uk)<br />
 - Mark Chester-Jude-Emmanuel (mark.chester_jude_emmanuel@kcl.ac.uk)<br />
-- Ka Chun Chong (ka.c.chong@kcl.ac.uk)<br />
+- Ka Chun (Ivan) Chong (ka.c.chong@kcl.ac.uk)<br />
 - Isabella Cowin (isabella.cowin@kcl.ac.uk)<br />
 - Mohammad Abubakr Iqbal (mohammad.a.iqbal@kcl.ac.uk)<br />
 - Adam Moujar-Bakhti (adam.moujar_bakhti@kcl.ac.uk)<br />
