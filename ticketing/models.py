@@ -16,6 +16,12 @@ class CustomUserManager(UserManager):
         user.role = 'ST'
         user.save(using=self._db)
         return user
+
+    def create_specialist_user(self, email, password=None, first_name=None, last_name=None, **extra_fields):
+        user = self.create_user(email, password=password, first_name=first_name, last_name=last_name)
+        user.role = 'SP'
+        user.save(using=self._db)
+        return user
         
     def create_superuser(self, email, password, first_name, last_name):
         user = self.create_user(email, password=password, first_name=first_name, last_name=last_name)

@@ -16,17 +16,26 @@ class SpecialistInboxView(ListView):
 
     def get_queryset(self):
         user = self.request.user
+        userDepartment = SpecialistDepartment.objects.filter(specialist = user)
+
         ticketlist = []
         if self.request.method == "POST":
             ticketType = self.request.POST.get('typeOfTicket')
             match ticketType:
-                    case "department" : ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.get(specialist = user).department)
-                    case "personal" : ticketlist = SpecialistInbox.objects.filter(specialist = user).only('ticket')
+                    case "department" : 
+                        if (len(userDepartment) == 0):
+                            ticketList = []
+                        else:
+                            ticketlist = Ticket.objects.filter(department = userDepartment.first().department)
+                    case "personal" : ticketlist = Ticket.objects.filter(id__in = SpecialistInbox.objects.filter(specialist = user).values_list('ticket_id', flat = True)) 
                     case default : ticketlist = []
 
         if self.request.method == "GET":
             ticketType = "department"
-            ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.get(specialist = user).department)
+            if (len(userDepartment) == 0):
+                ticketList = []
+            else:
+                ticketlist = Ticket.objects.filter(department = userDepartment.first().department)
         
         return ticketlist
 
