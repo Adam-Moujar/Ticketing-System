@@ -13,7 +13,7 @@ from ticketing.models import *
 class StudentTicketView(FormView):
     template_name = 'student_ticket_form.html'
     form_class = StudentTicketForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('student_inbox')
 
     def form_valid(self, form):
         student = User.objects.get(id=self.request.user.id)
