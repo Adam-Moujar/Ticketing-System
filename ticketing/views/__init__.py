@@ -1,7 +1,2 @@
-from . import auth
-from . import home
-from . import specialist
-from . import director_panel
-from . import edit_user
-from . import change_password
-from . import department_manager
+from . import auth, home, specialist, director_panel, edit_user, change_password, department_manager
+from . import student_inbox, student_ticket
