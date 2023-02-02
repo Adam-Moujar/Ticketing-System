@@ -25,6 +25,7 @@ class CustomUserManager(UserManager):
         user.save(using=self._db)
         return user
 
+# seed done
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique = True, blank = False)
@@ -51,23 +52,28 @@ class User(AbstractUser):
         self.email = self.email.lower()
         return super(User, self).save(*args, **kwargs)
 
+# seed done
 class Department(models.Model):
-    name = models.CharField(max_length = 100, blank = False)
+    name = models.CharField(max_length = 100, blank = False, unique = True)
 
+# seed done 
 class SpecialistDepartment(models.Model):
-    specialist = models.ForeignKey('User', on_delete= models.CASCADE)
-    department = models.ForeignKey('Department', on_delete= models.CASCADE)
+    specialist = models.ForeignKey('User', on_delete= models.CASCADE, db_column ='specialist')
+    department = models.ForeignKey('Department', on_delete= models.CASCADE, db_column ='department')
 
+# seed done 
 class SpecialistInbox(models.Model):
-    specialist = models.ForeignKey('User', on_delete= models.CASCADE)
-    ticket = models.ForeignKey('Ticket', on_delete= models.CASCADE)
+    specialist = models.ForeignKey('User', on_delete= models.CASCADE, db_column = 'specialist')
+    ticket = models.ForeignKey('Ticket', on_delete= models.CASCADE, db_column = 'ticket')
 
+# seed done 
 class Ticket(models.Model):
     student = models.ForeignKey('User', on_delete= models.CASCADE)
     department = models.ForeignKey('Department', on_delete = models.CASCADE)
     header = models.CharField(max_length = 100, blank = False)
     ## status: for open closed archived bla bla bla 
 
+# seed done 
 class Message(models.Model):
     ticket = models.ForeignKey('Ticket', on_delete = models.CASCADE)
     content = models.TextField(blank = False)
@@ -77,4 +83,4 @@ class StudentMessage(Message):
     pass
 
 class SpecialistMessage(Message):
-    responder = models.ForeignKey('User', on_delete= models.CASCADE)
+    responder = models.ForeignKey('User', on_delete= models.CASCADE, db_column = 'responder')

@@ -1,9 +1,5 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
-from django.views import View
-
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import UserPassesTestMixin
 from ticketing.forms import SignupForm, LoginForm
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy, reverse
