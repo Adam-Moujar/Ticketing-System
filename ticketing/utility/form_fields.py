@@ -7,8 +7,6 @@ from django import forms
 
 import copy
 
-# Some form fields are stored here that can be reused directly or copied and edited
-
 id = forms.IntegerField(label="ID")
 
 first_name = User._meta.get_field("first_name").formfield()
@@ -23,7 +21,6 @@ email = copy.copy(email_unique)
 email.unique = False
 
 # password = SignupForm().fields["password1"]
-
 # confirm_password = SignupForm().fields["password2"]
 
 password = forms.CharField(

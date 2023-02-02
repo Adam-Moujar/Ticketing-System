@@ -1,13 +1,11 @@
 from ticketing.forms2.edit_user import EditUserForm
 from ticketing.models import User
 from ticketing.utility import get
-#from ticketing.utility.user import get_user
 from ticketing.utility.get import get_user_from_id_param
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views import View
 from django.views.generic.list import ListView
-from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 
@@ -23,11 +21,10 @@ def update_user(user, first_name, last_name, email, role):
 
 class EditUserView(View):
 
-    error_str = ""
+    error = ""
 
-    def handle_id_param_error(self, request, error_str):
-        print("error is: ", error_str)
-        return render(request, "edit_user.html", {"error_str" : error_str})
+    def handle_id_param_error(self, request, error):
+        return render(request, "edit_user.html", {"error" : error})
     
     def start(self, request, user = None):
 
@@ -73,19 +70,12 @@ class EditUserView(View):
 
 
     def end(self, request):
-        if len(self.error_str) > 0:
-            messages.add_message(request, messages.ERROR, self.error_str)
+        if len(self.error) > 0:
+            messages.add_message(request, messages.ERROR, self.error)
 
         return render(request, "edit_user.html", {"id" : request.GET.get("id"),
                                                   "user" : self.user,
                                                   "form" : self.form,
-                                                  "error_str" : self.error_str})
-
-
-
-
-        
-
-
+                                                  "error" : self.error})
 
 

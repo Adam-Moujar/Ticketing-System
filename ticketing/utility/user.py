@@ -5,7 +5,6 @@ def get_user(id):
         user = User.objects.get(id = id)
 
     except  User.DoesNotExist:
-
         return None
 
     return user
@@ -23,5 +22,6 @@ def get_user_by_email(email):
 def user_exists_by_email(email):
     if get_user_by_email(email):
         return True
+
     else:
         return False

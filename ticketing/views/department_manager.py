@@ -4,7 +4,6 @@ from ticketing.models import User
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic.list import ListView
-from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 

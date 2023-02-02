@@ -18,29 +18,29 @@
 
     <h3>Add User</h3>
 
-    <form method="post" style="display: inline;" class="login-form">
+    <form method="post" style="display: inline;">
     {% csrf_token %}
     {{ add_user_form.as_p }}
 
-    <input type="submit" name="add" value="Add" class="btn btn-outline-dark btn-lg">
+    <input type="submit" name="add" value="Add">
 
     </form>
 
 
     <h3>Filters</h3>
 
-    <form method="get" style="display: inline;" class="login-form">
+    <form method="get" style="display: inline;">
         {{ form.as_p }}
 
-        <input type="submit" value="Apply" class="btn btn-outline-dark btn-lg">
+        <input type="submit" value="Apply">
 
     </form>
 
-    <form method="post" style="display: inline;" class="login-form">
+    <form method="post" style="display: inline;">
         {% csrf_token %}
 
 
-        <input type="submit" name="reset" value="Reset" class="btn btn-outline-dark btn-lg">
+        <input type="submit" name="reset" value="Reset">
 
     </form>
 

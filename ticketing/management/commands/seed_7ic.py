@@ -1,15 +1,9 @@
-from datetime import date, timedelta, datetime
 import django
+
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
 
 from ticketing.models import User
-import random
-
-from django.db.models import Q
-#   TODO
-#   should have two admins
-#   need to figure out how to assign roles.
 
 class Command(BaseCommand):
     PASSWORD = "Hello123%"

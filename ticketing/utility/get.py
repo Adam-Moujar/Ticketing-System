@@ -7,14 +7,14 @@ from types import SimpleNamespace
 def get_user_from_id_param(end):
     def decorator(function):
 
-        INVALID_ID_MSG = "The given ID is invalid"
-        UNASSIGNED_ID_MSG = "There is no user with the given ID"
+        INVALID_ID_MESSAGE = "The given ID is invalid"
+        UNASSIGNED_ID_MESSAGE = "There is no user with the given ID"
 
         def inner(ptr, request):
             error_str = ""
 
             if not request.GET.get("id"):
-                error_str = INVALID_ID_MSG
+                error_str = INVALID_ID_MESSAGE
 
                 return end(ptr, request, error_str)
 
@@ -22,18 +22,18 @@ def get_user_from_id_param(end):
                 id = int(request.GET.get("id"))
 
             except ValueError:
-                error_str = INVALID_ID_MSG
+                error_str = INVALID_ID_MESSAGE
 
                 return end(ptr, request, error_str)
 
             if id < 0:
-                error_str = INVALID_ID_MSG
+                error_str = INVALID_ID_MESSAGE
 
                 return end(ptr, request, error_str)
 
             user = get_user(id)
             if not user:
-                error_str = UNASSIGNED_ID_MSG
+                error_str = UNASSIGNED_ID_MESSAGE
 
                 return end(ptr, request, error_str)
         
@@ -47,7 +47,7 @@ def get_user_from_id_param(end):
 def redirect_to_director_panel_with_saved_params(request):
     response = redirect("director_panel")
 
-    get_query = request.session.get("director_panel_get_query")
+    get_query = request.session.get("director_panel_query")
 
     if get_query:
         response['Location'] += "?" + get_query

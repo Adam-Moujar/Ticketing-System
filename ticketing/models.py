@@ -25,6 +25,12 @@ class CustomUserManager(UserManager):
         user.save(using=self._db)
         return user
 
+    def create_custom_user(self, email, password, first_name, last_name, role):
+        user = self.create_user(email.lower(), password=password, first_name=first_name, last_name=last_name)
+        user.role = role
+        user.save(using=self._db)
+        return user
+
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique = True, blank = False)
