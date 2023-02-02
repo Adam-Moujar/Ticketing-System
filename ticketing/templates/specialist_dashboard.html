@@ -3,12 +3,12 @@
 
     <h1>Specialist dashboard</h1>
     <div>
-        {% comment %} <form method="post">
+        <form method="POST">
             {% csrf_token %}
             <button type = "submit" name = "typeOfTicket" value = "department"> Department</button>
             <button type = "submit" name = "typeOfTicket" value = "personal"> Personal</button>
             <button type = "submit" name = "typeOfTicket" value = "archived"> Archived</button>
-        </form> {% endcomment %}
+        </form>
     </div>
 
     {% include 'inbox.html' %}

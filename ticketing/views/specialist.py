@@ -15,27 +15,48 @@ class SpecialistInboxView(ListView):
     template_name = 'specialist_dashboard.html'
 
     def get_queryset(self):
-        type = self.request.POST.get('typeOfTicket')
-        match type:
-                case "department" : ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.get(specialist = user).department)
-                case "personal" : ticketlist = SpecialistInbox.objects.filter(specialist = user).only('ticket')
-                case default : ticketlist = []
+        user = self.request.user
+        ticketlist = []
+        if self.request.method == "POST":
+            ticketType = self.request.POST.get('typeOfTicket')
+            match ticketType:
+                    case "department" : ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.get(specialist = user).department)
+                    case "personal" : ticketlist = SpecialistInbox.objects.filter(specialist = user).only('ticket')
+                    case default : ticketlist = []
+
+        if self.request.method == "GET":
+            ticketType = "department"
+            ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.get(specialist = user).department)
+        
         return ticketlist
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["apple"] =  "apple"
+        ticketType = ""
+        if self.request.method == "POST":
+            ticketType = self.request.POST.get('typeOfTicket')
+        if self.request.method == "GET":
+            ticketType = "department"
+
+        context["ticketType"] = ticketType
         return context
 
-    def get(self, request, *args, **kwargs):
-        user = request.user
-        ticketType = "department"
-        ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.get(specialist = user).department)
-        return render(request, 'specialist_dashboard.html', {'object_list': ticketlist, "ticketType": ticketType})
+
+    # def get(self, request, *args, **kwargs):
+    #     user = request.user
+    #     ticketType = "department"
+    #     ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.filter(specialist = user).department)
+    #     return render(request, 'specialist_dashboard.html', {'object_list': ticketlist, "ticketType": ticketType})
 
     def post(self, request, *args, **kwargs):
-        print(self.request.POST.get('view_ticket'))
-        return SpecialistInboxView.as_view()(request)
+        print("WE ARE IN POST")
+        return render(request, 'specialist_dashboard.html', {
+            'object_list': self.get_queryset(),
+            "ticketType": self.request.POST.get('typeOfTicket')
+            })
+
+        #print(self.request.POST.get('view_ticket'))
+        #return SpecialistInboxView.as_view()(request)
     
 
 
