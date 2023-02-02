@@ -56,6 +56,9 @@ class User(AbstractUser):
 class Department(models.Model):
     name = models.CharField(max_length = 100, blank = False, unique = True)
 
+    def __str__(self):
+        return self.name
+
 # seed done 
 class SpecialistDepartment(models.Model):
     specialist = models.ForeignKey('User', on_delete= models.CASCADE, db_column ='specialist')
@@ -71,6 +74,9 @@ class Ticket(models.Model):
     student = models.ForeignKey('User', on_delete= models.CASCADE)
     department = models.ForeignKey('Department', on_delete = models.CASCADE)
     header = models.CharField(max_length = 100, blank = False)
+
+    def get_dept_name(self):
+        return self.department.name
     ## status: for open closed archived bla bla bla 
 
 # seed done 

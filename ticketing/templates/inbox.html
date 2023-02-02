@@ -1,11 +1,19 @@
 {% block body %}
 <h1>Inbox</h1>
     <h2>Tickets</h2>
-    <ul> 
+    <table> 
         {% for ticket in page_obj %}
-            <li>{{ticket.header}}</li>
+        <th>
+
+        </th>
+            <tr class="ticket-container">
+                <td>{{ticket.header}}</td>
+                <td>{{ticket.department.name}}</td>
+                <td>{{message.content}}</td>
+                <td><a href="{% url 'student_inbox' %}">View ticket</a></td>
+            </tr>
         {% endfor %}
-    </ul>
+        </table>
 
     <div class="pagination">
         <span class="step-links">
