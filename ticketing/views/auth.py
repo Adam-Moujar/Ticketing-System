@@ -11,6 +11,7 @@ class SignupView(SuccessMessageMixin, CreateView):
     form_class = SignupForm
     success_message = "Your account was created successfully"
 
+    #redirects authenticated users
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse('home'))

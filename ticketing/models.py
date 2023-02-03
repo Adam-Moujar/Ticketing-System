@@ -3,6 +3,10 @@ from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils.translation import gettext_lazy as _
 
 class CustomUserManager(UserManager):
+    """
+    UserManager which allows users of different roles to be added as well as a superuser
+    which bypass the need to have default fields such as username
+    """
     def create_user(self, email, password=None, first_name=None, last_name=None, **extra_fields):
         if not email:
             raise ValueError("Enter an email address")
