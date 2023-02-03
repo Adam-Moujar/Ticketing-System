@@ -6,6 +6,7 @@ class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
 
+    #override default required field username with email field
     username = forms.EmailField(widget=forms.TextInput(
         attrs = {'class': 'form-control', 'id': 'email', 'placeholder': 'Email'})
     )
