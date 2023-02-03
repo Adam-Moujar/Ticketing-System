@@ -16,7 +16,7 @@ class Command(BaseCommand):
     SPECIALIST_COUNT = 20
     DEPARTMENT_COUNT = len(DEPARTMENT)
     DIRECTOR_COUNT = 3
-    PASSWORD = 'Password123'
+    PASSWORD = 'Password@123'
 
     def __init__(self):
         super().__init__()
@@ -44,37 +44,37 @@ class Command(BaseCommand):
 
         self.create_specialist_indox()
         print('specialist inbox done')
-   
+
+    def set_up(self):
+        first_name = self.faker.first_name()
+        last_name = self.faker.last_name()
+        email = (f'{first_name}.{last_name}@example.com').lower()
+
+        return [first_name, last_name, email]
+
     def create_student(self):   
         for _ in range(self.STUDENT_COUNT):
-            email = self.faker.email()
-            first_name = self.faker.first_name()
-            last_name = self.faker.last_name()
-            User.objects.create_user(email = email, 
+            info = self.set_up()
+            User.objects.create_user(email = info[2],
                                     password = self.PASSWORD, 
-                                    first_name = first_name, 
-                                    last_name = last_name)
+                                    first_name = info[0], 
+                                    last_name = info[1])
    
     def create_specialist(self):
         for _ in range(self.SPECIALIST_COUNT):
-            email = self.faker.email()
-            first_name = self.faker.first_name()
-            last_name = self.faker.last_name()
-            User.objects.create(email = email, 
+            info = self.set_up()
+            User.objects.create_specialist(email = info[2], 
                                     password = self.PASSWORD, 
-                                    first_name = first_name,
-                                    last_name = last_name, 
-                                    role = User.Role.SPECIALIST)
+                                    first_name = info[0], 
+                                    last_name = info[1])
     
     def create_director(self): 
          for i in range(self.DIRECTOR_COUNT):
-            email = self.faker.email()
-            first_name = self.faker.first_name()
-            last_name = self.faker.last_name()
-            User.objects.create_superuser(email = email,
-                                         password = self.PASSWORD, 
-                                         first_name = first_name, 
-                                         last_name = last_name)
+            info = self.set_up()
+            User.objects.create_superuser(email = info[2], 
+                                    password = self.PASSWORD, 
+                                    first_name = info[0], 
+                                    last_name = info[1])
 
     def create_department(self): 
         for dep_name in self.DEPARTMENT: 
@@ -100,12 +100,14 @@ class Command(BaseCommand):
             SpecialistDepartment.objects.create(specialist = specialist, department = rand_dep)
             
     def create_specialist_indox(self):
-        for ticket in Ticket.objects.all(): 
-            specialist_obj_list = User.objects.filter(role = User.Role.SPECIALIST)
-            rand_specialist = specialist_obj_list[random.randint(0, self.SPECIALIST_COUNT - 1)]
-            specialist_ticket = SpecialistInbox.objects.create(specialist = rand_specialist, ticket = ticket)
-            self.create_specialist_message(specialist_ticket)
-
+        for department in Department.objects.all():
+            specialists = User.objects.filter(id__in = SpecialistDepartment.objects.filter(department = department).values_list('specialist', flat = True))
+            tickets = Ticket.objects.filter(department = department)
+            for ticket in tickets:
+                rand_specialist = specialists[random.randint(0, len(specialists) - 1)]
+                specialist_ticket = SpecialistInbox.objects.create(specialist = rand_specialist, ticket = ticket)
+                self.create_specialist_message(specialist_ticket)
+        
     def create_specialist_message(self, specialist_ticket):
         SpecialistMessage.objects.create(ticket = specialist_ticket.ticket, 
                                     content = self.faker.text()[0 : 500], 
