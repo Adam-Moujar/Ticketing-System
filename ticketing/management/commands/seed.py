@@ -63,7 +63,7 @@ class Command(BaseCommand):
     def create_specialist(self):
         for _ in range(self.SPECIALIST_COUNT):
             info = self.set_up()
-            User.objects.create_specialist_user(email = info[2], 
+            User.objects.create_specialist(email = info[2], 
                                     password = self.PASSWORD, 
                                     first_name = info[0], 
                                     last_name = info[1])
