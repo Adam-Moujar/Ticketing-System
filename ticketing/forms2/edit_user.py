@@ -16,7 +16,9 @@ class EditUserForm(forms.ModelForm):
         super(EditUserForm, self).__init__(*args, **kwargs)
 
     update_email = form_fields.email
-    edit_role = form_fields.role
+    edit_role = form_fields.make_role_radio_select(True, "edit_department")
+
+    edit_department = form_fields.department
 
     class Meta:
         model = User
