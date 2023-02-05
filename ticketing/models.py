@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils.translation import gettext_lazy as _
-
+from slugify import slugify
 class CustomUserManager(UserManager):
     """
     UserManager which allows users of different roles to be added as well as a superuser
@@ -88,6 +88,11 @@ class User(AbstractUser):
 # seed done
 class Department(models.Model):
     name = models.CharField(max_length = 100, blank = False, unique = True)
+    slug=models.SlugField(max_length=100,unique=True)
+    def save(self,*args, **kwargs):
+        self.slug=slugify.slugify(self.name)
+        super().save(*args, **kwargs)
+        
 
 # seed done 
 class SpecialistDepartment(models.Model):
@@ -111,7 +116,7 @@ class Message(models.Model):
     ticket = models.ForeignKey('Ticket', on_delete = models.CASCADE)
     content = models.TextField(blank = False)
     date_time = models.DateTimeField(auto_now_add=True)
-    
+  
 class FAQ(models.Model):
     specialist=models.ForeignKey('User',on_delete=models.CASCADE,db_column='specialist' )
     department=models.ForeignKey('Department',on_delete=models.CASCADE,db_column='department')
