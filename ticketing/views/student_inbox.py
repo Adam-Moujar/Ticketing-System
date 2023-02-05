@@ -8,5 +8,17 @@ class StudentInboxView(ListView):
     template_name = 'student_inbox.html'
     paginate_by = 5  # if pagination is desired
     def get_queryset(self):
-        return Ticket.objects.filter(student_id = self.request.user.id)
+        return Ticket.objects.filter(student_id = self.request.user.id, status = 'open')
 
+class ClosedInboxView(ListView):
+    model = Ticket
+    template_name = 'closed_inbox.html'
+    paginate_by = 5
+    def get_queryset(self):
+        return Ticket.objects.filter(student_id = self.request.user.id, status = 'closed')
+
+# class StatusInboxView(ListView):
+#     model = Ticket
+#     template_name = 'status_inbox.html'
+#     paginate_by = 5
+#     slug_field = 'status'

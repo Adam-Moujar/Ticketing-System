@@ -1,18 +1,19 @@
+{% extends 'base.html' %}
 {% block body %}
 <h1>Inbox</h1>
-    <h2>Open Tickets</h2>
-    <a href="{% url 'closed_student_inbox' %}">Closed Tickets</a>
+    <h2>Closed Tickets</h2>
+    <a href="{% url 'student_inbox' %}">Open Tickets</a>
     {% for ticket in page_obj %}
-        <table id="open-tickets">
+        <table id="closed-tickets">
             <th>
-                
+
             </th>
-                {% if ticket.status == 'open' %}
+                {% if ticket.status == 'closed' %}
                 <tr class="ticket-container">
                     <td>{{ticket.header}}</td>
                     <td>{{ticket.department.name}}</td>
                     <td>{{message.content}}</td>
-                    <td><a href="{% url 'student_inbox' %}">View ticket</a></td>
+                    <td><a href="{% url 'closed_student_inbox' %}">View ticket</a></td>
                 </tr>
                 {% endif %}
         </table>

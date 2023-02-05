@@ -107,10 +107,18 @@ class Ticket(models.Model):
     student = models.ForeignKey('User', on_delete= models.CASCADE)
     department = models.ForeignKey('Department', on_delete = models.CASCADE)
     header = models.CharField(max_length = 100, blank = False)
+    status = models.SlugField(max_length = 20, default = "open")
+    # Tickets are open by default, this can be changed to a SlugField if inbox are separated as follows:
+    # .../inbox/open
+    # .../inbox/closed
+    # etc.
+    # As this can automatically create links instead of writing to urls.py everytime a new ticket status is introduced
 
     def get_dept_name(self):
-        return self.department.name
-    ## status: for open closed archived bla bla bla 
+        return self.department.name 
+
+# class TicketStatus(models.Model): #model specifically for ticket status (seems excessive)
+    
 
 # seed done 
 class Message(models.Model):
