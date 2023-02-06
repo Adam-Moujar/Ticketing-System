@@ -7,10 +7,10 @@ from ticketing.models import *
 
 class DepartmentFAQ(ListView):
     model=FAQ
-    template_name='faq.html'
+    template_name='department_faq.html'
     paginate_by=25
     def get_object(self):
-        return get_object_or_404(Department, slug=self.kwargs['slug'])
+        return get_object_or_404(FAQ, slug=self.kwargs['slug'])
 
 
         

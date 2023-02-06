@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from django.utils.text import slugify
 from ticketing.models import * 
 from datetime import * 
 from faker import Faker
@@ -77,9 +78,13 @@ class Command(BaseCommand):
                                     last_name = info[1])
 
     def create_department(self): 
-        for dep_name in self.DEPARTMENT: 
-            Department.objects.create(name = dep_name)
+        for dep_name in self.DEPARTMENT:
+            Department.objects.create(
+                name=dep_name,
+                slug=slugify(dep_name)
+            )
 
+           
     def create_student_ticket(self):
         for student in User.objects.filter(role = User.Role.STUDENT):
             department_obj_list = Department.objects.all()

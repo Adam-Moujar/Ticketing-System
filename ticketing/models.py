@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils.translation import gettext_lazy as _
-from slugify import slugify
+from django.utils.text import slugify
 class CustomUserManager(UserManager):
     """
     UserManager which allows users of different roles to be added as well as a superuser
@@ -88,9 +88,9 @@ class User(AbstractUser):
 # seed done
 class Department(models.Model):
     name = models.CharField(max_length = 100, blank = False, unique = True)
-    slug=models.SlugField(max_length=100,unique=True)
+    slug=models.SlugField(max_length=100)
     def save(self,*args, **kwargs):
-        self.slug=slugify.slugify(self.name)
+        self.slug=slugify(self.name)
         super().save(*args, **kwargs)
         
 

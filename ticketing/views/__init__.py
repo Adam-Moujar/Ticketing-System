@@ -5,3 +5,4 @@ from . import student_inbox
 from . import ticket_view
 from . import student_ticket
 from . import department_faq
+from . import base_faq
