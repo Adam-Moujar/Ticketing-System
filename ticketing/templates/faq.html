@@ -1,12 +1,15 @@
-{% comment %} {% include 'partials/pagination.html'  %}
- {% endcomment %}
+
 {%include 'partials/header.html' %}
  <ul>
 {% for obj in object_list %}
-<li>
+<table>
+    <tr>
+    <td>
     <a href="{% url 'department_faq' obj.slug %}">{{ obj.name }}</a>
-
-</li>
+    </td>
+    </tr>
+</table>
 {% endfor %}
  </ul>
+{%include 'partials/pagination.html' %}
 {%include 'partials/footer.html' %}
