@@ -20,5 +20,6 @@ urlpatterns = [
     #path('inbox/<slug:slug>', student_inbox.StatusInboxView.as_view(), name= 'status_inbox'),
     path('inbox/closed/', student_inbox.ClosedInboxView.as_view(), name='closed_student_inbox'),
     path('ticket/', ticket_view.TicketView.as_view(), name= 'ticket'),
-    path('create_ticket/', student_ticket.StudentTicketView.as_view(), name = 'create_ticket')
+    path('create_ticket/', student_ticket.StudentTicketView.as_view(), name = 'create_ticket'), 
+    path("ticket/<int:pk>/", student_message.StudentMessageView.as_view(), name="student_message"),
 ]
