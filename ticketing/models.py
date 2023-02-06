@@ -88,6 +88,7 @@ class User(AbstractUser):
 # seed done
 class Department(models.Model):
     name = models.CharField(max_length = 100, blank = False, unique = True)
+
     def __str__(self):
         return self.name
 
@@ -103,10 +104,15 @@ class SpecialistInbox(models.Model):
 
 # seed done 
 class Ticket(models.Model):
+
+    class Status(models.TextChoices):
+        OPEN = 'Open'
+        CLOSED = 'Closed'
+
     student = models.ForeignKey('User', on_delete= models.CASCADE)
     department = models.ForeignKey('Department', on_delete = models.CASCADE)
     header = models.CharField(max_length = 100, blank = False)
-    status = models.SlugField(max_length = 20, default = "open")
+    status = models.CharField(max_length = 20, default = Status.OPEN, choices = Status.choices)
     # Tickets are open by default, this can be changed to a SlugField if inbox are separated as follows:
     # .../inbox/open
     # .../inbox/closed

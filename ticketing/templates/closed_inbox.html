@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
 {% block body %}
+<style>
+    table, th, td {
+      border:1px solid rgb(81, 38, 38);
+    }
+</style>
 <h1>Inbox</h1>
     <h2>Closed Tickets</h2>
     <a href="{% url 'student_inbox' %}">Open Tickets</a>
-    {% for ticket in page_obj %}
-        <table id="closed-tickets">
-            <th>
-
-            </th>
-                {% if ticket.status == 'closed' %}
-                <tr class="ticket-container">
-                    <td>{{ticket.header}}</td>
-                    <td>{{ticket.department.name}}</td>
-                    <td>{{message.content}}</td>
-                    <td><a href="{% url 'closed_student_inbox' %}">View ticket</a></td>
-                </tr>
-                {% endif %}
-        </table>
-    {% endfor %}
+    <table id="closed-tickets">
+        <thead>
+            <th colspan="4">Header</th>
+            <th>Department</th>
+        </thead>
+        <tbody>
+        {% for ticket in page_obj %}
+            <tr class="ticket-container">
+                <td colspan="5">
+                    <a href="{% url 'student_message' pk=ticket.id %}" style="text-decoration: none; display: block;">
+                        {{ticket.header}}
+                    </a>
+                </td>
+                <td colspan="2">
+                    <a href="{% url 'student_message' pk=ticket.id %}" style="text-decoration: none; display: block;">
+                        {{ticket.department.name}}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
     <div class="pagination">
         <span class="step-links">

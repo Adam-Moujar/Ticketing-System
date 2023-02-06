@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1>Student dashboard</h1>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" name="typeOfTicket" value="Open">Open Tickets</button>
+            <button type="submit" name="typeOfTicket" value="Closed">Closed Tickets</button>
+        </form>
+    </div>
+    {% include 'inbox.html' %}
+{% endblock %}

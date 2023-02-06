@@ -6,15 +6,14 @@
     }
 </style>
 <h1>Inbox</h1>
-    <h2>Open Tickets</h2>
-    <a href="{% url 'closed_student_inbox' %}">Closed Tickets</a>
-    <table id="open-tickets">
+    <h2>{{ticketType}} Tickets</h2>
+    <table id="tickets">
         <thead>
             <th colspan="4">Header</th>
             <th>Department</th>
         </thead>
+        <tbody>
         {% for ticket in page_obj %}
-            {% if ticket.status == 'open' %}
             <tr class="ticket-container">
                 <td colspan="5">
                     <a href="{% url 'student_message' pk=ticket.id %}" style="text-decoration: none; display: block;">
@@ -27,8 +26,8 @@
                     </a>
                 </td>
             </tr>
-            {% endif %}
         {% endfor %}
+        </tbody>
     </table>
 
     <div class="pagination">
