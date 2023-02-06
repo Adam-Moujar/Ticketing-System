@@ -14,7 +14,7 @@
                 {% if user.role == "SP" %}
                     {% if ticketType == "department" %}
                         <button type="button">
-                            <a href="{% url 'ticket' %}">View ticket</a>
+                            <a href="{% url 'ticket' pk=ticket.id %}">View ticket</a>
                         </button>
                     {% endif %} 
                 {% endif %}

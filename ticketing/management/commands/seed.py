@@ -42,8 +42,8 @@ class Command(BaseCommand):
         self.create_student_ticket()
         print('student ticket done')
 
-        self.create_specialist_indox()
-        print('specialist inbox done')
+        # self.create_specialist_indox()
+        # print('specialist inbox done')
 
     def set_up(self):
         first_name = self.faker.first_name()

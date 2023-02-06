@@ -24,18 +24,27 @@ class SpecialistInboxView(ListView):
             match ticketType:
                     case "department" : 
                         if (len(userDepartment) == 0):
-                            ticketList = []
+                            ticketlist = []
                         else:
-                            ticketlist = Ticket.objects.filter(department = userDepartment.first().department)
+                            fullTicketlist = Ticket.objects.filter(department = userDepartment.first().department)
+                            ticketlist = []
+                            for ticket in fullTicketlist:
+                                if len(SpecialistInbox.objects.filter(ticket = ticket)) == 0:
+                                    ticketlist.append(ticket) 
+                                
                     case "personal" : ticketlist = Ticket.objects.filter(id__in = SpecialistInbox.objects.filter(specialist = user).values_list('ticket_id', flat = True)) 
                     case default : ticketlist = []
 
         if self.request.method == "GET":
             ticketType = "department"
             if (len(userDepartment) == 0):
-                ticketList = []
+                ticketlist = []
             else:
-                ticketlist = Ticket.objects.filter(department = userDepartment.first().department)
+                fullTicketlist = Ticket.objects.filter(department = userDepartment.first().department)
+                ticketlist = []
+                for ticket in fullTicketlist:
+                    if len(SpecialistInbox.objects.filter(ticket = ticket)) == 0:
+                        ticketlist.append(ticket) 
         
         return ticketlist
 
@@ -58,7 +67,7 @@ class SpecialistInboxView(ListView):
     #     return render(request, 'specialist_dashboard.html', {'object_list': ticketlist, "ticketType": ticketType})
 
     def post(self, request, *args, **kwargs):
-        print("WE ARE IN POST")
+     
         return render(request, 'specialist_dashboard.html', {
             'object_list': self.get_queryset(),
             "ticketType": self.request.POST.get('typeOfTicket')

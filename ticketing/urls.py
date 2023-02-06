@@ -17,6 +17,6 @@ urlpatterns = [
     path('signup/', auth.SignupView.as_view(), name = 'signup'),
     path('specialist_dashboard/', specialist.SpecialistInboxView.as_view(), name = 'specialist_dashboard'),
     path('inbox/', student_inbox.StudentInboxView.as_view(), name= 'student_inbox'),
-    path('ticket/', ticket_view.TicketView.as_view(), name= 'ticket'),
+    path('ticket/<int:pk>', ticket_view.TicketView.as_view(), name= 'ticket'),
     path('create_ticket/', student_ticket.StudentTicketView.as_view(), name = 'create_ticket')
 ]
