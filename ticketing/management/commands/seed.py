@@ -23,6 +23,8 @@ class Command(BaseCommand):
         self.faker = Faker('en_GB')
 
     def handle(self, *args, **options ):
+        User.objects.all().delete()
+        Department.objects.all().delete()
 
         self.create_student()
         print('students done') 
@@ -44,37 +46,36 @@ class Command(BaseCommand):
 
         self.create_specialist_indox()
         print('specialist inbox done')
-
+   
     def set_up(self):
         first_name = self.faker.first_name()
         last_name = self.faker.last_name()
         email = (f'{first_name}.{last_name}@example.com').lower()
-
         return [first_name, last_name, email]
 
     def create_student(self):   
         for _ in range(self.STUDENT_COUNT):
             info = self.set_up()
-            User.objects.create_user(email = info[2],
-                                    password = self.PASSWORD, 
+            User.objects.create_user(password = self.PASSWORD, 
                                     first_name = info[0], 
-                                    last_name = info[1])
+                                    last_name = info[1], 
+                                    email = info[2],)
    
     def create_specialist(self):
         for _ in range(self.SPECIALIST_COUNT):
             info = self.set_up()
-            User.objects.create_specialist(email = info[2], 
-                                    password = self.PASSWORD, 
+            User.objects.create_specialist(password = self.PASSWORD,
                                     first_name = info[0], 
-                                    last_name = info[1])
+                                    last_name = info[1], 
+                                    email = info[2],)
     
     def create_director(self): 
          for i in range(self.DIRECTOR_COUNT):
             info = self.set_up()
-            User.objects.create_superuser(email = info[2], 
-                                    password = self.PASSWORD, 
+            User.objects.create_superuser(password = self.PASSWORD,
                                     first_name = info[0], 
-                                    last_name = info[1])
+                                    last_name = info[1], 
+                                    email = info[2],)
 
     def create_department(self): 
         for dep_name in self.DEPARTMENT: 

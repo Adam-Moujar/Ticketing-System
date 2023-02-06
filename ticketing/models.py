@@ -88,7 +88,6 @@ class User(AbstractUser):
 # seed done
 class Department(models.Model):
     name = models.CharField(max_length = 100, blank = False, unique = True)
-
     def __str__(self):
         return self.name
 
