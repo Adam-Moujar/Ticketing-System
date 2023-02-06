@@ -1,50 +1,69 @@
-{% block body %}
-<!-- This is a test -->
+<h1>Inbox</h1>
+<h2>{{ ticketType }} Tickets</h2>
 <style>
     table, th, td {
       border:1px solid rgb(81, 38, 38);
     }
 </style>
-<h1>Inbox</h1>
-    <h2>{{ticketType}} Tickets</h2>
-    <table id="tickets">
-        <thead>
-            <th colspan="4">Header</th>
-            <th>Department</th>
-        </thead>
-        <tbody>
+
+<div>
+        <table>
+            <thead>
+                <th>Deparment</th>
+                <th>Header</th>
+            </thead>
         {% for ticket in page_obj %}
-            <tr class="ticket-container">
-                <td colspan="5">
-                    <a href="{% url 'student_message' pk=ticket.id %}" style="text-decoration: none; display: block;">
-                        {{ticket.header}}
-                    </a>
+            <tr>
+                {% if user.role != "ST" %}
+                    <td>{{ticket.student}}</td>
+                {% endif %}
+                <td>{{ticket.department.name}}</td>
+                <td>{{ticket.header}}</td>
+                {% if user.role == "SP" %}
+                <td>
+                    {% if ticketType == "department" %}
+                        <button type="button">
+                            <a href="{% url 'ticket' %}">View ticket</a>
+                        </button>
+                    {% endif %} 
                 </td>
-                <td colspan="2">
-                    <a href="{% url 'student_message' pk=ticket.id %}" style="text-decoration: none; display: block;">
-                        {{ticket.department.name}}
-                    </a>
-                </td>
+                {% endif %}
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+        </table>
+</div>
 
-    <div class="pagination">
-        <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number}}">previous</a>
-        {% endif %}
+        {% comment %} {% if user.role == "SP %"}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-
-        </span>
+       
     </div>
-{% endblock %}
+
+    <!-- <div class="col-sm-3">
+        <table class="table table-bordered " border="1">
+            <tr>
+                <td colspan="4">Tickets</td>
+            </tr>
+            {% if user.role == "ST" %}
+                <p>This is a student</p>
+            {% endif %}
+            {% if user.role == "SP" %}
+                {% if ticketType == "department" %}
+                    {% for ticket in object_list %}
+                        <tr>
+                            <td>{{ticket.student}}</td>
+                            <td>{{ticket.department.name}}</td>
+                            <td>{{ticket.header}}</td>
+                            <td>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="view_ticket" value="{{ ticket.id }}"
+                                            class="button is-secondary">View
+                                    </button>
+                                </form>
+                             </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </table>
+    </div> --> {% endcomment %}

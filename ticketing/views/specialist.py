@@ -13,6 +13,7 @@ from ticketing.models import Ticket, SpecialistInbox, SpecialistDepartment
 class SpecialistInboxView(ListView):
     model = Ticket
     template_name = 'specialist_dashboard.html'
+    paginate_by = 5
 
     def get_queryset(self):
         user = self.request.user
