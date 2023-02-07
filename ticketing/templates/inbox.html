@@ -14,7 +14,12 @@
                 {% if user.role == "SP" %}
                     {% if ticketType == "department" %}
                         <button type="button">
-                            <a href="{% url 'ticket' pk=ticket.id %}">View ticket</a>
+                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
+                        </button>
+                    {% endif %} 
+                    {% if ticketType == "personal" %}
+                        <button type="button">
+                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
                         </button>
                     {% endif %} 
                 {% endif %}

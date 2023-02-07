@@ -12,7 +12,9 @@ from ticketing.models import Ticket, SpecialistInbox, SpecialistDepartment, Mess
 
 @method_decorator(roles_allowed(allowed_roles = ['SP', 'DI']), name='dispatch')
 @method_decorator(login_required, name='dispatch')
-class TicketView(View):
+class SpecialistClaimTicketView(View):
+    template_name = "specialist_claim_ticket.html"
+
     def get(self, request, *args, **kwargs):
         user = request.user
         # CHECK IF THE TICKET WE ARE VIEWING CAN BE VIEWED BY SPECIALIST
@@ -20,7 +22,7 @@ class TicketView(View):
         ticket = Ticket.objects.filter(id =self.kwargs["pk"])
         if(len(ticket)>0 and department == ticket[0].department):
             message = Message.objects.filter(ticket = ticket.first()).first()
-            return render(request, 'ticket.html', {'ticket': ticket.first(), 'message' : message})
+            return render(request, self.template_name, {'ticket': ticket.first(), 'message' : message})
         
         else:
             return redirect('/specialist_dashboard')
