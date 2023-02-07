@@ -4,9 +4,9 @@
     <div>
         <form method="POST">
             {% csrf_token %}
-            <button type = "submit" name = "typeOfTicket" value = "department"> Department</button>
-            <button type = "submit" name = "typeOfTicket" value = "personal"> Personal</button>
-            <button type = "submit" name = "typeOfTicket" value = "archived"> Archived</button>
+            <button type = "submit" name = "type_of_ticket" value = "department"> Department </button>
+            <button type = "submit" name = "type_of_ticket" value = "personal"  > Personal   </button>
+            <button type = "submit" name = "type_of_ticket" value = "archived"  > Archived   </button>
         </form>
     </div>
     {% include 'inbox.html' %}
