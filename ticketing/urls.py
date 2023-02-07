@@ -17,8 +17,8 @@ urlpatterns = [
     path('signup/', auth.SignupView.as_view(), name = 'signup'),
     path('faq/',base_faq.BaseFaq.as_view(),name='faq'),
     path('faq/<slug:department>/',department_faq.DepartmentFAQ.as_view(),name='department_faq'),
-    path('specialist_dashboard/', specialist.SpecialistInboxView.as_view(), name = 'specialist_dashboard'),
+    path('specialist_dashboard/', specialist_inbox.SpecialistInboxView.as_view(), name = 'specialist_dashboard'),
     path('inbox/', student_inbox.StudentInboxView.as_view(), name= 'student_inbox'),
-    path('ticket/', ticket_view.TicketView.as_view(), name= 'ticket'),
+    path('specialist_claim_ticket/<int:pk>', specialist_claim_ticket.SpecialistClaimTicketView.as_view(), name= 'specialist_claim_ticket'),
     path('create_ticket/', student_ticket.StudentTicketView.as_view(), name = 'create_ticket')
 ]
