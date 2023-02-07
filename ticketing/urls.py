@@ -18,7 +18,8 @@ urlpatterns = [
     path('director_panel/', director_panel.DirectorPanelView.as_view(), name = 'director_panel'),
     path('edit_user/', edit_user.EditUserView.as_view(), name = 'edit_user'),
     path('change_password/', change_password.ChangePasswordView.as_view(), name = 'change_password'),
-    path('department_manager/', department_manager.DepartmentManagerView.as_view(), name = 'department_manager'),
+    path('department_manager/', department_manager.DepartmentManagerView.as_view(), name='department_manager'),
+    path('<pk>/edit_department/', edit_department.EditDepartmentView.as_view(), name='edit_department'),
     path('inbox/', student_inbox.StudentInboxView.as_view(), name= 'student_inbox'),
     path('create_ticket/', student_ticket.StudentTicketView.as_view(), name = 'create_ticket')
 ]

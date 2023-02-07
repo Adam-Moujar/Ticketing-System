@@ -32,3 +32,9 @@ class StudentTicketForm(forms.ModelForm):
         model = Ticket
         fields = ['header', 'department']
 
+
+# class DepartmentAddForm(forms.ModelForm):
+#     name = 
+#     class Meta:
+#         model = Department
+#         fields = "__all__"

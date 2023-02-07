@@ -1,5 +1,6 @@
 from ticketing.forms2.director_panel import DirectorFilterForm, DirectorCommandsForm, AddUserForm
 from ticketing.models import User, Department
+from ticketing.utility.error_messages import *
 
 from django.shortcuts import render, redirect
 from django.views import View
@@ -69,8 +70,6 @@ class DirectorPanelView(ListView):
     model = User
 
     context = {}
-
-    USER_NO_EXIST_MESSAGE = "Some of the users that were selected did not exist"
 
     def start(self, request):
         self.error = ""
@@ -172,14 +171,14 @@ class DirectorPanelView(ListView):
             result = set_multiple_users_role(selected, role)
 
             if result == False:
-                self.error = self.USER_NO_EXIST_MESSAGE
+                self.error = USER_NO_EXIST_MESSAGE
 
         elif request.POST.get('delete'):
 
             result = delete_users(selected)
 
             if result == False:
-                self.error = self.USER_NO_EXIST_MESSAGE
+                self.error = USER_NO_EXIST_MESSAGE
 
         return self.end(request)
 

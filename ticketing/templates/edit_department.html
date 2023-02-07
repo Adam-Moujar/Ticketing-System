@@ -4,12 +4,12 @@
 <html>
 
   <head>
-    <title> Edit User </title>
+    <title> Edit Department </title>
   </head>
   <body>
 
 
-    <h1>Edit User</h1>
+    <h1>Edit Department</h1>
 
 
     {% if error_str|length > 0 %}
@@ -20,7 +20,7 @@
       <form method="post" class="login-form" style="display: inline;">
         {% csrf_token %}
 
-        ID: {{user.id}} <br>
+        ID: {{department.id}} <br>
         {{ form.as_p }}
 
         <input type="submit" name="save" value="Save">
