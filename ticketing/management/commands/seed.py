@@ -47,8 +47,8 @@ class Command(BaseCommand):
         self.create_student_ticket()
         print('student ticket done')
 
-        # self.create_specialist_indox()
-        # print('specialist inbox done')
+        self.create_specialist_inbox()
+        print('specialist inbox done')
 
     def set_up(self):
         first_name = self.faker.first_name()
@@ -147,7 +147,7 @@ class Command(BaseCommand):
         for specialist in User.objects.filter(role = User.Role.SPECIALIST) : 
             self.assign_specialist_to_department(specialist)
             
-    def create_specialist_indox(self):
+    def create_specialist_inbox(self):
         for department in Department.objects.all():
             specialists = User.objects.filter(
                 id__in = SpecialistDepartment.objects.filter(department = department).values_list('specialist', flat = True)
