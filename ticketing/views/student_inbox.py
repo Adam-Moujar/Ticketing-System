@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.views.generic.list import ListView
-from ticketing.models import * 
+from ticketing.models import *
+from django.utils.decorators import method_decorator
+from ticketing.decorators import *
+from django.contrib.auth.decorators import login_required
+from ticketing.decorators import roles_allowed 
 
 import copy
 
+@method_decorator(roles_allowed(allowed_roles = ['ST']), name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class StudentInboxView(ListView):  
     model = Ticket
     template_name = 'student_dashboard.html'
@@ -15,8 +21,8 @@ class StudentInboxView(ListView):
             return tickets
         
         if self.request.method == "POST":
-            ticketType = self.request.POST.get('typeOfTicket')
-            match ticketType:
+            ticket_type = self.request.POST.get('type_of_ticket')
+            match ticket_type:
                 case "Open":
                     return tickets.filter(status = "Open")
                 case "Closed":
@@ -26,11 +32,11 @@ class StudentInboxView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        ticketType = ""
+        ticket_type = ""
         if self.request.method == "POST":
-            ticketType = self.request.POST.get('id')
+            ticket_type = self.request.POST.get('type_of_ticket')
 
-        context["ticketType"] = ticketType
+        context["type_of_ticket"] = ticket_type
         return context
     
 
@@ -45,7 +51,7 @@ class StudentInboxView(ListView):
 
         context = {
             'page_obj': self.get_queryset(),
-            'ticketType': self.request.POST.get('typeOfTicket')
+            'type_of_ticket': self.request.POST.get('type_of_ticket')
         }
 
         context.update(super().get(request).context_data)
