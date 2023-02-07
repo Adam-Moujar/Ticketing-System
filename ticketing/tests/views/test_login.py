@@ -5,28 +5,29 @@ from django.urls import reverse
 from ticketing.models import User
 from ticketing.tests.helpers import LogInTester
 
+
 class LoginViewTestCase(TestCase, LogInTester):
     def setUp(self):
         self.url = reverse('login')
         User.objects.create_user(
-            email = "johndoe@example.com",
-            first_name = "John",
-            last_name = "Doe",
-            password = "Password123",
+            email='johndoe@example.com',
+            first_name='John',
+            last_name='Doe',
+            password='Password123',
         )
         User.objects.create_specialist(
-            email="janedoe@example.com",
-            first_name = "Jane",
-            last_name = "Doe",
-            password = "Password123",
+            email='janedoe@example.com',
+            first_name='Jane',
+            last_name='Doe',
+            password='Password123',
         )
         User.objects.create_director(
-            email="director@example.com",
-            first_name = "Director",
-            last_name = "Doe",
-            password = "Password123",
+            email='director@example.com',
+            first_name='Director',
+            last_name='Doe',
+            password='Password123',
         )
-    
+
     def test_log_in_url(self):
         self.assertEqual(self.url, '/login/')
 
@@ -40,8 +41,8 @@ class LoginViewTestCase(TestCase, LogInTester):
 
     def test_unsuccessful_log_in(self):
         form_input = {
-            'email': "johndoe@example.com",
-            'password': "123Password"
+            'email': 'johndoe@example.com',
+            'password': '123Password',
         }
         response = self.client.post(self.url, form_input)
         self.assertEqual(response.status_code, 200)
@@ -51,7 +52,7 @@ class LoginViewTestCase(TestCase, LogInTester):
         self.assertFalse(self._is_logged_in())
 
     def test_log_in_with_blank_email(self):
-        form_input = { 'email': '', 'password': 'Password1234'}
+        form_input = {'email': '', 'password': 'Password1234'}
         response = self.client.post(self.url, form_input)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'login.html')
@@ -60,7 +61,7 @@ class LoginViewTestCase(TestCase, LogInTester):
         self.assertFalse(self._is_logged_in())
 
     def test_log_in_with_blank_password(self):
-        form_input = { 'username': 'johndoe@example.com', 'password': ''}
+        form_input = {'username': 'johndoe@example.com', 'password': ''}
         response = self.client.post(self.url, form_input)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'login.html')
@@ -69,7 +70,10 @@ class LoginViewTestCase(TestCase, LogInTester):
         self.assertFalse(self._is_logged_in())
 
     def test_successful_student_log_in(self):
-        form_input = { 'username': 'johndoe@example.com', 'password': 'Password123'}
+        form_input = {
+            'username': 'johndoe@example.com',
+            'password': 'Password123',
+        }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
         response_url = reverse('student_dashboard')
@@ -77,23 +81,36 @@ class LoginViewTestCase(TestCase, LogInTester):
         self.assertTemplateUsed(response, 'student_dashboard.html')
 
     def test_successful_specialist_log_in(self):
-        form_input = { 'username': 'janedoe@example.com', 'password': 'Password123'}
+        form_input = {
+            'username': 'janedoe@example.com',
+            'password': 'Password123',
+        }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
         response_url = reverse('specialist_dashboard')
-        self.assertRedirects(response, response_url, status_code=302, target_status_code=200)
-        self.assertTemplateUsed(response, 'specialist_db.html')
+        self.assertRedirects(
+            response, response_url, status_code=302, target_status_code=200
+        )
+        self.assertTemplateUsed(response, 'specialist_dashboard.html')
 
     def test_successful_director_log_in(self):
-        form_input = { 'username': 'director@example.com', 'password': 'Password123'}
+        form_input = {
+            'username': 'director@example.com',
+            'password': 'Password123',
+        }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
         response_url = reverse('home')
-        self.assertRedirects(response, response_url, status_code=302, target_status_code=200)
+        self.assertRedirects(
+            response, response_url, status_code=302, target_status_code=200
+        )
         self.assertTemplateUsed(response, 'index.html')
 
     def test_get_log_in_redirects_when_logged_in(self):
-        form_input = { 'username': 'director@example.com', 'password': 'Password123'}
+        form_input = {
+            'username': 'director@example.com',
+            'password': 'Password123',
+        }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
         response_url = reverse('home')
@@ -101,7 +118,10 @@ class LoginViewTestCase(TestCase, LogInTester):
         self.assertRedirects(response, response_url)
 
     def test_post_log_in_redirects_when_logged_in(self):
-        form_input = { 'username': 'director@example.com', 'password': 'Password123'}
+        form_input = {
+            'username': 'director@example.com',
+            'password': 'Password123',
+        }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
         response_url = reverse('home')
