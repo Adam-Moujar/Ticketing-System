@@ -12,12 +12,12 @@
                 <td>{{ticket.header}}</td>
                 <td>
                 {% if user.role == "SP" %}
-                    {% if ticketType == "department" %}
+                    {% if ticket_type == "department" %}
                         <button type="button">
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
                         </button>
                     {% endif %} 
-                    {% if ticketType == "personal" %}
+                    {% if ticket_type == "personal" %}
                         <button type="button">
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
                         </button>
@@ -28,38 +28,3 @@
         {% endfor %}
         </table>
 </div>
-
-        {% comment %} {% if user.role == "SP %"}
-
-       
-    </div>
-
-    <!-- <div class="col-sm-3">
-        <table class="table table-bordered " border="1">
-            <tr>
-                <td colspan="4">Tickets</td>
-            </tr>
-            {% if user.role == "ST" %}
-                <p>This is a student</p>
-            {% endif %}
-            {% if user.role == "SP" %}
-                {% if ticketType == "department" %}
-                    {% for ticket in object_list %}
-                        <tr>
-                            <td>{{ticket.student}}</td>
-                            <td>{{ticket.department.name}}</td>
-                            <td>{{ticket.header}}</td>
-                            <td>
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" name="view_ticket" value="{{ ticket.id }}"
-                                            class="button is-secondary">View
-                                    </button>
-                                </form>
-                             </td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            {% endif %}
-        </table>
-    </div> --> {% endcomment %}

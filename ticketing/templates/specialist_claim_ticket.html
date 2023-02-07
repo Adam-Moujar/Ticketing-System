@@ -4,18 +4,18 @@
     <h1>Ticket</h1>
 
     <div>
-        <p>Ticket header : {{ticket.header}}</p>
-        <p>Ticket message : {{message.content}}</p>
-        <p>Ticket user : {{ticket.student.first_name}} {{ticket.student.last_name}} </p>
+        <p>Ticket header  : {{ticket.header}}   </p>
+        <p>Ticket message : {{message.content}} </p>
+        <p>Ticket user    : {{ticket.student.first_name}} {{ticket.student.last_name}} </p>
     </div>
 
     <div>
         <form method="POST">
             {% csrf_token %}
             
-            <button type = "submit" name = "acceptTicket" value = {{ticket.id}}> Claim</button>
-            <button type="button">
-                <a href="{% url 'specialist_dashboard' %}">Back</a>
+            <button type = "submit" name = "accept_ticket" value = {{ticket.id}}> Claim</button>
+            <button type = "button">
+                <a href  ="{% url 'specialist_dashboard' %}">Back</a>
             </button>
             
         </form>

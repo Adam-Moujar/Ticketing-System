@@ -15,92 +15,53 @@ class SpecialistInboxView(ListView):
     template_name = 'specialist_dashboard.html'
 
     def get_queryset(self):
-        user = self.request.user
-        userDepartment = SpecialistDepartment.objects.filter(specialist = user)
+        user            = self.request.user
+        user_department = SpecialistDepartment.objects.filter(specialist = user)
 
-        ticketlist = []
+        ticket_list = []
         if self.request.method == "POST":
-            ticketType = self.request.POST.get('typeOfTicket')
-            match ticketType:
-                    case "department" : 
-                        if (len(userDepartment) == 0):
-                            ticketlist = []
-                        else:
-                            fullTicketlist = Ticket.objects.filter(department = userDepartment.first().department)
-                            ticketlist = []
-                            for ticket in fullTicketlist:
-                                if len(SpecialistInbox.objects.filter(ticket = ticket)) == 0:
-                                    ticketlist.append(ticket) 
-                                
-                    case "personal" : ticketlist = Ticket.objects.filter(id__in = SpecialistInbox.objects.filter(specialist = user).values_list('ticket_id', flat = True)) 
-                    case default : ticketlist = []
+            ticket_type = self.request.POST.get('type_of_ticket')
+            ticket_list = self.get_tickets(user, user_department, ticket_type)
 
         if self.request.method == "GET":
-            ticketType = "department"
-            if (len(userDepartment) == 0):
-                ticketlist = []
-            else:
-                fullTicketlist = Ticket.objects.filter(department = userDepartment.first().department)
-                ticketlist = []
-                for ticket in fullTicketlist:
-                    if len(SpecialistInbox.objects.filter(ticket = ticket)) == 0:
-                        ticketlist.append(ticket) 
+            ticket_type = "personal"
+            ticket_list = self.get_tickets(user, user_department, ticket_type)
         
-        return ticketlist
+        return ticket_list
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        ticketType = ""
-        if self.request.method == "POST":
-            ticketType = self.request.POST.get('typeOfTicket')
-        if self.request.method == "GET":
-            ticketType = "department"
+        ticket_type = ""
 
-        context["ticketType"] = ticketType
+        if self.request.method == "POST":
+            ticket_type = self.request.POST.get('type_of_ticket')
+
+        if self.request.method == "GET":
+            ticket_type = "personal"
+
+        context["ticket_type"] = ticket_type
         return context
 
-
-    # def get(self, request, *args, **kwargs):
-    #     user = request.user
-    #     ticketType = "department"
-    #     ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.filter(specialist = user).department)
-    #     return render(request, 'specialist_dashboard.html', {'object_list': ticketlist, "ticketType": ticketType})
-
     def post(self, request, *args, **kwargs):
-     
         return render(request, 'specialist_dashboard.html', {
             'object_list': self.get_queryset(),
-            "ticketType": self.request.POST.get('typeOfTicket')
+            "ticket_type": self.request.POST.get('type_of_ticket')
             })
 
-        #print(self.request.POST.get('view_ticket'))
-        #return SpecialistInboxView.as_view()(request)
-    
+    def get_tickets(self,user, user_department, ticket_type):
+        match ticket_type:
+            case "department": 
+                if (len(user_department) != 0):
+                    full_ticket_list = Ticket.objects.filter(department = user_department.first().department)
+                    ticket_list = []
+                    for ticket in full_ticket_list:
+                        if len(SpecialistInbox.objects.filter(ticket = ticket)) == 0:
+                            ticket_list.append(ticket) 
+                        
+            case "personal" : ticket_list = Ticket.objects.filter(
+                id__in = SpecialistInbox.objects.filter(specialist = user).values_list('ticket_id', flat = True)
+                ) 
 
+            case default : ticket_list = []
 
-# class DashboardView(View):
-#     @method_decorator(roles_allowed(allowed_roles = ['SP', 'DI']), login_required)
-
-#     def post(self, request, *args, **kwargs):
-
-#         user = request.user
-#         type = request.POST.get('typeOfTicket')
-#         ticketType = type
-        
-#         match type:
-#             case "department" : ticketlist = Ticket.objects.filter(department = SpecialistDepartment.objects.get(specialist = user).department)
-#             case "personal" : ticketlist = SpecialistInbox.objects.filter(specialist = user).only('ticket')
-#             #case "archived" :
-#             case default : ticketlist = []
-
-#         return render(request, 'specialist_dashboard.html', {'object_list': ticketlist, "ticketType": ticketType})
-
-#     def get(self, request, *args, **kwargs):
-#         user = request.user
-#         ticketType = "personal"
-#         ticketlist = SpecialistInbox.objects.filter(specialist = user).values_list('ticket')
-#         return render(request, 'specialist_dashboard.html', {'object_list': ticketlist, "ticketType": ticketType})
-
-
-
-    
+        return ticket_list      

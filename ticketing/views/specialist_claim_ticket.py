@@ -20,31 +20,24 @@ class SpecialistClaimTicketView(View):
         # CHECK IF THE TICKET WE ARE VIEWING CAN BE VIEWED BY SPECIALIST
         department = (SpecialistDepartment.objects.filter(specialist = user).first()).department
         ticket = Ticket.objects.filter(id =self.kwargs["pk"])
-        if(len(ticket)>0 and department == ticket[0].department):
-            message = Message.objects.filter(ticket = ticket.first()).first()
-            return render(request, self.template_name, {'ticket': ticket.first(), 'message' : message})
-        
-        else:
-            return redirect('/specialist_dashboard')
-        
+
+        return self.validate_view_ticket(user,department,ticket,request)
+
     def post(self, request, *args, **kwargs):
-        ticketID= self.request.POST.get('acceptTicket')
-        ticketList = Ticket.objects.filter(id = ticketID)
-        if(len(ticketList) == 0):
+        ticket_id= self.request.POST.get('accept_ticket')
+        ticket_list = Ticket.objects.filter(id = ticket_id)
+        if(len(ticket_list) == 0):
             return redirect('/specialist_dashboard')
         else:
             SpecialistInbox.objects.create(
                 specialist = request.user,
-                ticket = ticketList[0]
+                ticket = ticket_list[0]
             )
         return redirect('/specialist_dashboard')
 
-
-            
-        
-
-
-
-        
-
-
+    def validate_view_ticket(self,user,department,ticket,request):
+        if(len(ticket) > 0 and department == ticket[0].department):
+            message = Message.objects.filter(ticket = ticket.first()).first()
+            return render(request, self.template_name, {'ticket': ticket.first(), 'message' : message})   
+        else:
+            return redirect('/specialist_dashboard')
