@@ -116,7 +116,7 @@ class Message(models.Model):
     ticket = models.ForeignKey('Ticket', on_delete = models.CASCADE)
     content = models.TextField(blank = False)
     date_time = models.DateTimeField(auto_now_add=True)
-  
+# seed done
 class FAQ(models.Model):
     specialist=models.ForeignKey('User',on_delete=models.CASCADE,db_column='specialist' )
     department=models.ForeignKey('Department',on_delete=models.CASCADE,db_column='department')

@@ -45,6 +45,9 @@ class Command(BaseCommand):
 
         self.create_specialist_indox()
         print('specialist inbox done')
+        
+        self.create_department_faq()
+        print('department faq done')
 
     def set_up(self):
         first_name = self.faker.first_name()
@@ -117,3 +120,12 @@ class Command(BaseCommand):
         SpecialistMessage.objects.create(ticket = specialist_ticket.ticket, 
                                     content = self.faker.text()[0 : 500], 
                                     responder = specialist_ticket.specialist)
+    def create_department_faq(self):
+        for dept in self.DEPARTMENT:
+            for i in range(100):
+                FAQ.objects.create(
+                    department=Department.objects.filter(name=dept)[0],
+                    specialist = User.objects.filter(role='SP')[0],
+                    questions=self.faker.text()[0:500],
+                    answer=self.faker.text()[0:500]
+                )

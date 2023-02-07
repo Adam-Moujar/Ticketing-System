@@ -1,15 +1,16 @@
 
 {%include 'partials/header.html' %}
- <ul>
-{% for obj in object_list %}
 <table>
-    <tr>
+<tr>
+    {% for obj in object_list %}
     <td>
-    <a href="{% url 'department_faq' obj.slug %}">{{ obj.name }}</a>
+      <div class="panel">
+            <div class="panel-title"> <a href="{% url 'department_faq' obj.slug %}">{{ obj.name }}</a></div>
+        </div>
     </td>
-    </tr>
+    {% endfor %}
+  </tr>
 </table>
-{% endfor %}
- </ul>
+
 {%include 'partials/pagination.html' %}
 {%include 'partials/footer.html' %}
