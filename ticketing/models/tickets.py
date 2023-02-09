@@ -1,9 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from ticketing.models.validators.user_validator import *
 
 
 class Ticket(models.Model):
-    student = models.ForeignKey('User', on_delete=models.CASCADE)
+    student = models.ForeignKey(
+        'User', on_delete=models.CASCADE, validators=[validate_user_as_student]
+    )
     department = models.ForeignKey('Department', on_delete=models.CASCADE)
     header = models.CharField(max_length=100, blank=False)
 
@@ -11,7 +14,9 @@ class Ticket(models.Model):
         OPEN = 'Open'
         CLOSED = 'Closed'
 
-    # status = models.CharField(max_length = 20, default = Status.OPEN, choices = Status.choices)
+    status = models.CharField(
+        max_length=20, default=Status.OPEN, choices=Status.choices
+    )
     # # Tickets are open by default, this can be changed to a SlugField if inbox are separated as follows:
     # # .../inbox/open
     # # .../inbox/closed
@@ -19,6 +24,7 @@ class Ticket(models.Model):
     # # As this can automatically create links instead of writing to urls.py everytime a new ticket status is introduced
 
 
+# Abstract Class
 class Message(models.Model):
     ticket = models.ForeignKey('Ticket', on_delete=models.CASCADE)
     content = models.TextField(blank=False)
@@ -31,5 +37,8 @@ class StudentMessage(Message):
 
 class SpecialistMessage(Message):
     responder = models.ForeignKey(
-        'User', on_delete=models.CASCADE, db_column='responder'
+        'User',
+        on_delete=models.CASCADE,
+        db_column='responder',
+        validators=[validate_user_as_specialist],
     )
