@@ -3,7 +3,7 @@
 
 <div>
         <table>
-        {% for ticket in object_list %}
+        {% for ticket in page_obj %}
             <tr>
                 {% if user.role != "ST" %}
                     <td>{{ticket.student}}</td>
