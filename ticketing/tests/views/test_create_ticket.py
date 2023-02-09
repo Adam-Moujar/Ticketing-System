@@ -2,13 +2,13 @@ from django.test import TestCase
 from django import forms
 from ticketing.forms import StudentTicketForm
 from django.urls import reverse
-from ticketing.models import User, Department
+from ticketing.models import User, Department, Ticket, Message
 
 
 class CreateTicketViewTestCase(TestCase):
     def setUp(self):
         self.url = reverse('create_ticket')
-        User.objects.create_user(
+        self.user = User.objects.create_user(
             email='johndoe@example.com',
             first_name='John',
             last_name='Doe',
@@ -31,19 +31,27 @@ class CreateTicketViewTestCase(TestCase):
     def test_create_valid_ticket(self):
         user_pk = User.objects.get(pk=1).pk
         form_input = {
-            'student': user_pk,
+            'student': self.user.pk,
             'department': self.department.pk,
             'header': 'Lorem Ipsum',
             'content': 'Hello World',
         }
+        old_ticket_count = Ticket.objects.count()
         response = self.client.post(self.url, form_input, follow=True)
         response_url = reverse('student_dashboard')
+        self.assertEqual(old_ticket_count + 1, Ticket.objects.count())
+        ticket = Ticket.objects.get(pk=1)
+        message = Message.objects.get(ticket=ticket)
+        self.assertEqual(ticket.student, self.user)
+        self.assertEqual(ticket.department, self.department)
+        self.assertEqual(ticket.header, 'Lorem Ipsum')
+        self.assertEqual(message.content, 'Hello World')
         self.assertRedirects(response, response_url)
 
     def test_ticket_with_no_department(self):
         user_pk = User.objects.get(pk=1).pk
         form_input = {
-            'student': user_pk,
+            'student': self.user.pk,
             'header': 'Lorem Ipsum',
             'content': 'Hello World',
         }
@@ -57,7 +65,7 @@ class CreateTicketViewTestCase(TestCase):
     def test_ticket_with_no_header(self):
         user_pk = User.objects.get(pk=1).pk
         form_input = {
-            'student': user_pk,
+            'student': self.user.pk,
             'department': self.department.pk,
             'content': 'Hello World',
         }
@@ -71,7 +79,7 @@ class CreateTicketViewTestCase(TestCase):
     def test_ticket_with_no_content(self):
         user_pk = User.objects.get(pk=1).pk
         form_input = {
-            'student': user_pk,
+            'student': self.user.pk,
             'department': self.department.pk,
             'header': 'Lorem Ipsum',
         }

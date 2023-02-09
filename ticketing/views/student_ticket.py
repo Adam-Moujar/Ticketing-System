@@ -30,5 +30,5 @@ class StudentTicketView(FormView):
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
-        print(form.errors.as_data())
+        # print(form.errors.as_data())
         return self.render_to_response(self.get_context_data())
