@@ -55,7 +55,8 @@ def make_role_radio_select(linked, department_select_name = ""):
     return role
                                  
 department = forms.ModelChoiceField(queryset = Department.objects.all(),
-                                    widget = custom_widgets.StyledSelect)
+                                    widget = custom_widgets.StyledSelect,
+                                    required = False)
 department.label = "Department"
 department.disabled = True
 

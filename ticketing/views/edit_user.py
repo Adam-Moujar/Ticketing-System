@@ -35,6 +35,9 @@ class EditUserView(View):
                                     "first_name" : user.first_name,
                                     "last_name": user.last_name,
                                     "edit_role": user.role})
+        
+        if user.role == User.Role.SPECIALIST:
+            self.form.fields["edit_department"].disabled = False
 
 
     @get_user_from_id_param(handle_id_param_error)
