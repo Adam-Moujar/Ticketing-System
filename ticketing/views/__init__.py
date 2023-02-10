@@ -1,2 +1,2 @@
 from . import auth, home, specialist, director_panel, edit_user, change_password, department_manager
-from . import student_inbox, student_ticket, edit_department, experimental_edit_user, experimental_director_panel
+from . import student_inbox, student_ticket, edit_department
