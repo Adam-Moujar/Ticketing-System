@@ -4,6 +4,7 @@ from ticketing import utility
 from ticketing.utility import get
 from ticketing.utility.get import get_user_from_id_param
 from ticketing.utility import form_fields
+from ticketing.views.utility.mixins import DynamicCustomFormClassMixin
 
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
@@ -13,26 +14,30 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.views.generic.edit import UpdateView
 
-class EditUserView(UpdateView):
+class EditUserView(DynamicCustomFormClassMixin, UpdateView):
 
     model = User
+
+    # We will dynamically add the other fields (role, department) later, so they are missing from this list
     fields = ['email', 'first_name', 'last_name']
     success_url = reverse_lazy("director_panel")
+
+    form_class_maker = make_edit_user_form_class
 
 
     def get_template_names(self):
         return ["edit_user.html"]
 
 
-    def get_form(self, form_class = None):
+    # def get_form(self, form_class = None):
 
-        form_class = self.get_form_class()
+    #     form_class = self.get_form_class()
 
-        _class = make_edit_user_form_class(form_class)
+    #     _class = make_edit_user_form_class(form_class)
         
-        form = _class(**self.get_form_kwargs())
+    #     form = _class(**self.get_form_kwargs())
 
-        return form
+    #     return form
 
 
     def post(self, request, *args, **kwargs):

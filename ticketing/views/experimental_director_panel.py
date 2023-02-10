@@ -1,12 +1,16 @@
-from ticketing.forms2.director_panel import DirectorFilterForm, DirectorCommandsForm, AddUserForm
+from ticketing.forms2.director_panel import DirectorFilterForm, DirectorCommandsForm, make_add_user_form_class
 from ticketing.models import User, Department
 from ticketing.utility.error_messages import *
+from ticketing.forms import SignupForm
+from ticketing.views.utility.mixins import ExtendableFormViewMixin, DynamicCustomFormClassMixin
 
 from django.shortcuts import render, redirect
+from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic.list import ListView
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
+from django.views.generic.edit import CreateView
 
 
 def add_user(user, role, department):
@@ -64,26 +68,44 @@ def delete_users(user_id_strings):
     return not problem_occured
 
 
-class DirectorPanelView(ListView):
+class DirectorPanelView(ExtendableFormViewMixin, DynamicCustomFormClassMixin, CreateView, ListView):
 
     paginate_by = 10
     model = User
+    form_class = SignupForm
+    success_url = reverse_lazy("department_manager")
 
-    context = {}
+    form_class_maker = make_add_user_form_class
 
-    def start(self, request):
+
+    # def custom_get_form_kwargs(self):
+    #     _kwargs = super().get_form_kwargs()
+
+    #     _kwargs.pop("data", None)
+    #     _kwargs.pop("files", None)
+
+    #     return _kwargs
+
+    def setup(self, request):
+
+        print("WE ARE ABOVE SETUP")
+
+        super().setup(request)
+
         self.error = ""
 
-        self.form = DirectorFilterForm(request.GET)
-        self.add_user_form = AddUserForm()
+        self.filter_form = DirectorFilterForm(request.GET)
+        #self.add_user_form = AddUserForm()
 
-        self.result = self.form.is_valid()
+        self.result = self.filter_form.is_valid()
 
-        self.get_id = self.form.cleaned_data.get("id")
-        self.get_first_name = self.form.cleaned_data.get("first_name", "")
-        self.get_last_name = self.form.cleaned_data.get("last_name", "")
-        self.get_email = self.form.cleaned_data.get("email", "")
-        self.get_role = self.form.cleaned_data.get("role")
+        self.get_id = self.filter_form.cleaned_data.get("id")
+        self.get_first_name = self.filter_form.cleaned_data.get("first_name", "")
+        self.get_last_name = self.filter_form.cleaned_data.get("last_name", "")
+        self.get_email = self.filter_form.cleaned_data.get("email", "")
+        self.get_role = self.filter_form.cleaned_data.get("role")
+
+        #print("FILTER FORM IS: ", self.filter_form)
 
     
     def get_queryset(self):
@@ -101,14 +123,29 @@ class DirectorPanelView(ListView):
         return users
 
 
-    def get(self, request):
-        
-        self.start(request)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
 
-        return self.end(request)
+        context.update({"commands_form": DirectorCommandsForm(),
+                        "filter_form": self.filter_form})
+
+        return context
+
+
+    # def get(self, request):
+
+    #     print("")
+        
+    #     self.setup(request)
+
+    #     return super().get(request)
+
+    #     #return self.end(request)
 
     def post(self, request):
-        self.start(request)
+        #self.start(request)
+
+        super().get(request)
 
         selected = request.POST.getlist('select')
         edit_id = request.POST.get('edit')
@@ -121,19 +158,19 @@ class DirectorPanelView(ListView):
             return response
 
         elif request.POST.get('add'):
-            self.add_user_form = AddUserForm(request.POST)
+            # self.add_user_form = AddUserForm(request.POST)
 
-            if not self.add_user_form.is_valid():
-                return self.end(request)
+            # if not self.add_user_form.is_valid():
+            #     return self.end(request)
 
-            user = self.add_user_form.save(commit = False)
+            # user = self.add_user_form.save(commit = False)
 
-            add_user(user, self.add_user_form.cleaned_data.get("add_user_role"), 
-                        self.add_user_form.cleaned_data.get("add_user_department"))
+            # add_user(user, self.add_user_form.cleaned_data.get("add_user_role"), 
+            #             self.add_user_form.cleaned_data.get("add_user_department"))
 
-            self.add_user_form = AddUserForm()
+            # self.add_user_form = AddUserForm()
 
-            return self.end(request)
+            return super().post(request)
         
         elif request.POST.get('reset'):
             return redirect("director_panel")
@@ -154,7 +191,7 @@ class DirectorPanelView(ListView):
             # Remaining possible POST requests rely on there being users selected
             self.error = "No users have been selected"
 
-            return self.end(request)
+            return self.fixed_post(request)
 
         if request.POST.get('set_role'):
 
@@ -162,12 +199,12 @@ class DirectorPanelView(ListView):
             if not role:
                 self.error = "You have not selected a role for the user"
 
-                return self.end(request)
+                return self.fixed_post(request)
 
             if not validate_role(role):
                 self.error = "Invalid user role selected"
 
-                return self.end(request)
+                return self.fixed_post(request)
 
             result = set_multiple_users_role(selected, role)
 
@@ -181,22 +218,36 @@ class DirectorPanelView(ListView):
             if result == False:
                 self.error = USER_NO_EXIST_MESSAGE
 
-        return self.end(request)
+        return self.fixed_post(request)
 
 
-    def end(self, request):
+    # def post_end(self, request):
 
-        self.context.update(super().get(request).context_data)
+    #     old_get_form_kwargs = self.get_form_kwargs
+    #     self.get_form_kwargs = self.custom_get_form_kwargs
 
-        if len(self.error) > 0:
-            messages.add_message(request, messages.ERROR, self.error)
+    #     result = super().post(request, *args, **kwargs)
+
+    #     self.get_form_kwargs = old_get_form_kwargs
+
+        return result
+
+    def get_template_names(self):
+        return ["director_panel.html"]
+
+    # def end(self, request):
+
+    #     self.context.update(super().get(request).context_data)
+
+    #     if len(self.error) > 0:
+    #         messages.add_message(request, messages.ERROR, self.error)
 
 
-        self.context.update({"error" : self.error,
-                   "form": self.form,
-                   "commands_form": DirectorCommandsForm(),
-                   "add_user_form": self.add_user_form})
+    #     self.context.update({"error" : self.error,
+    #                "form": self.form,
+    #                "commands_form": DirectorCommandsForm(),
+    #                "add_user_form": self.add_user_form})
 
-        return render(request, "director_panel.html", self.context)
+    #     return render(request, "director_panel.html", self.context)
 
 

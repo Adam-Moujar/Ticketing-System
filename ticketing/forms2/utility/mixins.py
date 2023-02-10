@@ -5,7 +5,7 @@ from django import forms
 
 import copy
 
-class AbstractUserDepartmentForm():
+class UserDepartmentFormMixin():
 
     def __init__(self, data = None, *args, **kwargs):
 
@@ -22,5 +22,31 @@ class AbstractUserDepartmentForm():
         if self.cleaned_data.get(self.role_field_name) == User.Role.SPECIALIST:
             if self.cleaned_data.get(self.department_field_name) == None:
                 self.add_error(self.department_field_name, "You have not selected a user department")
+
+
+class ExtendedUserFormMixin():
+
+    def __init__(self, *args, **kwargs):
+        
+        self.base_fields.update({
+            # Role field
+            self.role_field_name: form_fields.make_role_radio_select(True, self.department_field_name),
+
+            # Department field
+            self.department_field_name: form_fields.department
+        })
+
+        super().__init__(*args, **kwargs)
+
+        user = self.instance
+
+        self.initial.update({"edit_role": user.role})
+
+    def save(self, commit = True):
+        self.instance.role = self.cleaned_data["edit_role"]
+        
+        return super().save(commit)
+
+
          
         

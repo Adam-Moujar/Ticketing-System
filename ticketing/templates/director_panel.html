@@ -20,7 +20,7 @@
 
     <form method="post" style="display: inline;">
     {% csrf_token %}
-    {{ add_user_form.as_p }}
+    {{ form.as_p }}
 
     <input type="submit" name="add" value="Add">
 
@@ -30,7 +30,7 @@
     <h3>Filters</h3>
 
     <form method="get" style="display: inline;">
-        {{ form.as_p }}
+        {{ filter_form.as_p }}
 
         <input type="submit" value="Apply">
 

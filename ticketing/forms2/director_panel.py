@@ -1,6 +1,6 @@
 from ticketing.utility import form_fields
 from ticketing.models import User
-from ticketing.forms2.utility.base_classes import AbstractUserDepartmentForm
+from ticketing.forms2.utility.mixins import UserDepartmentFormMixin, ExtendedUserFormMixin
 
 from django import forms
 
@@ -33,7 +33,15 @@ class DirectorCommandsForm(forms.Form):
     commands_department = form_fields.department
 
 
-class AddUserForm(AbstractUserDepartmentForm):
+def make_add_user_form_class(generated_form_class):
+
+    class ExperimentalAddUserForm(ExtendedUserFormMixin, UserDepartmentFormMixin, generated_form_class):
+        department_field_name = "edit_department"
+        role_field_name = "edit_role"
+
+    return ExperimentalAddUserForm
+
+class AddUserForm(UserDepartmentFormMixin, forms.ModelForm):
     department_field_name = "add_user_department"
     role_field_name = "add_user_role"
 

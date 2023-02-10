@@ -1,7 +1,7 @@
 from ticketing.utility import form_fields
 from ticketing.utility.user import user_exists_by_email
 from ticketing.models import User
-from ticketing.forms2.utility.base_classes import AbstractUserDepartmentForm
+from ticketing.forms2.utility.mixins import UserDepartmentFormMixin, ExtendedUserFormMixin
 
 
 from django import forms
@@ -10,32 +10,32 @@ import copy
 
 def make_edit_user_form_class(generated_form_class):
 
-    class ExperimentalEditUserForm(AbstractUserDepartmentForm, generated_form_class):
+    class ExperimentalEditUserForm(ExtendedUserFormMixin, UserDepartmentFormMixin, generated_form_class):
         department_field_name = "edit_department"
         role_field_name = "edit_role"
 
-        edit_role = form_fields.make_role_radio_select(True, "edit_department")
+        # edit_role = form_fields.make_role_radio_select(True, "edit_department")
 
-        edit_department = form_fields.department
+        # edit_department = form_fields.department
 
 
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
+        # def __init__(self, *args, **kwargs):
+        #     super().__init__(*args, **kwargs)
 
-            user = self.instance
+        #     user = self.instance
 
-            self.initial.update({"edit_role": user.role})
+        #     self.initial.update({"edit_role": user.role})
 
-        def save(self, commit = True):
-            self.instance.role = self.cleaned_data["edit_role"]
+        # def save(self, commit = True):
+        #     self.instance.role = self.cleaned_data["edit_role"]
             
-            return super().save(commit)
-            
+        #     return super().save(commit)
+
 
     return ExperimentalEditUserForm
 
 
-class EditUserForm(AbstractUserDepartmentForm):
+class EditUserForm(UserDepartmentFormMixin):
 
     department_field_name = "edit_department"
     role_field_name = "edit_role"
