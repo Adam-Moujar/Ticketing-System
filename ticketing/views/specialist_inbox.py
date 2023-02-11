@@ -1,19 +1,17 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.list import ListView
-from django.utils.decorators import method_decorator
 from ticketing.decorators import *
-from django.contrib.auth.decorators import login_required
-from ticketing.decorators import roles_allowed
+from django.contrib.auth.mixins import LoginRequiredMixin
+from ticketing.mixins import RoleRequiredMixin
 
 from ticketing.models import Ticket, SpecialistInbox, SpecialistDepartment
 
 
-@method_decorator(roles_allowed(allowed_roles=['SP', 'DI']), name='dispatch')
-@method_decorator(login_required, name='dispatch')
-class SpecialistInboxView(ListView):
+class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = Ticket
     template_name = 'specialist_dashboard.html'
+    required_roles = ['SP', 'DI']
 
     def get_queryset(self):
         user = self.request.user
@@ -77,5 +75,5 @@ class SpecialistInboxView(ListView):
 
             case default:
                 ticket_list = []
-        print(len(ticket_list))
+
         return ticket_list

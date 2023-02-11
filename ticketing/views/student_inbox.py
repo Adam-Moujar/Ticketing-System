@@ -1,21 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.views.generic.list import ListView
-from ticketing.models import *
-from django.utils.decorators import method_decorator
-from ticketing.decorators import *
-from django.contrib.auth.decorators import login_required
-from ticketing.decorators import roles_allowed
-
+from ticketing.models import Ticket
+from django.contrib.auth.mixins import LoginRequiredMixin
+from ticketing.mixins import RoleRequiredMixin
 import copy
 
 
-@method_decorator(roles_allowed(allowed_roles=['ST']), name='dispatch')
-@method_decorator(login_required, name='dispatch')
-class StudentInboxView(ListView):
+class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = Ticket
     template_name = 'student_dashboard.html'
     paginate_by = 5  # if pagination is desired
+    required_roles = ['ST']
 
     def get_queryset(self):
         tickets = Ticket.objects.filter(student_id=self.request.user.id)
