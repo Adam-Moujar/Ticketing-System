@@ -1,15 +1,13 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.list import ListView
-from django.utils.decorators import method_decorator
-from ticketing.decorators import *
-from django.contrib.auth.decorators import login_required
-from ticketing.decorators import roles_allowed
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from ticketing.mixins import RoleRequiredMixin
 from ticketing.models import Ticket, SpecialistInbox, SpecialistDepartment
 
-@method_decorator(roles_allowed(allowed_roles = ['SP', 'DI']), name='dispatch')
-@method_decorator(login_required, name='dispatch')
-class TicketView(View):
+
+class TicketView(LoginRequiredMixin, RoleRequiredMixin, View):
+    required_roles = ['ST', 'SP', 'DI']
+
     def get(self, request, *args, **kwargs):
         return render(request, 'ticket.html')

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.list import ListView
-from ticketing.decorators import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
 from django.shortcuts import redirect

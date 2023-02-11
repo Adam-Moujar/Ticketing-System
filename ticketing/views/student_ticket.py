@@ -3,9 +3,6 @@ from django.shortcuts import render
 from django.views.generic import FormView
 from django.urls import reverse_lazy, reverse
 from ticketing.forms import StudentTicketForm
-from django.utils.decorators import method_decorator
-from ticketing.decorators import *
-from django.contrib.auth.decorators import login_required
 from ticketing.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
