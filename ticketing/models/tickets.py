@@ -11,12 +11,14 @@ class Ticket(models.Model):
         OPEN = 'Open'
         CLOSED = 'Closed'
 
-    # status = models.CharField(max_length = 20, default = Status.OPEN, choices = Status.choices)
-    # # Tickets are open by default, this can be changed to a SlugField if inbox are separated as follows:
-    # # .../inbox/open
-    # # .../inbox/closed
-    # # etc.
-    # # As this can automatically create links instead of writing to urls.py everytime a new ticket status is introduced
+    status = models.CharField(
+        max_length=20, default=Status.OPEN, choices=Status.choices
+    )
+    # Tickets are open by default, this can be changed to a SlugField if inbox are separated as follows:
+    # .../inbox/open
+    # .../inbox/closed
+    # etc.
+    # As this can automatically create links instead of writing to urls.py everytime a new ticket status is introduced
 
 
 class Message(models.Model):

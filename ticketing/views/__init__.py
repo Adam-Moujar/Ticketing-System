@@ -4,3 +4,5 @@ from . import specialist_inbox
 from . import student_inbox
 from . import specialist_claim_ticket
 from . import student_ticket
+from . import student_message
+from . import ticket_view

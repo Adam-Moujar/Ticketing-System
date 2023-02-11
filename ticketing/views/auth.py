@@ -21,7 +21,7 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         match self.request.user.role:
             case 'ST':
-                return reverse('home')
+                return reverse('student_dashboard')
             case 'SP':
                 return reverse('specialist_dashboard')
             case 'DI':
