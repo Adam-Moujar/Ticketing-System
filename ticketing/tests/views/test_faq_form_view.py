@@ -65,8 +65,13 @@ class FAQFormViewTest(TestCase):
 
     def test_log_in_required_to_access_faq_form(self):
         request = self.factory.get(reverse('faq_form_view'))
+        request.user = AnonymousUser()
         response = FAQFormView.as_view()(request)
         self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.url,
+            reverse('login') + '?next=' + reverse('faq_form_view'),
+        )
 
     def test_role_required_to_access_faq_form(self):
         request = self.factory.get(reverse('faq_form_view'))
