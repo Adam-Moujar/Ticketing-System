@@ -7,3 +7,4 @@ from . import student_ticket
 from . import department_faq
 from . import base_faq
 from . import specialist_faq_form
+from . import individual_specialist_faq

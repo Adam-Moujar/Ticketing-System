@@ -52,4 +52,9 @@ urlpatterns = [
         student_ticket.StudentTicketView.as_view(),
         name='create_ticket',
     ),
+    path(
+        'check_faq/',
+        individual_specialist_faq.SpecialistFAQListView.as_view(),
+        name='check_faq',
+    ),
 ]
