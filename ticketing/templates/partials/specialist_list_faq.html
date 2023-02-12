@@ -1,0 +1,25 @@
+<h1>{{ department_name }}</h1>
+{% for obj in object_list %}
+<table>
+
+    <tr>
+
+      <td>
+        <div class="panel">
+          <div class="panel-title"><b>Quesion:</b> <br>{{ obj.questions }}</div>
+          <div class="panel-content"><b>Answer:</b><br> {{ obj.answer }}<br></div>
+          <div class="panel-buttons">
+            <a class="btn btn-primary" a href="{% url 'faq_update' obj.pk %}">  <input type="submit" value="Update" /></a>
+            {% if obj.pk %}
+            <form action="{% url 'faq_delete' obj.pk %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Delete" />
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </td>
+
+    </tr>
+  </table>
+  {% endfor %}

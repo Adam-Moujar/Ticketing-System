@@ -1,19 +1,19 @@
-{% include 'partials/header.html' %} 
- {% for obj in object_list %}
-<table> 
-  
+{% include 'partials/header.html' %}
+<h1>{{ department_name }}</h1>
+{% for obj in object_list %}
+<table>
+
     <tr>
-     
+
       <td>
         <div class="panel">
           <div class="panel-title"><b>Quesion:</b> <br>{{ obj.questions }}</div>
           <div class="panel-content"><b>Answer:</b><br> {{ obj.answer }}<br></div>
         </div>
       </td>
-     
+
     </tr>
-  </table> 
+  </table>
   {% endfor %}
 {% include 'partials/pagination.html'  %}
 {% include 'partials/footer.html' %}
-

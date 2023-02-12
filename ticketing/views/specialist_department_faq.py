@@ -20,3 +20,13 @@ class SpecialistDepartmentFaq(LoginRequiredMixin, RoleRequiredMixin, ListView):
             specialist=user
         ).department
         return FAQ.objects.filter(department=department)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        specialist_dept = SpecialistDepartment.objects.get(
+            specialist=user
+        ).department
+        department = get_object_or_404(Department, name=specialist_dept)
+        context['department_name'] = department.name
+        return context

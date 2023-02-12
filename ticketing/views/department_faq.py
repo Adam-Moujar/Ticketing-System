@@ -12,4 +12,16 @@ class DepartmentFAQ(ListView):
     paginate_by = 25
 
     def get_queryset(self):
-        return FAQ.objects.filter(department__slug=self.kwargs['department'])
+        queryset = FAQ.objects.filter(
+            department__slug=self.kwargs['department']
+        )
+        queryset = queryset.order_by('questions')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        department = get_object_or_404(
+            Department, slug=self.kwargs['department']
+        )
+        context['department_name'] = department.name
+        return context
