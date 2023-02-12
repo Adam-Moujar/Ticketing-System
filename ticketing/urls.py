@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, reverse
 from django.contrib.auth import views
 from .views import *
 from .forms import LoginForm, FAQForm
@@ -56,5 +56,15 @@ urlpatterns = [
         'check_faq/',
         individual_specialist_faq.SpecialistFAQListView.as_view(),
         name='check_faq',
+    ),
+    path(
+        '<int:pk>/edit/',
+        update_faq.FAQUpdateFormView.as_view(),
+        name='faq_update',
+    ),
+    path(
+        '<int:pk>/delete/',
+        delete_faq.FAQDeleteView.as_view(),
+        name='faq_delete',
     ),
 ]
