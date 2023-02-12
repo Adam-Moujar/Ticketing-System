@@ -58,6 +58,11 @@ urlpatterns = [
         name='check_faq',
     ),
     path(
+        'check_department_faq',
+        specialist_department_faq.SpecialistDepartmentFaq.as_view(),
+        name='specialist_department_faq',
+    ),
+    path(
         '<int:pk>/edit/',
         update_faq.FAQUpdateFormView.as_view(),
         name='faq_update',
