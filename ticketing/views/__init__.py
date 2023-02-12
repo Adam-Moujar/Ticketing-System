@@ -6,3 +6,4 @@ from . import specialist_claim_ticket
 from . import student_ticket
 from . import department_faq
 from . import base_faq
+from . import specialist_faq_form
