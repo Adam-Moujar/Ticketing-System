@@ -200,9 +200,15 @@ class Command(BaseCommand):
             dept = Department.objects.filter(name=dept).first()
             user = User.objects.filter(role='SP').first()
             for i in range(100):
+                question = self.faker.sentence(
+                    nb_words=10, variable_nb_words=True
+                )
+                answer = self.faker.sentence(
+                    nb_words=20, variable_nb_words=True
+                )
                 FAQ.objects.create(
                     specialist=user,
                     department=dept,
-                    questions=self.faker.text()[0:500],
-                    answer=self.faker.text()[0:500],
+                    questions=question,
+                    answer=answer,
                 )
