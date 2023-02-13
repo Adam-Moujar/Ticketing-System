@@ -21,6 +21,7 @@ class SpecialistInboxView(ListView):
         ticket_list = []
         if self.request.method == "POST":
             ticket_type = self.request.POST.get('type_of_ticket')
+           
             ticket_list = self.get_tickets(user, user_department, ticket_type)
 
         if self.request.method == "GET":
@@ -43,9 +44,12 @@ class SpecialistInboxView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
+        ticket_type = self.request.POST.get('type_of_ticket')
         return render(request, 'specialist_dashboard.html', {
             'object_list': self.get_queryset(),
-            "ticket_type": self.request.POST.get('type_of_ticket')
+            "ticket_type": ticket_type,
+            "inbox_type": self.set_formatted_inbox_name(ticket_type),
+            "department_name": self.get_department_name(self)
             })
 
     def get_tickets(self,user, user_department, ticket_type):
@@ -64,4 +68,36 @@ class SpecialistInboxView(ListView):
 
             case default : ticket_list = []
 
-        return ticket_list      
+        return ticket_list
+    
+    def set_formatted_inbox_name(self,ticket_type):
+       match ticket_type:
+           case "department":
+               user            = self.request.user
+               user_department = SpecialistDepartment.objects.filter(specialist = user)
+               return self.get_department_name()+ " Inbox"
+           case "personal":
+               return "Personal Inbox:"
+           case default:
+               return "Default"
+           
+    def get_department_name(self):
+        try:
+            user            = self.request.user
+            specialist_department = SpecialistDepartment.objects.filter(specialist = user)
+            return specialist_department.first().department.name
+        except:
+            return  "Department has not been found"
+
+           
+ 
+        
+        
+        
+            
+       
+
+        
+
+
+     
