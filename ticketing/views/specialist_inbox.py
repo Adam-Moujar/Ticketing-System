@@ -3,7 +3,7 @@ from django.views import View
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
-
+import copy
 from ticketing.models import Ticket, SpecialistInbox, SpecialistDepartment
 
 
@@ -11,11 +11,11 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = Ticket
     template_name = 'specialist_dashboard.html'
     required_roles = ['SP', 'DI']
+    paginate_by = 10  # if pagination is desired
 
     def get_queryset(self):
         user = self.request.user
         user_department = SpecialistDepartment.objects.filter(specialist=user)
-
         ticket_list = []
         if self.request.method == 'POST':
             ticket_type = self.request.POST.get('type_of_ticket')
@@ -41,14 +41,18 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         return context
 
     def post(self, request, *args, **kwargs):
-        return render(
-            request,
-            'specialist_dashboard.html',
-            {
-                'object_list': self.get_queryset(),
-                'ticket_type': self.request.POST.get('type_of_ticket'),
-            },
-        )
+        # request.GET["page"] = 1
+
+        get_copy = copy.copy(request.GET)
+        get_copy['page'] = 1
+
+        request.GET = get_copy
+        context = {
+            'page_obj': self.get_queryset(),
+            'object_list': self.get_queryset(),
+            'ticket_type': self.request.POST.get('type_of_ticket'),
+        }
+        return render(request, 'specialist_dashboard.html', context)
 
     def get_tickets(self, user, user_department, ticket_type):
         match ticket_type:

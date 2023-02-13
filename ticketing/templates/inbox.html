@@ -3,7 +3,7 @@
 
 <div>
         <table>
-        {% for ticket in object_list %}
+        {% for ticket in page_obj %}
             <tr>
                 {% if user.role != "ST" %}
                     <td>{{ticket.student}}</td>
@@ -23,14 +23,9 @@
                         </button>
                     {% endif %}
                 {% endif %}
-
-                {% if user.role == "ST" %}
-                <button type="button">
-                    <a href="{% url 'ticket' %}">To ticket</a>
-                </button>
-                {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </table>
 </div>
+{% include 'partials/pagination.html' %}

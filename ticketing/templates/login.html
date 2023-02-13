@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>Login</h1>
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                {{ field.errors }}
-                {{ field.non_field_errors }}
-                {{ field.label_tag }} {{ field }}
-                <!-- {% if field.help_text %}
-                <p class="help">{{ field.help_text | safe }}</p>
-                {% endif %} -->
-            </div>
-        {% endfor %}
-        <button type="submit">Log In</button>
-    </form>
+<div class="card" style="padding: 3vmin; background-color: #F1F5FB; margin: 5vmin;">
+    <h1>Login</h1>
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.errors }}
+                    {{ field.non_field_errors }}
+                    {{ field.label_tag }} {{ field }}
+                    <!-- {% if field.help_text %}
+                    <p class="help">{{ field.help_text | safe }}</p>
+                    {% endif %} -->
+                </div>
+            {% endfor %}
+            <button id="blue-btn" class="btn" type="submit" style="margin-top: 2vmin;">Log In</button>
+            <a id="red-btn" class="btn" type="input" href="{% url 'home' %}" style="margin-top: 2vmin;">Cancel</a>
+        </form>
+</div>
 {% endblock %}

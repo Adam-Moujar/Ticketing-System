@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block body %}
-    <h1>Student dashboard</h1>
+    <h1>Dashboard</h1>
     <div>
         <form method="POST">
             {% csrf_token %}
             <button type="submit" name="type_of_ticket" value="Open">Open Tickets</button>
             <button type="submit" name="type_of_ticket" value="Closed">Closed Tickets</button>
+            <a href="{% url 'create_ticket' %}" style="margin:1vmin;">Create ticket</a>
+
         </form>
     </div>
     {% include 'inbox.html' %}
 
-    {% include 'partials/pagination.html' %}
+
 {% endblock %}

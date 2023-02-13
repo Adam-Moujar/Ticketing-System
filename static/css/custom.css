@@ -1,6 +1,40 @@
 :root {
     --blue: #0360F3;
+    --red: #DC392D;
     --gray: #475B63;
     --primary: #E9ECF2;
     --secondary: #F1F5FB;
+}
+
+/* Partials */
+
+.footer {
+    text-align: center;
+}
+
+.navbar {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    margin-top: 3vmin;
+    margin-bottom: 3vmin;
+}
+
+/* Buttons */
+
+#blue-btn {
+    --bs-btn-bg: transparent;
+    --bs-btn-color: var(--blue);
+    --bs-btn-border-color: var(--blue);
+    --bs-btn-hover-color: var(--primary);
+    --bs-btn-hover-bg: var(--blue);
+}
+
+#red-btn {
+    --bs-btn-bg: transparent;
+    --bs-btn-color: var(--red);
+    --bs-btn-border-color: var(--red);
+    --bs-btn-hover-color: var(--primary);
+    --bs-btn-hover-bg: var(--red);
 }
