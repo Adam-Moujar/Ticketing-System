@@ -12,7 +12,7 @@ class SpecialistDepartmentFaq(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = FAQ
     template_name = 'specialist_department_faq.html'
     required_roles = ['SP', 'DI']
-    paginate_by = 25
+    paginate_by = 2
 
     def get_queryset(self):
         user = self.request.user
