@@ -122,6 +122,7 @@ class DirectorPanelView(ExtendableFormViewMixin, DynamicCustomFormClassMixin, Cr
                         "error": self.error})
 
         return context
+        
 
     def post(self, request):
 
