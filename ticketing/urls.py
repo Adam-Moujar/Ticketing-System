@@ -61,7 +61,7 @@ urlpatterns = [
         '<pk>/edit_user/', edit_user.EditUserView.as_view(), name='edit_user'
     ),
     path(
-        'change_password/',
+        '<pk>/change_password/',
         change_password.ChangePasswordView.as_view(),
         name='change_password',
     ),
