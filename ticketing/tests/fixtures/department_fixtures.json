@@ -1,0 +1,37 @@
+[
+    {
+        "model": "ticketing.department",
+        "pk": 71,
+        "fields": {
+            "name": "Cost of living"
+        }
+    },
+    {
+        "model": "ticketing.department",
+        "pk": 72,
+        "fields": {
+            "name": "Student wellbeing"
+        }
+    },
+    {
+        "model": "ticketing.department",
+        "pk": 73,
+        "fields": {
+            "name": "Fees, Funding & Money"
+        }
+    },
+    {
+        "model": "ticketing.department",
+        "pk": 74,
+        "fields": {
+            "name": "Immigration & visa advice"
+        }
+    },
+    {
+        "model": "ticketing.department",
+        "pk": 75,
+        "fields": {
+            "name": "Accommodation"
+        }
+    }
+]
