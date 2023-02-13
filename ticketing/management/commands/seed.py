@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from ticketing.models import *
 from datetime import *
 from faker import Faker
+from wonderwords import RandomSentence
 import random
 
 
@@ -24,6 +25,7 @@ class Command(BaseCommand):
 
     def __init__(self):
         super().__init__()
+        self.wonder_words = RandomSentence()
         self.faker = Faker('en_GB')
 
     def handle(self, *args, **options):
@@ -199,13 +201,9 @@ class Command(BaseCommand):
         for dept in self.DEPARTMENT:
             dept = Department.objects.filter(name=dept).first()
             user = User.objects.filter(role='SP').first()
-            for i in range(100):
-                question = self.faker.sentence(
-                    nb_words=10, variable_nb_words=True
-                )
-                answer = self.faker.sentence(
-                    nb_words=20, variable_nb_words=True
-                )
+            for i in range(10):
+                question = f'{self.wonder_words.sentence()}?'
+                answer = f'{self.wonder_words.bare_bone_with_adjective()}'
                 FAQ.objects.create(
                     specialist=user,
                     department=dept,
