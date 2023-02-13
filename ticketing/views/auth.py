@@ -11,18 +11,19 @@ class SignupView(SuccessMessageMixin, CreateView):
     form_class = SignupForm
     success_message = "Your account was created successfully"
 
-    def get(self, request, *args, **kwargs):
+    #redirects authenticated users
+    def dispatch(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return HttpResponseRedirect(reverse('home'))
-        return super().get(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
         match self.request.user.role:
             case 'ST':
-                return reverse('home')
+                return reverse('student_dashboard')
             case 'SP':
                 return reverse('specialist_dashboard')
-            case default:
+            case 'DI':
                 return reverse('home')
 

@@ -1,2 +1,13 @@
-from . import auth, home, specialist, director_panel, edit_user, change_password, department_manager
-from . import student_inbox, student_ticket, edit_department
+from . import auth
+from . import home
+from . import specialist_inbox
+from . import student_inbox
+from . import specialist_claim_ticket
+from . import student_ticket
+from . import student_message
+from . import ticket_view
+from . import edit_department
+from . import change_password
+from . import edit_user
+from . import director_panel
+from . import department_manager
