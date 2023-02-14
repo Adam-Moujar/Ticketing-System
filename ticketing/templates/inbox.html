@@ -1,17 +1,18 @@
-<h1>Inbox</h1>
-<h2>Tickets</h2>
+<!-- <h1>Inbox</h1>
+<h2>Tickets</h2> -->
 
 <div>
-        <table>
+        <table class="table table-hover">
         {% for ticket in page_obj %}
             <tr>
                 {% if user.role != "ST" %}
                     <td>{{ticket.student}}</td>
                 {% endif %}
+                <td style="padding-left:2vmin;">{{ticket.header}}</td>
                 <td>{{ticket.department.name}}</td>
-                <td>{{ticket.header}}</td>
-                <td>
+
                 {% if user.role == "SP" %}
+                <td>
                     {% if ticket_type == "department" %}
                         <button type="button">
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
@@ -22,8 +23,8 @@
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
                         </button>
                     {% endif %}
-                {% endif %}
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </table>

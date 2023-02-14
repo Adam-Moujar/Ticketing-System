@@ -31,3 +31,4 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name']
+        labels = {'email': 'Email'}

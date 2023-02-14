@@ -1,9 +1,9 @@
 :root {
     --blue: #0360F3;
     --red: #DC392D;
+    --purple: #620BB6;
     --gray: #475B63;
     --primary: #E9ECF2;
-    --secondary: #F1F5FB;
 }
 
 /* Partials */
@@ -37,4 +37,34 @@
     --bs-btn-border-color: var(--red);
     --bs-btn-hover-color: var(--primary);
     --bs-btn-hover-bg: var(--red);
+}
+
+.form-card {
+    padding: 3vmin;
+    margin: 5vmin;
+}
+
+#dash-card {
+    box-shadow: 0 4px 20px  rgba(0, 0, 0, 0.06);
+    margin-top: 2vmin;
+    margin-bottom: 2vmin;
+}
+
+
+#dash-card-header {
+    display: flex;
+    justify-content: space-between;
+    color: var(--blue);
+    padding-top:1.5vmin;
+    font-size: 3vmin;
+}
+
+#dash-card-header-link {
+    font-size: 2vmin;
+    text-align: right;
+}
+
+#dash-card-body {
+    padding-left: 0px;
+    padding-right: 0px
 }
