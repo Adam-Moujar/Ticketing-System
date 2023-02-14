@@ -10,19 +10,17 @@ from ticketing.tests.helpers import (
 )
 
 
-class SpecialistInboxViewTestCase(TestCase):
+class SpecialistClaimTicketViewTestCase(TestCase):
 
     fixtures = [
         'ticketing/tests/fixtures/user_fixtures.json',
         'ticketing/tests/fixtures/message_fixtures.json',
         'ticketing/tests/fixtures/ticket_fixtures.json',
         'ticketing/tests/fixtures/department_fixtures.json',
-        'ticketing/tests/fixtures/specialist_inbox_fixtures.json',
         'ticketing/tests/fixtures/specialist_department_fixtures.json',
     ]
 
     def setUp(self):
-        self.url = reverse('specialist_dashboard')
 
         self.specialist = User.objects.get(
             email=(FixtureHelpers.get_specialist_from_fixture())['email']
@@ -30,10 +28,22 @@ class SpecialistInboxViewTestCase(TestCase):
         self.student = FixtureHelpers.get_student_from_fixture()
         self.director = FixtureHelpers.get_director_from_fixture()
 
-    def test_specialist_dashboard_url(self):
-        self.assertEqual(self.url, '/specialist_dashboard/')
+        specialist_department = SpecialistDepartment.objects.get(
+            specialist=self.specialist
+        ).department
+        self.ticket = Ticket.objects.filter(
+            department=specialist_department
+        ).first()
+        self.url = reverse(
+            'specialist_claim_ticket', kwargs={'pk': self.ticket.id}
+        )
 
-    def test_get_specialist_dashboard_as_student(self):
+    def test_specialist_claim_ticket_url(self):
+        self.assertEqual(
+            self.url, f'/specialist_claim_ticket/{self.ticket.id}'
+        )
+
+    def test_get_specialist_claim_ticket_as_student(self):
         self.client = Client()
         loggedin = self.client.login(
             email=self.student['email'], password='Password@123'
@@ -46,7 +56,7 @@ class SpecialistInboxViewTestCase(TestCase):
             response, response_url, status_code=302, target_status_code=200
         )
 
-    def test_get_specialist_dashboard_as_director(self):
+    def test_get_specialist_claim_ticket_as_director(self):
         self.client = Client()
         loggedin = self.client.login(
             email=self.director['email'], password='Password@123'
@@ -59,7 +69,7 @@ class SpecialistInboxViewTestCase(TestCase):
             response, response_url, status_code=302, target_status_code=200
         )
 
-    def test_get_specialist_dashboard_as_specialist(self):
+    def test_get_specialist_claim_ticket_as_specialist(self):
         self.client = Client()
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
@@ -68,7 +78,7 @@ class SpecialistInboxViewTestCase(TestCase):
         self.assertTrue(loggedin)
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist_claim_ticket.html')
 
     def test_get_specialist_dashboard_when_logged_out(self):
         redirect_url = reverse_with_next('login', self.url)
@@ -78,64 +88,37 @@ class SpecialistInboxViewTestCase(TestCase):
         )
         self.assertTemplateUsed(response, 'login.html')
 
-    def test_initial_inbox_is_personal(self):
+    def test_back_returns_to_dashboard(self):
         self.client = Client()
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )
-        response = self.client.get(self.url)
-        self.assertEqual(response.context['ticket_type'], 'personal')
-
-    def test_personal_inbox_shows_correct_tickets(self):
-        self.client = Client()
-        loggedin = self.client.login(
-            email=self.specialist.email, password='Password@123'
-        )
-        response = self.client.get(self.url)
-
-        right_ticket_list = get_tickets(self.specialist, 'personal')
-        view_table = response.context['object_list']
-
-        for ticket in right_ticket_list:
-            self.assertTrue(ticket in view_table)
-
-    def test_department_inbox_shows_correct_tickets(self):
-        SpecialistInbox.objects.all().delete()
-        self.client = Client()
-        loggedin = self.client.login(
-            email=self.specialist.email, password='Password@123'
-        )
-        response = self.client.post(self.url, {'type_of_ticket': 'department'})
-
-        right_ticket_list = get_tickets(self.specialist, 'department')
-        view_table = response.context['object_list']
-
-        for ticket in right_ticket_list:
-            self.assertTrue(ticket in view_table)
-
-    def test_archived_inbox_shows_correct_tickets(self):
-        self.client = Client()
-        loggedin = self.client.login(
-            email=self.specialist.email, password='Password@123'
-        )
-        response = self.client.post(self.url, {'type_of_ticket': 'archived'})
-
-        right_ticket_id_list = get_tickets(self.specialist, 'archived')
-
-        view_table = response.context['object_list']
-
-        for ticket_id in right_ticket_id_list:
-            ticket = Ticket.objects.get(id=ticket_id)
-            self.assertTrue(ticket in view_table)
-
-    def test_view_ticket_info_redirect(self):
-        SpecialistInbox.objects.all().delete()
-        self.client = Client()
-        loggedin = self.client.login(
-            email=self.specialist.email, password='Password@123'
-        )
-        response = self.client.post(self.url, {'type_of_ticket': 'department'})
-        view_table = response.context['object_list']
-        ticket_id = view_table[0].id
-        url = f'specialist_claim_ticket/{ticket_id}'
+        response = self.client.get(self.url, follow=True)
+        url = 'specialist_dashboard'
         self.assertIn(str.encode(url), response.content)
+
+    def test_claim_ticket_works(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        before_count = SpecialistInbox.objects.filter(
+            specialist=self.specialist
+        ).count()
+        response = self.client.post(
+            self.url, data={'accept_ticket': self.ticket.id}, follow=True
+        )
+        after_count = SpecialistInbox.objects.filter(
+            specialist=self.specialist
+        ).count()
+        self.assertEqual(before_count + 1, after_count)
+
+    def test_claim_ticket_redirects_special_dashboard(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        response = self.client.post(
+            self.url, data={'accept_ticket': self.ticket.id}, follow=True
+        )
+        self.assertTemplateUsed(response, 'specialist_dashboard.html')
