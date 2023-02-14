@@ -26,7 +26,7 @@
 
                 {% if user.role == "ST" %}
                 <button type="button">
-                    <a href="{% url 'ticket' %}">To ticket</a>
+                    <a href="{% url 'student_message' pk=ticket.id %}">To ticket</a>
                 </button>
                 {% endif %}
                 </td>

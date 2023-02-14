@@ -4,15 +4,32 @@
 <h1 style="display: inline-block;">Department: {{ object.department }}</h1>
 <hr>
 <div class="container">
-    {% for message in messages %}
-        <div class="message"> 
+    <!-- {% for message in messages %}
+        <div class="message">
             <p class= "date-time">Date time: {{ message.date_time }}</p>
-            {% if message.responder %} 
+            {% if message.responder %}
                 <p class = "Specialist , content">Specialist: {{message.content}}</p>
             {% else %}
                 <p class = "Student, content">Student: {{message.content}}</p>
             {% endif %}
         </div>
-    {% endfor %}
+    {% endfor %} -->
+</div>
+<div>
+    <h1>{{ticket.header}}</h1>
+    <ul>
+        {% for message in object_list %}
+        <li>
+        {{ message.content }}
+        <br/>
+        {% if message.responder %}
+        {{ message.responder.first_name }} {{ message.responder.email}}
+        {% else %}
+        {{ ticket.student.first_name }} {{ ticket.student.email }}
+        {% endif %}
+        {{ message.date_time }}
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

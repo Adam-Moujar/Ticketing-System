@@ -50,8 +50,16 @@ class Command(BaseCommand):
         self.create_student_ticket()
         print('student ticket done')
 
-        # self.create_specialist_inbox()
-        # print('specialist inbox done')
+        self.create_specialist_inbox()
+        print('specialist inbox done')
+
+        self.create_student_message(ticket=Ticket.objects.get(id=101))
+        print('student message done')
+
+        self.create_specialist_message(
+            specialist_ticket=SpecialistInbox.objects.get(ticket=101)
+        )
+        print('specialist message done')
 
     def set_up(self):
         first_name = self.faker.first_name()
