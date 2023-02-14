@@ -78,5 +78,23 @@ class SpecialistFAQListViewTest(TestCase):
         self.assertRedirects(response, '/login/?next=/check_faq/')
 
     def test_individual_faq_specialist_view_searches_by_keyword(self):
-        response = self.client.get(self.url, {'q': '9+10'})
+        self.client.login(
+            email='test.specialist@email.com', password='Password@123'
+        )
+        response = self.client.get(self.url, {'search': '9+10'})
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(list(response.context['object_list']), [self.faq])
+
+    def test_individual_faq_specialist_view_displays_faq_question(self):
+        self.client.login(
+            email='test.specialist@email.com', password='Password@123'
+        )
+        response = self.client.get(self.url)
+        self.assertContains(response, 'What is 9+10')
+
+    def test_individual_faq_specialist_view_displays_faq_answer(self):
+        self.client.login(
+            email='test.specialist@email.com', password='Password@123'
+        )
+        response = self.client.get(self.url)
+        self.assertContains(response, '19')
