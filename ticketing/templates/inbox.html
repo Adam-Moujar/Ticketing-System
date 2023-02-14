@@ -16,12 +16,18 @@
                         <button type="button">
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
                         </button>
-                    {% endif %} 
+                    {% endif %}
                     {% if ticket_type == "personal" %}
                         <button type="button">
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
                         </button>
-                    {% endif %} 
+                    {% endif %}
+                {% endif %}
+
+                {% if user.role == "ST" %}
+                <button type="button">
+                    <a href="{% url 'ticket' %}">To ticket</a>
+                </button>
                 {% endif %}
                 </td>
             </tr>

@@ -1,11 +1,10 @@
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
-from django.utils.text import slugify
 from ticketing.models import *
 from datetime import *
 from faker import Faker
-from wonderwords import RandomSentence
 import random
+from wonderwords import RandomSentence
 
 
 class Command(BaseCommand):
@@ -25,10 +24,12 @@ class Command(BaseCommand):
 
     def __init__(self):
         super().__init__()
-        self.wonder_words = RandomSentence()
         self.faker = Faker('en_GB')
+        self.wonder_words = RandomSentence()
 
     def handle(self, *args, **options):
+        User.objects.all().delete()
+        Department.objects.all().delete()
 
         self.create_student()
         print('students done')
@@ -61,7 +62,6 @@ class Command(BaseCommand):
         first_name = self.faker.first_name()
         last_name = self.faker.last_name()
         email = (f'{first_name}.{last_name}@example.com').lower()
-
         return [first_name, last_name, email]
 
     def create_fixed_users(self):
@@ -137,7 +137,7 @@ class Command(BaseCommand):
 
     def create_department(self):
         for dep_name in self.DEPARTMENT:
-            Department.objects.create(name=dep_name, slug=slugify(dep_name))
+            Department.objects.create(name=dep_name)
 
     def create_student_ticket(self):
         for student in User.objects.filter(role=User.Role.STUDENT):
