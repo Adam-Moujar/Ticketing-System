@@ -13,8 +13,9 @@ class SpecialistDepartmentFaq(LoginRequiredMixin, RoleRequiredMixin, ListView):
     template_name = 'specialist_department_faq.html'
     required_roles = ['SP', 'DI']
     paginate_by = 2
+    context_object_name = 'faq_list'
 
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         user = self.request.user
         department = SpecialistDepartment.objects.get(
             specialist=user

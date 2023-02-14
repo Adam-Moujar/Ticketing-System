@@ -1,8 +1,11 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from django.urls import reverse
-from ticketing.models import FAQ, Department, User
+from ticketing.models import FAQ, Department, User, SpecialistDepartment
 from django.utils.text import slugify
 from ticketing.views.specialist_department_faq import SpecialistDepartmentFaq
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from unittest.mock import Mock, patch
 
 
 class SpecialistDepartmentFaqTestCase(TestCase):
@@ -16,6 +19,9 @@ class SpecialistDepartmentFaqTestCase(TestCase):
             last_name='Doe',
             password='password@123',
         )
+        self.specialist_dept = SpecialistDepartment.objects.create(
+            department=self.department, specialist=self.specialist
+        )
         self.faq = FAQ.objects.create(
             department=self.department,
             specialist=self.specialist,
@@ -26,6 +32,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self.url = reverse(
             'department_faq', kwargs={'department': self.department.slug}
         )
+        self.factory = RequestFactory()
 
     def test_faq_slug(self):
         slugged_string = slugify('Mitigating Circumstances')
@@ -101,4 +108,26 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self.assertQuerysetEqual(
             queryset,
             FAQ.objects.filter(department=self.department).order_by('id'),
+        )
+
+    def test_specialist_department_faq_view_returns_404_if_no_object_found(
+        self,
+    ):
+        specialist_dept = SpecialistDepartment.objects.get(
+            department=self.department
+        ).department
+        with self.assertRaises(Http404):
+            get_object_or_404(Department, id=specialist_dept.id + 1)
+
+    def test_specialist_department_faq_view_returns_404_if_object_found(self):
+        object = get_object_or_404(Department, id=self.department.id)
+        self.assertEqual(object, self.department)
+
+    def test_get_context_data(self):
+        request = self.factory.get(self.url)
+        request.user = self.specialist
+        response = SpecialistDepartmentFaq.as_view()(request)
+        self.assertQuerysetEqual(
+            response.context_data['object_list'],
+            FAQ.objects.filter(specialist=self.specialist),
         )
