@@ -11,3 +11,6 @@ class FAQ(models.Model):
     )
     questions = models.CharField(max_length=250, blank=False)
     answer = models.CharField(max_length=250, blank=False)
+
+    class Meta:
+        ordering = ['department', 'specialist']

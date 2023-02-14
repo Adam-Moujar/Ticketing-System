@@ -1,9 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
-from django.http import Http404
-
-from ticketing.models import FAQ, Department, User, SpecialistDepartment
+from ticketing.models import FAQ, Department, User
 from django.utils.text import slugify
+from ticketing.views.specialist_department_faq import SpecialistDepartmentFaq
 
 
 class SpecialistDepartmentFaqTestCase(TestCase):
@@ -11,7 +10,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self.department = Department.objects.create(
             name='Health and Safety', slug=slugify('Health and Safety')
         )
-        self.specialist = User.objects.create(
+        self.specialist = User.objects.create_specialist(
             email='john.doe@email.com',
             first_name='John',
             last_name='Doe',
@@ -94,3 +93,12 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         )
         response = self.client.get(url)
         self.assertEqual(len(response.context['object_list']), 1)
+
+    def test_specialist_department_faq_view_get_queryset(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        queryset = response.context_data['object_list']
+        self.assertQuerysetEqual(
+            queryset,
+            FAQ.objects.filter(department=self.department).order_by('id'),
+        )
