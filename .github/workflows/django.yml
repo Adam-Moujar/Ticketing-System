@@ -31,9 +31,10 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
-    - name: Create Coverage
+    - name: Coverage
       run: |
         coverage run --parallel-mode --source='.' manage.py test --parallel
+        coverage combine
         coverage lcov
     - name: Post Report
       uses: romeovs/lcov-reporter-action@v0.3.1
