@@ -19,7 +19,7 @@
                     {% endif %}
                     {% if ticket_type == "personal" %}
                         <button type="button">
-                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
+                            <a href="{% url 'specialist_message' pk=ticket.id %}">To Ticket</a>
                         </button>
                     {% endif %}
                 {% endif %}
