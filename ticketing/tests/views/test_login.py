@@ -29,7 +29,7 @@ class LoginViewTestCase(TestCase, LogInTester):
         )
 
     def test_log_in_url(self):
-        self.assertEqual(self.url, '/login/')
+        self.assertEqual(self.url, '/log/')
 
     def test_get_log_in(self):
         response = self.client.get(self.url)
