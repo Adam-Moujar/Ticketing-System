@@ -1,13 +1,13 @@
+
 name: Django CI
 
 on:
-  push:
+  pull_request:
     branches:
       - main
       - epic-*
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -26,4 +26,13 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        coverage run --parallel-mode --source='.' manage.py test --parallel
+        coverage combine
+        coverage lcov
+    - name: Post Report
+      uses: romeovs/lcov-reporter-action@v0.3.1
+      with:
+        lcov-file: coverage.lcov
+        delete-old-comments: true
+        filter-changed-files: true
+        title: Coverage Report
