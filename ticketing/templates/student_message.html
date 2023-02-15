@@ -3,29 +3,17 @@
 <h1 style="display: inline-block;">Subject: {{ ticket.header }}</h1><br/>
 <h1 style="display: inline-block;">Department: {{ ticket.department }}</h1>
 <hr>
-<div>
-    <ul>
-        {% for message in message_list %}
-        <li>
-        "{{ message.content }}"
-        <br/>
-        {% if message.responder %}
-        {{ message.responder.first_name }} {{ message.responder.email}}
-        {% else %}
-        {{ ticket.student.first_name }} {{ ticket.student.email }}
-        {% endif %}
-        {{ message.date_time }}
-        </li><br/>
-        {% endfor %}
-    </ul>
-</div>
 {% if user.is_authenticated %}
-<div>
     <form method="post">{% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Add comment">
     </form>
-</div>
 {% endif %}
+<hr>
+
+<div hx-get="{% url 'message_list' pk=ticket.id %}" hx-trigger="load, every 2s">
+</div>
+
+
 
 {% endblock %}

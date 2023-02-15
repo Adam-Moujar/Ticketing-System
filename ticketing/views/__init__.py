@@ -7,3 +7,4 @@ from . import student_ticket
 from . import student_message
 from . import specialist_message
 from . import ticket_view
+from . import message_list

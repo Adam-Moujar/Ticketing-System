@@ -43,11 +43,6 @@ class SpecialistMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
         self.object.save()
         return HttpResponseRedirect(self.request.path_info)
 
-    def form_invalid(self, form):
-        print('INVALID')
-        print(self.request.user.id)
-        return super().form_invalid(form)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ticket'] = Ticket.objects.get(id=self.kwargs['pk'])
