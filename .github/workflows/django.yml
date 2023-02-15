@@ -5,6 +5,10 @@ on:
     branches:
       - main
       - epic-*
+  pull_request:
+    branches:
+      - main
+      - epic-*
 jobs:
   build:
 
@@ -26,4 +30,6 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        coverage run --parallel-mode --source='.' manage.py test --parallel
+        coverage combine
+        coverage report
