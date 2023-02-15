@@ -16,7 +16,6 @@ class StudentMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         allowed_ids = []
-        # TODO add all specialists ids to this
         # TODO move this to a helper class
         allowed_ids.append(
             getattr(
