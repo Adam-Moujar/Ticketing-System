@@ -58,7 +58,7 @@ urlpatterns = [
         name='specialist_message',
     ),
     path(
-        'message_list<int:pk>',
+        'message_list/<int:pk>',
         message_list.MessageListView.as_view(),
         name='message_list',
     ),
