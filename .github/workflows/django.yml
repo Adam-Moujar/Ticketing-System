@@ -31,3 +31,14 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Create Coverage
+      run: |
+        coverage run --parallel-mode --source='.' manage.py test --parallel
+        coverage lcov
+    - name: Post Report
+      uses: romeovs/lcov-reporter-action@v0.3.1
+      with:
+        lcov-file: coverage.lcov
+        delete-old-comments: true
+        filter-changed-files: true
+        title: Coverage Report
