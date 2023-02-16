@@ -3,4 +3,7 @@ Django
 django-widget-tweaks==1.4.12
 AdvancedHTMLParser
 Faker
+python-slugify
+wonderwords
 tblib
+

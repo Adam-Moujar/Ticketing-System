@@ -3,6 +3,9 @@
         <a href="{% url 'home' %}">Home</a>
         {% if user.role == 'SP' %}
         <a href="{% url 'specialist_dashboard' %}">Dashboard</a>
+        <a href="{% url 'faq_form_view' %}">Create FAQ</a>
+        <a href="{% url 'check_faq' %}">Check your FAQ</a>
+        <a href="{% url 'specialist_department_faq' %}">Your Departments FAQ</a>
         {% endif %}
         {% if user.is_authenticated %}
             Welcome back, {{ user.first_name }}, you are logged in as a {{ user.get_role_display }}
@@ -14,6 +17,8 @@
         {% else %}
            <a href="{% url 'login' %}">Login</a>
            <a href="{% url 'signup' %}">Sign Up</a>
+           <a href="{% url 'faq' %}">FAQ</a>
+
         {% endif %}
     </div>
 </header>
