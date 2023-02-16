@@ -99,3 +99,18 @@ ul {
     padding-left: 0px;
     padding-right: 0px
 }
+
+/* icon style */
+.icon-shift {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.icon-shift i {
+  margin-right: 0rem;
+}
+
+.icon-shift span {
+  margin-right: 0;
+}

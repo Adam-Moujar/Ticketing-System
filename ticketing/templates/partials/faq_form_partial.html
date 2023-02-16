@@ -2,11 +2,22 @@
     {% csrf_token %}
     {{ form.as_p }}
     <div class="equal-width-btns">
-        <button class="btn" id="blue-btn" type="submit">{% if request.resolver_match.url_name == 'faq_update' %}Update{% else %}Add{% endif %}</button>
+        <button class="btn" id="blue-btn" type="submit">
+        {% if request.resolver_match.url_name == 'faq_update' %}
+          <div class="icon-shift">
+            <i class="bi bi-check-lg"></i>
+            <span>Update</span>
+          </div>
+          {% else %}
+          <i class="bi bi-check-lg"></i>Add
+          {% endif %}
+        </button>
     </div>
    
 </form> 
 <div class="equal-width-btns">
-  <button class="btn" id="red-btn" type="button" onclick="history.back()">Cancel</button>
+  <button class="btn" id="red-btn" type="button" onclick="history.back()">
+     <i class="bi bi-x-lg"></i>Cancel
+  </button>
 </div>
   
