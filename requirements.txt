@@ -5,3 +5,5 @@ AdvancedHTMLParser
 Faker
 python-slugify
 wonderwords
+tblib
+
