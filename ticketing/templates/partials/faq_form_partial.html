@@ -1,0 +1,12 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="equal-width-btns">
+        <button class="btn" id="blue-btn" type="submit">{% if request.resolver_match.url_name == 'faq_update' %}Update{% else %}Add{% endif %}</button>
+    </div>
+   
+</form> 
+<div class="equal-width-btns">
+  <a class="btn" id="red-btn" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+</div>
+  

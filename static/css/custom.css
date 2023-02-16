@@ -61,7 +61,13 @@ ul {
     --bs-btn-hover-color: var(--primary);
     --bs-btn-hover-bg: var(--red);
 }
-
+.equal-width-btns button {
+    width: 100px;
+    flex: 1;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+  }
 /* Card container */
 
 .form-card {
