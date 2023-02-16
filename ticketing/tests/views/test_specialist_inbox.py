@@ -24,11 +24,9 @@ class SpecialistInboxViewTestCase(TestCase):
     def setUp(self):
         self.url = reverse('specialist_dashboard')
 
-        self.specialist = User.objects.get(
-            email=(FixtureHelpers.get_specialist_from_fixture())['email']
-        )
-        self.student = FixtureHelpers.get_student_from_fixture()
-        self.director = FixtureHelpers.get_director_from_fixture()
+        self.specialist = User.objects.filter(role='SP').first()
+        self.student = User.objects.filter(role='ST').first()
+        self.director = User.objects.filter(role='DI').first()
 
     def test_specialist_dashboard_url(self):
         self.assertEqual(self.url, '/specialist_dashboard/')
@@ -36,28 +34,22 @@ class SpecialistInboxViewTestCase(TestCase):
     def test_get_specialist_dashboard_as_student(self):
         self.client = Client()
         loggedin = self.client.login(
-            email=self.student['email'], password='Password@123'
+            email=self.student.email, password='Password@123'
         )
 
         self.assertTrue(loggedin)
         response = self.client.get(self.url, follow=True)
-        response_url = reverse('home')
-        self.assertRedirects(
-            response, response_url, status_code=302, target_status_code=200
-        )
+        self.assertEqual(response.status_code, 403)
 
     def test_get_specialist_dashboard_as_director(self):
         self.client = Client()
         loggedin = self.client.login(
-            email=self.director['email'], password='Password@123'
+            email=self.director.email, password='Password@123'
         )
 
         self.assertTrue(loggedin)
         response = self.client.get(self.url, follow=True)
-        response_url = reverse('home')
-        self.assertRedirects(
-            response, response_url, status_code=302, target_status_code=200
-        )
+        self.assertEqual(response.status_code, 403)
 
     def test_get_specialist_dashboard_as_specialist(self):
         self.client = Client()

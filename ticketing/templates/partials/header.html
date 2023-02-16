@@ -10,8 +10,9 @@
             The department you are in is: {{department_name}}
         {% endif %}
         <a href="{% url 'logout' %}">Logout</a>
-        {% if user.role != 'SP' %}
-        <a href="{% url 'create_ticket' %}">create ticket</a>
+        {% if user.role == 'ST' %}
+        <a href="{% url 'student_dashboard' %}">Dashboard</a>
+        <a href="{% url 'create_ticket' %}">Create ticket</a>
         {% endif %}
         {% else %}
            <a href="{% url 'login' %}">Login</a>

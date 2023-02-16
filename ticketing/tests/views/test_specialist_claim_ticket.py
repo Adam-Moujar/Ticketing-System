@@ -51,10 +51,7 @@ class SpecialistClaimTicketViewTestCase(TestCase):
 
         self.assertTrue(loggedin)
         response = self.client.get(self.url, follow=True)
-        response_url = reverse('home')
-        self.assertRedirects(
-            response, response_url, status_code=302, target_status_code=200
-        )
+        self.assertEqual(response.status_code, 403)
 
     def test_get_specialist_claim_ticket_as_director(self):
         self.client = Client()
@@ -64,10 +61,7 @@ class SpecialistClaimTicketViewTestCase(TestCase):
 
         self.assertTrue(loggedin)
         response = self.client.get(self.url, follow=True)
-        response_url = reverse('home')
-        self.assertRedirects(
-            response, response_url, status_code=302, target_status_code=200
-        )
+        self.assertEqual(response.status_code, 403)
 
     def test_get_specialist_claim_ticket_as_specialist(self):
         self.client = Client()

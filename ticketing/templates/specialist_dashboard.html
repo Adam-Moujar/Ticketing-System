@@ -2,13 +2,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-
-
     <h1>Specialist dashboard</h1>
-  
-  
-   
- 
     <h1>Inbox</h1>
     <div>
         <form method="POST">
@@ -18,9 +12,5 @@
             <button type = "submit" name = "type_of_ticket" value = "archived"  > Archived   </button>
         </form>
     </div>
-
     {% include 'inbox.html' %}
-    
-    
-    
 {% endblock %}

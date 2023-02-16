@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.list import ListView
-from django.utils.decorators import method_decorator
-from ticketing.decorators import *
-from django.contrib.auth.decorators import login_required
-from ticketing.decorators import roles_allowed
+from django.contrib.auth.mixins import LoginRequiredMixin
+from ticketing.mixins import RoleRequiredMixin
 from django.shortcuts import redirect
 
 
@@ -16,10 +14,9 @@ from ticketing.models import (
 )
 
 
-@method_decorator(roles_allowed(allowed_roles=['SP']), name='dispatch')
-@method_decorator(login_required, name='dispatch')
-class SpecialistClaimTicketView(View):
+class SpecialistClaimTicketView(LoginRequiredMixin, RoleRequiredMixin, View):
     template_name = 'specialist_claim_ticket.html'
+    required_roles = ['SP']
 
     def get(self, request, *args, **kwargs):
         user = request.user
@@ -32,12 +29,10 @@ class SpecialistClaimTicketView(View):
         return self.validate_view_ticket(user, department, ticket, request)
 
     def post(self, request, *args, **kwargs):
-
         ticket_id = self.request.POST.get('accept_ticket')
         ticket_list = Ticket.objects.filter(id=ticket_id)
         if len(ticket_list) == 0:
-            return render(request, 'specialist_dashboard.html')
-
+            return redirect('/specialist_dashboard')
         else:
             SpecialistInbox.objects.create(
                 specialist=request.user, ticket=ticket_list[0]
@@ -46,7 +41,6 @@ class SpecialistClaimTicketView(View):
         return redirect('/specialist_dashboard')
 
     def validate_view_ticket(self, user, department, ticket, request):
-
         if len(ticket) > 0 and department == ticket[0].department:
             message = Message.objects.filter(ticket=ticket.first()).first()
             return render(
