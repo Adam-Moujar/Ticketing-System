@@ -33,9 +33,6 @@ class SpecialistInboxView(ListView):
         context = super().get_context_data(**kwargs)
         ticket_type = ''
 
-        if self.request.method == 'POST':
-            ticket_type = self.request.POST.get('type_of_ticket')
-
         if self.request.method == 'GET':
             ticket_type = 'personal'
 

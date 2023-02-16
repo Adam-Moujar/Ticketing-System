@@ -2,28 +2,21 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from ticketing.models.users import User
+from ticketing.tests.helpers import FixtureHelpers
 
 
 class UserModelTestCase(TestCase):
     """Unit tests for user model"""
 
+    fixtures = [
+        'ticketing/tests/fixtures/user_fixtures.json',
+    ]
+
     def setUp(self):
-        self.user = User.objects.create_user(
-            first_name='John',
-            last_name='Doe',
-            email='John.Doe@example.com',
-            password='Password@123',
-            role='ST',
-        )
+        self.user = User.objects.filter(role='ST').first()
 
     def create_second_student(self):
-        return User.objects.create_user(
-            first_name='Jane',
-            last_name='Doe',
-            email='Jane.Doe@example.com',
-            password='Password@123',
-            role='ST',
-        )
+        return User.objects.filter(role='ST').last()
 
     def _assert_user_is_valid(self):
         try:
@@ -143,3 +136,98 @@ class UserModelTestCase(TestCase):
         )
 
         self.assertEquals(user.role, User.Role.DIRECTOR)
+
+    def test_create_student_with_invalid_email(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_user(
+                first_name='test',
+                last_name='save',
+                email='',
+                password='Password@123',
+            )
+
+    def test_create_student_with_invalid_first_name(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_user(
+                first_name='',
+                last_name='save',
+                email='test.save@example.org',
+                password='Password@123',
+            )
+
+    def test_create_student_with_invalid_last_name(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_user(
+                first_name='test',
+                last_name='',
+                email='test.save@example.org',
+                password='Password@123',
+            )
+
+    ###
+
+    def test_create_specialist_with_invalid_email(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_specialist(
+                first_name='test',
+                last_name='save',
+                email='',
+                password='Password@123',
+            )
+
+    def test_create_specialist_with_invalid_first_name(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_specialist(
+                first_name='',
+                last_name='save',
+                email='test.save@example.org',
+                password='Password@123',
+            )
+
+    def test_create_specialist_with_invalid_last_name(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_specialist(
+                first_name='test',
+                last_name='',
+                email='test.save@example.org',
+                password='Password@123',
+            )
+
+    ####
+
+    def test_create_director_with_invalid_email(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_director(
+                first_name='test',
+                last_name='save',
+                email='',
+                password='Password@123',
+            )
+
+    def test_create_director_with_invalid_first_name(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_director(
+                first_name='',
+                last_name='save',
+                email='test.save@example.org',
+                password='Password@123',
+            )
+
+    def test_create_director_with_invalid_last_name(self):
+        with self.assertRaises(ValueError):
+            User.objects.create_director(
+                first_name='test',
+                last_name='',
+                email='test.save@example.org',
+                password='Password@123',
+            )
+
+    def test_create_valid_superuser(self):
+        self.user = User.objects.create_superuser(
+            first_name='test',
+            last_name='save',
+            email='test.save@example.org',
+            password='Password@123',
+        )
+
+        self._assert_user_is_valid()

@@ -113,6 +113,22 @@ class SpecialistClaimTicketViewTestCase(TestCase):
         ).count()
         self.assertEqual(before_count + 1, after_count)
 
+    def test_claim_ticket_works(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        before_count = SpecialistInbox.objects.filter(
+            specialist=self.specialist
+        ).count()
+        response = self.client.post(
+            self.url, data={'accept_ticket': self.ticket.id}, follow=True
+        )
+        after_count = SpecialistInbox.objects.filter(
+            specialist=self.specialist
+        ).count()
+        self.assertEqual(before_count + 1, after_count)
+
     def test_claim_ticket_redirects_special_dashboard(self):
         self.client = Client()
         loggedin = self.client.login(
@@ -121,4 +137,32 @@ class SpecialistClaimTicketViewTestCase(TestCase):
         response = self.client.post(
             self.url, data={'accept_ticket': self.ticket.id}, follow=True
         )
+        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+
+    def test_claim_ticket_that_does_not_exist(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        before_count = SpecialistInbox.objects.count()
+        response = self.client.post(
+            self.url, data={'accept_ticket': 9999}, follow=True
+        )
+        after_count = SpecialistInbox.objects.count()
+
+        self.assertEqual(before_count, after_count)
+        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+
+    def test_claim_ticket_that_does_not_exist_redirects_specialist_dashboard(
+        self,
+    ):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+
+        self.url = reverse('specialist_claim_ticket', kwargs={'pk': 9999})
+
+        response = self.client.get(self.url, follow=True)
+
         self.assertTemplateUsed(response, 'specialist_dashboard.html')
