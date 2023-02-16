@@ -19,6 +19,8 @@ class Ticket(models.Model):
     # .../inbox/closed
     # etc.
     # As this can automatically create links instead of writing to urls.py everytime a new ticket status is introduced
+    class Meta:
+        ordering = ['status']
 
 
 class Message(models.Model):
