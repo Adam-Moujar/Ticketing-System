@@ -6,6 +6,7 @@
             {% csrf_token %}
             {% include 'partials/bootstrap_form.html' with form=form %}
             <button id="blue-btn" class="btn" type="submit">Send</button>
+            <a id="red-btn" class="btn" href="{% url 'student_dashboard' %}">Cancel</a>
         </form>
     </div>
 {% endblock %}

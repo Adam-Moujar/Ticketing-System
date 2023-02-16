@@ -10,7 +10,7 @@ import copy
 class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = Ticket
     template_name = 'student_dashboard.html'
-    paginate_by = 10  # if pagination is desired
+    paginate_by = 5  # if pagination is desired
     required_roles = ['ST']
 
     def get_queryset(self):

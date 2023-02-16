@@ -1,7 +1,7 @@
 <!-- <h1>Inbox</h1>
 <h2>Tickets</h2> -->
 
-<div>
+<div class="table-responsive">
         <table class="table table-hover">
         {% for ticket in page_obj %}
             <tr>
@@ -10,6 +10,9 @@
                 {% endif %}
                 <td style="padding-left:2vmin;">{{ticket.header}}</td>
                 <td>{{ticket.department.name}}</td>
+                <td>
+                    <a href="{% url 'home' %}" id="blue-btn" class="btn">Go ticket</a>
+                </td>
 
                 {% if user.role == "SP" %}
                 <td>

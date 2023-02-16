@@ -16,10 +16,33 @@
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
+#navatar {
+    display: flex;
+    margin-left: 5vmin;
+    aspect-ratio: 1/1;
+    border-radius: 5vmin;
+    border-style: solid;
+    border-color: var(--bs-nav-link-color);
+    border-width: 1.5px;
+    text-align: center;
+    align-items: center;
+}
+
 .container {
     margin-top: 3vmin;
     margin-bottom: 3vmin;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    color: var(--blue);
+}
+
+ul {
+    list-style-type: none;
+}
+
 
 /* Buttons */
 
@@ -38,6 +61,8 @@
     --bs-btn-hover-color: var(--primary);
     --bs-btn-hover-bg: var(--red);
 }
+
+/* Card container */
 
 .form-card {
     padding: 3vmin;
