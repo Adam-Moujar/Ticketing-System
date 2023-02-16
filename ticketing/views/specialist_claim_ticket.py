@@ -32,17 +32,21 @@ class SpecialistClaimTicketView(View):
         return self.validate_view_ticket(user, department, ticket, request)
 
     def post(self, request, *args, **kwargs):
+
         ticket_id = self.request.POST.get('accept_ticket')
         ticket_list = Ticket.objects.filter(id=ticket_id)
         if len(ticket_list) == 0:
-            return redirect('/specialist_dashboard')
+            return render(request, 'specialist_dashboard.html')
+
         else:
             SpecialistInbox.objects.create(
                 specialist=request.user, ticket=ticket_list[0]
             )
+
         return redirect('/specialist_dashboard')
 
     def validate_view_ticket(self, user, department, ticket, request):
+
         if len(ticket) > 0 and department == ticket[0].department:
             message = Message.objects.filter(ticket=ticket.first()).first()
             return render(
@@ -51,4 +55,5 @@ class SpecialistClaimTicketView(View):
                 {'ticket': ticket.first(), 'message': message},
             )
         else:
+
             return redirect('/specialist_dashboard')

@@ -1,5 +1,6 @@
-<h1>Inbox</h1>
+
 <h2>Tickets</h2>
+<h1>{{inbox_type}}</h1>
 
 <div>
         <table>
@@ -16,12 +17,13 @@
                         <button type="button">
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
                         </button>
-                    {% endif %} 
+
+                    {% endif %}
                     {% if ticket_type == "personal" %}
                         <button type="button">
                             <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
                         </button>
-                    {% endif %} 
+                    {% endif %}
                 {% endif %}
                 </td>
             </tr>
