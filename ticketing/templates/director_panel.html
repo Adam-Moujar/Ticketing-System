@@ -22,7 +22,15 @@
 
     <form method="post" style="display: inline;">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for field in form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.non_field_errors }}
+                {{ field.label_tag }} {{ field }}
+
+            </div>
+    {% endfor %}
+
 
     <input type="submit" name="add" value="Add">
 
