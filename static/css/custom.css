@@ -105,6 +105,7 @@ ul {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
+  justify-content: center;
 }
 
 .icon-shift i {
@@ -113,5 +114,6 @@ ul {
 
 .icon-shift span {
   margin-right: 0;
+  justify-content: center;
 }
 
