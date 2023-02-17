@@ -3,17 +3,26 @@
 
 {% block body %}
 
-<div class="row row-cols-3 g-4">
-  {% for obj in object_list %}
+  {% comment %} <a href="{% url 'department_faq' obj.slug %}">
+    <p class="text-white ">
+        {{   obj.name }} 
+    </p> 
+</a>  {% endcomment %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {%for obj in object_list %}
   <div class="col">
-    <div class="rounded panel bg-primary">
-      <div class="container">
-      <div class="panel-title"><a href="{% url 'department_faq' obj.slug %}"><p class="text-white">{{ obj.name }}</p></a></div>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{obj.name}}</h5>
+        <p class="card-text"></p>
+        <a href="{%url 'department_faq' obj.slug%}"class="btn" id="blue-btn">Check {{obj.name}}'s FAQ</a>
       </div>
     </div>
   </div>
-  {% endfor %}
+  {%endfor%}
+
 </div>
+
 {%include 'partials/pagination.html' %}
 {% endblock %}
 {%include 'partials/footer.html' %}
