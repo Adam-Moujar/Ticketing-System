@@ -4,6 +4,7 @@ from ticketing.models import *
 from datetime import *
 from faker import Faker
 import random
+from wonderwords import RandomSentence
 
 
 class Command(BaseCommand):
@@ -24,6 +25,7 @@ class Command(BaseCommand):
     def __init__(self):
         super().__init__()
         self.faker = Faker('en_GB')
+        self.wonder_words = RandomSentence()
 
     def handle(self, *args, **options):
         User.objects.all().delete()
@@ -50,8 +52,11 @@ class Command(BaseCommand):
         self.create_student_ticket()
         print('student ticket done')
 
-        # self.create_specialist_inbox()
-        # print('specialist inbox done')
+        self.create_specialist_inbox()
+        print('specialist inbox done')
+
+        self.create_department_faq()
+        print('department faq done')
 
     def set_up(self):
         first_name = self.faker.first_name()
@@ -191,3 +196,17 @@ class Command(BaseCommand):
         SpecialistDepartment.objects.create(
             specialist=specialist, department=rand_dep
         )
+
+    def create_department_faq(self):
+        for dept in self.DEPARTMENT:
+            dept = Department.objects.filter(name=dept).first()
+            user = User.objects.filter(role='SP').first()
+            for i in range(10):
+                question = f'{self.wonder_words.sentence()}?'
+                answer = f'{self.wonder_words.bare_bone_with_adjective()}'
+                FAQ.objects.create(
+                    specialist=user,
+                    department=dept,
+                    questions=question,
+                    answer=answer,
+                )
