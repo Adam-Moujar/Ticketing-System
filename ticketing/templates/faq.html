@@ -9,16 +9,20 @@
     </p> 
 </a>  {% endcomment %}
 <div class="row row-cols-1 row-cols-md-2 g-4">
-  {%for obj in object_list %}
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{obj.name}}</h5>
-        <p class="card-text"></p>
-        <a href="{%url 'department_faq' obj.slug%}"class="btn" id="blue-btn">Check {{obj.name}}'s FAQ</a>
+  {%for obj in object_list %} 
+   
+    <div class="col">
+      <div class="card"> 
+        <a href="{%url 'department_faq' obj.slug%}"class="btn" id="blue-btn">
+        <div class="card-body">
+          <h5 class="card-title">{{obj.name}}</h5>
+          <p class="card-text"></p>
+       
+        </div> 
+      </a>
       </div>
     </div>
-  </div>
+ 
   {%endfor%}
 
 </div>

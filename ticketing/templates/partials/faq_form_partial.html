@@ -5,13 +5,14 @@
         <button class="btn" id="blue-btn" type="submit">
         {% if request.resolver_match.url_name == 'faq_update' %}
           <div class="icon-shift">
+             <span>Update</span>
             <i class="bi bi-check-lg"></i>
-            <span>Update</span>
+           
           </div>
           {% else %}
-          <div class="icon-shift">
-            <i class="bi bi-check-lg"></i>
+          <div class="icon-shift">   
             <span>Add</span>
+            <i class="bi bi-check-lg"></i>
           </div>
           {% endif %}
         </button>
@@ -20,9 +21,10 @@
 </form> 
 <div class="equal-width-btns">
   <button class="btn" id="red-btn" type="button" onclick="history.back()">
-    <div class="icon-shift">
-      <i class="bi bi-x-lg"></i>
+    <div class="icon-shift"> 
       <span>Cancel</span>
+      <i class="bi bi-x-lg"></i>
+     
     </div>
   </button>
 </div>
