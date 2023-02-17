@@ -3,35 +3,40 @@
 <h1>{{inbox_type}}</h1>
 
 <div>
-        <table>
-        {% for ticket in object_list %}
-            <tr>
-                {% if user.role != "ST" %}
-                    <td>{{ticket.student}}</td>
+    <table>
+    {% for ticket in object_list %}
+        <tr>
+            {% if user.role != "ST" %}
+                <td>{{ticket.student}}</td>
+            {% endif %}
+            <td>{{ticket.department.name}}</td>
+            <td>{{ticket.header}}</td>
+            <td>
+            {% if user.role == "SP" %}
+                {% if ticket_type == "department" %}
+                    <button type="button">
+                        <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
+                    </button>
                 {% endif %}
-                <td>{{ticket.department.name}}</td>
-                <td>{{ticket.header}}</td>
-                <td>
-                {% if user.role == "SP" %}
-                    {% if ticket_type == "department" %}
-                        <button type="button">
-                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
-                        </button>
-                    {% endif %}
-                    {% if ticket_type == "personal" %}
-                        <button type="button">
-                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
-                        </button>
-                    {% endif %}
+                {% if ticket_type == "personal" %}
+                    <button type="button">
+                        <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
+                    </button>
                 {% endif %}
+                {% if ticket_type == "archived" %}
+                    <button type="button">
+                        <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
+                    </button>
+                {% endif %}
+            {% endif %}
 
-                {% if user.role == "ST" %}
-                <button type="button">
-                    <a href="{% url 'ticket' %}">To ticket</a>
-                </button>
-                {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
+            {% if user.role == "ST" %}
+            <button type="button">
+                <a href="{% url 'ticket' %}">To ticket</a>
+            </button>
+            {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
 </div>
