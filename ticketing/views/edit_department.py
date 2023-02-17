@@ -8,23 +8,22 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from ticketing.forms import *
 from django.views.generic.edit import UpdateView
+from ticketing.mixins import RoleRequiredMixin
 
-class EditDepartmentView(UpdateView):
+
+class EditDepartmentView(RoleRequiredMixin, UpdateView):
+    required_roles = [User.Role.DIRECTOR]
+
     model = Department
     fields = ['name']
-    success_url = reverse_lazy("department_manager")
-
+    success_url = reverse_lazy('department_manager')
 
     def get_template_names(self):
-        return ["edit_department.html"]
+        return ['edit_department.html']
 
     def post(self, request, *args, **kwargs):
 
-        if(request.POST.get("cancel")):
-            return redirect("department_manager")
-        
+        if request.POST.get('cancel'):
+            return redirect('department_manager')
+
         return super().post(request, *args, **kwargs)
-
-
-
-

@@ -5,10 +5,12 @@
 <html>
   {% load user_role_filters %}
   {% load get_query_filters %}
+  {% load selected_filters %}
+  {% load department_filters %}
   <head>
     <title> Director Panel </title>
   </head>
-  
+
   <body>
 
 
@@ -49,7 +51,7 @@
 
     <form method="post" style="display:inline;">
     {% csrf_token %}
-    
+
     <table border="1">
         <thead>
             <th>ID</th>
@@ -57,6 +59,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Role</th>
+            <th>Department</th>
             <th>✓</th>
             <th>Edit</th>
             <th>Password</th>
@@ -68,7 +71,8 @@
             <td>{{user.first_name}}</td>
             <td>{{user.last_name}}</td>
             <td>{{user.role|user_role_string}}</td>
-            <td><input type="checkbox" id="select" name="select" value="{{user.id}}"></td>
+            <td>{{user|user_department_string}}</td>
+            <td><input type="checkbox" id="select" name="select" value="{{user.id}}" {% if selected|is_selected:user.id %}checked{% endif %}></td>
             <form method="post" style="display:inline;">
             {% csrf_token %}
             <td><button type="submit" name="edit" value={{user.id}}>✎</button></td>
@@ -93,16 +97,6 @@
 
     </form>
 
-    {% if messages %}
-    <div class="m-3">
-        {% for message in messages %}
-        <div class="alert alert-{{ message.level_tag }}" role="alert">
-            {{ message }}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-      
   </body>
 
 </html>

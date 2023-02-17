@@ -1,7 +1,8 @@
 from ticketing.forms2.change_password import ChangePasswordForm
-from ticketing.models import User
+from ticketing.models.users import User
 from ticketing.utility import get
 from ticketing.utility.get import get_user_from_id_param
+from ticketing.mixins import RoleRequiredMixin
 
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse
@@ -21,7 +22,13 @@ def change_password(user, new_password):
     user.save()
 
 
-class ChangePasswordView(FormView):
+class ChangePasswordView(RoleRequiredMixin, FormView):
+
+    required_roles = [
+        User.Role.DIRECTOR,
+        User.Role.SPECIALIST,
+        User.Role.STUDENT,
+    ]
 
     PERMISSION_MESSAGE = (
         "You must be a director to change other user's passwords"
@@ -56,8 +63,11 @@ class ChangePasswordView(FormView):
         except User.DoesNotExist:
             raise Http404('No user found matching the query')
 
-        # if request.user.is_anonymous or (request.user.role != User.Role.DIRECTOR and self.user.id != request.user.id):
-        #     raise PermissionDenied
+        if request.user.is_anonymous or (
+            request.user.role != User.Role.DIRECTOR
+            and self.user.id != request.user.id
+        ):
+            raise PermissionDenied
 
         super().setup(request, pk=pk)
 

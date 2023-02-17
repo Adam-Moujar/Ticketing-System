@@ -10,23 +10,31 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from ticketing.forms import *
 from django.views.generic.edit import CreateView
+from ticketing.mixins import RoleRequiredMixin
+from ticketing.utility.user import *
+
 
 def delete_department(id):
     try:
-        department = Department.objects.get(id = id)
+        department = Department.objects.get(id=id)
 
         department.delete()
 
         return True
 
-    except  Department.DoesNotExist:
+    except Department.DoesNotExist:
         return False
 
-class DepartmentManagerView(ExtendableFormViewMixin, CreateView, ListView):
+
+class DepartmentManagerView(
+    RoleRequiredMixin, ExtendableFormViewMixin, CreateView, ListView
+):
+    required_roles = [User.Role.DIRECTOR]
+
     paginate_by = 10
     model = Department
     fields = ['name']
-    success_url = reverse_lazy("department_manager")
+    success_url = reverse_lazy('department_manager')
 
     def post(self, request, *args, **kwargs):
 
@@ -39,7 +47,7 @@ class DepartmentManagerView(ExtendableFormViewMixin, CreateView, ListView):
             return super().post(request, *args, **kwargs)
 
         elif edit_id:
-            response = redirect("edit_department", pk = edit_id)
+            response = redirect('edit_department', pk=edit_id)
 
             return response
 
@@ -47,15 +55,11 @@ class DepartmentManagerView(ExtendableFormViewMixin, CreateView, ListView):
             result = delete_department(delete_id)
 
             if result == False:
-                messages.add_message(request, messages.ERROR, USER_NO_EXIST_MESSAGE)
+                messages.add_message(
+                    request, messages.ERROR, USER_NO_EXIST_MESSAGE
+                )
 
         return self.fixed_post(request, *args, **kwargs)
 
     def get_template_names(self):
-        return ["department_manager.html"]
-
-    
-
-
-
-
+        return ['department_manager.html']

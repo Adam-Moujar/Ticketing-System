@@ -5,11 +5,11 @@ from django import forms
 
 import copy
 
-class UserDepartmentFormMixin():
 
-    def __init__(self, data = None, *args, **kwargs):
+class UserDepartmentFormMixin:
+    def __init__(self, data=None, *args, **kwargs):
 
-        super().__init__(data = data, *args, **kwargs)
+        super().__init__(data=data, *args, **kwargs)
 
         if data != None:
             if data.get(self.role_field_name) == User.Role.SPECIALIST:
@@ -21,32 +21,33 @@ class UserDepartmentFormMixin():
 
         if self.cleaned_data.get(self.role_field_name) == User.Role.SPECIALIST:
             if self.cleaned_data.get(self.department_field_name) == None:
-                self.add_error(self.department_field_name, "You have not selected a user department")
+                self.add_error(
+                    self.department_field_name,
+                    'You have not selected a user department',
+                )
 
 
-class ExtendedUserFormMixin():
-
+class ExtendedUserFormMixin:
     def __init__(self, *args, **kwargs):
-        
-        self.base_fields.update({
-            # Role field
-            self.role_field_name: form_fields.make_role_radio_select(True, self.department_field_name),
 
-            # Department field
-            self.department_field_name: form_fields.department
-        })
+        self.base_fields.update(
+            {
+                # Role field
+                self.role_field_name: form_fields.make_role_radio_select(
+                    True, self.department_field_name
+                ),
+                # Department field
+                self.department_field_name: form_fields.department,
+            }
+        )
 
         super().__init__(*args, **kwargs)
 
-        user = self.instance
+        # user = self.instance
 
-        self.initial.update({"edit_role": user.role})
+        # self.initial.update({self.role_field_name: user.role})
 
-    def save(self, commit = True):
-        self.instance.role = self.cleaned_data["edit_role"]
-        
+    def save(self, commit=True):
+        self.instance.role = self.cleaned_data[self.role_field_name]
+
         return super().save(commit)
-
-
-         
-        
