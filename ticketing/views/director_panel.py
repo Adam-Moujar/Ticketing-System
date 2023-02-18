@@ -21,15 +21,7 @@ from django.views.generic.edit import CreateView
 from ticketing.mixins import RoleRequiredMixin
 from ticketing.utility.model import *
 from ticketing.utility.user import *
-
-
-def validate_role(role):
-    valid_roles = [User.Role.STUDENT, User.Role.SPECIALIST, User.Role.DIRECTOR]
-
-    if role not in valid_roles:
-        return False
-
-    return True
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def set_multiple_users_role(users, user_role, department_id):
@@ -45,6 +37,8 @@ def set_multiple_users_role(users, user_role, department_id):
             update_specialist_department(
                 user, user.role, user_role, department
             )
+
+            # print("OLD ROLE: ", user.role, " NEW ROLE: ", user_role)
 
             user.role = user_role
 
@@ -75,10 +69,14 @@ def delete_users(user_id_strings):
         except User.DoesNotExist:
             problem_occured = True
 
+        except ValueError:
+            problem_occured = True
+
     return not problem_occured
 
 
 class DirectorPanelView(
+    LoginRequiredMixin,
     RoleRequiredMixin,
     ExtendableFormViewMixin,
     DynamicCustomFormClassMixin,
@@ -91,7 +89,7 @@ class DirectorPanelView(
     paginate_by = 10
     model = User
     form_class = SignupForm
-    success_url = reverse_lazy('department_manager')
+    success_url = reverse_lazy('director_panel')
 
     form_class_maker = make_add_user_form_class
 
@@ -217,17 +215,9 @@ class DirectorPanelView(
 
                 return self.fixed_post(request)
 
-            elif not validate_role(role):
-                self.error = True
-                messages.add_message(
-                    request, messages.ERROR, 'Invalid user role selected'
-                )
+            if role != User.Role.SPECIALIST:
+                department = None
 
-                return self.fixed_post(request)
-
-            print(
-                'ABOUT TO SET MULTI USER ROLES: ', role, ' DEP: ', department
-            )
             result = set_multiple_users_role(self.selected, role, department)
 
             if result == False:
