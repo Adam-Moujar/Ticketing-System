@@ -64,11 +64,15 @@ class ChangePasswordView(LoginRequiredMixin, RoleRequiredMixin, FormView):
         except User.DoesNotExist:
             raise Http404('No user found matching the query')
 
-        if request.user.is_anonymous or (
-            request.user.role != User.Role.DIRECTOR
-            and self.user.id != request.user.id
-        ):
-            raise PermissionDenied
+        except ValueError:
+            raise Http404('Bad user id provided')
+
+        if not request.user.is_anonymous:
+            if (
+                request.user.role != User.Role.DIRECTOR
+                and self.user.id != request.user.id
+            ):
+                raise PermissionDenied
 
         super().setup(request, pk=pk)
 

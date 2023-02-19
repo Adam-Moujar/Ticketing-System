@@ -49,7 +49,7 @@ def make_add_user_form_query(
     }
 
 
-class DirectorPanelViewTestCase(TestCase):
+class DirectorPanelTestCase(TestCase):
 
     fixtures = [
         'ticketing/tests/fixtures/user_fixtures.json',

@@ -23,7 +23,7 @@ def make_edit_user_query(email, first_name, last_name, role, department):
     }
 
 
-class DirectorPanelViewTestCase(TestCase):
+class EditUserTestCase(TestCase):
 
     fixtures = [
         'ticketing/tests/fixtures/user_fixtures.json',
@@ -87,6 +87,24 @@ class DirectorPanelViewTestCase(TestCase):
             response, redirect_url, status_code=302, target_status_code=200
         )
         self.assertTemplateUsed(response, 'login.html')
+
+    def test_get_edit_user_unused_pk(self):
+        redirect_url = reverse_with_next('login', self.url)
+
+        url = reverse('change_password', kwargs={'pk': '587435983478'})
+
+        response = self.client.get(url, follow=True)
+
+        self.assertEquals(response.status_code, 404)
+
+    def test_get_edit_user_bad_pk(self):
+        redirect_url = reverse_with_next('login', self.url)
+
+        url = reverse('change_password', kwargs={'pk': 'jhgudfhguudfsighihiu'})
+
+        response = self.client.get(url, follow=True)
+
+        self.assertEquals(response.status_code, 404)
 
     def test_edit_user_good(self):
         self.client = Client()
