@@ -1,6 +1,7 @@
 from ticketing.models import User, Department
 from ticketing.utility.error_messages import *
 from ticketing.views.utility.mixins import ExtendableFormViewMixin
+from ticketing.forms2.department import DepartmentFilterForm
 
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
@@ -41,6 +42,26 @@ class DepartmentManagerView(
     fields = ['name']
     success_url = reverse_lazy('department_manager')
 
+    def setup(self, request):
+
+        super().setup(request)
+
+        self.filter_form = DepartmentFilterForm(request.GET)
+
+        self.result = self.filter_form.is_valid()
+
+        self.get_name = self.filter_form.cleaned_data.get('name')
+
+    def get_queryset(self):
+        return Department.objects.filter(name__istartswith=self.get_name)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context.update({'filter_form': self.filter_form})
+
+        return context
+
     def post(self, request, *args, **kwargs):
 
         super().get(request)
@@ -63,6 +84,9 @@ class DepartmentManagerView(
                 messages.add_message(
                     request, messages.ERROR, USER_NO_EXIST_MESSAGE
                 )
+
+        elif request.POST.get('reset'):
+            return redirect('department_manager')
 
         return self.fixed_post(request, *args, **kwargs)
 

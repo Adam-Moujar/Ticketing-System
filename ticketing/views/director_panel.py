@@ -103,6 +103,7 @@ class DirectorPanelView(
         self.commands_form = None
         self.selected = []
 
+        # We need to run is_valid so that we can get the cleaned data
         self.result = self.filter_form.is_valid()
 
         self.get_id = self.filter_form.cleaned_data.get('id')
@@ -112,6 +113,9 @@ class DirectorPanelView(
         self.get_last_name = self.filter_form.cleaned_data.get('last_name', '')
         self.get_email = self.filter_form.cleaned_data.get('email', '')
         self.get_role = self.filter_form.cleaned_data.get('role')
+        self.get_department = self.filter_form.cleaned_data.get(
+            'filter_department'
+        )
 
     def get_queryset(self):
 
@@ -126,6 +130,13 @@ class DirectorPanelView(
 
         if self.get_role:
             users = users.filter(role__exact=self.get_role)
+
+        if self.get_department:
+            users = users.filter(
+                id__in=SpecialistDepartment.objects.filter(
+                    department=self.get_department
+                ).values_list('specialist', flat=True)
+            )
 
         return users
 

@@ -67,5 +67,7 @@ department = forms.ModelChoiceField(
 department.label = 'Department'
 department.disabled = True
 
+department_name = Department._meta.get_field('name').formfield()
+
 # forms.ChoiceField(choices = Department.objects.all().
 #            SpecialistDepartment._meta.get_field("department")
