@@ -9,9 +9,10 @@ from django.contrib.auth.hashers import make_password
 from ticketing.forms import *
 from django.views.generic.edit import UpdateView
 from ticketing.mixins import RoleRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class EditDepartmentView(RoleRequiredMixin, UpdateView):
+class EditDepartmentView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
     required_roles = [User.Role.DIRECTOR]
 
     model = Department

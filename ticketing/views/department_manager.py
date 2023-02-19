@@ -12,6 +12,7 @@ from ticketing.forms import *
 from django.views.generic.edit import CreateView
 from ticketing.mixins import RoleRequiredMixin
 from ticketing.utility.user import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def delete_department(id):
@@ -27,7 +28,11 @@ def delete_department(id):
 
 
 class DepartmentManagerView(
-    RoleRequiredMixin, ExtendableFormViewMixin, CreateView, ListView
+    LoginRequiredMixin,
+    RoleRequiredMixin,
+    ExtendableFormViewMixin,
+    CreateView,
+    ListView,
 ):
     required_roles = [User.Role.DIRECTOR]
 

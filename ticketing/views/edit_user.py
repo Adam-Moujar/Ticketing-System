@@ -15,9 +15,15 @@ from django.views.generic.list import ListView
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class EditUserView(RoleRequiredMixin, DynamicCustomFormClassMixin, UpdateView):
+class EditUserView(
+    LoginRequiredMixin,
+    RoleRequiredMixin,
+    DynamicCustomFormClassMixin,
+    UpdateView,
+):
 
     required_roles = [User.Role.DIRECTOR]
 

@@ -14,6 +14,7 @@ from django.contrib.auth.hashers import make_password
 from django.views.generic.edit import UpdateView, FormView
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def change_password(user, new_password):
@@ -22,7 +23,7 @@ def change_password(user, new_password):
     user.save()
 
 
-class ChangePasswordView(RoleRequiredMixin, FormView):
+class ChangePasswordView(LoginRequiredMixin, RoleRequiredMixin, FormView):
 
     required_roles = [
         User.Role.DIRECTOR,
