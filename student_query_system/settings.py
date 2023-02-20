@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ticketing',
     'widget_tweaks',
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

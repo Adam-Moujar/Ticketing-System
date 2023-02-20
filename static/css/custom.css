@@ -6,6 +6,13 @@
     --primary: #E9ECF2;
 }
 
+/* Animations */
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 /* Partials */
 
 .footer {
@@ -38,11 +45,6 @@
     min-width: 40px;
     max-height: 40px;
     max-width: 40px;
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
 }
 
 #navatar-dropdown {
@@ -107,6 +109,33 @@ ul {
 .form-card {
     padding: 3vmin;
     margin: 5vmin;
+}
+
+/* Dashboard */
+.dash-banner {
+    height: 40vmin;
+    background: rgb(3,96,243);
+    background: linear-gradient(90deg, rgba(3,96,243,1) 0%, rgba(110,34,242,1) 100%);
+    padding: 1vmin;
+    padding-left: 20vmin;
+    padding-top: 5vmin;
+    margin-top: -5vmin;
+    margin-left: -18vmin;
+    margin-right: -18vmin;
+    margin-bottom: -20vmin;
+}
+
+.dash-title {
+    display: flex;
+    margin-bottom: 0px;
+    color: white;
+    align-items: center;
+}
+
+.dash-subtitle {
+    padding-top: 1vmin;
+    color: white;
+    opacity: 0.5;
 }
 
 #dash-card {
