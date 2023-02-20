@@ -111,3 +111,5 @@ urlpatterns = [
         name='student_message',
     ),
 ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+
+handler404 = 'ticketing.views.errors.error_404'
