@@ -103,7 +103,13 @@ ul {
     --bs-btn-hover-color: var(--primary);
     --bs-btn-hover-bg: var(--red);
 }
-
+.equal-width-btns button {
+    width: 100px;
+    flex: 1;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+  }
 /* Card container */
 
 .form-card {
@@ -162,3 +168,43 @@ ul {
     padding-left: 0px;
     padding-right: 0px
 }
+
+/* icon style */
+.icon-shift {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.icon-shift i {
+  margin-right: 0rem;
+}
+
+.icon-shift span {
+  margin-right: 0;
+  justify-content: center;
+}
+
+/*form error animation*/
+
+.form-group input:required:invalid{
+    border-color: red;
+    animation: shake 0.5s;
+  }
+.form-group input:required:valid{
+    border-color: #0360F3;
+}
+.form-group input:required:empty{
+    border-color: #0360F3;
+    animation: none;
+}
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+  }
