@@ -6,27 +6,69 @@
     --primary: #E9ECF2;
 }
 
+/* Animations */
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 /* Partials */
 
 .footer {
     text-align: center;
 }
 
+/* Navbar */
 .navbar {
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
+#navatar-spacing {
+    padding-left: 4vmin;
+    padding-right: 4vmin;
+    padding-top: 2vmin;
+    padding-bottom: 2vmin;
+}
+
 #navatar {
-    display: flex;
-    margin-left: 5vmin;
+    font-family:'Source Code Pro';
     aspect-ratio: 1/1;
-    border-radius: 5vmin;
     border-style: solid;
+    border-radius: 5vmin;
     border-color: var(--bs-nav-link-color);
     border-width: 1.5px;
     text-align: center;
     align-items: center;
+    overflow: cover;
+    min-height: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    max-width: 40px;
 }
+
+#navatar-dropdown {
+    animation: fadeIn 0.5s;
+    margin-top: 2vmin;
+    margin-right: 15vmin;
+}
+
+.dropdown-name {
+    margin-bottom: 0;
+}
+
+.dropdown-sub {
+    color: var(--grey);
+    font-size:x-small;
+    margin-bottom: 0.5vmin;
+}
+
+hr.solid {
+    margin-top: 1vmin;
+    border-top: 3px solid #bbb;
+}
+
+/* Main elements */
 
 .container {
     margin-top: 3vmin;
@@ -73,6 +115,33 @@ ul {
 .form-card {
     padding: 3vmin;
     margin: 5vmin;
+}
+
+/* Dashboard */
+.dash-banner {
+    height: 40vmin;
+    background: rgb(3,96,243);
+    background: linear-gradient(90deg, rgba(3,96,243,1) 0%, rgba(110,34,242,1) 100%);
+    padding: 1vmin;
+    padding-left: 20vmin;
+    padding-top: 5vmin;
+    margin-top: -5vmin;
+    margin-left: -18vmin;
+    margin-right: -18vmin;
+    margin-bottom: -20vmin;
+}
+
+.dash-title {
+    display: flex;
+    margin-bottom: 0px;
+    color: white;
+    align-items: center;
+}
+
+.dash-subtitle {
+    padding-top: 1vmin;
+    color: white;
+    opacity: 0.5;
 }
 
 #dash-card {

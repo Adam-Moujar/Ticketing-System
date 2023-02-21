@@ -60,11 +60,32 @@
                 </li>
                 {% endif %}
                 {% if user.is_authenticated %}
+                <li id="navatar-spacing" class="nav-item"></li>
                 <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Log out</a>
-                </li>
-                <li class="nav-item">
-                <a id="navatar" class="nav-link" href="#">{{user.first_name|make_list|first|upper }}{{user.last_name|make_list|first|upper }}</a>
+                <a id="navatar" class="nav-link"
+                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{user.first_name|make_list|first|upper }}{{user.last_name|make_list|first|upper}}</a>
+                    <ul
+                    id="navatar-dropdown"
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navatar"
+                    >
+                    <lh class="dropdown-item">
+                        <p class="dropdown-name">{{user.first_name}} {{user.last_name}}</p>
+                        <p class="dropdown-sub dropdown-email">{{user.email}}</p>
+                        <p class="dropdown-sub dropdown-role">{{user.get_role_display}}</p>
+                    </lh>
+                    <hr class="solid">
+                    <li>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Change Password</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    </li>
+                    </ul>
                 </li>
                 {% else %}
                 <li class="nav-item">
