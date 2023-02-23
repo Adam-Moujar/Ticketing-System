@@ -24,8 +24,8 @@ class DirectorFilterForm(forms.Form):
 
     email = forms.CharField(label=form_fields.email.label, required=False)
 
-    role = form_fields.make_role_radio_select(False)
-    role.required = False
+    filter_role = form_fields.make_role_radio_select(False)
+    filter_role.required = False
 
     filter_department = copy.copy(form_fields.department)
     filter_department.required = False

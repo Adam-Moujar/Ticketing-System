@@ -1,3 +1,6 @@
+from django.shortcuts import redirect
+
+
 class ExtendableFormViewMixin:
     def custom_get_form_kwargs(self):
         _kwargs = super().get_form_kwargs()
@@ -46,3 +49,40 @@ class DynamicCustomFormClassMixin:
         form = _class(**self.get_form_kwargs())
 
         return form
+
+
+class FilterView:
+    def setup(self, request):
+        super().setup(request)
+
+        self.filter_form = self.filter_form_class(request.GET)
+        self.filter_data = {}
+
+        # We need to run is_valid so that we can get the cleaned data
+        self.result = self.filter_form.is_valid()
+
+        for field_name in self.filter_form.base_fields:
+            print('BASE FIELD: ', field_name)
+
+            self.filter_data.update(
+                {
+                    field_name: self.filter_form.cleaned_data.get(
+                        field_name, None
+                    )
+                }
+            )
+
+        # self.get_name = self.filter_form.cleaned_data.get('name')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+
+        context.update({'filter_form': self.filter_form})
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('reset'):
+            return redirect(self.filter_reset_url)
+
+        return super.post(request, *args, **kwargs)

@@ -9,6 +9,7 @@ from ticketing.forms import SignupForm
 from ticketing.views.utility.mixins import (
     ExtendableFormViewMixin,
     DynamicCustomFormClassMixin,
+    FilterView,
 )
 
 from django.shortcuts import render, redirect
@@ -80,6 +81,7 @@ class DirectorPanelView(
     RoleRequiredMixin,
     ExtendableFormViewMixin,
     DynamicCustomFormClassMixin,
+    FilterView,
     CreateView,
     ListView,
 ):
@@ -93,48 +95,36 @@ class DirectorPanelView(
 
     form_class_maker = make_add_user_form_class
 
+    filter_form_class = DirectorFilterForm
+    filter_reset_url = 'director_panel'
+
     def setup(self, request):
 
         super().setup(request)
 
         self.error = False
 
-        self.filter_form = DirectorFilterForm(request.GET)
         self.commands_form = None
         self.selected = []
-
-        # We need to run is_valid so that we can get the cleaned data
-        self.result = self.filter_form.is_valid()
-
-        self.get_id = self.filter_form.cleaned_data.get('id')
-        self.get_first_name = self.filter_form.cleaned_data.get(
-            'first_name', ''
-        )
-        self.get_last_name = self.filter_form.cleaned_data.get('last_name', '')
-        self.get_email = self.filter_form.cleaned_data.get('email', '')
-        self.get_role = self.filter_form.cleaned_data.get('role')
-        self.get_department = self.filter_form.cleaned_data.get(
-            'filter_department'
-        )
 
     def get_queryset(self):
 
         users = User.objects.filter(
-            email__istartswith=self.get_email,
-            first_name__istartswith=self.get_first_name,
-            last_name__istartswith=self.get_last_name,
+            email__istartswith=self.filter_data['email'],
+            first_name__istartswith=self.filter_data['first_name'],
+            last_name__istartswith=self.filter_data['last_name'],
         )
 
-        if self.get_id:
-            users = users.filter(id__exact=self.get_id)
+        if self.filter_data['id']:
+            users = users.filter(id__exact=self.filter_data['id'])
 
-        if self.get_role:
-            users = users.filter(role__exact=self.get_role)
+        if self.filter_data['filter_role']:
+            users = users.filter(role__exact=self.filter_data['filter_role'])
 
-        if self.get_department:
+        if self.filter_data['filter_department']:
             users = users.filter(
                 id__in=SpecialistDepartment.objects.filter(
-                    department=self.get_department
+                    department=self.filter_data['filter_department']
                 ).values_list('specialist', flat=True)
             )
 
@@ -155,7 +145,6 @@ class DirectorPanelView(
         context.update(
             {
                 'commands_form': self.commands_form,
-                'filter_form': self.filter_form,
                 'selected': self.selected,
             }
         )
@@ -178,9 +167,6 @@ class DirectorPanelView(
 
         elif request.POST.get('add'):
             return super().post(request)
-
-        elif request.POST.get('reset'):
-            return redirect('director_panel')
 
         elif request.POST.get('password'):
 
