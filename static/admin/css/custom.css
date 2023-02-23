@@ -119,6 +119,12 @@ ul {
     border-style: solid;
   }
 
+.btn-container {
+    display: flex;
+    align-items: center;
+    gap:2vmin;
+}
+
   /* Card container */
 
 .form-card {
@@ -176,7 +182,7 @@ ul {
     padding-right: 0px
 }
 
-/* FAQ Page */
+/* FAQ Menu Page */
 .faq-banner {
     height: 25vmin;
     padding: 5vmin;
@@ -215,6 +221,12 @@ ul {
 .faq-card {
     margin-top: 0;
     font-weight: 400;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.faq-card:hover {
+    transition: 0.2s ease;
+    transform: scale(102%);
 }
 
 #dept-1 {
@@ -235,6 +247,18 @@ ul {
 
 #dept-5 {
     color: var(--orange);
+}
+
+/* Departnent FAQ Page */
+
+.dept-faq-table {
+    width: 100%;
+    border-spacing: 15px;
+}
+
+.panel {
+    width: 100%;
+    margin-bottom:2vmin;
 }
 
 /* icon style */

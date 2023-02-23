@@ -6,27 +6,29 @@
   <div class="card-body">
     <h5 class="card-title">{{ obj.questions }}</h5>
     <p class="card-text">{{obj.answer}}</p>
-    {% if obj.pk %} 
-    <div class="equal-width-btns">
-       <button class="btn" id="blue-btn" onclick="window.location.href='{% url 'faq_update' obj.pk %}'">
-          <div class="icon-shift">
-            <i class="bi bi-check-lg"></i>
-            <span>Update</span>
+    {% if obj.pk %}
+    <div class="btn-container" style="justify-content: center;">
+      <div class="equal-width-btns">
+        <button class="btn" id="blue-btn" onclick="window.location.href='{% url 'faq_update' obj.pk %}'">
+            <div class="icon-shift">
+              <i class="bi bi-check-lg"></i>
+              <span>Update</span>
+            </div>
+        </button>
+      </div>
+        <form action="{% url 'faq_delete' obj.pk %}" method="post">
+          {% csrf_token %}
+          <div class="equal-width-btns">
+              <button class="btn" id="red-btn" type="submit">
+                <div class="icon-shift">
+                  <i class="bi bi-x-lg"></i>
+                  <span>Delete</span>
+                </div>
+              </button>
           </div>
-      </button>
+        </form>
     </div>
-      <form action="{% url 'faq_delete' obj.pk %}" method="post">
-        {% csrf_token %}
-        <div class="equal-width-btns">
-            <button class="btn" id="red-btn" type="submit">
-              <div class="icon-shift">
-                <i class="bi bi-x-lg"></i>
-                <span>Delete</span>
-              </div>
-            </button>
-        </div>
-      </form>
-   
+
   {% endif %}
   </div>
 </div>

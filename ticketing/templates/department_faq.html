@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>{{ department_name }}</h1>
+<h3>{{ department_name }}</h3>
+<hr>
+<table class="dept-faq-table">
 {% for obj in object_list %}
-<table>
-
     <tr>
 
       <td>
-        <div class="panel">
-          <div class="panel-title"><b>Question:</b> <br>{{ obj.questions }}</div>
-          <div class="panel-content"><b>Answer:</b><br> {{ obj.answer }}<br></div>
+        <div class="panel card">
+          <div class="panel-title card-header"><b>Q: {{ obj.questions }}</b></div>
+          <div class="panel-content card-body">A: {{ obj.answer }}</div>
         </div>
       </td>
 
     </tr>
-  </table>
   {% endfor %}
+</table>
 {% include 'partials/pagination.html'  %}
 {% endblock %}
 {% include 'partials/footer.html' %}
