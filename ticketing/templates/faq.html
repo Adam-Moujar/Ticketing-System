@@ -5,26 +5,32 @@
 
   {% comment %} <a href="{% url 'department_faq' obj.slug %}">
     <p class="text-white ">
-        {{   obj.name }} 
-    </p> 
+        {{ obj.name }}
+    </p>
 </a>  {% endcomment %}
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  {%for obj in object_list %} 
-   
-    <div class="col">
-      <div class="card"> 
-        <a href="{%url 'department_faq' obj.slug%}"class="btn" id="blue-btn">
-        <div class="card-body">
-          <h5 class="card-title">{{obj.name}}</h5>
-          <p class="card-text"></p>
-       
-        </div> 
-      </a>
-      </div>
-    </div>
- 
-  {%endfor%}
+<div class="banner faq-banner">
+  <h2 class="faq-header">
+    Frequently Asked Questions
+    <i class="faq-icon fa-solid fa-location-arrow"></i>
+  </h2>
+</div>
 
+<div class="faq-divider">
+  <h5>Topics</h5>
+  <hr>
+</div>
+<div class="faq-grid">
+  {%for obj in object_list %}
+
+      <div id="dept-{{obj.id}}" class="card faq-card">
+        <div class="card-body">
+          <h3 class="card-title" style="font-size:3vmin;">{{obj}}</h3>
+        </div>
+        <div class="card-footer" style="color: #475B63; opacity:0.5;"> View →</div>
+        <a href="{%url 'department_faq' obj.slug%}"class="stretched-link"></a>
+      </div>
+
+  {%endfor%}
 </div>
 
 {%include 'partials/pagination.html' %}
