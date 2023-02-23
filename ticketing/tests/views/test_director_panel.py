@@ -284,8 +284,8 @@ class DirectorPanelTestCase(TestCase):
                 self.assertTrue(len(response.context['form'].errors) == 1)
                 self.assertEquals(before_count, after_count)
 
-                if special_action_before_array[h] != None:
-                    special_action_before_array[h]()
+                # if special_action_before_array[h] != None:
+                #     special_action_before_array[h]()
 
             pointers_array[h].value = good_data_array[h]
 
@@ -358,6 +358,88 @@ class DirectorPanelTestCase(TestCase):
 
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(response.context['page_obj']), 1)
+
+    def test_filter_one_by_one(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.director.email, password='Password@123'
+        )
+
+        # departments = Department.objects.all()
+
+        class Pointer:
+            def __init__(self, value=None):
+                self.value = value
+
+        # ORDER: id, first_name, last_name, email, role, department
+        data_array = [
+            '7389027858979',
+            'JDFGIOUO43%£834598V',
+            'kldfgjkli3u45£$gs34',
+            'dfgj@£$fssgildj@dg789.co.uk',
+            User.Role.DIRECTOR,
+            Department.objects.all()[1],
+        ]
+
+        id_ptr = Pointer(data_array[0])
+        first_name_ptr = Pointer(data_array[1])
+        last_name_ptr = Pointer(data_array[2])
+        email_ptr = Pointer(data_array[3])
+        role_ptr = Pointer(data_array[4])
+        department_ptr = Pointer(data_array[5])
+
+        pointers_array = [
+            id_ptr,
+            first_name_ptr,
+            last_name_ptr,
+            email_ptr,
+            role_ptr,
+            department_ptr,
+        ]
+
+        for h in range(len(pointers_array)):
+
+            query = make_director_filter_query(
+                id_ptr.value,
+                first_name_ptr.value,
+                last_name_ptr.value,
+                email_ptr.value,
+                role_ptr.value,
+                department_ptr.value,
+            )
+
+            # First with no filter to get before count
+            response = self.client.get(self.url)
+
+            before_page_count = response.context[
+                'page_obj'
+            ].paginator.num_pages
+
+            response = self.client.get(
+                self.url, data={'page': before_page_count}
+            )
+
+            before_last_page_count = len(response.context['page_obj'])
+
+            # Now with the filter to get after count
+            response = self.client.get(self.url, data=query)
+
+            after_page_count = response.context['page_obj'].paginator.num_pages
+
+            response = self.client.get(
+                self.url, data=query.update({'page': after_page_count})
+            )
+
+            after_last_page_count = len(response.context['page_obj'])
+
+            self.assertEqual(response.status_code, 200)
+
+            if before_page_count != after_page_count:
+                self.assertTrue(
+                    after_last_page_count != before_last_page_count
+                )
+
+            pointers_array[h].value = ''
 
     def test_filter_reset(self):
         self.client = Client()

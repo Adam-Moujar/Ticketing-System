@@ -62,8 +62,6 @@ class FilterView:
         self.result = self.filter_form.is_valid()
 
         for field_name in self.filter_form.base_fields:
-            print('BASE FIELD: ', field_name)
-
             self.filter_data.update(
                 {
                     field_name: self.filter_form.cleaned_data.get(
@@ -85,4 +83,4 @@ class FilterView:
         if request.POST.get('reset'):
             return redirect(self.filter_reset_url)
 
-        return super.post(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
