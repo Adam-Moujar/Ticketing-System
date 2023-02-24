@@ -264,23 +264,6 @@ class DepartmentManagerTestCase(TestCase):
             target_status_code=200,
         )
 
-    # def test_password_redirect(self):
-    #     self.client = Client()
-    #     loggedin = self.client.login(
-    #         email=self.director.email, password='Password@123'
-    #     )
-
-    #     query = {'password': str(self.student.id)}
-
-    #     response = self.client.post(self.url, data=query)
-
-    #     self.assertRedirects(
-    #         response,
-    #         reverse('change_password', kwargs={'pk': str(self.student.id)}),
-    #         status_code=302,
-    #         target_status_code=200,
-    #     )
-
     def test_good_delete(self):
         self.client = Client()
         loggedin = self.client.login(

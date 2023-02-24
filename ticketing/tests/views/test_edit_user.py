@@ -89,18 +89,16 @@ class EditUserTestCase(TestCase):
         self.assertTemplateUsed(response, 'login.html')
 
     def test_get_edit_user_unused_pk(self):
-        redirect_url = reverse_with_next('login', self.url)
 
-        url = reverse('change_password', kwargs={'pk': '587435983478'})
+        url = '587435983478/edit_user/'
 
         response = self.client.get(url, follow=True)
 
         self.assertEquals(response.status_code, 404)
 
     def test_get_edit_user_bad_pk(self):
-        redirect_url = reverse_with_next('login', self.url)
 
-        url = reverse('change_password', kwargs={'pk': 'jhgudfhguudfsighihiu'})
+        url = 'jhgudfhguudfsighihiu/edit_user/'
 
         response = self.client.get(url, follow=True)
 
