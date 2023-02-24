@@ -80,5 +80,19 @@ invalid_passwords = [
 valid_roles = [User.Role.STUDENT, User.Role.SPECIALIST, User.Role.DIRECTOR]
 invalid_roles = (['GJK', '', 'AB', '99', 'S', 'D', '897', 'jfjdij', 'l'],)
 
-# Departments
-# valid_departments = []
+## Departments
+
+# Names
+valid_department_names = [
+    'Futurte',
+    'Nevermind',
+    'sdfhuihuyw4r5geruioi',
+    'uiui347589ouergio£5',
+    'This Is a Department',
+]
+
+invalid_department_names = [
+    'a' * 101,
+    ('usifoy8' * 10) + '7583jug' * 5,
+    'hello' * 50,
+]

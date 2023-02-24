@@ -47,9 +47,14 @@ class DepartmentManagerView(
     filter_reset_url = 'department_manager'
 
     def get_queryset(self):
-        return Department.objects.filter(
+        departments = Department.objects.filter(
             name__istartswith=self.filter_data['name']
         )
+
+        if self.filter_data['id']:
+            departments = departments.filter(id__exact=self.filter_data['id'])
+
+        return departments
 
     def post(self, request, *args, **kwargs):
 
