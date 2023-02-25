@@ -1,11 +1,12 @@
 :root {
     --blue: #0360F3;
     --red: #DC392D;
-    --green: #00BA94;
+    --green: #00AC69;
     --yellow: #F4A31A;
     --orange: #ED5524;
     --purple: #620BB6;
     --grey: #475B63;
+    --light-grey: #BFB8BE;
     --primary: #E9ECF2;
 }
 
@@ -20,6 +21,7 @@
 
 .footer {
     text-align: center;
+    color: var(--light-grey);
 }
 
 /* Navbar */
@@ -85,12 +87,24 @@ hr.solid {
 }
 
 .banner {
-    background: rgb(3,96,243);
-    background: linear-gradient(90deg, rgba(3,96,243,1) 0%, rgba(110,34,242,1) 100%);
+    background: linear-gradient(to right, rgb(3,96,243), rgb(110,34,242));
+}
+
+.specialist-banner {
+    background: linear-gradient(to right, rgb(110,34,242), rgb(43,22,92));
+}
+
+.faq-banner {
+    background: linear-gradient(to right, #67b26f, #4ca2cd);
 }
 
 ul {
     list-style-type: none;
+}
+
+/* Tables */
+td {
+    vertical-align: middle;
 }
 
 
@@ -110,6 +124,14 @@ ul {
     --bs-btn-border-color: var(--red);
     --bs-btn-hover-color: var(--primary);
     --bs-btn-hover-bg: var(--red);
+}
+
+#green-btn {
+    --bs-btn-bg: transparent;
+    --bs-btn-color: var(--green);
+    --bs-btn-border-color: var(--green);
+    --bs-btn-hover-color: var(--primary);
+    --bs-btn-hover-bg: var(--green);
 }
 .equal-width-btns button {
     width: 100px;
@@ -250,6 +272,18 @@ ul {
 }
 
 /* Departnent FAQ Page */
+
+.dept-faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+    margin-bottom: -2vmin;
+    margin-top: 5vmin;
+}
+
+.dept-faq-title {
+    font-size: 5vmin;
+}
 
 .dept-faq-table {
     width: 100%;

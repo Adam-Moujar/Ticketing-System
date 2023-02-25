@@ -1,32 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
-    <div class="form-card card" style="min-width:18vmin;">
-        <div class="card-header">
-            <h1>Ticket</h1>
+    <div class="card" style="min-width:18vmin; margin-top: 10vmin; margin-bottom: 10vmin;">
+        <div class="card-header" style="font-size: 3vmin;">
+            Ticket #{{ticket.id}}: {{ticket.header}}
+            <p class="card-text text-muted" style="font-size: 2vmin;">Submitted By: {{ticket.student.first_name}} {{ticket.student.last_name}}</p>
         </div>
-        
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <h4>Ticket header  :</h4>
-                <p>{{ticket.header}}</p>
-            </li>
-            <li class="list-group-item">
-                <h4>Ticket message  :</h4>
-                <p>{{message.content}}</p>
-            </li>
-            <li class="list-group-item">
-                <h4>Ticket user  :</h4>
-                <p>{{ticket.student.first_name}} {{ticket.student.last_name}}</p>
-            </li>
-          </ul>
-
+        <div class="card-body" style="min-height:20vmin;">
+            <p class="card-text">{{message.content}}</p>
+        </div>
         <div class="card-footer">
             <form method="POST">
                 {% csrf_token %}
-                
-                <button type = "submit" name = "accept_ticket" value = {{ticket.id}} class="btn btn-outline-success"> Claim</button>
-                <a href  ="{% url 'specialist_dashboard' %}" id="blue-btn" class="btn">Back</a>
-                
+                <div class="btn-container">
+                    <button type = "submit" name = "accept_ticket" value = {{ticket.id}} id="green-btn" class="btn">Claim</button>
+                    <a href  ="{% url 'specialist_dashboard' %}" id="blue-btn" class="btn">Back</a>
+                </div>
             </form>
         </div>
     </div>
@@ -41,13 +29,13 @@
     <div>
         <form method="POST">
             {% csrf_token %}
-            
+
             <button type = "submit" name = "accept_ticket" value = {{ticket.id}}> Claim</button>
             <button type = "button">
                 <a href  ="{% url 'specialist_dashboard' %}">Back</a>
             </button>
-            
+
         </form>
     </div> -->
-    
+
 {% endblock %}

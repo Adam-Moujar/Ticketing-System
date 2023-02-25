@@ -1,36 +1,37 @@
 {% extends 'base.html' %}
 {% block body %}
-    <h1>Specialist dashboard</h1>
-    <!-- <div>
-        <form method="POST">
-            {% csrf_token %}
-            <button type = "submit" name = "type_of_ticket" value = "department"> Department </button>
-            <button type = "submit" name = "type_of_ticket" value = "personal"  > Personal   </button>
-            <button type = "submit" name = "type_of_ticket" value = "archived"  > Archived   </button>
-        </form>
-    </div> -->
-
-    <div id="dash-card" class="card">
-        <div id="dash-card-header" class="card-header">
-            <form method="POST">
-                {% csrf_token %}
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                    <button class="nav-link" type = "submit" name = "type_of_ticket" value = "department" style="color:#475B63;"> Department </button>
-                    </li>
-                    <li class="nav-item">
-                    <button class="nav-link" type = "submit" name = "type_of_ticket" value = "personal" style="color:#475B63;"  > Personal   </button>
-                    </li>
-                    <li class="nav-item">
-                    <button class="nav-link" type = "submit" name = "type_of_ticket" value = "archived" style="color:#475B63;"  > Archived   </button>
-                    </li>
-                </ul>
-            </form>
-
+    <div class="specialist-banner dash-banner">
+        <div class="dash-title">
+            <i class="fa-solid fa-chart-line" style="padding-right:2vmin; font-size:4vmin; opacity: 0.5;"></i>
+            <h1 class="dash-header">Specialist Dashboard</h1>
         </div>
-        <div id="dash-card-body" class="card-body" style="padding-top:2px;">
+        <!-- Ask how to pass this in during meeting -->
+        <h4 class="dash-subtitle">My department: {{department}}</h4>
+    </div>
 
-            {% include 'inbox.html' %}
+
+    <div class="container">
+        <div id="dash-card" class="card">
+            <div id="dash-card-header" class="card-header">
+                    <div style="padding-top:0.3vmin;">Tickets</div>
+            </div>
+            <div id="dash-card-body" class="card-body" style="padding-top:2px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <button class="nav-link" type = "submit" name = "type_of_ticket" value = "department" style="color:#475B63;"> Department </button>
+                            </li>
+                            <li class="nav-item">
+                            <button class="nav-link" type = "submit" name = "type_of_ticket" value = "personal" style="color:#475B63;"  > Personal   </button>
+                            </li>
+                            <li class="nav-item">
+                            <button class="nav-link" type = "submit" name = "type_of_ticket" value = "archived" style="color:#475B63;"  > Archived   </button>
+                            </li>
+                    </ul>
+                </form>
+                {% include 'inbox.html' %}
+            </div>
         </div>
     </div>
 {% endblock %}

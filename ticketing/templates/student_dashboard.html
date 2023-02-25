@@ -9,11 +9,6 @@
     </div>
 
     <div class="container">
-        <!-- <form method="POST">
-            {% csrf_token %}
-            <button type="submit" name="type_of_ticket" value="Open">Open Tickets</button>
-            <button type="submit" name="type_of_ticket" value="Closed">Closed Tickets</button>
-        </form> -->
         <div id="dash-card" class="card">
             <div id="dash-card-header" class="card-header">
                     <div style="padding-top:0.3vmin;">Tickets</div>
@@ -34,9 +29,5 @@
                 {% include 'inbox.html' %}
             </div>
         </div>
-        <!-- <a href="{% url 'create_ticket' %}" style="margin:1vmin;">Create ticket</a> -->
     </div>
-
-
-
 {% endblock %}

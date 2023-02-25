@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
-<h3>{{ department_name }}</h3>
+<div class="dept-faq-header">
+  <h3 class="dept-faq-title">{{ department_name }}</h3>
+  <a href="{% url 'faq' %}" style="text-decoration:none; color: #919191;">← Back to FAQs</a>
+</div>
 <hr>
 <table class="dept-faq-table">
 {% for obj in object_list %}
