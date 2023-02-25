@@ -1,13 +1,36 @@
 {% extends 'base.html' %}
 {% block body %}
     <h1>Specialist dashboard</h1>
-    <div>
+    <!-- <div>
         <form method="POST">
             {% csrf_token %}
             <button type = "submit" name = "type_of_ticket" value = "department"> Department </button>
             <button type = "submit" name = "type_of_ticket" value = "personal"  > Personal   </button>
             <button type = "submit" name = "type_of_ticket" value = "archived"  > Archived   </button>
         </form>
+    </div> -->
+
+    <div id="dash-card" class="card">
+        <div id="dash-card-header" class="card-header">
+            <form method="POST">
+                {% csrf_token %}
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                    <button class="nav-link" type = "submit" name = "type_of_ticket" value = "department" style="color:#475B63;"> Department </button>
+                    </li>
+                    <li class="nav-item">
+                    <button class="nav-link" type = "submit" name = "type_of_ticket" value = "personal" style="color:#475B63;"  > Personal   </button>
+                    </li>
+                    <li class="nav-item">
+                    <button class="nav-link" type = "submit" name = "type_of_ticket" value = "archived" style="color:#475B63;"  > Archived   </button>
+                    </li>
+                </ul>
+            </form>
+
+        </div>
+        <div id="dash-card-body" class="card-body" style="padding-top:2px;">
+
+            {% include 'inbox.html' %}
+        </div>
     </div>
-    {% include 'inbox.html' %}
 {% endblock %}

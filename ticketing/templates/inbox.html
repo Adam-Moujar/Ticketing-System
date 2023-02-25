@@ -10,20 +10,23 @@
                 {% endif %}
                 <td style="padding-left:2vmin;">{{ticket.header}}</td>
                 <td>{{ticket.department.name}}</td>
-                <td style="text-align:right; padding-right: 5vmin;">
-                    <a class="stretched-link" style="text-decoration:none;" href="{% url 'student_message' pk=ticket.id %}"">View</a>
+                <td style="padding-right: 5vmin; ">
+                    <a style="text-decoration:none;" class="btn btn-outline-primary" type="button" href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View Ticket</a>
                 </td>
+                <!-- <td style="text-align:right; padding-right: 5vmin;">
+                    <a class="stretched-link" style="text-decoration:none;" href={{ticket.id}}>View Ticket</a>
+                </td> -->
 
                 {% if user.role == "SP" %}
                 <td>
                     {% if ticket_type == "department" %}
-                        <button type="button">
-                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
+                        <button type="button" class="btn">
+                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}" style="margin:1vmin; text-decoration: none;">View ticket info →</a>
                         </button>
                     {% endif %}
                     {% if ticket_type == "personal" %}
-                        <button type="button">
-                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
+                        <button type="button" class="btn">
+                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}" style="margin:1vmin; text-decoration: none;">To Ticket →</a>
                         </button>
                     {% endif %}
                 </td>
