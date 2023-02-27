@@ -72,11 +72,6 @@ urlpatterns = [
         delete_faq.FAQDeleteView.as_view(),
         name='faq_delete',
     ),
-    path(
-        'logout/',
-        views.LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL),
-        name='logout',
-    ),
     path('signup/', auth.SignupView.as_view(), name='signup'),
     path(
         'student_dashboard/',
