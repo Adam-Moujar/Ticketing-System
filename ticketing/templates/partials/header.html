@@ -7,6 +7,8 @@
         <a href="{% url 'faq_form_view' %}">Create FAQ</a>
         <a href="{% url 'check_faq' %}">Check your FAQ</a>
         <a href="{% url 'specialist_department_faq' %}">Your Departments FAQ</a>
+        {% elif user.role == 'DI' %}
+        <a href="{% url 'director_panel' %}">Director Panel</a>
         {% endif %}
             Welcome back, {{ user.first_name }}, you are logged in as a {{ user.get_role_display }}
         {% if user.role == 'SP' %}
