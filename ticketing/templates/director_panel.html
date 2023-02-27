@@ -22,14 +22,7 @@
 
     <form method="post" style="display: inline;">
     {% csrf_token %}
-    {% for field in form %}
-            <div class="form-group">
-                {{ field.errors }}
-                {{ field.non_field_errors }}
-                {{ field.label_tag }} {{ field }}
-
-            </div>
-    {% endfor %}
+    {% include 'partials/bootstrap_form.html' with form=form %}
 
 
     <input type="submit" name="add" value="Add">
@@ -40,8 +33,7 @@
     <h3>Filters</h3>
 
     <form method="get" style="display: inline;">
-        {{ filter_form.as_p }}
-
+        {% include 'partials/bootstrap_form.html' with form=filter_form %}
         <input type="submit" value="Apply">
 
     </form>
@@ -60,7 +52,7 @@
     <form method="post" style="display:inline;">
     {% csrf_token %}
 
-    <table border="1">
+    <table class="table" border="1">
         <thead>
             <th>ID</th>
             <th>Email</th>
@@ -92,7 +84,7 @@
 
     </table>
 
-    {% include 'partials/paginator.html' %}
+    {% include 'partials/pagination.html' %}
 
 
     <h3>Commands</h3>
