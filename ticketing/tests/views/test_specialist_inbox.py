@@ -112,12 +112,11 @@ class SpecialistInboxViewTestCase(TestCase):
         )
         response = self.client.post(self.url, {'type_of_ticket': 'archived'})
 
-        right_ticket_id_list = get_tickets(self.specialist, 'archived')
+        right_ticket_list = get_tickets(self.specialist, 'archived')
 
         view_table = response.context['object_list']
 
-        for ticket_id in right_ticket_id_list:
-            ticket = Ticket.objects.get(id=ticket_id)
+        for ticket in right_ticket_list:
             self.assertTrue(ticket in view_table)
 
     def test_view_ticket_info_redirect(self):

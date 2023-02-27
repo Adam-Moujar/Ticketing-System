@@ -21,56 +21,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                (
-                    'id',
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name='ID',
-                    ),
-                ),
-                (
-                    'password',
-                    models.CharField(max_length=128, verbose_name='password'),
-                ),
-                (
-                    'last_login',
-                    models.DateTimeField(
-                        blank=True, null=True, verbose_name='last login'
-                    ),
-                ),
-                (
-                    'is_superuser',
-                    models.BooleanField(
-                        default=False,
-                        help_text='Designates that this user has all permissions without explicitly assigning them.',
-                        verbose_name='superuser status',
-                    ),
-                ),
-                (
-                    'is_staff',
-                    models.BooleanField(
-                        default=False,
-                        help_text='Designates whether the user can log into this admin site.',
-                        verbose_name='staff status',
-                    ),
-                ),
-                (
-                    'is_active',
-                    models.BooleanField(
-                        default=True,
-                        help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.',
-                        verbose_name='active',
-                    ),
-                ),
-                (
-                    'date_joined',
-                    models.DateTimeField(
-                        default=django.utils.timezone.now,
-                        verbose_name='date joined',
-                    ),
-                ),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
+                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
+                ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
+                ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
+                ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
                 ('email', models.EmailField(max_length=254, unique=True)),
                 (
                     'first_name',
@@ -143,15 +100,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Department',
             fields=[
-                (
-                    'id',
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name='ID',
-                    ),
-                ),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100, unique=True)),
                 ('slug', models.SlugField(max_length=100)),
             ],
@@ -162,15 +111,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Message',
             fields=[
-                (
-                    'id',
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name='ID',
-                    ),
-                ),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('content', models.TextField()),
                 ('date_time', models.DateTimeField(auto_now_add=True)),
             ],
@@ -178,32 +119,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StudentMessage',
             fields=[
-                (
-                    'message_ptr',
-                    models.OneToOneField(
-                        auto_created=True,
-                        on_delete=django.db.models.deletion.CASCADE,
-                        parent_link=True,
-                        primary_key=True,
-                        serialize=False,
-                        to='ticketing.message',
-                    ),
-                ),
+                ('message_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='ticketing.message')),
             ],
             bases=('ticketing.message',),
         ),
         migrations.CreateModel(
             name='Ticket',
             fields=[
-                (
-                    'id',
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name='ID',
-                    ),
-                ),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('header', models.CharField(max_length=100)),
                 (
                     'status',
@@ -304,41 +227,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='message',
             name='ticket',
-            field=models.ForeignKey(
-                on_delete=django.db.models.deletion.CASCADE,
-                to='ticketing.ticket',
-            ),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ticketing.ticket'),
         ),
         migrations.CreateModel(
             name='FAQ',
             fields=[
-                (
-                    'id',
-                    models.BigAutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name='ID',
-                    ),
-                ),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('questions', models.CharField(max_length=250)),
                 ('answer', models.CharField(max_length=250)),
-                (
-                    'department',
-                    models.ForeignKey(
-                        db_column='department',
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to='ticketing.department',
-                    ),
-                ),
-                (
-                    'specialist',
-                    models.ForeignKey(
-                        db_column='specialist',
-                        on_delete=django.db.models.deletion.CASCADE,
-                        to=settings.AUTH_USER_MODEL,
-                    ),
-                ),
+                ('department', models.ForeignKey(db_column='department', on_delete=django.db.models.deletion.CASCADE, to='ticketing.department')),
+                ('specialist', models.ForeignKey(db_column='specialist', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['department', 'specialist'],

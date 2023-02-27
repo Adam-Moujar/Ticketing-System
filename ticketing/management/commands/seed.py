@@ -58,6 +58,12 @@ class Command(BaseCommand):
         self.create_department_faq()
         print('department faq done')
 
+        self.create_open_department_ticket()
+        print('open department tickets done')
+
+        self.create_closed_department_ticket()
+        print('closed department tickets done')
+
     def set_up(self):
         first_name = self.faker.first_name()
         last_name = self.faker.last_name()
@@ -210,3 +216,20 @@ class Command(BaseCommand):
                     questions=question,
                     answer=answer,
                 )
+
+    def create_open_department_ticket(self):
+        self.create_student_ticket()
+
+    def create_closed_department_ticket(self):
+        for student in User.objects.filter(role=User.Role.STUDENT):
+            department_obj_list = Department.objects.all()
+            rand_dep = department_obj_list[
+                random.randint(0, self.DEPARTMENT_COUNT - 1)
+            ]
+            ticket = Ticket.objects.create(
+                student=student,
+                department=rand_dep,
+                header=self.faker.sentence()[0:100],
+                status=Ticket.Status.CLOSED,
+            )
+            self.create_student_message(ticket)

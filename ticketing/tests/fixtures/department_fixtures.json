@@ -1,37 +1,42 @@
 [
     {
         "model": "ticketing.department",
-        "pk": 71,
+        "pk": 21,
         "fields": {
-            "name": "Cost of living"
+            "name": "Cost of living",
+            "slug": "cost-of-living"
         }
     },
     {
         "model": "ticketing.department",
-        "pk": 72,
+        "pk": 22,
         "fields": {
-            "name": "Student wellbeing"
+            "name": "Student wellbeing",
+            "slug": "student-wellbeing"
         }
     },
     {
         "model": "ticketing.department",
-        "pk": 73,
+        "pk": 23,
         "fields": {
-            "name": "Fees, Funding & Money"
+            "name": "Fees, Funding & Money",
+            "slug": "fees-funding-money"
         }
     },
     {
         "model": "ticketing.department",
-        "pk": 74,
+        "pk": 24,
         "fields": {
-            "name": "Immigration & visa advice"
+            "name": "Immigration & visa advice",
+            "slug": "immigration-visa-advice"
         }
     },
     {
         "model": "ticketing.department",
-        "pk": 75,
+        "pk": 25,
         "fields": {
-            "name": "Accommodation"
+            "name": "Accommodation",
+            "slug": "accommodation"
         }
     }
 ]
