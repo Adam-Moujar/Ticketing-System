@@ -3,7 +3,7 @@ from django.views import View
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
-import copy
+
 from ticketing.models import Ticket, SpecialistInbox, SpecialistDepartment
 
 
