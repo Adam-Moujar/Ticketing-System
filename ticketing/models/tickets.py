@@ -1,15 +1,21 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from ticketing.models.validators.user_validator import *
 
 
 class Ticket(models.Model):
-    student = models.ForeignKey('User', on_delete=models.CASCADE)
+    student = models.ForeignKey(
+        'User', on_delete=models.CASCADE, validators=[validate_user_as_student]
+    )
     department = models.ForeignKey('Department', on_delete=models.CASCADE)
     header = models.CharField(max_length=100, blank=False)
 
     class Status(models.TextChoices):
         OPEN = 'Open'
         CLOSED = 'Closed'
+
+    class Meta:
+        ordering = ['-id']
 
     status = models.CharField(
         max_length=20, default=Status.OPEN, choices=Status.choices
@@ -23,6 +29,7 @@ class Ticket(models.Model):
         ordering = ['status']
 
 
+# Abstract Class
 class Message(models.Model):
     ticket = models.ForeignKey('Ticket', on_delete=models.CASCADE)
     content = models.TextField(blank=False)
@@ -35,5 +42,8 @@ class StudentMessage(Message):
 
 class SpecialistMessage(Message):
     responder = models.ForeignKey(
-        'User', on_delete=models.CASCADE, db_column='responder'
+        'User',
+        on_delete=models.CASCADE,
+        db_column='responder',
+        validators=[validate_user_as_specialist],
     )

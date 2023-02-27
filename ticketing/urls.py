@@ -110,6 +110,29 @@ urlpatterns = [
         student_message.StudentMessageView.as_view(),
         name='student_message',
     ),
+    path(
+        'director_panel/',
+        director_panel.DirectorPanelView.as_view(),
+        name='director_panel',
+    ),
+    path(
+        '<pk>/edit_user/', edit_user.EditUserView.as_view(), name='edit_user'
+    ),
+    path(
+        '<pk>/change_password/',
+        change_password.ChangePasswordView.as_view(),
+        name='change_password',
+    ),
+    path(
+        'department_manager/',
+        department_manager.DepartmentManagerView.as_view(),
+        name='department_manager',
+    ),
+    path(
+        '<pk>/edit_department/',
+        edit_department.EditDepartmentView.as_view(),
+        name='edit_department',
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
 handler404 = 'ticketing.views.errors.error_404'

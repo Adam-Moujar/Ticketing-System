@@ -21,6 +21,9 @@ class SignupView(SuccessMessageMixin, CreateView):
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
+        next = self.request.GET.get('next')
+        if next:
+            return next
         match self.request.user.role:
             case 'ST':
                 return reverse('student_dashboard')
