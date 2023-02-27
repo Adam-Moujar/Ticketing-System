@@ -1,4 +1,4 @@
-from ticketing.forms2.edit_user import make_edit_user_form_class
+from ticketing.forms.edit_user import make_edit_user_form_class
 from ticketing.models import User, Department
 from ticketing import utility
 from ticketing.utility import get

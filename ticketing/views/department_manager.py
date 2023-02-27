@@ -1,7 +1,7 @@
 from ticketing.models import User, Department
 from ticketing.utility.error_messages import *
 from ticketing.views.utility.mixins import ExtendableFormViewMixin, FilterView
-from ticketing.forms2.department import DepartmentFilterForm
+from ticketing.forms.department import DepartmentFilterForm
 
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy

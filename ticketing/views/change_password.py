@@ -1,4 +1,4 @@
-from ticketing.forms2.change_password import ChangePasswordForm
+from ticketing.forms.change_password import ChangePasswordForm
 from ticketing.models.users import User
 from ticketing.utility import get
 from ticketing.utility.get import get_user_from_id_param

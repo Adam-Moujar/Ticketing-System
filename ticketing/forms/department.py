@@ -1,7 +1,7 @@
 from ticketing.utility import form_fields
 from ticketing.models import User
 from ticketing.utility.department import get_department
-from ticketing.forms2.utility.mixins import (
+from ticketing.forms.utility.mixins import (
     UserDepartmentFormMixin,
     ExtendedUserFormMixin,
 )

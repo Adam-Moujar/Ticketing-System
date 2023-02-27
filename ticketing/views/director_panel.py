@@ -1,4 +1,4 @@
-from ticketing.forms2.director_panel import (
+from ticketing.forms.director_panel import (
     DirectorFilterForm,
     DirectorCommandsForm,
     make_add_user_form_class,
