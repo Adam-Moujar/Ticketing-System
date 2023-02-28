@@ -155,6 +155,9 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = CustomUserManager()
+    class Meta:
+        ordering = ['id']
+
 
     def save(self, *args, **kwargs):
         self.email = self.email.lower()
