@@ -25,6 +25,7 @@ class FAQFormView(LoginRequiredMixin, RoleRequiredMixin, FormView):
                 specialist=self.request.user
             ).department,
             questions=form.cleaned_data['questions'],
+            subsection=form.cleaned_data['subsection'],
             answer=form.cleaned_data['answer'],
         )
         return HttpResponseRedirect(self.get_success_url())

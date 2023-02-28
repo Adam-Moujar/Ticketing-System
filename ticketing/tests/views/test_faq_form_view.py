@@ -34,6 +34,7 @@ class FAQFormViewTest(TestCase):
         )
         self.form_data = {
             'questions': 'What is Django?',
+            'subsection':'Coding Language',
             'answer': 'Django is a high-level Python web framework.',
         }
 
