@@ -16,6 +16,10 @@ class Command(BaseCommand):
         'Immigration & visa advice',
         'Accommodation',
     ]
+    SUBSECTIONS=[
+        'Contact',
+        'What to do',
+    ]
     STUDENT_COUNT = 100
     SPECIALIST_COUNT = 20
     DEPARTMENT_COUNT = len(DEPARTMENT)
@@ -210,9 +214,11 @@ class Command(BaseCommand):
             for i in range(10):
                 question = f'{self.wonder_words.sentence()}?'
                 answer = f'{self.wonder_words.bare_bone_with_adjective()}'
+                
                 FAQ.objects.create(
                     specialist=user,
                     department=dept,
+                    subsection=random.choice(self.SUBSECTIONS),
                     questions=question,
                     answer=answer,
                 )
