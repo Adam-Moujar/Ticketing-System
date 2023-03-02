@@ -17,8 +17,7 @@
             <i class="fa-solid fa-chart-line" style="padding-right:2vmin; font-size:4vmin; opacity: 0.5;"></i>
             <h1 class="dash-header">Director Panel</h1>
         </div>
-        <!-- Ask how to pass this in during meeting -->
-        <h4 class="dash-subtitle">Big Chungus</h4>
+        <h4 class="dash-subtitle">{{user.first_name}} {{user.last_name}}</h4>
       </div>
       <div class="director-grid-container">
 
@@ -39,7 +38,7 @@
         <div id="dash-card" class="card dept-manager-dash grid-item">
           <div id="dash-card-header" class="card-header">
             <div style="padding-top:0.3vmin;">Departments</div>
-            <a id="dash-card-header-link" style="margin:1vmin; text-decoration: none;"href="{% url 'department_manager' %}">New +</a>
+            <a id="dash-card-header-link" style="margin:1vmin; text-decoration: none;"href="{% url 'department_manager' %}">More 🢒</a>
           </div>
           <div id="dash-card-body" class="card-body">
             <table class="table">
@@ -54,7 +53,7 @@
           <div id="dash-card-header" class="card-header">
             <div style="vertical-align: middle;">Users</div>
             <div class="user-filter container">
-              <a id="dash-card-header-link" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Filter</a>
+              <a id="dash-card-header-link" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration:none;">Filter</a>
               <div class="filter-dropdown dropdown-menu dropdown-menu-end">
                 <div class="container">
                   <form method="get" style="display: inline;">

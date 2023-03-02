@@ -30,4 +30,4 @@ class CustomLoginView(LoginView):
             case 'SP':
                 return reverse('specialist_dashboard')
             case 'DI':
-                return reverse('home')
+                return reverse('director_panel')

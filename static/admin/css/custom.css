@@ -33,6 +33,10 @@ body {
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
+.subtext {
+    color: var(--grey);
+}
+
 #navatar-spacing {
     padding-left: 4vmin;
     padding-right: 4vmin;
@@ -177,10 +181,10 @@ td {
 
 /* Dashboard */
 .dash-banner {
-
     height: 35vmin;
     padding: 1vmin;
     padding-left: 20vmin;
+    padding-right: 17vmin;
     padding-top: 5vmin;
     margin-top: -5vmin;
     margin-left: -18vmin;
@@ -227,8 +231,9 @@ td {
 
 /* Director Panel */
 .director-grid-container {
+    margin:1.75vmin;
     display: grid;
-    gap: 2vmin;
+    gap: 3vmin;
     grid-template-areas:
         'main main right-top'
         'main main right-middle'
@@ -246,9 +251,9 @@ td {
 }
 
 .utilities {
-    margin-right: 69vmin;
+    margin-right: 60vmin;
 }
-}
+
 
 .add-user-dash {
     grid-area: right-middle;
@@ -264,6 +269,21 @@ td {
 
 .utilities {
     display: flex;
+}
+
+/* Department Manager */
+
+
+.dept-filter {
+    margin:0px;
+    margin-bottom:0.4vmin;
+}
+
+.dept-manager-table-btns {
+    display: flex;
+    align-items: center;
+    margin:0px;
+    gap:2vmin;
 }
 
 
