@@ -46,8 +46,22 @@ class SpecialistClaimTicketView(LoginRequiredMixin, RoleRequiredMixin, View):
             return render(
                 request,
                 self.template_name,
-                {'ticket': ticket.first(), 'message': message},
+                {
+                    'ticket': ticket.first(),
+                    'message': message,
+                    'department_name': self.get_department_name(),
+                },
             )
         else:
 
             return redirect('/specialist_dashboard')
+
+    def get_department_name(self):
+        try:
+            user = self.request.user
+            specialist_department = SpecialistDepartment.objects.filter(
+                specialist=user
+            )
+            return specialist_department.first().department.name
+        except:
+            return 'Department has not been found'

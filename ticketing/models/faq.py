@@ -9,8 +9,9 @@ class FAQ(models.Model):
     department = models.ForeignKey(
         'Department', on_delete=models.CASCADE, db_column='department'
     )
+    subsection=models.CharField(max_length=50,blank=False)
     questions = models.CharField(max_length=250, blank=False)
     answer = models.CharField(max_length=250, blank=False)
 
     class Meta:
-        ordering = ['department', 'specialist']
+        ordering = ['department','subsection', 'specialist']
