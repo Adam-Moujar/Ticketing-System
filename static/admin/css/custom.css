@@ -10,6 +10,10 @@
     --primary: #E9ECF2;
 }
 
+body {
+    overflow-x: hidden; /* Hide scrollbars */
+}
+
 /* Animations */
 
 @keyframes fadeIn {
@@ -75,6 +79,18 @@ hr.solid {
 
 /* Main elements */
 
+.messages {
+    top: 15vmin;
+    transform: translate(30%,0);
+    margin: auto;
+    width: 50%;
+    padding:0px;
+    margin:0px;
+    justify-content: center;
+    position: absolute;
+
+}
+
 .container {
     margin-top: 3vmin;
     margin-bottom: 3vmin;
@@ -94,8 +110,8 @@ hr.solid {
     background: linear-gradient(to right, rgb(110,34,242), rgb(43,22,92));
 }
 
-.faq-banner {
-    background: linear-gradient(to right, #67b26f, #4ca2cd);
+.director-banner {
+    background: linear-gradient(to right, rgb(2, 11, 91), rgb(3,96,243));
 }
 
 ul {
@@ -154,15 +170,21 @@ td {
     margin: 5vmin;
 }
 
+.small-card{
+    margin-left: 50vmin;
+    margin-right: 50vmin;
+}
+
 /* Dashboard */
 .dash-banner {
+
     height: 35vmin;
     padding: 1vmin;
     padding-left: 20vmin;
     padding-top: 5vmin;
     margin-top: -5vmin;
     margin-left: -18vmin;
-    margin-right: -18vmin;
+    margin-right: -14.4vmin;
     margin-bottom: -15vmin;
 }
 
@@ -181,13 +203,12 @@ td {
 
 #dash-card {
     box-shadow: 0 4px 20px  rgba(0, 0, 0, 0.06);
-    margin-top: 2vmin;
-    margin-bottom: 2vmin;
 }
 
 
 #dash-card-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     color: var(--blue);
     padding-top:1.5vmin;
@@ -204,6 +225,48 @@ td {
     padding-right: 0px
 }
 
+/* Director Panel */
+.director-grid-container {
+    display: grid;
+    gap: 2vmin;
+    grid-template-areas:
+        'main main right-top'
+        'main main right-middle'
+        'main main right-bottom';
+}
+
+.user-filter {
+    text-align: right;
+    margin:0vmin;
+}
+
+.filter-dropdown {
+    box-shadow: 0 4px 20px  rgba(0, 0, 0, 0.06);
+    animation: fadeIn 0.5s;
+}
+
+.utilities {
+    margin-right: 69vmin;
+}
+}
+
+.add-user-dash {
+    grid-area: right-middle;
+}
+
+.user-manager-dash {
+    grid-area: main;
+}
+
+.dept-manager-dash {
+    grid-area: right-top;
+}
+
+.utilities {
+    display: flex;
+}
+
+
 /* FAQ Menu Page */
 .faq-banner {
     height: 25vmin;
@@ -212,6 +275,10 @@ td {
     margin-left: -18vmin;
     margin-right: -18vmin;
     margin-bottom: 3vmin;
+}
+
+.faq-banner {
+    background: linear-gradient(to right, #67b26f, #4ca2cd);
 }
 
 .faq-header {
@@ -244,31 +311,12 @@ td {
     margin-top: 0;
     font-weight: 400;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
+    color: var(--blue);
 }
 
 .faq-card:hover {
     transition: 0.2s ease;
     transform: scale(102%);
-}
-
-#dept-1 {
-    color: var(--yellow);
-}
-
-#dept-2 {
-    color: var(--red);
-}
-
-#dept-3 {
-    color: var(--green);
-}
-
-#dept-4 {
-    color: var(--purple);
-}
-
-#dept-5 {
-    color: var(--orange);
 }
 
 /* Departnent FAQ Page */

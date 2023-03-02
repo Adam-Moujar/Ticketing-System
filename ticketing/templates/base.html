@@ -22,9 +22,10 @@
             {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
-                <li {% if message.tags %} class="alert alert-primary {{ message.tags }}" role="alert" {% endif %}>{{ message }}</li>
+                <li {% if message.tags %} class="alert alert-primary alert-dismissible {{ message.tags }}" role="alert" {% endif %}>{{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </li>
                 {% endfor %}
-            </div>
             </ul>
             {% endif %}
             {% block body %}

@@ -6,7 +6,7 @@
         {% for ticket in object_list %}
             <tr class="position-relative">
                 {% if user.role != "ST" %}
-                    <td>{{ticket.student}}</td>
+                    <td style="padding-left:2vmin;">{{ticket.student}}</td>
                 {% endif %}
                 <td style="padding-left:2vmin;">{{ticket.header}}</td>
                 {% if user.role == "ST" %}
