@@ -23,5 +23,17 @@ class DepartmentFAQ(ListView):
         department = get_object_or_404(
             Department, slug=self.kwargs['department']
         )
-        context['department_name'] = department.name
+        if department:
+             context['department_name'] = department.name
+        else:
+            context['department_name']=''
+            
+        faqs=FAQ.objects.filter(department=department)
+        faq_dict={}
+        for faq in faqs:
+            if faq.subsection not in faq_dict:
+                faq_dict[faq.subsection]=[]
+            faq_dict[faq.subsection].append(faq)
+        context['faq_dict']=faq_dict
+            
         return context

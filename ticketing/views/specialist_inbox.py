@@ -69,11 +69,19 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
                             ticket_list.append(ticket)
 
             case 'personal':
-                ticket_list = Ticket.objects.filter(
-                    id__in=SpecialistInbox.objects.filter(
-                        specialist=user
-                    ).values_list('ticket_id', flat=True)
-                )
+                specialist_tickets = SpecialistInbox.objects.filter(
+                    specialist=user
+                ).values_list('ticket_id', flat=True)
+                ticket_list = []
+                for ticket_id in specialist_tickets:
+                    ticket = Ticket.objects.get(id=ticket_id)
+                    ticket_list.append(ticket)
+
+            case 'archived':
+                if len(user_department) != 0:
+                    ticket_list = Ticket.objects.filter(
+                        department=user_department.first().department
+                    ).filter(status='Closed')
 
             case default:
                 ticket_list = []
@@ -90,6 +98,8 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
                 return self.get_department_name() + ' Inbox'
             case 'personal':
                 return 'Personal Inbox:'
+            case 'archived':
+                return 'Archived inbox'
             case default:
                 return 'Default'
 

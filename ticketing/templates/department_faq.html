@@ -1,24 +1,48 @@
 {% extends 'base.html' %}
+
 {% block body %}
 <div class="dept-faq-header">
   <h3 class="dept-faq-title">{{ department_name }}</h3>
   <a href="{% url 'faq' %}" style="text-decoration:none; color: #919191;">← Back to FAQs</a>
 </div>
 <hr>
-<table class="dept-faq-table">
-{% for obj in object_list %}
-    <tr>
 
-      <td>
-        <div class="panel card">
-          <div class="panel-title card-header"><b>Q: {{ obj.questions }}</b></div>
-          <div class="panel-content card-body">A: {{ obj.answer }}</div>
+{% for subsection, faqs in faq_dict.items %}
+<div class="accordion" id="outerAccordion-{{forloop.counter}}">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="{{ subsection }}-{{ forloop.counter }}">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#outerAccordionCollapse-{{ forloop.counter }}" aria-expanded="true" aria-controls="outerAccordionCollapse-{{ forloop.counter }}">
+        {{ subsection }}
+      </button>
+    </h2>
+    <div id="outerAccordionCollapse-{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="{{ subsection }}-{{forloop.counter}}" data-bs-parent="#outerAccordion-{{forloop.counter}}">
+      <div class="accordion-body">
+        <div class="accordion" id="innerAccordion-{{forloop.parentloop.counter}}-{{forloop.counter}}">
+          {% for faq in faqs %}
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="innerAccordionHeading-{{forloop.parentloop.counter}}-{{forloop.counter}}">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#innerAccordionCollapse-{{forloop.parentloop.counter}}-{{forloop.counter}}" aria-expanded="false" aria-controls="innerAccordionCollapse-{{forloop.parentloop.counter}}-{{forloop.counter}}">
+                Q: {{ faq.questions }}
+              </button>
+            </h2>
+            <div id="innerAccordionCollapse-{{forloop.parentloop.counter}}-{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="innerAccordionHeading-{{forloop.parentloop.counter}}-{{forloop.counter}}" data-bs-parent="#innerAccordion-{{forloop.parentloop.counter}}-{{forloop.counter}}">
+              <div class="accordion-body">
+                A: {{ faq.answer }}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
         </div>
-      </td>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 
-    </tr>
-  {% endfor %}
-</table>
+
 {% include 'partials/pagination.html'  %}
 {% endblock %}
+
 {% include 'partials/footer.html' %}
+
+
