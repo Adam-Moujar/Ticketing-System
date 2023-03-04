@@ -22,7 +22,9 @@ class SpecialistInboxViewTestCase(TestCase):
     ]
 
     def setUp(self):
-        self.url = reverse('specialist_dashboard', kwargs={"ticket_type": "personal"})
+        self.url = reverse(
+            'specialist_dashboard', kwargs={'ticket_type': 'personal'}
+        )
 
         self.specialist = User.objects.filter(role='SP').first()
         self.student = User.objects.filter(role='ST').first()
@@ -83,10 +85,27 @@ class SpecialistInboxViewTestCase(TestCase):
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )
-        response = self.client.get(self.url)
+
+        view_table = []
+
+        response = self.client.get(
+            reverse('specialist_dashboard', kwargs={'ticket_type': 'personal'})
+        )
+
+        num_pages = response.context['page_obj'].paginator.num_pages
+
+        for i in range(1, num_pages + 1):
+            response = self.client.get(
+                reverse(
+                    'specialist_dashboard', kwargs={'ticket_type': 'personal'}
+                ),
+                {'page': i},
+            )
+
+            for ticket in response.context['object_list']:
+                view_table.append(ticket)
 
         right_ticket_list = get_tickets(self.specialist, 'personal')
-        view_table = response.context['object_list']
 
         for ticket in right_ticket_list:
             self.assertTrue(ticket in view_table)
@@ -97,10 +116,30 @@ class SpecialistInboxViewTestCase(TestCase):
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )
-        response = self.client.post(self.url, {'type_of_ticket': 'department'})
+
+        view_table = []
+
+        response = self.client.get(
+            reverse(
+                'specialist_dashboard', kwargs={'ticket_type': 'department'}
+            )
+        )
+
+        num_pages = response.context['page_obj'].paginator.num_pages
+
+        for i in range(1, num_pages + 1):
+            response = self.client.get(
+                reverse(
+                    'specialist_dashboard',
+                    kwargs={'ticket_type': 'department'},
+                ),
+                {'page': i},
+            )
+
+            for ticket in response.context['object_list']:
+                view_table.append(ticket)
 
         right_ticket_list = get_tickets(self.specialist, 'department')
-        view_table = response.context['object_list']
 
         for ticket in right_ticket_list:
             self.assertTrue(ticket in view_table)
@@ -110,11 +149,27 @@ class SpecialistInboxViewTestCase(TestCase):
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )
-        response = self.client.post(self.url, {'type_of_ticket': 'archived'})
+
+        view_table = []
+
+        response = self.client.get(
+            reverse('specialist_dashboard', kwargs={'ticket_type': 'archived'})
+        )
+
+        num_pages = response.context['page_obj'].paginator.num_pages
+
+        for i in range(1, num_pages + 1):
+            response = self.client.get(
+                reverse(
+                    'specialist_dashboard', kwargs={'ticket_type': 'archived'}
+                ),
+                {'page': i},
+            )
+
+            for ticket in response.context['object_list']:
+                view_table.append(ticket)
 
         right_ticket_list = get_tickets(self.specialist, 'archived')
-
-        view_table = response.context['object_list']
 
         for ticket in right_ticket_list:
             self.assertTrue(ticket in view_table)
@@ -125,7 +180,9 @@ class SpecialistInboxViewTestCase(TestCase):
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )
-        self.url = reverse('specialist_dashboard', kwargs={"ticket_type": "department"})
+        self.url = reverse(
+            'specialist_dashboard', kwargs={'ticket_type': 'department'}
+        )
         response = self.client.get(self.url)
         view_table = response.context['object_list']
         ticket_id = view_table[0].id

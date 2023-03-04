@@ -4,14 +4,20 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
 
-from ticketing.models import User, Ticket, SpecialistInbox, SpecialistDepartment
+from ticketing.models import (
+    User,
+    Ticket,
+    SpecialistInbox,
+    SpecialistDepartment,
+)
 from ticketing.views.utility.mixins import FilterView
 
 from ticketing.forms.specialist_inbox import SpecialistInboxFilterForm
 
 
-
-class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, FilterView, ListView):
+class SpecialistInboxView(
+    LoginRequiredMixin, RoleRequiredMixin, FilterView, ListView
+):
     model = Ticket
     template_name = 'specialist_dashboard.html'
     required_roles = ['SP']
@@ -19,7 +25,7 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, FilterView, Lis
     paginate_by = 10
 
     filter_form_class = SpecialistInboxFilterForm
-    filter_preserved_get_params = [["type_of_ticket", "personal"]]
+    filter_preserved_get_params = [['type_of_ticket', 'personal']]
 
     def setup(self, request, ticket_type, *args, **kwargs):
         self.ticket_type = ticket_type
@@ -31,12 +37,23 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, FilterView, Lis
         ticket_list = []
 
         if self.request.method == 'POST':
-            if "unclaim" in self.request.POST:
-                self.unclaim_ticket(self.request.POST["unclaim"])
+            if 'unclaim' in self.request.POST:
+                self.unclaim_ticket(self.request.POST['unclaim'])
                 self.ticket_type = 'personal'
-            
-        ticket_list = self.get_tickets(user, self.ticket_type)
 
+        students_by_email = User.objects.filter(
+            role=User.Role.STUDENT,
+            email__istartswith=self.filter_data['email'],
+        )
+
+        full_ticket_list = Ticket.objects.filter(
+            student__in=students_by_email,
+            header__istartswith=self.filter_data['header'],
+        )
+
+        ticket_list = self.get_tickets(
+            user, self.ticket_type, full_ticket_list
+        )
 
         return ticket_list
 
@@ -52,18 +69,18 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, FilterView, Lis
         context['inbox_type'] = self.set_formatted_inbox_name(self.ticket_type)
         context['department_name'] = self.get_department_name()
         return context
-    
+
     def get(self, request, *args, **kwargs):
-        if self.ticket_type not in ["personal", "archived", "department"]:
-            return redirect("specialist_dashboard", ticket_type="personal")
-        
+        if self.ticket_type not in ['personal', 'archived', 'department']:
+            return redirect('specialist_dashboard', ticket_type='personal')
+
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        if "unclaim" in self.request.POST:
+        if 'unclaim' in self.request.POST:
             self.ticket_type = 'personal'
 
-        if "reroute" in self.request.POST:
+        if 'reroute' in self.request.POST:
             pass
 
         result = super().post(request, *args, **kwargs)
@@ -72,20 +89,10 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, FilterView, Lis
             return result
 
         return super().get(request, *args, **kwargs)
-    
 
-    def get_tickets(self, user, ticket_type):
+    def get_tickets(self, user, ticket_type, full_ticket_list):
         user_department = SpecialistDepartment.objects.filter(specialist=user)
         ticket_list = []
-
-        students_by_email =  User.objects.filter(role=User.Role.STUDENT, 
-                                                 email__istartswith=self.filter_data['email'])
-
-        full_ticket_list = Ticket.objects.filter(
-                            student__in=students_by_email,
-                            header__istartswith=self.filter_data['header'],
-        )
-
 
         match ticket_type:
             case 'department':
@@ -147,9 +154,8 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, FilterView, Lis
             return specialist_department.first().department.name
         except:
             return 'Department has not been found'
-        
-    def unclaim_ticket(self, ticket_id):
-        SpecialistInbox.objects.filter(ticket = Ticket.objects.get(id = ticket_id)).delete()
-        
-        
 
+    def unclaim_ticket(self, ticket_id):
+        SpecialistInbox.objects.filter(
+            ticket=Ticket.objects.get(id=ticket_id)
+        ).delete()
