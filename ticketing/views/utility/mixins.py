@@ -1,5 +1,7 @@
 from django.shortcuts import redirect
 
+import copy
+
 
 class ExtendableFormViewMixin:
     def custom_get_form_kwargs(self):
@@ -55,7 +57,19 @@ class FilterView:
     def setup(self, request):
         super().setup(request)
 
-        self.filter_form = self.filter_form_class(request.GET)
+        initial = copy.copy(request.GET)
+
+        self.filter_method = initial.get('filter_method', None)
+
+        if (
+            self.filter_method == None
+            and self.filter_form_class.offer_filter_method == True
+        ):
+
+            self.filter_method = 'filter'
+            initial['filter_method'] = self.filter_method
+
+        self.filter_form = self.filter_form_class(initial)
         self.filter_data = {}
 
         # We need to run is_valid so that we can get the cleaned data
@@ -69,8 +83,6 @@ class FilterView:
                     )
                 }
             )
-
-        # self.get_name = self.filter_form.cleaned_data.get('name')
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

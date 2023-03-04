@@ -69,5 +69,12 @@ department.disabled = True
 
 department_name = Department._meta.get_field('name').formfield()
 
+filter_method = forms.ChoiceField(
+    choices=[('filter', 'Filter'), ('search', 'Search')],
+    widget=forms.RadioSelect(),
+    label='',
+    required=True,
+)
+
 # forms.ChoiceField(choices = Department.objects.all().
 #            SpecialistDepartment._meta.get_field("department")
