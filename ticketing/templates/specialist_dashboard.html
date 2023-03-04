@@ -9,7 +9,7 @@
         <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='personal' %}'"> Personal </button>
         <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='archived' %}'"> Archived </button>
 
-        
+
     </div>
 
     <h3>Filters</h3>
@@ -21,17 +21,11 @@
 
     </form>
 
-    <form method="post" style="display: inline;">
-        {% csrf_token %}
-
-
-        <input type="submit" name="reset" value="Reset">
-
-    </form>
+    <button onclick="location.href='{{ request.path }}'">Reset</button>
 
     <div id = 'ticket-table'>
         {% include 'inbox.html' %}
-    </div> 
+    </div>
     <button hx-post="/specialist_dashboard"
         hx-swap="outerHTML"
         hx-trigger="click"

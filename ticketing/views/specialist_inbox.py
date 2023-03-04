@@ -83,11 +83,6 @@ class SpecialistInboxView(
         if 'reroute' in self.request.POST:
             pass
 
-        result = super().post(request, *args, **kwargs)
-
-        if result != None:
-            return result
-
         return super().get(request, *args, **kwargs)
 
     def get_tickets(self, user, ticket_type, full_ticket_list):

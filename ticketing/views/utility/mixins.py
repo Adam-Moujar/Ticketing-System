@@ -58,7 +58,7 @@ class FilterView:
         super().setup(request)
 
         self.filter_form = self.filter_form_class(request.GET)
-        
+
         self.filter_data = {}
 
         # We need to run is_valid so that we can get the cleaned data
@@ -74,22 +74,9 @@ class FilterView:
                 }
             )
 
-        # self.get_name = self.filter_form.cleaned_data.get('name')
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
         context.update({'filter_form': self.filter_form})
 
         return context
-
-    def post(self, request, *args, **kwargs):
-
-        if request.POST.get('reset'):
-            return redirect(request.path)
-
-        if hasattr(super(), "post"):
-            return super().post(request, *args, **kwargs)
-        
-        return None
-        
