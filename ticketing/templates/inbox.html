@@ -2,6 +2,7 @@
 <h2>Tickets</h2>
 <h1>{{inbox_type}}</h1>
 
+
 <div>
     <table id="ticket-table">
         <thead>
@@ -47,15 +48,15 @@
                         </form>
                     </td>
                     <td>
-                        <form name="reroute" id="reroute">
+                        <form method="post" name="reroute" id="reroute">
+                            {% csrf_token %}
                             <select name="reroute" id="reroute">
                                 <option value="0" selected="selected">Select here...</option>
-                                <option value="1">Test 1</option>
-                                <option value="2">Test 2</option>
-                                <option value="3">Test  3</option>
+                                {% for department in departments %}
+                                    <option value="{{department.name}} {{ticket.id}}">{{department.name}}</option>
+                                {% endfor %}
                             </select>
-                            {% csrf_token %}
-                        <button type="button" id="submit_reroute">Start</button>
+                            <button type="submit" id="submit_reroute">Reroute</button>
                         </form>
                     </td>
                 </div>

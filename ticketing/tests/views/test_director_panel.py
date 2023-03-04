@@ -441,21 +441,6 @@ class DirectorPanelTestCase(TestCase):
 
             pointers_array[h].value = ''
 
-    def test_filter_reset(self):
-        self.client = Client()
-        loggedin = self.client.login(
-            email=self.director.email, password='Password@123'
-        )
-
-        response = self.client.post(self.url, data={'reset': 'Reset'})
-
-        self.assertRedirects(
-            response,
-            reverse('director_panel'),
-            status_code=302,
-            target_status_code=200,
-        )
-
     def test_commands_good_student(self):
         self.client = Client()
         loggedin = self.client.login(

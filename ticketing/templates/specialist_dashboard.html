@@ -23,7 +23,7 @@
 
     <button onclick="location.href='{{ request.path }}'">Reset</button>
 
-    <div id = 'ticket-table'>
+    <div>
         {% include 'inbox.html' %}
     </div>
     <button hx-post="/specialist_dashboard"

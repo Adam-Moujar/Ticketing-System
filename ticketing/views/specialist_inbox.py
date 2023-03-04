@@ -3,12 +3,16 @@ from django.views import View
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
+from django.contrib import messages
+
+import re
 
 from ticketing.models import (
     User,
     Ticket,
     SpecialistInbox,
     SpecialistDepartment,
+    Department,
 )
 from ticketing.views.utility.mixins import FilterView
 
@@ -68,6 +72,10 @@ class SpecialistInboxView(
         context['ticket_type'] = self.ticket_type
         context['inbox_type'] = self.set_formatted_inbox_name(self.ticket_type)
         context['department_name'] = self.get_department_name()
+        
+        if ticket_type == "personal":
+            context['departments'] = self.get_departments()
+        
         return context
 
     def get(self, request, *args, **kwargs):
@@ -81,7 +89,18 @@ class SpecialistInboxView(
             self.ticket_type = 'personal'
 
         if 'reroute' in self.request.POST:
-            pass
+            data_string = self.request.POST.get('reroute')
+            
+            if data_string == "0":
+                messages.info(request,"A invalid option has not been selected!")
+            else:
+                ticket_id = int(re.findall(r'\d+', data_string)[0])
+                department_name = "".join(i for i in data_string if not i.isdigit())
+                ticket = Ticket.objects.filter(id=ticket_id)[0]
+                department = Department.objects.filter(name=department_name.strip())[0]
+                ticket.department = department
+                ticket.save()
+                SpecialistInbox.objects.filter(ticket=ticket).delete()
 
         return super().get(request, *args, **kwargs)
 
@@ -154,3 +173,6 @@ class SpecialistInboxView(
         SpecialistInbox.objects.filter(
             ticket=Ticket.objects.get(id=ticket_id)
         ).delete()
+    
+    def get_departments(self):
+        return Department.objects.all()
