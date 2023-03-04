@@ -3,13 +3,28 @@
 <h1>{{inbox_type}}</h1>
 
 <div>
-    <table>
-    {% for ticket in object_list %}
+    <table id="ticket-table">
+        <thead>
+
+            {% if user.role != "ST" %}
+                <th>Student Email</th>
+            {% endif %}
+
+            {% if user.role == "ST" %}
+                <th>Department</th>
+            {% endif %}
+
+            <th>Header</th>
+        </thead>
+    {% for ticket in page_obj %}
         <tr>
             {% if user.role != "ST" %}
                 <td>{{ticket.student}}</td>
             {% endif %}
-            <td>{{ticket.department.name}}</td>
+
+            {% if user.role == "ST" %}
+                <td>{{ticket.department.name}}</td>
+            {% endif %}
             <td>{{ticket.header}}</td>
             <td>
             {% if user.role == "SP" %}
@@ -19,9 +34,31 @@
                     </button>
                 {% endif %}
                 {% if ticket_type == "personal" %}
-                    <button type="button">
-                        <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
-                    </button>
+                <div>
+                    <td>
+                        <button type="button">
+                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
+                        </button>
+                    </td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type = "submit" name = "unclaim" value = "{{ticket.id}}">Unclaim Ticket</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form name="reroute" id="reroute">
+                            <select name="reroute" id="reroute">
+                                <option value="0" selected="selected">Select here...</option>
+                                <option value="1">Test 1</option>
+                                <option value="2">Test 2</option>
+                                <option value="3">Test  3</option>
+                            </select>
+                            {% csrf_token %}
+                        <button type="button" id="submit_reroute">Start</button>
+                        </form>
+                    </td>
+                </div>
                 {% endif %}
                 {% if ticket_type == "archived" %}
                     <button type="button">
@@ -39,4 +76,5 @@
         </tr>
     {% endfor %}
     </table>
+    {% include 'partials/paginator.html' %}
 </div>

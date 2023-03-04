@@ -22,14 +22,14 @@ class SpecialistInboxViewTestCase(TestCase):
     ]
 
     def setUp(self):
-        self.url = reverse('specialist_dashboard')
+        self.url = reverse('specialist_dashboard', kwargs={"ticket_type": "personal"})
 
         self.specialist = User.objects.filter(role='SP').first()
         self.student = User.objects.filter(role='ST').first()
         self.director = User.objects.filter(role='DI').first()
 
     def test_specialist_dashboard_url(self):
-        self.assertEqual(self.url, '/specialist_dashboard/')
+        self.assertEqual(self.url, '/specialist_dashboard/personal/')
 
     def test_get_specialist_dashboard_as_student(self):
         self.client = Client()
@@ -125,7 +125,8 @@ class SpecialistInboxViewTestCase(TestCase):
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )
-        response = self.client.post(self.url, {'type_of_ticket': 'department'})
+        self.url = reverse('specialist_dashboard', kwargs={"ticket_type": "department"})
+        response = self.client.get(self.url)
         view_table = response.context['object_list']
         ticket_id = view_table[0].id
         url = f'specialist_claim_ticket/{ticket_id}'

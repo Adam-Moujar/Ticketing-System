@@ -32,13 +32,13 @@ class SpecialistClaimTicketView(LoginRequiredMixin, RoleRequiredMixin, View):
         ticket_id = self.request.POST.get('accept_ticket')
         ticket_list = Ticket.objects.filter(id=ticket_id)
         if len(ticket_list) == 0:
-            return redirect('/specialist_dashboard')
+            return redirect('specialist_dashboard', ticket_type="department")
         else:
             SpecialistInbox.objects.create(
                 specialist=request.user, ticket=ticket_list[0]
             )
 
-        return redirect('/specialist_dashboard')
+        return redirect('specialist_dashboard', ticket_type="department")
 
     def validate_view_ticket(self, user, department, ticket, request):
         if len(ticket) > 0 and department == ticket[0].department:
@@ -54,7 +54,7 @@ class SpecialistClaimTicketView(LoginRequiredMixin, RoleRequiredMixin, View):
             )
         else:
 
-            return redirect('/specialist_dashboard')
+            return redirect('specialist_dashboard', ticket_type="department")
 
     def get_department_name(self):
         try:

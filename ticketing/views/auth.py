@@ -28,6 +28,6 @@ class CustomLoginView(LoginView):
             case 'ST':
                 return reverse('student_dashboard')
             case 'SP':
-                return reverse('specialist_dashboard')
+                return reverse('specialist_dashboard', kwargs={'ticket_type': 'personal'})
             case 'DI':
                 return reverse('home')
