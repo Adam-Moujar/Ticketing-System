@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from ticketing.models.users import User
+from ticketing.models import User, Department
 from ticketing.models.specialist import SpecialistInbox, SpecialistDepartment
 from ticketing.models.tickets import Ticket
 from ticketing.tests.helpers import (
@@ -188,3 +188,55 @@ class SpecialistInboxViewTestCase(TestCase):
         ticket_id = view_table[0].id
         url = f'specialist_claim_ticket/{ticket_id}'
         self.assertIn(str.encode(url), response.content)
+
+    def test_unclaim_button_works(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        response = self.client.get(self.url)
+        tickets = response.context["object_list"]
+        before_count = len(tickets)
+        
+        response = self.client.post(
+            self.url,
+            {'unclaim': tickets[0].id},
+        )
+        after_count = len(response.context["object_list"])
+
+        self.assertEquals(before_count, after_count+1)
+
+    def test_reroute_ticket_works(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+    
+        response = self.client.get(self.url)
+        tickets = response.context["object_list"]
+        before_count = len(tickets)
+
+        previous_department = tickets[0].department.name
+        
+        specialist_department = SpecialistDepartment.objects.get(specialist =self.specialist).department
+        departments = Department.objects.exclude(name = specialist_department.name)
+      
+
+        response = self.client.post(
+            self.url,
+            {'reroute': departments.first().name +" "+ str(tickets[0].id)},
+        )
+
+        current_department = tickets[0].department.name
+
+
+        after_count = len(response.context["object_list"])
+
+        print(specialist_department)
+        print(departments.first().name)
+
+        self.assertEquals(before_count, after_count+1)
+        self.assertNotEquals(previous_department, current_department)
+        self.assertEquals(departments.first().name, current_department)
+     
+

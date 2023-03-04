@@ -98,8 +98,10 @@ class SpecialistInboxView(
                 department_name = "".join(i for i in data_string if not i.isdigit())
                 ticket = Ticket.objects.filter(id=ticket_id)[0]
                 department = Department.objects.filter(name=department_name.strip())[0]
+
                 ticket.department = department
                 ticket.save()
+            
                 SpecialistInbox.objects.filter(ticket=ticket).delete()
 
         return super().get(request, *args, **kwargs)
