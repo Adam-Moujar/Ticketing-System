@@ -107,4 +107,11 @@ urlpatterns = [
         edit_department.EditDepartmentView.as_view(),
         name='edit_department',
     ),
+
+    path(
+        'specialist_create_ticket_from_faq/',
+        specialist_create_ticket_from_faq.SpecialistCreateTicketFromFAQView.as_view(),
+        name='specialist_create_ticket_from_faq',
+    ),
+
 ]

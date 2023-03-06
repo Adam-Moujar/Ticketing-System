@@ -65,6 +65,9 @@
                     <button type="button">
                         <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
                     </button>
+                    <button type="button">
+                        <a href="{% url 'specialist_create_ticket_from_faq'%}">Create FAQ</a>
+                    </button>
                 {% endif %}
             {% endif %}
 
