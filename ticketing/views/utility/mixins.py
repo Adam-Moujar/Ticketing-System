@@ -59,21 +59,24 @@ class FilterView:
 
         initial = copy.copy(request.GET)
 
-        self.filter_method = initial.get('filter_method', None)
+        get_filter_method = initial.get('filter_method', None)
 
         if (
-            self.filter_method == None
+            get_filter_method == None
             and self.filter_form_class.offer_filter_method == True
         ):
-
-            self.filter_method = 'filter'
-            initial['filter_method'] = self.filter_method
+            get_filter_method = 'filter'
+            initial['filter_method'] = get_filter_method
 
         self.filter_form = self.filter_form_class(initial)
         self.filter_data = {}
 
         # We need to run is_valid so that we can get the cleaned data
         self.result = self.filter_form.is_valid()
+
+        self.filter_method = self.filter_form.cleaned_data.get(
+            'filter_method', 'filter'
+        )
 
         for field_name in self.filter_form.base_fields:
             self.filter_data.update(

@@ -71,7 +71,7 @@ department_name = Department._meta.get_field('name').formfield()
 
 filter_method = forms.ChoiceField(
     choices=[('filter', 'Filter'), ('search', 'Search')],
-    widget=forms.RadioSelect(),
+    widget=custom_widgets.NoLabelStyledRadioSelect(),
     label='',
     required=True,
 )

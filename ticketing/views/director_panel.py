@@ -115,7 +115,7 @@ class DirectorPanelView(
                 first_name__istartswith=self.filter_data['first_name'],
                 last_name__istartswith=self.filter_data['last_name'],
             )
-        else:   # "search"
+        else:   # 'search'
             users = User.objects.filter(
                 email__icontains=self.filter_data['email'],
                 first_name__icontains=self.filter_data['first_name'],
