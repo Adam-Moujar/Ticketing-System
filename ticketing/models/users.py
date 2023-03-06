@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import RegexValidator
 
 
 class CustomUserManager(UserManager):
@@ -100,13 +101,46 @@ class CustomUserManager(UserManager):
         user.save(using=self._db)
         return user
 
+    def create_custom_user(self, email, password, first_name, last_name, role):
+        user = self.create_user(
+            email.lower(),
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+        )
+        user.role = role
+        user.save(using=self._db)
+        return user
+
 
 # seed done
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, blank=False)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    # first_name = models.CharField(max_length=50)
+    first_name = models.CharField(
+        blank=False,
+        unique=False,
+        max_length=50,
+        validators=[
+            RegexValidator(
+                regex=r'^[A-Za-z\s]{3,}$',
+                message='First Name must consist of 3-50 letters',
+            )
+        ],
+    )
+
+    last_name = models.CharField(
+        blank=False,
+        unique=False,
+        max_length=50,
+        validators=[
+            RegexValidator(
+                regex=r'^[A-Za-z\s]{3,}$',
+                message='Last Name must consist of 3-50 letters',
+            )
+        ],
+    )
 
     class Role(models.TextChoices):
         STUDENT = 'ST'
@@ -121,6 +155,9 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = CustomUserManager()
+    class Meta:
+        ordering = ['id']
+
 
     def save(self, *args, **kwargs):
         self.email = self.email.lower()

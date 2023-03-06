@@ -4,6 +4,7 @@ from ticketing.models import *
 from datetime import *
 from faker import Faker
 import random
+from wonderwords import RandomSentence
 
 
 class Command(BaseCommand):
@@ -15,6 +16,10 @@ class Command(BaseCommand):
         'Immigration & visa advice',
         'Accommodation',
     ]
+    SUBSECTIONS=[
+        'Contact',
+        'What to do',
+    ]
     STUDENT_COUNT = 100
     SPECIALIST_COUNT = 20
     DEPARTMENT_COUNT = len(DEPARTMENT)
@@ -24,6 +29,7 @@ class Command(BaseCommand):
     def __init__(self):
         super().__init__()
         self.faker = Faker('en_GB')
+        self.wonder_words = RandomSentence()
 
     def handle(self, *args, **options):
         User.objects.all().delete()
@@ -60,6 +66,14 @@ class Command(BaseCommand):
             specialist_ticket=SpecialistInbox.objects.get(ticket=101)
         )
         print('specialist message done')
+        self.create_department_faq()
+        print('department faq done')
+
+        self.create_open_department_ticket()
+        print('open department tickets done')
+
+        self.create_closed_department_ticket()
+        print('closed department tickets done')
 
     def set_up(self):
         first_name = self.faker.first_name()
@@ -199,3 +213,36 @@ class Command(BaseCommand):
         SpecialistDepartment.objects.create(
             specialist=specialist, department=rand_dep
         )
+
+    def create_department_faq(self):
+        for dept in self.DEPARTMENT:
+            dept = Department.objects.filter(name=dept).first()
+            user = User.objects.filter(role='SP').first()
+            for i in range(10):
+                question = f'{self.wonder_words.sentence()}?'
+                answer = f'{self.wonder_words.bare_bone_with_adjective()}'
+                
+                FAQ.objects.create(
+                    specialist=user,
+                    department=dept,
+                    subsection=random.choice(self.SUBSECTIONS),
+                    questions=question,
+                    answer=answer,
+                )
+
+    def create_open_department_ticket(self):
+        self.create_student_ticket()
+
+    def create_closed_department_ticket(self):
+        for student in User.objects.filter(role=User.Role.STUDENT):
+            department_obj_list = Department.objects.all()
+            rand_dep = department_obj_list[
+                random.randint(0, self.DEPARTMENT_COUNT - 1)
+            ]
+            ticket = Ticket.objects.create(
+                student=student,
+                department=rand_dep,
+                header=self.faker.sentence()[0:100],
+                status=Ticket.Status.CLOSED,
+            )
+            self.create_student_message(ticket)

@@ -4,3 +4,6 @@ django-widget-tweaks==1.4.12
 AdvancedHTMLParser
 Faker
 django-htmx
+python-slugify
+wonderwords
+tblib

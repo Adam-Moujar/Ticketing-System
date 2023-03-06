@@ -1,0 +1,23 @@
+{% include 'partials/header.html' %}
+
+<h1>{{ department_name }}</h1>
+
+{% for subsection, faqs in faq_dict.items %}
+<h2>{{ subsection }}</h2>
+{% for obj in faqs %}
+<table>
+  <tr>
+    <td>
+      <div class="panel">
+        <div class="panel-title"><b>Question:</b> <br>{{ obj.questions }}</div>
+        <div class="panel-content"><b>Answer:</b><br> {{ obj.answer }}<br></div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+{% endfor %}
+{% endfor %}
+{% include 'partials/pagination.html' %}
+{% include 'partials/footer.html' %} 
+
