@@ -21,24 +21,23 @@ class SpecialistClaimTicketView(LoginRequiredMixin, RoleRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user = request.user
         # CHECK IF THE TICKET WE ARE VIEWING CAN BE VIEWED BY SPECIALIST
-        department = (
-            SpecialistDepartment.objects.filter(specialist=user).first()
-        ).department
         ticket = Ticket.objects.filter(id=self.kwargs['pk'])
 
-        return self.validate_view_ticket(user, department, ticket, request)
+        return self.validate_view_ticket(
+            user, self.get_department(), ticket, request
+        )
 
     def post(self, request, *args, **kwargs):
         ticket_id = self.request.POST.get('accept_ticket')
         ticket_list = Ticket.objects.filter(id=ticket_id)
         if len(ticket_list) == 0:
-            return redirect('specialist_dashboard', ticket_type="department")
+            return redirect('specialist_dashboard', ticket_type='department')
         else:
             SpecialistInbox.objects.create(
                 specialist=request.user, ticket=ticket_list[0]
             )
 
-        return redirect('specialist_dashboard', ticket_type="department")
+        return redirect('specialist_dashboard', ticket_type='department')
 
     def validate_view_ticket(self, user, department, ticket, request):
         if len(ticket) > 0 and department == ticket[0].department:
@@ -49,19 +48,19 @@ class SpecialistClaimTicketView(LoginRequiredMixin, RoleRequiredMixin, View):
                 {
                     'ticket': ticket.first(),
                     'message': message,
-                    'department_name': self.get_department_name(),
+                    'department_name': self.get_department().name,
                 },
             )
         else:
 
-            return redirect('specialist_dashboard', ticket_type="department")
+            return redirect('specialist_dashboard', ticket_type='department')
 
-    def get_department_name(self):
+    def get_department(self):
         try:
             user = self.request.user
-            specialist_department = SpecialistDepartment.objects.filter(
-                specialist=user
-            )
-            return specialist_department.first().department.name
+            department = (
+                SpecialistDepartment.objects.filter(specialist=user).first()
+            ).department
+            return department
         except:
             return 'Department has not been found'
