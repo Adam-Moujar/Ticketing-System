@@ -5,12 +5,32 @@
     <h1>Specialist dashboard</h1>
     <h1>Inbox</h1>
     <div>
-        <form method="POST">
-            {% csrf_token %}
-            <button type = "submit" name = "type_of_ticket" value = "department"> Department </button>
-            <button type = "submit" name = "type_of_ticket" value = "personal"  > Personal   </button>
-            <button type = "submit" name = "type_of_ticket" value = "archived"  > Archived   </button>
-        </form>
+        <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='department' %}'"> Department </button>
+        <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='personal' %}'"> Personal </button>
+        <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='archived' %}'"> Archived </button>
+
+
     </div>
-    {% include 'inbox.html' %}
+
+    <h3>Filters</h3>
+
+    <form method="get" style="display: inline;">
+        {{ filter_form.as_p }}
+
+        <input type="submit" value="Apply">
+
+    </form>
+
+    <button onclick="location.href='{{ request.path }}'">Reset</button>
+
+    <div>
+        {% include 'inbox.html' %}
+    </div>
+    <button hx-post="/specialist_dashboard"
+        hx-swap="outerHTML"
+        hx-trigger="click"
+        hx-target="#ticket-table"
+    >
+    Click Me
+    </button>
 {% endblock %}

@@ -33,7 +33,7 @@ urlpatterns = [
         name='department_faq',
     ),
     path(
-        'specialist_dashboard/',
+        'specialist_dashboard/<slug:ticket_type>/',
         specialist_inbox.SpecialistInboxView.as_view(),
         name='specialist_dashboard',
     ),
