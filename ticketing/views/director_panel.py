@@ -109,11 +109,18 @@ class DirectorPanelView(
 
     def get_queryset(self):
 
-        users = User.objects.filter(
-            email__istartswith=self.filter_data['email'],
-            first_name__istartswith=self.filter_data['first_name'],
-            last_name__istartswith=self.filter_data['last_name'],
-        )
+        if self.filter_method == 'filter':
+            users = User.objects.filter(
+                email__istartswith=self.filter_data['email'],
+                first_name__istartswith=self.filter_data['first_name'],
+                last_name__istartswith=self.filter_data['last_name'],
+            )
+        else:   # 'search'
+            users = User.objects.filter(
+                email__icontains=self.filter_data['email'],
+                first_name__icontains=self.filter_data['first_name'],
+                last_name__icontains=self.filter_data['last_name'],
+            )
 
         if self.filter_data['id']:
             users = users.filter(id__exact=self.filter_data['id'])
