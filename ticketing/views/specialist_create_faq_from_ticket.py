@@ -6,7 +6,6 @@ from ticketing.mixins import RoleRequiredMixin
 from django.shortcuts import redirect
 
 
-from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.http import HttpResponseRedirect
 from ticketing.forms.specialist_faq import FAQForm
@@ -27,11 +26,10 @@ from ticketing.models import (
     Message,
 )
 
-class SpecialistCreateTicketFromFAQView(LoginRequiredMixin, RoleRequiredMixin, FormView):
-    template_name = 'specialist_create_ticket_from_faq.html'
+class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView):
+    template_name = 'specialist_create_faq_from_ticket.html'
     required_roles = ['SP']
     form_class = FAQForm
-    success_url = reverse_lazy('specialist_create_ticket_from_faq')
 
     def form_valid(self, form):
 

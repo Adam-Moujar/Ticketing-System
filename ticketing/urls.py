@@ -109,9 +109,9 @@ urlpatterns = [
     ),
 
     path(
-        'specialist_create_ticket_from_faq/',
-        specialist_create_ticket_from_faq.SpecialistCreateTicketFromFAQView.as_view(),
-        name='specialist_create_ticket_from_faq',
+        'specialist_create_faq_from_ticket/',
+        specialist_create_faq_from_ticket.SpecialistCreateFAQFromTicketView.as_view(),
+        name='specialist_create_faq_from_ticket',
     ),
 
 ]
