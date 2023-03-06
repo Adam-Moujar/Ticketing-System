@@ -45,15 +45,26 @@ class SpecialistInboxView(
                 self.unclaim_ticket(self.request.POST['unclaim'])
                 self.ticket_type = 'personal'
 
-        students_by_email = User.objects.filter(
-            role=User.Role.STUDENT,
-            email__istartswith=self.filter_data['email'],
-        )
+        if self.filter_method == 'filter':
+            students_by_email = User.objects.filter(
+                role=User.Role.STUDENT,
+                email__istartswith=self.filter_data['email'],
+            )
 
-        full_ticket_list = Ticket.objects.filter(
-            student__in=students_by_email,
-            header__istartswith=self.filter_data['header'],
-        )
+            full_ticket_list = Ticket.objects.filter(
+                student__in=students_by_email,
+                header__istartswith=self.filter_data['header'],
+            )
+        else:
+            students_by_email = User.objects.filter(
+                role=User.Role.STUDENT,
+                email__icontains=self.filter_data['email'],
+            )
+
+            full_ticket_list = Ticket.objects.filter(
+                student__in=students_by_email,
+                header__icontains=self.filter_data['header'],
+            )
 
         ticket_list = self.get_tickets(
             user, self.ticket_type, full_ticket_list
