@@ -72,10 +72,10 @@ class SpecialistInboxView(
         context['ticket_type'] = self.ticket_type
         context['inbox_type'] = self.set_formatted_inbox_name(self.ticket_type)
         context['department_name'] = self.get_department_name()
-        
-        if ticket_type == "personal":
-            context['departments'] = self.get_departments()
-        
+
+        if ticket_type == 'personal':
+            context['departments'] = self.get_other_departments()
+
         return context
 
     def get(self, request, *args, **kwargs):
@@ -90,18 +90,23 @@ class SpecialistInboxView(
 
         if 'reroute' in self.request.POST:
             data_string = self.request.POST.get('reroute')
-            
-            if data_string == "0":
-                messages.info(request,"A invalid option has not been selected!")
+
+            if data_string == '0':
+                messages.info(
+                    request, 'A invalid option has not been selected!'
+                )
             else:
                 ticket_id = int(re.findall(r'\d+', data_string)[0])
-                department_name = "".join(i for i in data_string if not i.isdigit())
-                ticket = Ticket.objects.filter(id=ticket_id)[0]
-                department = Department.objects.filter(name=department_name.strip())[0]
-
+                department_name = ''.join(
+                    i for i in data_string if not i.isdigit()
+                )
+                if len(Ticket.objects.filter(id=ticket_id)) > 0:
+                    ticket = Ticket.objects.get(id=ticket_id)
+                department = Department.objects.filter(
+                    name=department_name.strip()
+                )[0]
                 ticket.department = department
                 ticket.save()
-            
                 SpecialistInbox.objects.filter(ticket=ticket).delete()
 
         return super().get(request, *args, **kwargs)
@@ -141,9 +146,6 @@ class SpecialistInboxView(
                         department=user_department.first().department
                     ).filter(status='Closed')
 
-            case default:
-                ticket_list = []
-
         return ticket_list
 
     def set_formatted_inbox_name(self, ticket_type):
@@ -158,8 +160,6 @@ class SpecialistInboxView(
                 return 'Personal Inbox:'
             case 'archived':
                 return 'Archived inbox'
-            case default:
-                return 'Default'
 
     def get_department_name(self):
         try:
@@ -175,6 +175,19 @@ class SpecialistInboxView(
         SpecialistInbox.objects.filter(
             ticket=Ticket.objects.get(id=ticket_id)
         ).delete()
-    
+
     def get_departments(self):
         return Department.objects.all()
+
+    def get_other_departments(self):
+        departments = self.get_departments()
+        user = self.request.user
+        specialist_department = SpecialistDepartment.objects.filter(
+            specialist=user
+        ).first()
+        if specialist_department:
+            return departments.exclude(
+                name=specialist_department.department.name
+            )
+        else:
+            return departments

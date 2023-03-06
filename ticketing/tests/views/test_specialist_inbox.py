@@ -30,6 +30,9 @@ class SpecialistInboxViewTestCase(TestCase):
         self.student = User.objects.filter(role='ST').first()
         self.director = User.objects.filter(role='DI').first()
 
+    def make_ticket_filter_query(self, email, header):
+        return {'email': email, 'header': header}
+
     def test_specialist_dashboard_url(self):
         self.assertEqual(self.url, '/specialist_dashboard/personal/')
 
@@ -78,6 +81,17 @@ class SpecialistInboxViewTestCase(TestCase):
             email=self.specialist.email, password='Password@123'
         )
         response = self.client.get(self.url)
+        self.assertEqual(response.context['ticket_type'], 'personal')
+
+    def test_wrong_slug_goes_to_personal(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        self.url = reverse(
+            'specialist_dashboard', kwargs={'ticket_type': 'nonsense'}
+        )
+        response = self.client.get(self.url, follow=True)
         self.assertEqual(response.context['ticket_type'], 'personal')
 
     def test_personal_inbox_shows_correct_tickets(self):
@@ -195,48 +209,94 @@ class SpecialistInboxViewTestCase(TestCase):
             email=self.specialist.email, password='Password@123'
         )
         response = self.client.get(self.url)
-        tickets = response.context["object_list"]
+        tickets = response.context['object_list']
         before_count = len(tickets)
-        
+
         response = self.client.post(
             self.url,
             {'unclaim': tickets[0].id},
         )
-        after_count = len(response.context["object_list"])
+        after_count = len(response.context['object_list'])
 
-        self.assertEquals(before_count, after_count+1)
+        self.assertEquals(before_count, after_count + 1)
 
     def test_reroute_ticket_works(self):
         self.client = Client()
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )
-    
+
         response = self.client.get(self.url)
-        tickets = response.context["object_list"]
+        tickets = response.context['object_list']
+        first_ticket_id = tickets[0].id
+        first_ticket = Ticket.objects.get(id=first_ticket_id)
         before_count = len(tickets)
 
-        previous_department = tickets[0].department.name
-        
-        specialist_department = SpecialistDepartment.objects.get(specialist =self.specialist).department
-        departments = Department.objects.exclude(name = specialist_department.name)
-      
+        previous_department = first_ticket.department.name
+
+        specialist_department = SpecialistDepartment.objects.get(
+            specialist=self.specialist
+        ).department
+        departments = Department.objects.exclude(
+            name=specialist_department.name
+        )
 
         response = self.client.post(
             self.url,
-            {'reroute': departments.first().name +" "+ str(tickets[0].id)},
+            {'reroute': departments.first().name + ' ' + str(first_ticket.id)},
         )
 
-        current_department = tickets[0].department.name
+        first_ticket = Ticket.objects.get(id=first_ticket_id)
+        current_department = first_ticket.department.name
 
+        after_count = len(response.context['object_list'])
 
-        after_count = len(response.context["object_list"])
-
-        print(specialist_department)
-        print(departments.first().name)
-
-        self.assertEquals(before_count, after_count+1)
+        self.assertEquals(before_count, after_count + 1)
         self.assertNotEquals(previous_department, current_department)
         self.assertEquals(departments.first().name, current_department)
-     
 
+    def test_reroute_no_department_selected(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+
+        response = self.client.get(self.url)
+        response = self.client.post(
+            self.url,
+            {'reroute': '0'},
+        )
+
+        error_message = list(response.context['messages'])[0]
+        self.assertEqual(
+            'A invalid option has not been selected!', str(error_message)
+        )
+
+    def test_personal_inbox_filtering(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+
+        response = self.client.get(self.url)
+        view_table = response.context['object_list']
+        before_count = len(view_table)
+
+        input_email = view_table[0].student.email
+        input_header = view_table[0].header
+
+        response = self.client.get(
+            reverse(
+                'specialist_dashboard', kwargs={'ticket_type': 'personal'}
+            ),
+            data=self.make_ticket_filter_query(input_email, input_header),
+        )
+
+        view_table = response.context['object_list']
+        after_count = len(view_table)
+        self.assertNotEquals(before_count, after_count)
+        self.assertEqual(after_count, 1)
+
+        ticket = view_table[0]
+        self.assertEqual(ticket.student.email, input_email)
+        self.assertEqual(ticket.header, input_header)
