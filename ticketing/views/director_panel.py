@@ -146,6 +146,7 @@ class DirectorPanelView(
             {
                 'commands_form': self.commands_form,
                 'selected': self.selected,
+                'departments': Department.objects.all(),
             }
         )
 

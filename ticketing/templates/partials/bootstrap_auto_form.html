@@ -8,7 +8,7 @@
                 {% if field.errors %}
                     {% render_field field class="is-invalid" %}
                 {% else %}
-                    {% render_field field class="is-valid" %}
+                    {% render_field field %}
                 {% endif %}
             {% else %}
                 {% render_field field %}
@@ -18,7 +18,7 @@
                 {% render_field field class="form-control is-invalid" %}
                 {{ field.errors }}
             {% else %}
-                {% render_field field class="form-control is-valid" %}
+                {% render_field field class="form-control" %}
         {% endif %}
         {% else %}
             {% render_field field class="form-control" %}

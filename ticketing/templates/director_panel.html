@@ -42,9 +42,9 @@
           </div>
           <div id="dash-card-body" class="card-body">
             <table class="table">
-              <tr><td>Dept 1</td></tr>
-              <tr><td>Dept 2</td></tr>
-              <tr><td>Dept 3</td></tr>
+              {% for dept in departments %}
+                <tr><td>{{ dept }}</td></tr>
+              {% endfor %}
             </table>
           </div>
         </div>
@@ -53,12 +53,12 @@
           <div id="dash-card-header" class="card-header">
             <div style="vertical-align: middle;">Users</div>
             <div class="user-filter container">
-              <a id="dash-card-header-link" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration:none;">Filter</a>
-              <div class="filter-dropdown dropdown-menu dropdown-menu-end">
+              <a id="dash-card-header-link" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration:none; cursor:pointer;">Filter</a>
+              <div class="filter-dropdown dropdown-menu dropdown-menu-end" onclick="event.stopPropagation();">
                 <div class="container">
                   <form method="get" style="display: inline;">
-                      {% include 'partials/bootstrap_form.html' with form=filter_form %}
-                      <input id="green-btn" class="btn" type="submit" value="Apply">
+                      {% include 'partials/bootstrap_auto_form.html' with form=filter_form %}
+                    <input id="green-btn" class="btn" type="submit" value="Apply">
                   </form>
 
                   <form method="post" style="display: inline;">
