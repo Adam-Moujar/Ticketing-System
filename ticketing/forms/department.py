@@ -5,6 +5,7 @@ from ticketing.forms.utility.mixins import (
     UserDepartmentFormMixin,
     ExtendedUserFormMixin,
 )
+from ticketing.forms.utility.base import FilterForm
 from ticketing.models.specialist import SpecialistDepartment
 
 from django import forms
@@ -12,7 +13,7 @@ from django import forms
 import copy
 
 
-class DepartmentFilterForm(forms.Form):
+class DepartmentFilterForm(FilterForm):
     id = copy.copy(form_fields.id)
     id.required = False
 

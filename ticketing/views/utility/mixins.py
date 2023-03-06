@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.http import urlencode
+import copy
 
 
 class ExtendableFormViewMixin:
@@ -59,10 +60,26 @@ class FilterView:
 
         self.filter_form = self.filter_form_class(request.GET)
 
+        initial = copy.copy(request.GET)
+
+        get_filter_method = initial.get('filter_method', None)
+
+        if (
+            get_filter_method == None
+            and self.filter_form_class.offer_filter_method == True
+        ):
+            get_filter_method = 'filter'
+            initial['filter_method'] = get_filter_method
+
+        self.filter_form = self.filter_form_class(initial)
         self.filter_data = {}
 
         # We need to run is_valid so that we can get the cleaned data
         self.result = self.filter_form.is_valid()
+
+        self.filter_method = self.filter_form.cleaned_data.get(
+            'filter_method', 'filter'
+        )
 
         for field_name in self.filter_form.base_fields:
 
