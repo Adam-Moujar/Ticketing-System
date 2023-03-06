@@ -18,20 +18,10 @@
                         <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
                     </button>
                 {% endif %}
-                <td>{{ticket.department.name}}</td>
-                <td>{{ticket.header}}</td>
-                <td>
-                {% if user.role == "SP" %}
-                    {% if ticket_type == "department" %}
-                        <button type="button">
-                            <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info</a>
-                        </button>
-                    {% endif %}
-                    {% if ticket_type == "personal" %}
-                        <button type="button">
-                            <a href="{% url 'specialist_message' pk=ticket.id %}">To Ticket</a>
-                        </button>
-                    {% endif %}
+                {% if ticket_type == "personal" %}
+                    <button type="button">
+                        <a href="{% url 'specialist_claim_ticket' pk=ticket.id %}">To Ticket</a>
+                    </button>
                 {% endif %}
                 {% if ticket_type == "archived" %}
                     <button type="button">
@@ -40,13 +30,13 @@
                 {% endif %}
             {% endif %}
 
-                {% if user.role == "ST" %}
-                <button type="button">
-                    <a href="{% url 'student_message' pk=ticket.id %}">To ticket</a>
-                </button>
-                {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
+            {% if user.role == "ST" %}
+            <button type="button">
+                <a href="{% url 'student_message' pk=ticket.id %}">To ticket</a>
+            </button>
+            {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
 </div>

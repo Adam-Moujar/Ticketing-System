@@ -66,6 +66,7 @@ class Command(BaseCommand):
             specialist_ticket=SpecialistInbox.objects.get(ticket=101)
         )
         print('specialist message done')
+        
         self.create_department_faq()
         print('department faq done')
 
