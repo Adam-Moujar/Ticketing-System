@@ -1,6 +1,6 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from ticketing.models import User, Ticket, Message, StudentMessage, SpecialistInbox, SpecialistMessage
+from ticketing.models import User, Ticket, Message, SpecialistInbox, SpecialistMessage, SpecialistDepartment
 
 class SpecialistMessageViewTestCase(TestCase):
     fixtures = [
@@ -15,8 +15,9 @@ class SpecialistMessageViewTestCase(TestCase):
         self.specialist = User.objects.filter(role='SP').first()
         self.ticket = SpecialistInbox.objects.filter(specialist = self.specialist).first().ticket
         self.url = reverse('specialist_message', kwargs={'pk' : self.ticket.id})
-        self.not_specialist_ticket = SpecialistInbox.objects.exclude(specialist = self.specialist).first().ticket
-   
+        self.specialist_department = SpecialistDepartment.objects.filter(specialist = self.specialist).first().department
+        self.ticket_from_different_department = Ticket.objects.exclude(department = self.specialist_department).first()
+    
     def test_specialist_message_url(self):
          self.assertEqual(self.url, "/specialist_message/" + str(self.ticket.id) )
 
@@ -42,11 +43,23 @@ class SpecialistMessageViewTestCase(TestCase):
         ).first()
         self.assertIsNotNone(specialist_message)
     
-    def test_wrong_pk_when_post(self): 
+    def test_wrong_ticket_type_when_post(self): 
         self.client = Client()
-        self.url = reverse('specialist_message', kwargs={'pk' : self.not_specialist_ticket.pk})
-        loggedin = self.client.login(
+        self.url = reverse('specialist_dashboard', kwargs={'ticket_type' : 'se'})
+        self.client.login(
             email=self.specialist.email, password='Password@123'
         )
         response = self.client.get(self.url, follow=True)
         self.assertTemplateUsed(response, 'specialist_dashboard.html')
+    
+    def test_getting_personal_dashboard(self):
+        self.client = Client()
+        self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        self.url = reverse('specialist_dashboard', kwargs={'ticket_type': 'personal'})
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, 200)
+        
+        
