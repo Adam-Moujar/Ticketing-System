@@ -29,11 +29,9 @@ class SpecialistMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
         allowed_ids = SpecialistDepartment.objects.filter(
             department=department
         ).values_list('specialist', flat=True)
-        print(allowed_ids)
         # allowed_ids = getattr(getattr(Ticket.objects.filter(id=self.kwargs['pk']), 'department'), 'id')
         if self.request.user.id not in allowed_ids:
             return HttpResponseRedirect(reverse('specialist_dashboard'))
-        print(self.request.user.id)
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):

@@ -25,7 +25,6 @@ class StudentMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
         )
         if self.request.user.id not in allowed_ids:
             return HttpResponseRedirect(reverse('student_dashboard'))
-        print(self.request.user.id)
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
