@@ -1,0 +1,325 @@
+{
+  "department": "Health & Wellbeing",
+  "sub_sections" : [
+    {
+      "sub_section" : "Physical health & sport",
+      "faq" : [
+          {
+            "question": "What types of physical activities are available on campus?",
+            "answer": "There are a variety of physical activities available on campus, including group fitness classes, intramural sports leagues, outdoor adventure programs, and access to our fitness center with cardio and strength training equipment."
+          },
+          {
+            "question": "How can I join an intramural sports team?",
+            "answer": "To join an intramural sports team, you can sign up as a free agent and be placed on a team or create your own team and invite others to join. Registration typically takes place at the beginning of each semester."
+          },
+          {
+            "question": "Are personal training services available?",
+            "answer": "Yes, personal training services are available to students and staff for an additional fee. Our certified personal trainers can help you create a personalized workout plan, provide guidance and support, and help you achieve your fitness goals."
+          },
+          {
+            "question": "Do I need to bring my own equipment to use the fitness center?",
+            "answer": "No, the fitness center provides cardio and strength training equipment for use. However, if you prefer to use your own equipment, you are welcome to bring it."
+          },
+          {
+            "question": "What should I wear to participate in group fitness classes?",
+            "answer": "Wear comfortable, athletic clothing that allows for movement and flexibility. Athletic shoes are also recommended. Some classes may require specific footwear, such as dance or cycling shoes."
+          },
+          {
+            "question": "Are there any fees associated with using the campus fitness center?",
+            "answer": "Yes, there is a small fee for students to use the campus fitness center. However, this fee is included in your student activity fees, so you will not be charged separately."
+          },
+          {
+            "question": "Do I need to have prior experience to participate in intramural sports leagues?",
+            "answer": "No, prior experience is not necessary to participate in our intramural sports leagues. Our leagues are designed to be fun and inclusive for all skill levels, and we encourage everyone to participate."
+          },
+          {
+            "question": "What resources are available to help me prevent injuries while exercising?",
+            "answer": "Our campus fitness center offers complimentary injury prevention consultations with certified personal trainers, who can provide guidance on proper exercise techniques and injury prevention strategies."
+          },
+          {
+            "question": "What is the process for obtaining a medical exemption from physical education requirements?",
+            "answer": "Students who have a medical condition or disability that prevents them from participating in physical education classes can request a medical exemption through our student health center. A medical professional will need to provide documentation of the condition or disability."
+          },
+          {
+            "question": "Can I rent equipment for outdoor activities?",
+            "answer": "Yes, we offer equipment rentals for a variety of outdoor activities, including camping, hiking, and snow sports. Equipment can be rented through our campus recreation center."
+          },
+          {
+            "question": "Can I participate in fitness classes if I have an injury or disability?",
+            "answer": "Yes, we offer modified versions of our fitness classes for students with injuries or disabilities. Please contact our fitness center staff in advance to discuss any accommodations that may be necessary."
+          },
+          {
+            "question": "Are there opportunities to participate in outdoor recreational activities on campus?",
+            "answer": "Yes, we offer a variety of outdoor recreational activities, including hiking, camping, rock climbing, and more. Our campus recreation center organizes regular outdoor trips and events throughout the year."
+          },
+          {
+            "question": "What is the difference between a personal trainer and a fitness coach?",
+            "answer": "A personal trainer typically focuses on developing individualized workout plans and providing one-on-one training sessions. A fitness coach, on the other hand, may work with individuals or groups to provide general fitness guidance and motivation, but does not typically provide individualized workout plans."
+          },
+          {
+            "question": "Can I bring a guest to use the campus fitness center?",
+            "answer": "Yes, students are allowed to bring one guest to the fitness center per visit, provided that the guest signs a waiver and pays a small fee. Students are responsible for their guests and must accompany them at all times."
+          },
+          {
+            "question": "What are the hours of operation for the fitness center?",
+            "answer": "The fitness center is open from 6am to 10pm Monday through Friday, and 9am to 8pm on weekends."
+          },
+          {
+            "question": "Do I need to bring my own equipment to use the fitness center?",
+            "answer": "No, the fitness center provides all necessary equipment, including cardio machines, strength training equipment, and free weights."
+          },
+          {
+            "question": "Is there a fee to use the fitness center?",
+            "answer": "All currently enrolled students have access to the fitness center free of charge. Faculty and staff members can purchase a membership for a nominal fee."
+          },
+          {
+            "question": "What is the policy for reserving a court for recreational use?",
+            "answer": "To reserve a court for recreational use, you can visit our website and select the date and time you would like to reserve. Reservations can be made up to 48 hours in advance."
+          },
+          {
+            "question": "Are there personal trainers available to help me achieve my fitness goals?",
+            "answer": "Yes, we offer personal training services for an additional fee. Our certified trainers can help you create a customized fitness plan and provide guidance and support as you work towards your goals."
+          },
+          {
+            "question": "Can students get access to personal trainers at the university's fitness center?",
+            "answer": "Yes, the university's fitness center offers personal training services for students. Our certified trainers will work with you to create a customized workout plan and provide guidance on proper form and technique to help you achieve your fitness goals."
+          }
+      ]
+    },
+    {
+      "sub_section" : "Mental health & wellbeing",
+      "faq" : [
+        {
+          "question": "What mental health services are available to students on campus?",
+          "answer": "The university offers a range of mental health services to students, including individual counseling, group therapy, crisis support, and psychiatric services. Our counselors and mental health professionals are trained to help students with a variety of concerns, including anxiety, depression, stress management, and relationship issues."
+        },
+        {
+          "question": "What if I need mental health services outside of normal business hours?",
+          "answer": "Our mental health crisis hotline is available 24/7 for immediate support and assistance. Additionally, we offer online counseling and teletherapy services that can be accessed from anywhere at any time."
+        },
+        {
+          "question": "Is there a cost for mental health services on campus?",
+          "answer": "Most mental health services on campus are free for students, although there may be a fee for certain services such as psychiatric evaluations or medication management. Please check with our mental health services office for more information."
+        },
+        {
+          "question": "What is the difference between counseling and therapy?",
+          "answer": "Counseling and therapy are similar in that they both involve talking to a mental health professional about your concerns. However, counseling tends to be more short-term and focused on specific issues, while therapy is typically more long-term and focuses on deeper, more complex issues."
+        },
+        {
+          "question": "What should I do if I or someone I know is in crisis?",
+          "answer": "If you or someone you know is in crisis, please call our mental health crisis hotline at [insert number here]. This line is available 24/7 and staffed by trained mental health professionals who can provide immediate support and assistance."
+        },
+        {
+          "question": "What are some signs that I or someone I know may be struggling with mental health?",
+          "answer": "There are many signs that may indicate that someone is struggling with their mental health. Some of these signs include changes in behavior or mood, feelings of hopelessness or worthlessness, social withdrawal, changes in appetite or sleep patterns, and difficulty concentrating. If you or someone you know is experiencing any of these symptoms, it may be a good idea to reach out to a mental health professional for support."
+        },
+        {
+          "question": "How can I access mental health services as a student?",
+          "answer": "Students can access mental health services by scheduling an appointment with a counselor or mental health professional. Appointments can be made by calling our office, emailing us, or using our online scheduling system. Walk-in appointments may also be available depending on availability."
+        },
+        {
+          "question": "What should I do if I'm in crisis or need immediate help?",
+          "answer": "If you're in crisis or need immediate help, please call our crisis line at [insert phone number] or go to the nearest emergency room. Our crisis line is available 24/7 and staffed by mental health professionals who can provide immediate support and assistance."
+        },
+        {
+          "question": "Are mental health services confidential?",
+          "answer": "Yes, mental health services are confidential. Information shared with counselors and mental health professionals is protected by federal and state laws. We take confidentiality very seriously and will only share information with others if you provide written consent or if there is a threat of harm to yourself or others."
+        },
+        {
+          "question": "Is there a cost for mental health services?",
+          "answer": "There is no cost for mental health services for students who are currently enrolled at the university. However, there may be a cost for certain psychiatric services or specialized assessments. Our mental health staff can provide more information on any potential costs associated with services."
+        },
+        {
+          "question": "What if I'm not sure if I need mental health services?",
+          "answer": "If you're not sure if you need mental health services, we encourage you to schedule an initial consultation with one of our counselors or mental health professionals. They can help assess your needs and make recommendations for appropriate care. It's always better to seek help early rather than wait until problems become more severe."
+        },
+        {
+          "question": "Can I see a mental health professional off-campus instead of using university services?",
+          "answer": "Yes, you are free to seek mental health services off-campus if you prefer. However, it's important to note that our mental health professionals are specifically trained to work with university students and understand the unique challenges of college life. If you choose to seek off-campus services, we recommend finding a mental health professional who has experience working with college students."
+        },
+        {
+          "question": "What if I'm not comfortable seeing a counselor or mental health professional?",
+          "answer": "If you're not comfortable seeing a counselor or mental health professional, there are other resources available to you. You can speak with a peer counselor or attend a support group, for example. Our mental health staff can help you explore your options and find the resources that are best for you."
+        },
+        {
+          "question": "What if I need ongoing mental health support?",
+          "answer": "If you need ongoing mental health support, we can provide you with a referral to an off-campus mental health professional or community organization that specializes in long-term care. We can also work with you to develop a treatment plan that includes ongoing support from our mental health staff."
+        },
+        {
+          "question": "What if I'm concerned about a friend's mental health?",
+          "answer": "If you're concerned about a friend's mental health, we encourage you to reach out to them and offer your support. You can also encourage them to seek help from our mental health services or other resources on campus. If you're unsure of how to approach the situation, you can speak with one of our mental health professionals for guidance."
+        },
+        {
+          "question": "Are mental health services available during school breaks?",
+          "answer": "Our mental health services are not available during school breaks when the university is closed. However, we can provide you with information about off-campus mental health resources that may be available during those times. We also encourage students to make a plan for their mental health care during breaks in advance."
+        },
+        {
+          "question": "What if I need medication for a mental health condition?",
+          "answer": "Our mental health professionals can provide medication management for certain mental health conditions. If you need medication, you will need to schedule an appointment with one of our mental health professionals to discuss your symptoms and medication options. They can also provide information about any potential side effects and answer any questions you may have."
+        },
+        {
+          "question": "What if I'm not sure if I want to take medication for a mental health condition?",
+          "answer": "If you're not sure if you want to take medication for a mental health condition, we encourage you to schedule an appointment with one of our mental health professionals to discuss your concerns and treatment options. They can provide information about medication as well as other types of treatment, such as therapy or support groups."
+        },
+        {
+          "question": "What if I have a disability that affects my mental health?",
+          "answer": "If you have a disability that affects your mental health, our mental health professionals can work with you to develop a treatment plan that takes your disability into account. We can also provide accommodations or referrals to disability services to help you succeed academically and personally."
+        },
+        {
+          "question": "What if I need mental health support in a language other than English?",
+          "answer": "If you need mental health support in a language other than English, we can provide interpreters or connect you with mental health professionals who speak your preferred language. We also have resources available in multiple languages, including educational materials and self-help guides."
+        }
+      ]
+    },
+    {
+      "sub_section": "Counselling Service",
+      "faq" : [
+        {
+          "question": "How do I make an appointment with a counselor?",
+          "answer": "To make an appointment with a counselor, you can call our counseling center or visit our website to schedule an appointment online. We offer both in-person and virtual appointments, depending on your preference and availability. If you're not sure what type of appointment you need or what counselor to see, our intake staff can help you with the process."
+        },
+        {
+          "question": "How long are counseling sessions?",
+          "answer": "Counseling sessions are typically 50 minutes long. However, the length of the session may vary depending on your individual needs and the counselor's schedule."
+        },
+        {
+          "question": "Is counseling confidential?",
+          "answer": "Yes, counseling is confidential. This means that what you discuss with your counselor is private and will not be shared with anyone without your consent, except in specific circumstances such as a danger to yourself or others. Our counselors will review confidentiality policies with you during your first appointment."
+        },
+        {
+          "question": "How can I make an appointment with a counselor?",
+          "answer": "To make an appointment with a counselor, students can call our counseling center at (phone number) during business hours, or visit our website to book an appointment online. Students can also drop in to the counseling center during our walk-in hours, which are (insert walk-in hours)."
+        },
+        {
+          "question": "Are counseling services free for students?",
+          "answer": "Yes, counseling services are free for currently enrolled students at the university. There is no cost for individual counseling, group therapy, or crisis support. However, there may be a fee for certain psychiatric services, such as medication management."
+        },
+        {
+          "question": "Are counseling sessions confidential?",
+          "answer": "Yes, all counseling sessions are confidential. Our counselors and mental health professionals are bound by ethical and legal standards of confidentiality, and will not disclose any information shared during a counseling session without the student's written consent, except in rare situations where there is an imminent risk of harm to the student or others."
+        },
+        {
+          "question": "What types of issues can I discuss with a counselor?",
+          "answer": "Our counselors and mental health professionals are trained to help students with a wide range of concerns, including anxiety, depression, stress management, relationship issues, family problems, identity issues, academic stress, and more. Whatever you are struggling with, our counselors are here to listen and support you."
+        },
+        {
+          "question": "Can I choose my own counselor?",
+          "answer": "Students are welcome to request a specific counselor, but we cannot guarantee that we will be able to accommodate all requests. However, all of our counselors are highly trained and experienced in working with a wide range of issues, so we encourage students to keep an open mind and trust that they will be matched with a counselor who can best meet their needs."
+        },
+        {
+          "question": "What if I am not satisfied with my counseling experience?",
+          "answer": "If you are not satisfied with your counseling experience for any reason, please let us know. We are committed to providing high-quality services and will work with you to address any concerns or issues you may have. If you would like to switch counselors, we can help you find a different counselor who may be a better fit for your needs."
+        },
+        {
+          "question": "What should I expect during my first counseling session?",
+          "answer": "During your first counseling session, your counselor will ask you some questions about your background, your concerns, and your goals for therapy. They may also ask you to fill out some paperwork or assessments to help them better understand your needs. The first session is also a chance for you to get to know your counselor and ask any questions you may have about the counseling process."
+        },
+        {
+          "question": "What if I have an emergency outside of counseling hours?",
+          "answer": "If you have an emergency outside of counseling hours, please call (insert emergency phone number) immediately. If you are experiencing a mental health crisis and need immediate support, you can also contact the National Suicide Prevention Lifeline at 1-800-273-TALK (8255) or text HOME to 741741 to connect with a crisis counselor."
+        },
+        {
+          "question": "Can I still receive counseling services if I am studying abroad?",
+          "answer": "Yes, students who are studying abroad can still access our counseling services. We offer remote counseling sessions via video chat or phone, so students can continue to receive support no matter where they are in the world."
+        },
+        {
+          "question": "How many counseling sessions am I allowed to have?",
+          "answer": "The number of counseling sessions a student can have depends on their individual needs and circumstances. Our counselors will work with each student to create a personalized treatment plan and determine the appropriate number of sessions. Typically, students are eligible for up to 12 sessions per academic year."
+        },
+        {
+          "question": "What if I need medication for my mental health?",
+          "answer": "If you need medication for your mental health, our psychiatrists can prescribe medication and monitor your progress. Please discuss your needs with your counselor, who can refer you to a psychiatrist if appropriate. Note that there may be additional costs associated with medication, depending on your insurance coverage."
+        },
+        {
+          "question": "Can I bring a friend or family member to my counseling session?",
+          "answer": "In general, counseling sessions are confidential and are meant for you and your counselor only. However, there may be situations where it is helpful to bring a friend or family member, such as if they are providing support for a specific issue. If you would like to bring someone to your session, please discuss it with your counselor beforehand."
+        },
+        {
+          "question": "What if I need help outside of regular counseling hours?",
+          "answer": "If you need help outside of regular counseling hours, you can call our after-hours counseling line at (insert after-hours phone number). You can also contact the National Suicide Prevention Lifeline at 1-800-273-TALK (8255) or text HOME to 741741 to connect with a crisis counselor."
+        },
+        {
+          "question": "Do I need a referral from a doctor to see a counselor?",
+          "answer": "No, you do not need a referral from a doctor to see a counselor. Our counseling services are available to all students, regardless of whether they have seen a doctor or have a medical condition. If you have a medical condition that may impact your counseling, please let your counselor know so they can provide appropriate support."
+        },
+        {
+          "question": "Is everything I say in counseling confidential?",
+          "answer": "Yes, everything you say in counseling is confidential, with a few exceptions. If your counselor believes you are a danger to yourself or others, they are required by law to take action to protect you and others. In addition, if your counselor receives a court order or subpoena for your records, they may be required to share information with the court."
+        }
+      ]
+    },
+    {
+      "sub_section" : "Crisis Support",
+      "faq" : [
+        {
+          "question": "What can I expect when I call the crisis support line?",
+          "answer": "When you call the crisis support line, you will be connected with a trained crisis counselor who will listen to your concerns and provide support. They may ask questions about your current situation and develop a safety plan with you. All conversations are confidential, unless there is an immediate danger to yourself or others."
+        },
+        {
+          "question": "What types of crises do you offer support for?",
+          "answer": "We offer support for a variety of crises, including suicidal thoughts, self-harm, sexual assault, intimate partner violence, and other traumatic events. Our crisis support team is trained to help you navigate your emotions and develop a safety plan to keep yourself and others safe."
+        },
+        {
+          "question": "What should I do if I'm in a crisis?",
+          "answer": "If you're in crisis, call 911 or go to the nearest emergency room. If you need immediate support but are not in immediate danger, you can call our crisis support line at (insert crisis support phone number) or the National Suicide Prevention Lifeline at 1-800-273-TALK (8255) or text HOME to 741741 to connect with a crisis counselor."
+        },
+        {
+          "question": "How can I make an appointment with a counselor?",
+          "answer": "To make an appointment with a counselor, you can call our counseling center at [insert phone number here] or visit our website [insert website URL here]. You can also stop by the counseling center in person and schedule an appointment with the receptionist."
+        },
+        {
+          "question": "Are counseling sessions confidential?",
+          "answer": "Yes, all counseling sessions are completely confidential. We respect your privacy and do not share any information with anyone without your consent, except in cases where there is an imminent danger of harm to yourself or others or where required by law."
+        },
+        {
+          "question": "Is there a cost for counseling services?",
+          "answer": "No, counseling services are free for all currently enrolled students at the university. There are no out-of-pocket costs or insurance requirements for counseling services."
+        },
+        {
+          "question": "What if I need to cancel or reschedule my counseling appointment?",
+          "answer": "If you need to cancel or reschedule your counseling appointment, please contact our counseling center as soon as possible. We understand that things come up and schedules can change, so we are happy to work with you to find a new appointment time that fits your needs."
+        },
+        {
+          "question": "How can I make an appointment for counseling?",
+          "answer": "To schedule an appointment for counseling, please call our office or visit us in person. Our office hours are from 9am-5pm, Monday through Friday. We offer same-day appointments for urgent situations and can typically schedule non-urgent appointments within a week or two."
+        },
+        {
+          "question": "Are counseling services confidential?",
+          "answer": "Yes, all counseling services at our university are confidential. This means that information discussed during counseling sessions will not be disclosed to anyone without your consent, except in rare circumstances where there is a threat of harm to yourself or others."
+        },
+        {
+          "question": "Is there a fee for counseling services?",
+          "answer": "No, counseling services at our university are free of charge for all students. We believe that mental health care should be accessible to everyone, and we strive to provide quality services at no cost to our students."
+        },
+        {
+          "question": "What should I expect during my first counseling session?",
+          "answer": "During your first counseling session, your counselor will ask you some questions to get to know you and your concerns. They may ask about your family, background, and any previous counseling experiences. This is also an opportunity for you to ask questions and get to know your counselor. Together, you will work to develop a plan for addressing your concerns and achieving your goals."
+        },
+        {
+          "question": "Can I choose my counselor?",
+          "answer": "Yes, you can request a specific counselor or choose from a list of available counselors. We understand that finding the right counselor is important, and we want to make sure that you feel comfortable with the person you are working with."
+        },
+        {
+          "question": "What if I am not sure if counseling is right for me?",
+          "answer": "If you are not sure if counseling is right for you, we encourage you to schedule a consultation appointment with one of our counselors. This will give you an opportunity to discuss your concerns and learn more about the counseling process. There is no obligation to continue with counseling if you decide it is not the right fit for you."
+        },
+        {
+          "question": "Can I bring a friend or family member to my counseling session?",
+          "answer": "You are welcome to bring a friend or family member to your counseling session, but it is important to keep in mind that counseling is a confidential service. Your counselor will need your permission to discuss your situation with anyone else, even if they are in the room with you during the session."
+        },
+        {
+          "question": "What if I need help outside of regular office hours?",
+          "answer": "If you need help outside of regular office hours, please call our 24/7 crisis line at [insert number]. You can also visit your nearest emergency room or call 911 if you are experiencing a medical or mental health emergency."
+        },
+        {
+          "question": "How often can I attend counseling sessions?",
+          "answer": "The frequency of counseling sessions will depend on your needs and the recommendations of your counselor. Some students attend weekly, while others may come every other week or less frequently. Your counselor will work with you to develop a schedule that is appropriate for your individual situation."
+        },
+        {
+          "question": "What if I need to cancel or reschedule my counseling appointment?",
+          "answer": "If you need to cancel or reschedule your counseling appointment, please contact our office as soon as possible. We understand that things come up unexpectedly, and we will do our best to accommodate your needs."
+        }
+      ]
+    }
+  ]
+}
