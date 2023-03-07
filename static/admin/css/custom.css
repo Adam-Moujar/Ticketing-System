@@ -8,6 +8,7 @@
     --grey: #475B63;
     --light-grey: #BFB8BE;
     --primary: #E9ECF2;
+    --student: rgb(243, 3, 79);
 }
 
 body {
@@ -113,7 +114,7 @@ hr.solid {
 }
 
 .banner {
-    background: linear-gradient(to right, rgb(3,96,243), rgb(110,34,242));
+    background: linear-gradient(to right, rgb(93, 184, 140), rgb(57, 232, 238));
 }
 
 .specialist-banner {
@@ -309,7 +310,7 @@ td {
     margin-bottom: 3vmin;
 }
 
-.faq-banner {
+.faq-banner-gradient {
     background: linear-gradient(to right, #67b26f, #4ca2cd);
 }
 
@@ -353,16 +354,18 @@ td {
 
 /* Departnent FAQ Page */
 
+.dept-faq-banner {
+    background: linear-gradient(to right, #43cea2, #185a9d);
+}
+
 .dept-faq-header {
-    display: flex;
-    justify-content: space-between;
-    align-items:baseline;
+    text-align: center;
     margin-bottom: -2vmin;
     margin-top: 5vmin;
 }
 
 .dept-faq-title {
-    font-size: 5vmin;
+    font-size: 7vmin;
 }
 
 .dept-faq-table {

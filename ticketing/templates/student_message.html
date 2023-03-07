@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
+<title>{{ object.header }}</title>
 <h1 style="display: inline-block;">Subject: {{ object.header }}</h1>
 <h1 style="display: inline-block;">Department: {{ object.department }}</h1>
 <hr>
 <div class="container">
     {% for message in messages %}
-        <div class="message"> 
+        <div class="message">
             <p class= "date-time">Date time: {{ message.date_time }}</p>
-            {% if message.responder %} 
+            {% if message.responder %}
                 <p class = "Specialist , content">Specialist: {{message.content}}</p>
             {% else %}
                 <p class = "Student, content">Student: {{message.content}}</p>

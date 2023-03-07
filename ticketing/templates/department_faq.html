@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="dept-faq-header">
-  <h3 class="dept-faq-title">{{ department_name }}</h3>
-  <a href="{% url 'faq' %}" style="text-decoration:none; color: #919191;">← Back to FAQs</a>
+<title>{{ department_name }}</title>
+<div class="faq-banner dept-faq-banner">
+  <div class="dept-faq-header container">
+    <h3 class="dept-faq-title faq-header">{{ department_name }}</h3>
+  </div>
+  <div class="container" style="text-align:right;">
+    <a href="{% url 'faq' %}" style="text-decoration:none; color: white;">← Back to FAQs</a>
+  </div>
 </div>
 <hr>
 
@@ -44,5 +49,3 @@
 {% endblock %}
 
 {% include 'partials/footer.html' %}
-
-
