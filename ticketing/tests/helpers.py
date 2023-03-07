@@ -1,6 +1,7 @@
 from django.urls import reverse
 import json
 from ticketing.views.specialist_inbox import SpecialistInboxView
+from ticketing.models.tickets import Ticket
 
 
 class LogInTester:
@@ -15,8 +16,8 @@ def reverse_with_next(url_name, next_url):
 
 
 def get_tickets(user, ticket_type):
-    dummyObject = SpecialistInboxView()
-    return dummyObject.get_tickets(user, ticket_type)
+    dummy_object = SpecialistInboxView()
+    return dummy_object.get_tickets(user, ticket_type, Ticket.objects.all())
 
 
 class FixtureHelpers:

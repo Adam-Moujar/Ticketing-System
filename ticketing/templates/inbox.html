@@ -12,7 +12,7 @@
                 {% if user.role == "ST" %}
                     <td>{{ticket.department.name}}</td>
                 <td style="text-align:right; padding-right: 5vmin;">
-                    <a class="stretched-link" style="text-decoration:none;" href="{% url 'student_message' pk=ticket.id %}">View</a>
+                    <a class="stretched-link blue-link" href="{% url 'student_message' pk=ticket.id %}">View</a>
                 </td>
                 {% endif %}
                 <!-- <td style="text-align:right; padding-right: 5vmin;">
@@ -20,17 +20,37 @@
                 </td> -->
 
                 {% if user.role == "SP" %}
-                <td style="text-align:right; padding-right: 5vmin;">
+                <td style="text-align:right;">
                     {% if ticket_type == "department" %}
                         <button type="button" class="btn">
-                            <a class="stretched-link" style="text-decoration:none;" href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info →</a>
+                            <a class="stretched-link blue-link" href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View ticket info →</a>
                         </button>
                     {% endif %}
                     {% if ticket_type == "personal" %}
-                        <!-- Don't know if this is IMPORTANT will comment out for now since it looks the same as the stretched link view above-->
-                        <a class="stretched-link" style="text-decoration:none;" href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View</a>
+                        <td>
+                            <form class="reroute-dropdown" method="post" name="reroute" id="reroute">
+                                {% csrf_token %}
+                                <div>
+                                    <select name="reroute" id="reroute" class="form-control">
+                                        <option value="0" selected="selected">Reroute To...</option>
+                                        {% for department in departments %}
+                                            <option value="{{department.name}} {{ticket.id}}">{{department.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button type="submit" id="submit_reroute" class="blue-link" style="padding:0; background:none; border:none;">Reroute</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <a style="color:red;" class="blue-link" type = "submit" name = "unclaim" value = "{{ticket.id}}">Unclaim</a>
+                            </form>
+                        </td>
+                        <td style="padding-right:3vmin;">
+                            <a class="blue-link" href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View</a>
+                        </td>
                     {% endif %}
-                </td>
                 {% endif %}
             </tr>
         {% endfor %}

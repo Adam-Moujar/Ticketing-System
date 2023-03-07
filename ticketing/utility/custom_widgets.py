@@ -6,11 +6,9 @@ import AdvancedHTMLParser
 from AdvancedHTMLParser import AdvancedTag
 
 
-class ClearableRadioSelect(forms.RadioSelect):
+class NoLabelStyledRadioSelect(forms.RadioSelect):
     def render(self, name, value, attrs=None, renderer=None):
-        html = super(forms.RadioSelect, self).render(
-            name, value, attrs, renderer
-        )
+        html = super().render(name, value, attrs, renderer)
 
         parser = AdvancedHTMLParser.AdvancedHTMLParser()
 
@@ -31,8 +29,6 @@ class ClearableRadioSelect(forms.RadioSelect):
             divs[i].remove()
 
         for i in range(0, len(labels)):
-            labels[i].addClass('btn btn-outline-primary')
-            inputs[i].addClass('btn-check')
 
             parent.appendChild(inputs[i])
 
@@ -41,7 +37,31 @@ class ClearableRadioSelect(forms.RadioSelect):
             parent.appendChild(labels[i])
 
         parent.setStyle('padding-top', '0px;')
-        parent.setStyle('vertical-align', 'middle')
+        parent.setStyle('display', 'inline-block')
+
+        html_result = parser.getFormattedHTML(indent='\n    ')
+
+        return html_result
+
+
+class StyledRadioSelect(NoLabelStyledRadioSelect):
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+
+        return '<br>' + html
+
+
+class NoLabelClearableRadioSelect(NoLabelStyledRadioSelect):
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+
+        parser = AdvancedHTMLParser.AdvancedHTMLParser()
+
+        parser.parseStr(html)
+
+        divs = parser.getElementsByTagName('div')
+
+        parent = divs[0]
 
         reset_button_html = (
             '<div style="display:inline-block"><a id="reset_button" href="javascript:var radio_buttons = document.getElementsByName(\''
@@ -55,9 +75,16 @@ class ClearableRadioSelect(forms.RadioSelect):
 
         html_result = parser.getFormattedHTML(indent='\n    ')
 
-        final_html_result = '<br>' + html_result + reset_button_html
+        final_html_result = html_result + reset_button_html
 
         return final_html_result
+
+
+class ClearableRadioSelect(NoLabelClearableRadioSelect):
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+
+        return '<br>' + html
 
 
 class RoleRadioSelect(ClearableRadioSelect):

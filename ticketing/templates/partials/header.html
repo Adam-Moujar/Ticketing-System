@@ -1,33 +1,3 @@
-<!-- <header>
-    <div>
-        <a href="{% url 'home' %}">Home</a>
-        {% if user.is_authenticated %}
-        {% if user.role == 'SP' %}
-        <a href="{% url 'specialist_dashboard' %}">Dashboard</a>
-        <a href="{% url 'faq_form_view' %}">Create FAQ</a>
-        <a href="{% url 'check_faq' %}">Check your FAQ</a>
-        <a href="{% url 'specialist_department_faq' %}">Your Departments FAQ</a>
-        {% elif user.role == 'DI' %}
-        <a href="{% url 'director_panel' %}">Director Panel</a>
-        {% endif %}
-            Welcome back, {{ user.first_name }}, you are logged in as a {{ user.get_role_display }}
-        {% if user.role == 'SP' %}
-            The department you are in is: {{department_name}}
-        {% endif %}
-        <a href="{% url 'logout' %}">Logout</a>
-        {% if user.role == 'ST' %}
-        <a href="{% url 'student_dashboard' %}">Dashboard</a>
-
-        {% endif %}
-        {% else %}
-           <a href="{% url 'login' %}">Login</a>
-           <a href="{% url 'signup' %}">Sign Up</a>
-           <a href="{% url 'faq' %}">FAQ</a>
-
-        {% endif %}
-    </div>
-</header> -->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container" style="margin-top: 1vmin; margin-bottom: 1vmin">
         <a class="navbar-brand" href="{% url 'home' %}">Home</a>
@@ -45,7 +15,7 @@
                 </li>
                 {% if user.role == 'SP' %}
                  <li class="nav-item active">
-                <a class="nav-link" href="{% url 'specialist_dashboard' %}">Dashboard</a>
+                <a class="nav-link" href="{% url 'specialist_dashboard' ticket_type='personal' %}">Dashboard</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -86,9 +56,6 @@
                         <p class="dropdown-sub dropdown-role">{{user.get_role_display}}</p>
                     </lh>
                     <hr class="solid">
-                    <li>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </li>
                     <li>
                         <a class="dropdown-item" href="/{{user.id}}/change_password/">Change Password</a>
                     </li>

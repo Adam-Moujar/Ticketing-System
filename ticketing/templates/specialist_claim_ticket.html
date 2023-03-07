@@ -13,29 +13,10 @@
                 {% csrf_token %}
                 <div class="btn-container">
                     <button type = "submit" name = "accept_ticket" value = {{ticket.id}} id="green-btn" class="btn">Claim</button>
-                    <a href  ="{% url 'specialist_dashboard' %}" id="blue-btn" class="btn">Back</a>
+                    <a href  ="{% url 'specialist_dashboard' ticket_type='personal' %}" id="blue-btn" class="btn">Back</a>
                 </div>
             </form>
         </div>
     </div>
-    <!-- <h1>Ticket</h1>
-
-    <div>
-        <p>Ticket header  : {{ticket.header}}   </p>
-        <p>Ticket message : {{message.content}} </p>
-        <p>Ticket user    : {{ticket.student.first_name}} {{ticket.student.last_name}} </p>
-    </div>
-
-    <div>
-        <form method="POST">
-            {% csrf_token %}
-
-            <button type = "submit" name = "accept_ticket" value = {{ticket.id}}> Claim</button>
-            <button type = "button">
-                <a href  ="{% url 'specialist_dashboard' %}">Back</a>
-            </button>
-
-        </form>
-    </div> -->
 
 {% endblock %}

@@ -38,7 +38,7 @@
         <div id="dash-card" class="card dept-manager-dash grid-item">
           <div id="dash-card-header" class="card-header">
             <div style="padding-top:0.3vmin;">Departments</div>
-            <a id="dash-card-header-link" style="margin:1vmin; text-decoration: none;"href="{% url 'department_manager' %}">More 🢒</a>
+            <a id="dash-card-header-link" class="blue-link" style="margin:1vmin;"href="{% url 'department_manager' %}">More 🢒</a>
           </div>
           <div id="dash-card-body" class="card-body">
             <table class="table">
@@ -53,7 +53,7 @@
           <div id="dash-card-header" class="card-header">
             <div style="vertical-align: middle;">Users</div>
             <div class="user-filter container">
-              <a id="dash-card-header-link" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration:none; cursor:pointer;">Filter</a>
+              <a id="dash-card-header-link" class="dropdown-toggle blue-link" data-bs-toggle="dropdown" aria-expanded="false">Filter</a>
               <div class="filter-dropdown dropdown-menu dropdown-menu-end" onclick="event.stopPropagation();">
                 <div class="container">
                   <form method="get" style="display: inline;">

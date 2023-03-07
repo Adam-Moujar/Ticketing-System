@@ -28,6 +28,12 @@ body {
     color: var(--light-grey);
 }
 
+.blue-link {
+    text-decoration: none;
+    color: var(--blue);
+    cursor:pointer;
+}
+
 /* Navbar */
 .navbar {
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
@@ -227,6 +233,12 @@ td {
 #dash-card-body {
     padding-left: 0px;
     padding-right: 0px
+}
+
+.reroute-dropdown {
+    display: flex;
+    align-items: center;
+    gap:2vmin;
 }
 
 /* Director Panel */
