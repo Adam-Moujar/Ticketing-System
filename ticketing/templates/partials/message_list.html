@@ -1,0 +1,16 @@
+
+{% for message in object_list %}
+<li>
+"{{ message.content }}"
+<br/>
+{% if message.responder %}
+{{ message.responder.first_name }} {{ message.responder.email}}
+{% else %}
+{{ ticket.student.first_name }} {{ ticket.student.email }}
+{% endif %}
+{{ message.date_time }}
+</li><br/>
+{% endfor %}
+<!-- <li id="load-more">
+    <button hx-get="{% url 'message_list' pk=ticket.id %}?page={{page_obj.next_page_number}}" hx-target="this" hx-swap="outerHTML">Load more</button>
+</li> -->
