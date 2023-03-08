@@ -63,7 +63,7 @@
                 {% endif %}
                 {% if ticket_type == "archived" %}
                     <button type="button">
-                        <a href="{% url 'specialist_message' pk=ticket.id %}">To Ticket</a>
+                        <a href="{% url 'message_list' pk=ticket.id %}">To Ticket</a>
                     </button>
                 {% endif %}
             {% endif %}
