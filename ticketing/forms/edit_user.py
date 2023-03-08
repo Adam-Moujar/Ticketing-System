@@ -1,16 +1,10 @@
-from ticketing.utility import form_fields
 from ticketing.utility.user import *
-from ticketing.models import User, SpecialistDepartment
+from ticketing.models import User
 from ticketing.forms.utility.mixins import (
     UserDepartmentFormMixin,
     ExtendedUserFormMixin,
 )
 from ticketing.utility.model import *
-from ticketing.views.director import director_panel
-
-from django import forms
-
-import copy
 
 
 def make_edit_user_form_class(generated_form_class):
