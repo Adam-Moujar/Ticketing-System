@@ -6,7 +6,7 @@ from ticketing.models.users import User
 from ticketing.models.departments import Department
 from ticketing.models.specialist import SpecialistDepartment
 from ticketing.models.faq import FAQ
-from ticketing.views.specialist_faq_form import FAQFormView
+from ticketing.views.faq.specialist_faq_form import FAQFormView
 
 
 class FAQFormViewTest(TestCase):

@@ -2,7 +2,7 @@ from django.test import TestCase, RequestFactory
 from django.urls import reverse
 from ticketing.models import FAQ, Department, User, SpecialistDepartment
 from django.utils.text import slugify
-from ticketing.views.specialist_department_faq import SpecialistDepartmentFaq
+from ticketing.views.faq.specialist_department_faq import SpecialistDepartmentFaq
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from unittest.mock import Mock, patch
