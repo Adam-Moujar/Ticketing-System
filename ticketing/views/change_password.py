@@ -1,19 +1,11 @@
 from ticketing.forms.change_password import ChangePasswordForm
 from ticketing.models.users import User
 from ticketing.utility import get
-from ticketing.utility.get import get_user_from_id_param
 from ticketing.mixins import RoleRequiredMixin
-
-from django.shortcuts import render, get_object_or_404
-from django.http import Http404, HttpResponse
-from django.urls import reverse, reverse_lazy
-from django.views import View
-from django.views.generic.list import ListView
-from django.contrib import messages
+from django.http import Http404
 from django.contrib.auth.hashers import make_password
-from django.views.generic.edit import UpdateView, FormView
+from django.views.generic.edit import  FormView
 from django.core.exceptions import PermissionDenied
-from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 

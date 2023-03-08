@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from ticketing.models import User, Department, Ticket, Message
+from ticketing.models import User, Department
 
 
 class StudentDashboardViewTestCase(TestCase):

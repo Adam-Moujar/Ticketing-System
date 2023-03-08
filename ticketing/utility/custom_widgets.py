@@ -1,9 +1,6 @@
 from django import forms
-
 from ticketing.models import User
-
 import AdvancedHTMLParser
-from AdvancedHTMLParser import AdvancedTag
 
 
 

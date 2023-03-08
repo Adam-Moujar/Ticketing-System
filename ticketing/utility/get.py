@@ -1,8 +1,7 @@
 from ticketing.utility.user import get_user
 
-from django.shortcuts import render, redirect
+from django.shortcuts import  redirect
 
-from types import SimpleNamespace
 
 def get_user_from_id_param(end):
     def decorator(function):

@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django import forms
 from ticketing.forms import SignupForm
 from django.urls import reverse
 from django.contrib.auth.hashers import check_password

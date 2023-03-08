@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-
-from ticketing.models import FAQ,Department,User
+from ticketing.models import Department
 from django.utils.text import slugify
 
 class BaseFaqTestCase(TestCase):

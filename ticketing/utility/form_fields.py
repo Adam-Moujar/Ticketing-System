@@ -2,7 +2,7 @@ from ticketing.models import User, Department
 from ticketing.utility import custom_widgets
 from ticketing.forms import SignupForm
 
-from django.core.validators import RegexValidator
+
 from django import forms
 
 import copy

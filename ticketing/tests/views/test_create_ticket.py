@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django import forms
 from ticketing.forms import StudentTicketForm
 from django.urls import reverse
 from ticketing.models import User, Department, Ticket, Message

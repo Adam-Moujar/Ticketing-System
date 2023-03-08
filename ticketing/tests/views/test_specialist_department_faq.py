@@ -5,7 +5,7 @@ from django.utils.text import slugify
 from ticketing.views.faq.specialist_department_faq import SpecialistDepartmentFaq
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from unittest.mock import Mock, patch
+
 
 
 class SpecialistDepartmentFaqTestCase(TestCase):

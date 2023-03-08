@@ -1,7 +1,6 @@
 from django.test import Client, TestCase
 from django.urls import reverse
 from slugify import slugify
-from django.contrib.auth import get_user_model
 from ticketing.models.faq import FAQ
 from ticketing.models.users import User
 from ticketing.models.departments import Department

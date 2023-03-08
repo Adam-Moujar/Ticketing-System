@@ -1,4 +1,4 @@
-from django.urls import path, include, reverse
+from django.urls import path
 from django.contrib.auth import views
 from .views import *
 from .forms import LoginForm, FAQForm

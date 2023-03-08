@@ -1,6 +1,5 @@
 from django.test import TestCase
-from django import forms
-from ticketing.forms import LoginForm, SignupForm
+from ticketing.forms import LoginForm
 from django.urls import reverse
 from ticketing.models import User
 from ticketing.tests.helpers import LogInTester

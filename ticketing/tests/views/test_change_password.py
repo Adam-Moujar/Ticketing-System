@@ -1,13 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from ticketing.models import User, Department
-from ticketing.models.specialist import SpecialistInbox, SpecialistDepartment
-from ticketing.models.tickets import Ticket
-from ticketing.tests.helpers import (
-    FixtureHelpers,
-    reverse_with_next,
-    get_tickets,
-)
+from ticketing.models import User
+from ticketing.tests.helpers import reverse_with_next
 from ticketing.tests.utility import test_data
 from ticketing.utility.user import *
 from django.contrib.auth import authenticate
