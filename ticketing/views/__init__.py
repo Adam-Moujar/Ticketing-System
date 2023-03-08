@@ -17,10 +17,10 @@ from . import specialist_inbox
 from . import student_inbox
 from . import specialist_claim_ticket
 from . import student_ticket
-from . import department_faq
-from . import base_faq
-from . import specialist_faq_form
-from . import individual_specialist_faq
-from . import update_faq
-from . import delete_faq
-from . import specialist_department_faq
+from .faq import department_faq
+from .faq import base_faq
+from .faq import specialist_faq_form
+from .faq import individual_specialist_faq
+from .faq import update_faq
+from .faq import delete_faq
+from .faq import specialist_department_faq
