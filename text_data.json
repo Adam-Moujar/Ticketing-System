@@ -128,10 +128,6 @@
               "answer": "Yes, mental health services are confidential. Information shared with counselors and mental health professionals is protected by federal and state laws. We take confidentiality very seriously and will only share information with others if you provide written consent or if there is a threat of harm to yourself or others."
             },
             {
-              "question": "Is there a cost for mental health services?",
-              "answer": "There is no cost for mental health services for students who are currently enrolled at the university. However, there may be a cost for certain psychiatric services or specialized assessments. Our mental health staff can provide more information on any potential costs associated with services."
-            },
-            {
               "question": "What if I'm not sure if I need mental health services?",
               "answer": "If you're not sure if you need mental health services, we encourage you to schedule an initial consultation with one of our counselors or mental health professionals. They can help assess your needs and make recommendations for appropriate care. It's always better to seek help early rather than wait until problems become more severe."
             },
@@ -177,16 +173,8 @@
           "sub_section": "Counselling Service",
           "faq" : [
             {
-              "question": "How do I make an appointment with a counselor?",
-              "answer": "To make an appointment with a counselor, you can call our counseling center or visit our website to schedule an appointment online. We offer both in-person and virtual appointments, depending on your preference and availability. If you're not sure what type of appointment you need or what counselor to see, our intake staff can help you with the process."
-            },
-            {
               "question": "How long are counseling sessions?",
               "answer": "Counseling sessions are typically 50 minutes long. However, the length of the session may vary depending on your individual needs and the counselor's schedule."
-            },
-            {
-              "question": "Is counseling confidential?",
-              "answer": "Yes, counseling is confidential. This means that what you discuss with your counselor is private and will not be shared with anyone without your consent, except in specific circumstances such as a danger to yourself or others. Our counselors will review confidentiality policies with you during your first appointment."
             },
             {
               "question": "How can I make an appointment with a counselor?",
@@ -243,10 +231,6 @@
             {
               "question": "Do I need a referral from a doctor to see a counselor?",
               "answer": "No, you do not need a referral from a doctor to see a counselor. Our counseling services are available to all students, regardless of whether they have seen a doctor or have a medical condition. If you have a medical condition that may impact your counseling, please let your counselor know so they can provide appropriate support."
-            },
-            {
-              "question": "Is everything I say in counseling confidential?",
-              "answer": "Yes, everything you say in counseling is confidential, with a few exceptions. If your counselor believes you are a danger to yourself or others, they are required by law to take action to protect you and others. In addition, if your counselor receives a court order or subpoena for your records, they may be required to share information with the court."
             }
           ]
         },
@@ -264,62 +248,6 @@
             {
               "question": "What should I do if I'm in a crisis?",
               "answer": "If you're in crisis, call 911 or go to the nearest emergency room. If you need immediate support but are not in immediate danger, you can call our crisis support line at (insert crisis support phone number) or the National Suicide Prevention Lifeline at 1-800-273-TALK (8255) or text HOME to 741741 to connect with a crisis counselor."
-            },
-            {
-              "question": "How can I make an appointment with a counselor?",
-              "answer": "To make an appointment with a counselor, you can call our counseling center at [insert phone number here] or visit our website [insert website URL here]. You can also stop by the counseling center in person and schedule an appointment with the receptionist."
-            },
-            {
-              "question": "Are counseling sessions confidential?",
-              "answer": "Yes, all counseling sessions are completely confidential. We respect your privacy and do not share any information with anyone without your consent, except in cases where there is an imminent danger of harm to yourself or others or where required by law."
-            },
-            {
-              "question": "Is there a cost for counseling services?",
-              "answer": "No, counseling services are free for all currently enrolled students at the university. There are no out-of-pocket costs or insurance requirements for counseling services."
-            },
-            {
-              "question": "What if I need to cancel or reschedule my counseling appointment?",
-              "answer": "If you need to cancel or reschedule your counseling appointment, please contact our counseling center as soon as possible. We understand that things come up and schedules can change, so we are happy to work with you to find a new appointment time that fits your needs."
-            },
-            {
-              "question": "How can I make an appointment for counseling?",
-              "answer": "To schedule an appointment for counseling, please call our office or visit us in person. Our office hours are from 9am-5pm, Monday through Friday. We offer same-day appointments for urgent situations and can typically schedule non-urgent appointments within a week or two."
-            },
-            {
-              "question": "Are counseling services confidential?",
-              "answer": "Yes, all counseling services at our university are confidential. This means that information discussed during counseling sessions will not be disclosed to anyone without your consent, except in rare circumstances where there is a threat of harm to yourself or others."
-            },
-            {
-              "question": "Is there a fee for counseling services?",
-              "answer": "No, counseling services at our university are free of charge for all students. We believe that mental health care should be accessible to everyone, and we strive to provide quality services at no cost to our students."
-            },
-            {
-              "question": "What should I expect during my first counseling session?",
-              "answer": "During your first counseling session, your counselor will ask you some questions to get to know you and your concerns. They may ask about your family, background, and any previous counseling experiences. This is also an opportunity for you to ask questions and get to know your counselor. Together, you will work to develop a plan for addressing your concerns and achieving your goals."
-            },
-            {
-              "question": "Can I choose my counselor?",
-              "answer": "Yes, you can request a specific counselor or choose from a list of available counselors. We understand that finding the right counselor is important, and we want to make sure that you feel comfortable with the person you are working with."
-            },
-            {
-              "question": "What if I am not sure if counseling is right for me?",
-              "answer": "If you are not sure if counseling is right for you, we encourage you to schedule a consultation appointment with one of our counselors. This will give you an opportunity to discuss your concerns and learn more about the counseling process. There is no obligation to continue with counseling if you decide it is not the right fit for you."
-            },
-            {
-              "question": "Can I bring a friend or family member to my counseling session?",
-              "answer": "You are welcome to bring a friend or family member to your counseling session, but it is important to keep in mind that counseling is a confidential service. Your counselor will need your permission to discuss your situation with anyone else, even if they are in the room with you during the session."
-            },
-            {
-              "question": "What if I need help outside of regular office hours?",
-              "answer": "If you need help outside of regular office hours, please call our 24/7 crisis line at [insert number]. You can also visit your nearest emergency room or call 911 if you are experiencing a medical or mental health emergency."
-            },
-            {
-              "question": "How often can I attend counseling sessions?",
-              "answer": "The frequency of counseling sessions will depend on your needs and the recommendations of your counselor. Some students attend weekly, while others may come every other week or less frequently. Your counselor will work with you to develop a schedule that is appropriate for your individual situation."
-            },
-            {
-              "question": "What if I need to cancel or reschedule my counseling appointment?",
-              "answer": "If you need to cancel or reschedule your counseling appointment, please contact our office as soon as possible. We understand that things come up unexpectedly, and we will do our best to accommodate your needs."
             }
           ]
         }
@@ -398,10 +326,6 @@
             {
               "question": "What is the cost of student accommodation in the UK?",
               "answer": "The cost of student accommodation in the UK varies depending on the location and type of accommodation. On average, students can expect to pay around £130-£200 per week for university-owned accommodation."
-            },
-            {
-              "question": "Can I choose who I live with in student accommodation?",
-              "answer": "In most cases, you can choose who you live with in student accommodation. Many universities allow you to select your flatmates or indicate your preferences when applying for accommodation."
             },
             {
               "question": "What is the difference between catered and self-catered accommodation?",
@@ -570,10 +494,6 @@
               "answer": "The process for ending a tenancy will depend on the terms of your tenancy agreement. You will typically need to provide notice to your landlord, and may need to pay any outstanding rent or damages before you can leave the property."
             },
             {
-              "question": "Can my landlord evict me without notice?",
-              "answer": "No, a landlord cannot evict you without proper notice and a court order. If you are being threatened with eviction, you should seek legal advice immediately."
-            },
-            {
               "question": "What should I do if I am struggling to pay my rent?",
               "answer": "If you are struggling to pay your rent, you should speak to your landlord or accommodation provider as soon as possible. They may be able to work out a payment plan with you or offer other forms of support. You can also seek advice from your university's student services or a debt advice charity."
             },
@@ -630,10 +550,6 @@
               {
                 "question": "Can I use a CAS to apply for a visa for an online course?",
                 "answer": "No, a CAS can only be used to apply for a Tier 4 student visa for courses that require you to be physically present in the UK for at least 8 months out of the year."
-              },
-              {
-                "question": "What is a Confirmation of Acceptance for Studies (CAS)?",
-                "answer": "A CAS is a unique reference number that confirms that a university has offered you a place on a course of study, and that you have met the requirements for admission."
               },
               {
                 "question": "When do I need to apply for a CAS?",
@@ -806,10 +722,6 @@
               "answer" : "The EU Settlement Scheme allows EU, EEA, and Swiss citizens living in the UK to secure their immigration status after Brexit."
             },
             {
-              "question" : "Who is eligible for the EU Settlement Scheme?",
-              "answer" : "EU, EEA, and Swiss citizens living in the UK before 31 December 2020 and their eligible family members are eligible for the EU Settlement Scheme."
-            },
-            {
               "question" : "What is the deadline to apply for the EU Settlement Scheme?",
               "answer" : "The deadline to apply for the EU Settlement Scheme is 30 June 2021."
             },
@@ -851,80 +763,8 @@
               "answer" : "You will need a Tier 4 (General) student visa to study medicine or dentistry in the UK."
             },
             {
-              "question" : "What are the requirements for a Tier 4 (General) student visa?",
-              "answer" : "You will need to have an offer of a place on a course, sufficient funds to support yourself, and meet English language requirements."
-            },
-            {
-              "question" : "How long can I stay in the UK on a Tier 4 (General) student visa?",
-              "answer" : "You can stay in the UK on a Tier 4 (General) student visa for the duration of your course, plus a few months after your course ends."
-            },
-            {
-              "question" : "Can I work while studying on a Tier 4 (General) student visa?",
-              "answer" : "Yes, you can work part-time during term-time and full-time during vacations, but there are restrictions."
-            },
-            {
-              "question" : "Can I switch to a different visa category after I finish my studies?",
-              "answer" : "Yes, you may be able to switch to a Tier 2 (General) visa to work in the UK after you finish your studies."
-            },
-            {
-              "question" : "Can I apply for a Tier 4 (General) student visa from within the UK?",
-              "answer" : "It depends on your current immigration status. If you are already in the UK on a different visa, you may be able to switch to a Tier 4 (General) student visa from within the UK."
-            },
-            {
-              "question" : "What happens if my visa application is refused?",
-              "answer" : "You may be able to appeal the decision or submit a new application with additional evidence. It is important to seek advice from an immigration lawyer."
-            },
-            {
-              "question" : "What happens if I fail my course or withdraw from my studies?",
-              "answer" : "Your visa may be curtailed or cancelled, and you may be required to leave the UK. It is important to seek advice from an immigration lawyer."
-            },
-            {
-              "question" : "Can I bring my family to the UK with me?",
-              "answer" : "It depends on your circumstances. Your family members may be able to join you in the UK, but they may need to apply for their own visas."
-            },
-            {
               "question" : "Where can I find more information about visas and immigration for medical and dental students?",
               "answer" : "You can find more information on the UK government's website or by contacting an immigration lawyer who specializes in student visas."
-            },
-            {
-              "question" : "Can I apply for a Tier 4 (General) student visa before I receive my offer of a place?",
-              "answer" : "You can apply for a Tier 4 (General) student visa up to 3 months before the start of your course, but you will need to have an offer of a place before you can apply."
-            },
-            {
-              "question" : "What if I need to extend my Tier 4 (General) student visa?",
-              "answer" : "You will need to apply for a visa extension before your current visa expires. You will need to meet the same requirements as when you first applied for your visa."
-            },
-            {
-              "question" : "Do I need to pay the healthcare surcharge for my Tier 4 (General) student visa?",
-              "answer" : "Yes, as a Tier 4 (General) student visa holder, you will need to pay the healthcare surcharge as part of your visa application."
-            },
-            {
-              "question" : "What are the English language requirements for a Tier 4 (General) student visa?",
-              "answer" : "You will need to demonstrate your English language proficiency by passing an approved English language test or by having a degree taught in English."
-            },
-            {
-              "question" : "What if I need to travel outside the UK during my studies?",
-              "answer" : "You will need to check if you need a visa to enter the country you are traveling to. You may also need to apply for a re-entry visa to return to the UK."
-            },
-            {
-              "question" : "What happens if I am absent from my studies for a period of time?",
-              "answer" : "If you are absent from your studies for more than 60 days, your Tier 4 (General) student visa may be curtailed or cancelled."
-            },
-            {
-              "question" : "Can I study part-time on a Tier 4 (General) student visa?",
-              "answer" : "You may be able to study part-time on a Tier 4 (General) student visa, but there are restrictions on the number of hours you can work and the length of your stay in the UK."
-            },
-            {
-              "question" : "What if I want to switch to a different course?",
-              "answer" : "You may be able to switch to a different course, but you will need to check if you meet the requirements for the new course and if you need to apply for a new visa."
-            },
-            {
-              "question" : "Can I apply for a Tier 4 (General) student visa if I have a criminal record?",
-              "answer" : "It depends on the nature and severity of your criminal record. You may need to provide additional evidence and may be subject to a more thorough background check."
-            },
-            {
-              "question" : "What if I want to stay in the UK after my studies?",
-              "answer" : "You may be able to switch to a different visa category, such as a Tier 2 (General) visa or a Tier 1 (Entrepreneur) visa, if you meet the requirements."
             }
           ]
         },
@@ -970,10 +810,6 @@
             {
               "question" : "What happens if my work visa expires?",
               "answer" : "If your work visa expires and you do not renew it or switch to a different type of visa, you may be required to leave the UK. You may also face restrictions on returning to the UK in the future."
-            },
-            {
-              "question": "Do I need a visa to work in the UK?",
-              "answer": "It depends on your nationality and the type of work you will be doing in the UK. Some individuals may be eligible to work in the UK without a visa under certain circumstances, while others will need a visa to enter the country for work purposes."
             },
             {
               "question": "What types of work visas are available?",
@@ -1055,10 +891,6 @@
             {
               "question": "Who needs to register with the police?",
               "answer": "International students from certain countries, as well as their dependents, are required to register with the police within seven days of arriving in the UK. You should check if you need to register with the police as part of your visa application process."
-            },
-            {
-              "question": "How do I register with the police?",
-              "answer": "You can register with the police by attending a police station in person. You will need to bring your passport, visa, and any other relevant documents. Some police stations require an appointment, so you should check before you go."
             },
             {
               "question": "What happens if I don't register with the police?",
