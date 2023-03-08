@@ -1,10 +1,10 @@
 from . import auth
 from . import home
 from .specialist import specialist_inbox
-from . import student_inbox
+from .student import student_inbox
 from .specialist import specialist_claim_ticket
-from . import student_ticket
-from . import student_message
+from .student import student_ticket
+from .student import student_message
 from . import ticket_view
 from . director import edit_department
 from . import change_password
@@ -14,9 +14,9 @@ from . director import department_manager
 from . import auth
 from . import home
 from .specialist import specialist_inbox
-from . import student_inbox
+from .student import student_inbox
 from .specialist import specialist_claim_ticket
-from . import student_ticket
+from .student import student_ticket
 from .faq import department_faq
 from .faq import base_faq
 from .faq import specialist_faq_form
