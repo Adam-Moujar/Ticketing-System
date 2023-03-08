@@ -1500,6 +1500,520 @@
             ]
           }    
         ]
+      },
+      {
+        "department" : "Disability Support",
+        "sub_sections" : [
+            {
+                "sub_section" : "Disability Support Services",
+                "faq" : [
+                    {
+                        "question" : "What services are available through Disability Support Services?",
+                        "answer" : "Disability Support Services provides a range of accommodations and support services to students with disabilities, including academic accommodations, assistive technology, and accessible transportation."
+                    },
+                    {
+                        "question" : "How do I request accommodations through Disability Support Services?",
+                        "answer" : "To request accommodations through Disability Support Services, you will need to provide documentation of your disability and meet with a Disability Support Services staff member to discuss your needs."
+                    },
+                    {
+                        "question" : "What types of academic accommodations are available through Disability Support Services?",
+                        "answer" : "Academic accommodations available through Disability Support Services may include extended time on exams, note-taking assistance, alternative testing arrangements, and accessible course materials."
+                    },
+                    {
+                        "question" : "How do I get access to assistive technology through Disability Support Services?",
+                        "answer" : "To access assistive technology through Disability Support Services, you can schedule an appointment with a Disability Support Services staff member to discuss your needs and explore available options."
+                    },
+                    {
+                        "question" : "What should I do if I encounter accessibility barriers on campus?",
+                        "answer" : "If you encounter accessibility barriers on campus, you can contact Disability Support Services to report the issue and request assistance."
+                    },
+                    {
+                        "question" : "What should I do if I need accessible transportation?",
+                        "answer" : "If you need accessible transportation, you can contact Disability Support Services to discuss available options and arrange for assistance."
+                    },
+                    {
+                        "question" : "How do I register with Disability Support Services?",
+                        "answer" : "To register with Disability Support Services, you will need to provide documentation of your disability and schedule an appointment with a Disability Support Services staff member."
+                    },
+                    {
+                        "question" : "What resources are available to support students with disabilities beyond Disability Support Services?",
+                        "answer" : "In addition to Disability Support Services, there may be other resources available on campus to support students with disabilities, such as academic tutoring services and mental health counseling."
+                    },
+                    {
+                        "question" : "What should I do if I have concerns about my accommodations or support services?",
+                        "answer" : "If you have concerns about your accommodations or support services, you can contact Disability Support Services to discuss your concerns and explore potential solutions."
+                    },
+                    {
+                        "question" : "What should I do if I am experiencing disability-related discrimination?",
+                        "answer" : "If you are experiencing disability-related discrimination, you can contact Disability Support Services and/or the university's Office of Equity and Inclusion to report the issue and seek assistance."
+                    }
+                ]
+            },
+            {
+                "sub_section" : "Disability Funding",
+                "faq" : [
+                    {
+                        "question" : "What kind of disability funding is available to students?",
+                        "answer" : "There are several types of disability funding available to students, including Disabled Students' Allowances (DSA), Access to Learning Fund, and the university's own disability bursaries and scholarships."
+                    },
+                    {
+                        "question" : "How do I know if I am eligible for Disabled Students' Allowances?",
+                        "answer" : "You may be eligible for DSA if you have a disability that affects your ability to study, including a physical disability, sensory impairment, mental health condition, or specific learning difficulty such as dyslexia. Contact Disability Support Services for more information."
+                    },
+                    {
+                        "question" : "What kind of expenses can be covered by Disabled Students' Allowances?",
+                        "answer" : "Disabled Students' Allowances can be used to cover the cost of a range of disability-related expenses, including assistive technology, non-medical helpers such as note-takers or sign language interpreters, and travel expenses related to your disability."
+                    },
+                    {
+                        "question" : "How do I apply for disability funding?",
+                        "answer" : "To apply for disability funding, you should contact Disability Support Services and provide documentation of your disability. The department will work with you to identify the appropriate funding sources and assist you in completing the application process."
+                    },
+                    {
+                        "question" : "What should I do if I have questions about disability funding?",
+                        "answer" : "If you have questions about disability funding or need assistance with the application process, contact Disability Support Services. The department can provide guidance and support to help you access the funding you need."
+                    }
+                ]
+            },
+            {
+                "sub_section" : "Support for Learning",
+                "faq" : [
+                    {
+                        "question" : "What kind of support for learning is available to disabled students?",
+                        "answer" : "Disability Support Services offers a range of support for learning to disabled students, including assistive technology, study skills workshops, and one-to-one support with a learning support tutor."
+                    },
+                    {
+                        "question" : "How do I access support for learning?",
+                        "answer" : "To access support for learning, contact Disability Support Services and provide documentation of your disability. The department will work with you to identify the appropriate support and assist you in accessing it."
+                    },
+                    {
+                        "question" : "What is assistive technology?",
+                        "answer" : "Assistive technology refers to any device or software that can help disabled students to access information or complete tasks. Examples include text-to-speech software, screen readers, and ergonomic keyboards."
+                    },
+                    {
+                        "question" : "Can I borrow assistive technology from the university?",
+                        "answer" : "Yes, the university has a range of assistive technology available for loan to disabled students. Contact Disability Support Services for more information."
+                    },
+                    {
+                        "question" : "What are study skills workshops?",
+                        "answer" : "Study skills workshops are group sessions designed to help students develop the skills they need to succeed in their studies. Workshops may cover topics such as time management, note-taking, and exam preparation."
+                    },
+                    {
+                        "question" : "How can a learning support tutor help me?",
+                        "answer" : "A learning support tutor can work with you one-to-one to develop strategies for overcoming the challenges you face in your studies. This might include help with reading, writing, or time management, for example."
+                    },
+                    {
+                        "question" : "Is support for learning available for all types of disabilities?",
+                        "answer" : "Yes, Disability Support Services provides support for learning to students with a wide range of disabilities, including physical disabilities, sensory impairments, mental health conditions, and specific learning difficulties such as dyslexia."
+                    },
+                    {
+                        "question" : "Can I access support for learning remotely?",
+                        "answer" : "Yes, many of the support for learning services offered by Disability Support Services can be accessed remotely, including one-to-one sessions with learning support tutors and assistive technology training."
+                    },
+                    {
+                        "question" : "What should I do if I have questions about support for learning?",
+                        "answer" : "If you have questions about support for learning or need assistance accessing these services, contact Disability Support Services. The department can provide guidance and support to help you access the resources you need."
+                    },
+                    {
+                        "question" : "How can I make the most of the support for learning available to me?",
+                        "answer" : "To make the most of the support for learning available to you, be proactive in seeking assistance and attending workshops or one-to-one sessions. Work with your learning support tutor to identify strategies that work best for you, and use assistive technology to help you overcome any barriers to learning."
+                    },
+                    {
+                        "question": "What is Support for Learning?",
+                        "answer": "Support for Learning is a service provided by the university to help students with disabilities, specific learning difficulties or medical conditions to access their studies."
+                    },
+                    {
+                        "question": "What kind of support is available for students with disabilities?",
+                        "answer": "The support available includes one-to-one support, specialist equipment and software, study skills support, exam adjustments and access to specialist tutors."
+                    },
+                    {
+                        "question": "Who is eligible for Support for Learning?",
+                        "answer": "Any student who has a disability, specific learning difficulty or medical condition that impacts their studies can access Support for Learning."
+                    },
+                    {
+                        "question": "How do I access Support for Learning?",
+                        "answer": "You can access Support for Learning by contacting the Disability Support team at your university and requesting an appointment to discuss your needs."
+                    },
+                    {
+                        "question": "Will my disability be disclosed to my lecturers or other students?",
+                        "answer": "Your disability will only be disclosed to your lecturers or other students if you give your consent for this to happen."
+                    },
+                    {
+                        "question": "Can I receive support if my disability is temporary?",
+                        "answer": "Yes, you can receive support if your disability is temporary, such as a broken arm or a short-term medical condition."
+                    },
+                    {
+                        "question": "What happens during a Support for Learning appointment?",
+                        "answer": "During the appointment, a Disability Adviser will discuss your individual needs and identify what support would be most helpful for you."
+                    },
+                    {
+                        "question": "Is there a charge for Support for Learning?",
+                        "answer": "No, Support for Learning is a free service provided by the university."
+                    },
+                    {
+                        "question": "Will the support I receive be recorded on my academic transcript?",
+                        "answer": "No, the support you receive will not be recorded on your academic transcript or affect your academic standing."
+                    },
+                    {
+                        "question": "How can I find out more about Support for Learning?",
+                        "answer": "You can find out more about Support for Learning by contacting the Disability Support team at your university or visiting the university's website."
+                    }
+                ]
+            },
+            {
+                "sub_section" : "Other support for disabled students",
+                "faq" : [
+                    {
+                        "question" : "What types of other support are available for disabled students?",
+                        "answer" : "In addition to disability funding and support for learning, universities in the UK may offer other forms of support for disabled students, such as accessible accommodation, mental health support, assistive technology, and note-taking services."
+                    },
+                    {
+                        "question" : "How do I request other support as a disabled student?",
+                        "answer" : "You can typically request other support by contacting your university's disability support team or student services. They can provide you with information about the types of support available and how to access them."
+                    },
+                    {
+                        "question" : "Can I receive support for my mental health as a disabled student?",
+                        "answer" : "Yes, many universities in the UK provide mental health support for disabled students. This may include counseling, therapy, or access to mental health resources."
+                    },
+                    {
+                        "question" : "What is assistive technology, and how can it help me as a disabled student?",
+                        "answer" : "Assistive technology refers to any device, software, or equipment that can help a disabled student perform tasks that would otherwise be challenging or impossible. Examples include screen readers, voice recognition software, and special keyboards. Your university's disability support team can provide you with information about the types of assistive technology available."
+                    },
+                    {
+                        "question" : "Can I receive note-taking support as a disabled student?",
+                        "answer" : "Yes, many universities in the UK provide note-taking services for disabled students. This may involve having a designated note-taker in your classes or receiving copies of lecture notes. Contact your university's disability support team or student services for more information."
+                    },
+                    {
+                        "question" : "What kind of accessible accommodation is available for disabled students?",
+                        "answer" : "Universities in the UK typically offer accessible accommodation for disabled students, which may include features such as wheelchair ramps, accessible bathrooms, and lower kitchen counters. Contact your university's disability support team or student services for more information about accessible accommodation options."
+                    },
+                    {
+                        "question" : "Is there support available for disabled students who are studying abroad?",
+                        "answer" : "Yes, many universities in the UK provide support for disabled students who are studying abroad. This may include assistance with accessible transportation and accommodation, as well as information about disability laws and regulations in the host country. Contact your university's disability support team or study abroad office for more information."
+                    },
+                    {
+                        "question" : "What is a disability adviser, and how can they help me?",
+                        "answer" : "A disability adviser is a member of a university's disability support team who can provide information, advice, and support to disabled students. They can help you with a range of issues related to disability support, including funding, accommodations, and assistive technology."
+                    },
+                    {
+                        "question" : "Can I receive support if I have a hidden disability?",
+                        "answer" : "Yes, universities in the UK provide support for students with hidden disabilities, such as dyslexia, ADHD, and mental health conditions. Contact your university's disability support team or student services for more information about the types of support available."
+                    }
+                ]
+            }
+        ]
+      },
+      { 
+        "department": "Graduation",
+        "sub_sections": [
+            {
+                "sub_section": "Preparing to finish university",
+                "faq": [
+                    {
+                        "question": "What steps do I need to take to make sure I'm on track to graduate?",
+                        "answer": "You should regularly meet with your academic advisor to review your degree requirements and progress towards graduation. You should also make sure you have completed any necessary paperwork, such as applications to graduate or to participate in the commencement ceremony."
+                    },
+                    {
+                        "question": "When should I start planning for my post-graduation career?",
+                        "answer": "It's never too early to start planning for your post-graduation career. You should begin networking and exploring career options as soon as possible. Your university may offer career services that can help you with job search strategies and resume writing."
+                    },
+                    {
+                        "question": "Can I graduate early?",
+                        "answer": "It's possible to graduate early if you have completed all of your degree requirements ahead of schedule. You should talk to your academic advisor to determine if this is a feasible option for you."
+                    },
+                    {
+                        "question": "What should I do if I'm falling behind on my degree requirements?",
+                        "answer": "If you're falling behind on your degree requirements, you should talk to your academic advisor as soon as possible. They can help you create a plan to get back on track, which may involve taking summer courses or extending your graduation timeline."
+                    },
+                    {
+                        "question": "What are the deadlines for applying to graduate?",
+                        "answer": "Deadlines for applying to graduate vary by university and by program. You should check with your academic department or registrar's office to find out the specific deadlines for your program."
+                    },
+                    {
+                        "question": "What should I do if I can't attend the commencement ceremony?",
+                        "answer": "If you can't attend the commencement ceremony, you should contact the commencement office to let them know. They may be able to mail your diploma to you or make other arrangements for you to receive it."
+                    },
+                    {
+                        "question": "Do I need to apply to participate in the commencement ceremony?",
+                        "answer": "Yes, you usually need to apply to participate in the commencement ceremony. Check with your university's commencement office for more information on how to apply."
+                    },
+                    {
+                        "question": "Can I still participate in the commencement ceremony if I haven't completed all of my degree requirements?",
+                        "answer": "It depends on your university's policies. Some universities may allow students who are close to completing their degree requirements to participate in the ceremony, while others may require that you have already completed all of your requirements."
+                    },
+                    {
+                        "question": "What should I do if I have a hold on my account and can't graduate?",
+                        "answer": "If you have a hold on your account, you should contact the appropriate office (such as the bursar's office or the library) to find out what steps you need to take to clear the hold. It's important to do this as soon as possible to avoid delays in graduating."
+                    },
+                    {
+                        "question": "How long does it take to receive my diploma after I graduate?",
+                        "answer": "It can take several weeks or even months to receive your diploma after you graduate, depending on your university's policies and the time of year. You should contact your registrar's office to find out more about the diploma distribution process."
+                    }
+                ]
+            },
+            {
+                "sub_section" : "Graduation ceremonies",
+                "faq" : [
+                    {
+                        "question" : "How do I register for a graduation ceremony?",
+                        "answer" : "You can register for a graduation ceremony online through the university's graduation portal. The portal usually opens a few months before the ceremony date."
+                    },
+                    {
+                        "question" : "When and where do the graduation ceremonies take place?",
+                        "answer" : "The dates and locations of graduation ceremonies vary by university and faculty. You should check the university's website or contact the graduation office for more information."
+                    },
+                    {
+                        "question" : "What should I wear to the graduation ceremony?",
+                        "answer" : "You should wear formal attire such as a suit or dress. Academic dress, such as a gown, hood, and cap, is also required and can usually be rented from the university or purchased from a specialized retailer."
+                    },
+                    {
+                        "question" : "Can I bring guests to the graduation ceremony?",
+                        "answer" : "Yes, you can usually bring a limited number of guests to the graduation ceremony. The number of guests allowed may vary depending on the size of the venue and the number of graduates participating. You should check the university's website or contact the graduation office for more information."
+                    },
+                    {
+                        "question" : "Do I have to attend the graduation ceremony to receive my degree?",
+                        "answer" : "No, you do not have to attend the graduation ceremony to receive your degree. Your degree will be conferred regardless of whether or not you attend the ceremony. However, attending the ceremony is a great way to celebrate your achievements with family and friends."
+                    },
+                    {
+                        "question" : "Is there a fee to participate in the graduation ceremony?",
+                        "answer" : "There may be a fee to participate in the graduation ceremony, which can vary depending on the university and faculty. You should check the university's website or contact the graduation office for more information."
+                    },
+                    {
+                        "question" : "Can I change my graduation ceremony registration?",
+                        "answer" : "It may be possible to change your graduation ceremony registration, depending on the university's policies and procedures. You should contact the graduation office as soon as possible if you need to make changes to your registration."
+                    },
+                    {
+                        "question" : "What happens during the graduation ceremony?",
+                        "answer" : "The graduation ceremony usually includes speeches by university officials, the conferring of degrees, and the presentation of diplomas or certificates. There may also be other traditions, such as the singing of the university's anthem and the throwing of hats."
+                    },
+                    {
+                        "question" : "How long does the graduation ceremony last?",
+                        "answer" : "The length of the graduation ceremony can vary depending on the number of graduates participating, the length of speeches, and other factors. Most ceremonies last between one and two hours."
+                    },
+                    {
+                        "question" : "Can I take photos during the graduation ceremony?",
+                        "answer" : "Yes, you can usually take photos during the graduation ceremony. However, there may be rules and guidelines to follow, such as not obstructing the view of other guests or using flash photography. You should check the university's website or contact the graduation office for more information."
+                    }
+                ]
+            },
+            {
+                "sub_section": "After Graduating",
+                "faq": [
+                    {
+                        "question": "What can I do with my degree after graduating?",
+                        "answer": "Your career options will depend on your degree and career goals. You may choose to pursue a job in your field, further education, or even start your own business."
+                    },
+                    {
+                        "question": "How can the university help me find a job after graduation?",
+                        "answer": "The university's careers service can help you with job search strategies, CV and cover letter writing, interview preparation, and networking events. You can also access job postings through the university's online job board."
+                    },
+                    {
+                        "question": "When should I start looking for jobs?",
+                        "answer": "It's best to start looking for jobs well before you graduate, ideally in your final year. This will give you time to research potential employers, apply for jobs, and attend interviews before your studies end."
+                    },
+                    {
+                        "question": "Can I get help with my student loans after graduation?",
+                        "answer": "Yes, you may be eligible for student loan repayment assistance or other financial aid programs. Contact the student loan company or the university's student finance office for more information."
+                    },
+                    {
+                        "question": "Can I continue to access university resources after graduation?",
+                        "answer": "You may be able to access some university resources, such as the library, for a limited time after graduation. Contact the university's alumni office for more information."
+                    },
+                    {
+                        "question": "How can I stay connected with my classmates and the university after graduation?",
+                        "answer": "You can join the university's alumni association to stay connected with your classmates and the university community. The association may offer networking events, social activities, and other benefits."
+                    },
+                    {
+                        "question": "What if I don't know what I want to do after graduation?",
+                        "answer": "You're not alone! Many graduates are unsure of their career path. Consider meeting with a career advisor or taking a career assessment test to help you identify your strengths and interests."
+                    },
+                    {
+                        "question" : "What options do I have after graduating?",
+                        "answer" : "After graduating, you can choose to continue your studies by pursuing a postgraduate degree, or you can start your career by applying for jobs related to your degree. You can also consider taking a gap year to travel or gain some work experience."
+                    },
+                    {
+                        "question" : "How can I improve my chances of finding a job after graduating?",
+                        "answer" : "You can improve your chances of finding a job after graduating by building your network, gaining relevant work experience through internships or part-time jobs, and polishing your resume and interview skills. You can also seek guidance from your university's career center and attend job fairs."
+                    },
+                    {
+                        "question" : "Can I continue to access university resources after graduating?",
+                        "answer" : "It depends on the university's policies. Some universities offer alumni access to career services, library resources, and other benefits. You can contact your university's alumni association to learn more about the available resources."
+                    }
+                ]
+            }
+        ]
+      },
+      {
+        "department" : "New Students",
+        "sub_sections" : [
+            {
+                "sub_section" : "Before You Join",
+                "faq" : [
+                    {
+                        "question" : "How do I apply to the university?",
+                        "answer" : "You can apply to the university through the UCAS website, which is the central application system for UK universities. The application process typically involves filling out an online application form, submitting your academic transcripts and personal statement, and paying an application fee."
+                    },
+                    {
+                        "question" : "What are the entry requirements for the university?",
+                        "answer" : "The entry requirements for the university vary depending on the course you are applying for. Generally, you will need to have completed certain qualifications such as A-levels or an international equivalent, and meet specific grade requirements. You can check the entry requirements for your course on the university's website."
+                    },
+                    {
+                        "question" : "When should I apply to the university?",
+                        "answer" : "The deadline for applications varies depending on the course and the university. Typically, the application deadline for most courses is in January, but some courses may have earlier or later deadlines. It is recommended to apply as early as possible to avoid missing the deadline."
+                    },
+                    {
+                        "question" : "How do I find accommodation near the university?",
+                        "answer" : "Most universities offer accommodation options for their students, including halls of residence and shared houses or flats. You can find information about the available options on the university's website or contact their accommodation office. You can also search for private accommodation options on websites such as Rightmove or Zoopla."
+                    },
+                    {
+                        "question" : "How can I meet other students before joining the university?",
+                        "answer" : "Most universities offer social events or online groups for new students to meet each other before joining the university. You can also connect with other students through social media groups or forums related to the university or your course."
+                    },
+                    {
+                        "question" : "What financial support is available for new students?",
+                        "answer" : "There are various financial support options available for new students, including student loans, bursaries, and scholarships. You can check the government's student finance website to see if you are eligible for financial support and how to apply. You can also check the university's website for information about the available scholarships and bursaries."
+                    },
+                    {
+                        "question" : "How can I prepare for my studies before joining the university?",
+                        "answer" : "You can prepare for your studies by reading up on the course materials, attending online webinars or workshops offered by the university, and practicing academic skills such as note-taking, critical thinking, and time management. You can also connect with current students or alumni to get insights and advice on how to succeed in your studies."
+                    },
+                    {
+                        "question" : "How do I get my student visa to study in the UK?",
+                        "answer" : "If you are an international student from outside the European Economic Area (EEA) or Switzerland, you will need to apply for a student visa to study in the UK. You can apply for a student visa through the UK government's visa application website. The application process typically involves submitting your academic documents, proof of finances, and biometric information."
+                    }
+                ]
+            },
+            {
+                "sub_section" : "Getting Started",
+                "faq" : [
+                    {
+                        "question" : "How do I register for classes?",
+                        "answer" : "You can register for classes online through the university's student portal. Before registering, you will need to meet with your academic advisor to plan your course schedule and obtain their approval."
+                    },
+                    {
+                        "question" : "What should I bring with me on my first day?",
+                        "answer" : "You should bring any required documentation, such as your passport or student visa, as well as any materials you need for class. It's also a good idea to bring a notepad and pen to take notes."
+                    },
+                    {
+                        "question" : "Where can I find information about campus services?",
+                        "answer" : "You can find information about campus services, such as the library, student health center, and counseling services, on the university's website. You can also visit these services in person once you arrive on campus."
+                    },
+                    {
+                        "question" : "How do I get a student ID card?",
+                        "answer" : "You can get a student ID card by visiting the student services office on campus. You will need to provide a photo of yourself and your student ID number."
+                    },
+                    {
+                        "question" : "How do I access the university's Wi-Fi network?",
+                        "answer" : "You can access the university's Wi-Fi network by logging in with your student account credentials. The network name and login instructions will be provided to you during orientation."
+                    },
+                    {
+                        "question" : "What should I do if I have a problem with my accommodation?",
+                        "answer" : "If you have a problem with your accommodation, such as a maintenance issue or noisy neighbors, you should contact the accommodation office on campus. They will be able to assist you with any issues you are experiencing."
+                    },
+                    {
+                        "question" : "How do I join a student club or organization?",
+                        "answer" : "You can join a student club or organization by attending a club fair, which is typically held at the beginning of each academic year. You can also find information about clubs and organizations on the university's website."
+                    },
+                    {
+                        "question" : "What academic support services are available to me?",
+                        "answer" : "The university offers a variety of academic support services, including tutoring, study groups, and academic coaching. You can find information about these services on the university's website or by contacting the academic support office on campus."
+                    },
+                    {
+                        "question" : "What is the university's policy on attendance?",
+                        "answer" : "The university has a policy on attendance, which varies by course and instructor. It is important to attend all of your classes and to familiarize yourself with the attendance policy for each course you are taking."
+                    },
+                    {
+                        "question" : "How do I access my grades?",
+                        "answer" : "You can access your grades online through the university's student portal. Your grades will typically be posted within a few days of each assignment or exam."
+                    }
+                ]
+            },
+            {
+                "sub_section" : "Welcome to King's events",
+                "faq" : [
+                    {
+                        "question" : "What kind of events can I attend as a new student at King's?",
+                        "answer" : "As a new student at King's, you can attend a variety of events such as welcome fairs, social events, and orientation sessions. You will receive information about these events through your email and other communication channels."
+                    },
+                    {
+                        "question" : "Are the events for new students mandatory?",
+                        "answer" : "While most events are not mandatory, they are highly recommended as they can help you meet new people and get familiar with the university campus and resources. Some events, such as orientation sessions, may be mandatory depending on your program."
+                    },
+                    {
+                        "question" : "Do I need to register for the events in advance?",
+                        "answer" : "Some events may require you to register in advance, while others may be open to all new students. Make sure to check the event information and registration details in advance to avoid missing out."
+                    },
+                    {
+                        "question" : "What should I bring to the welcome events?",
+                        "answer" : "It depends on the event, but you may want to bring your student ID card, a notepad and pen, comfortable shoes, and some money for food and drinks. Make sure to check the event information and requirements in advance."
+                    },
+                    {
+                        "question" : "How can I find out about upcoming events for new students?",
+                        "answer" : "You will receive information about upcoming events through your email and other communication channels. You can also check the King's events calendar on the university website or follow King's social media accounts."
+                    },
+                    {
+                        "question" : "Can I bring a guest to the welcome events?",
+                        "answer" : "It depends on the event. Some events may allow you to bring guests, while others may be limited to new students only. Make sure to check the event information and requirements in advance."
+                    },
+                    {
+                        "question" : "What if I can't attend any of the welcome events?",
+                        "answer" : "While attending the welcome events is highly recommended, if you are unable to attend, you can still access many of the resources and information online. Make sure to check your email and other communication channels for updates and information."
+                    },
+                    {
+                        "question" : "Are there any virtual welcome events for new students?",
+                        "answer" : "Yes, there may be virtual welcome events for new students, especially for those who are unable to attend the in-person events. Make sure to check your email and other communication channels for updates and information about virtual events."
+                    },
+                    {
+                        "question": "What are the Welcome to King's events?",
+                        "answer": "The Welcome to King's events are a series of orientation events designed to introduce new students to the university, its facilities, and its services. These events are held in the first few weeks of the academic year and include campus tours, information sessions, social events, and more."
+                    }
+                ]
+            },
+            {
+                "sub_section": "Adjusting to Student Life",
+                "faq": [
+                    {
+                     "question": "What support services are available to help me adjust to university life?",
+                     "answer": "The university offers a range of support services such as academic support, counseling, health and wellbeing, and accommodation support. You can find more information about these services on the university website or by contacting the Student Services department."
+                    },
+                    {
+                     "question": "What social activities are available for new students?",
+                     "answer": "There are many social activities available for new students, including clubs and societies, sports teams, and events organized by the Student Union. You can find more information about these activities on the university website or by contacting the Student Union."
+                    },
+                    {
+                     "question": "What should I do if I feel homesick?",
+                     "answer": "Feeling homesick is common for new students. The university offers counseling and support services to help you deal with homesickness. Additionally, keeping in touch with friends and family, exploring your new surroundings, and getting involved in social activities can help you feel more connected to your new environment."
+                    },
+                    {
+                     "question": "How can I make friends at university?",
+                     "answer": "Making friends at university is important for adjusting to student life. You can meet new people by joining clubs and societies, attending social events, or participating in sports teams. You can also make friends by studying with classmates or by living in university accommodation."
+                    },
+                    {
+                     "question": "What should I do if I'm struggling with my coursework?",
+                     "answer": "If you are struggling with your coursework, you should first speak with your tutor or lecturer for guidance. The university also offers academic support services, such as study skills workshops and one-to-one tutoring. You can find more information about these services on the university website or by contacting your academic department."
+                    },
+                    {
+                     "question": "How can I manage my time effectively at university?",
+                     "answer": "Managing your time effectively is important for succeeding at university. You can do this by creating a schedule or timetable, breaking down tasks into smaller, manageable steps, and setting achievable goals. The university also offers time management workshops and support services to help you develop effective study habits."
+                    },
+                    {
+                     "question": "What should I do if I'm struggling to adjust to living away from home?",
+                     "answer": "Adjusting to living away from home can be challenging. The university offers accommodation support services to help you with any issues you may have with your accommodation. Additionally, keeping in touch with friends and family, exploring your new surroundings, and getting involved in social activities can help you feel more connected to your new environment."
+                    },
+                    {
+                     "question": "What should I do if I'm experiencing financial difficulties?",
+                     "answer": "If you are experiencing financial difficulties, you should speak with the university's financial support team for guidance. The team can provide advice on budgeting, funding options, and emergency loans. You can find more information about these services on the university website or by contacting the Student Services department."
+                    },
+                    {
+                     "question": "What support is available for students with disabilities?",
+                     "answer": "The university provides a range of support services for students with disabilities, such as assistive technology, accessible accommodation, and one-to-one support. You can find more information about these services on the university website or by contacting the Disability Support team."
+                    },
+                    {
+                      "question": "What support services are available to help me adjust to university life?",
+                      "answer": "The university offers a range of support services such as academic support, counseling, health and wellbeing, and accommodation support. You can find more information about these services on the university website or by contacting the Student Services department."
+                    }
+                ]
+            }
+        ]
       }
     ]
 }
