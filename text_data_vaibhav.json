@@ -1,0 +1,1505 @@
+{
+  "departments":[
+      {
+        "department": "Administration",
+        "sub_sections": [
+            {
+              "sub_section": "Your ID & Student Record",
+              "faq": [
+                {
+                  "question": "How do I obtain my student ID?",
+                  "answer": "You can obtain your student ID by visiting the university's ID card office and presenting a government-issued ID."
+                },
+                {
+                  "question": "What should I do if I lost my student ID?",
+                  "answer": "You should report your lost student ID to the university's ID card office immediately. You may be able to obtain a replacement ID for a fee."
+                },
+                {
+                  "question": "How do I update my contact information in my student record?",
+                  "answer": "You can update your contact information in your student record through the university's online student portal or by visiting the registrar's office."
+                },
+                {
+                  "question": "How do I request a transcript?",
+                  "answer": "You can request a transcript through the university's online student portal or by visiting the registrar's office. There may be a fee for this service."
+                },
+                {
+                  "question": "How do I change my major?",
+                  "answer": "You can change your major by filling out a change of major form and submitting it to the registrar's office. Your new major must meet the university's admission requirements."
+                },
+                {
+                  "question": "What is a hold on my student record?",
+                  "answer": "A hold on your student record prevents you from registering for classes, obtaining transcripts, or receiving your diploma. Holds may be placed for a variety of reasons, such as outstanding fees or incomplete requirements."
+                },
+                {
+                  "question": "How do I remove a hold on my student record?",
+                  "answer": "You should contact the office that placed the hold on your student record and ask what steps you need to take to have the hold removed."
+                },
+                {
+                  "question": "What is academic probation?",
+                  "answer": "Academic probation is a status assigned to students whose academic performance falls below a certain level. Students on academic probation may be required to meet with an academic advisor or take specific courses to improve their performance."
+                },
+                {
+                  "question": "What is a degree audit?",
+                  "answer": "A degree audit is a report that shows your progress towards completing your degree requirements. You can request a degree audit from the registrar's office."
+                },
+                {
+                  "question": "How do I declare a minor?",
+                  "answer": "You can declare a minor by filling out a declaration of minor form and submitting it to the registrar's office. Your chosen minor must meet the university's admission requirements."
+                },
+                {
+                  "question": "How do I access my grades?",
+                  "answer": "You can access your grades through the university's online student portal or by requesting a transcript from the registrar's office."
+                },
+                {
+                  "question": "What is a GPA?",
+                  "answer": "GPA stands for grade point average, which is a numerical representation of your overall academic performance. GPA is calculated by assigning a point value to each letter grade and averaging those values."
+                },
+                {
+                  "question": "What is an academic transcript?",
+                  "answer": "An academic transcript is an official document that shows your academic history at the university, including your courses and grades."
+                },
+                {
+                  "question": "How do I update my name in my student record?",
+                  "answer": "You can update your name in your student record by submitting a name change form and supporting documentation, such as a marriage certificate or court order, to the registrar's office."
+                },
+                {
+                  "question": "What is a graduation audit?",
+                  "answer": "A graduation audit is a review of your academic record to ensure that you have met all the requirements for graduation. You can request a graduation audit from the registrar's office."
+                },
+                {
+                  "question": "How do I withdraw from a course?",
+                  "answer": "You can withdraw from a course by submitting a withdrawal form to the registrar's office before the withdrawal deadline. Withdrawals may have an impact on your academic standing and financial aid eligibility."
+                },
+                {
+                  "question": "How do I petition to waive a requirement?",
+                  "answer": "You can petition to waive a requirement by submitting a petition form and supporting documentation to the academic department responsible for the requirement."
+                },
+                {
+                  "question": "What is a prerequisite?",
+                  "answer": "A prerequisite is a course or requirement that must be completed before taking another course. Prerequisites are designed to ensure that students have the necessary background knowledge to succeed in a course."
+                },
+                {
+                  "question": "How do I request an official letter from the university?",
+                  "answer": "You can request an official letter from the university by submitting a request form to the registrar's office. The letter may be subject to a fee."
+                },
+                {
+                  "question": "How do I request a course substitution?",
+                  "answer": "You can request a course substitution by submitting a substitution form and supporting documentation to the academic department responsible for the requirement."
+                }
+              ]
+            }, 
+            {
+              "sub_section": "Modules",
+              "faq": [
+                {
+                "question": "What are modules in a university context?",
+                "answer": "Modules are self-contained units of study that form part of a course. They typically last for one semester or term and have a specific learning outcome or set of learning outcomes."
+                },
+                {
+                "question": "How many modules can a student take per semester?",
+                "answer": "The number of modules a student can take per semester varies depending on the university and the course. Generally, students take between 3 and 5 modules per semester."
+                },
+                {
+                "question": "Can students take modules from different courses?",
+                "answer": "It depends on the university and the course. Some courses allow students to take modules from other courses as electives, while others do not."
+                },
+                {
+                "question": "How are modules assessed?",
+                "answer": "Modules are typically assessed through a combination of coursework and examinations. The specific assessment methods and weighting vary depending on the module and the course."
+                },
+                {
+                "question": "Can students retake a module if they fail it?",
+                "answer": "It depends on the university and the course. Some courses allow students to retake modules if they fail them, while others do not."
+                },
+                {
+                "question": "What is the credit value of a module?",
+                "answer": "The credit value of a module is the number of credits awarded upon successful completion. In the UK, one credit typically represents 10 hours of study."
+                },
+                {
+                "question": "How do students choose their modules?",
+                "answer": "The process of choosing modules varies depending on the university and the course. Typically, students are given a list of available modules and choose which ones they want to take based on their interests and the requirements of their course."
+                },
+                {
+                "question": "Can students change their modules after they have started the semester?",
+                "answer": "It depends on the university and the course. Some universities allow students to change their modules within a certain period after the start of the semester, while others do not."
+                },
+                {
+                "question": "Are there any prerequisites for taking certain modules?",
+                "answer": "It depends on the university and the course. Some modules may have prerequisites, such as completing a specific module or achieving a certain grade in a related subject."
+                },
+                {
+                "question": "Can students take modules during the summer?",
+                "answer": "It depends on the university and the course. Some universities offer summer modules that students can take to catch up on missed work or get ahead in their studies."
+                },
+                {
+                "question": "How do modules contribute to a degree?",
+                "answer": "Modules are typically worth a certain number of credits, which contribute to a student's overall credit total. Once a student has completed enough credits, they are awarded a degree."
+                },
+                {
+                "question": "What is the workload for a typical module?",
+                "answer": "The workload for a typical module varies depending on the university and the course. Generally, students are expected to spend around 10-15 hours per week on a module, including attending lectures and seminars, completing coursework, and studying for exams."
+                },
+                {
+                "question": "Can students request to take additional modules?",
+                "answer": "It depends on the university and the course. Some courses allow students to take additional modules as electives, while others do not."
+                }, 
+                {
+                  "question": "What is the difference between a module and a course?",
+                  "answer": "A course is made up of multiple modules, while a module is a self-contained unit of study that forms part of a course."
+                },
+                {
+                  "question": "How long do modules typically last?",
+                  "answer": "Modules typically last for one semester or term, which is usually around 12-15 weeks long."
+                },
+                {
+                  "question": "Can students take modules from other universities?",
+                  "answer": "It depends on the university and the course. Some universities allow students to take modules at other institutions as part of a cross-institutional study program."
+                },
+                {
+                  "question": "What is a prerequisite module?",
+                  "answer": "A prerequisite module is a module that must be completed before a student can take another module. It ensures that students have the necessary knowledge and skills to succeed in the next module."
+                },
+                {
+                  "question": "What is a pre-requisite grade?",
+                  "answer": "A pre-requisite grade is a minimum grade that a student must achieve in a related subject or module before they can take another module. It ensures that students have the necessary knowledge and skills to succeed in the next module."
+                },
+                {
+                  "question": "What is a post-requisite module?",
+                  "answer": "A post-requisite module is a module that must be taken after a particular module. It ensures that students have the necessary knowledge and skills to succeed in the next module."
+                },
+                {
+                  "question": "What is a capstone module?",
+                  "answer": "A capstone module is a final module that is designed to bring together the knowledge and skills that a student has learned throughout their course. It often involves a major project or dissertation."
+                }
+              ]
+            }, 
+            {
+              "sub_section": "Timetable",
+              "faq": [
+                  {
+                    "question": "When are timetables released?",
+                    "answer": "Timetables are typically released a few weeks before the start of each semester or term."
+                  },
+                  {
+                    "question": "How are timetables created?",
+                    "answer": "Timetables are created by the administration team based on the availability of teaching staff, classroom availability, and student enrolment numbers."
+                  },
+                  {
+                    "question": "What should I do if there is a clash in my timetable?",
+                    "answer": "If you have a clash in your timetable, you should speak to your course coordinator or the administration team as soon as possible. They may be able to help you find an alternative class or module to take."
+                  },
+                  {
+                    "question": "Can I request a specific timetable?",
+                    "answer": "It is generally not possible to request a specific timetable, as timetables are created based on a range of factors and the needs of all students in a particular course."
+                  },
+                  {
+                    "question": "What happens if a class is cancelled?",
+                    "answer": "If a class is cancelled, the administration team will usually try to reschedule it for another time. If this is not possible, they may provide students with alternative learning materials or online resources."
+                  },
+                  {
+                    "question": "How can I find my timetable?",
+                    "answer": "You can usually find your timetable online, either through the university's student portal or through a dedicated timetable management system."
+                  },
+                  {
+                    "question": "What should I do if I miss a class?",
+                    "answer": "If you miss a class, you should try to catch up on any missed material as soon as possible. You can usually do this by accessing the lecture notes or recordings, or by speaking to your tutor or classmates."
+                  },
+                  {
+                    "question": "What is the difference between a lecture and a seminar?",
+                    "answer": "A lecture is a formal presentation given by a lecturer to a large group of students, while a seminar is a smaller, more interactive class where students can discuss and ask questions."
+                  },
+                  {
+                    "question": "What is a tutorial?",
+                    "answer": "A tutorial is a small group or one-to-one session with a tutor or lecturer, where students can ask questions and receive personalised feedback and support."
+                  },
+                  {
+                    "question": "What is a lab session?",
+                    "answer": "A lab session is a practical class where students can conduct experiments or carry out hands-on activities related to their course or module."
+                  },
+                  {
+                    "question": "What is a field trip?",
+                    "answer": "A field trip is a class or activity that takes place outside of the classroom, usually in a real-world setting related to the course or module. It may involve visiting a museum, a research site, or a company."
+                  },
+                  {
+                    "question": "What is a lecture capture?",
+                    "answer": "A lecture capture is a recording of a lecture or presentation that students can access online. It allows students to revisit material or catch up on missed classes."
+                  },
+                  {
+                    "question": "What is a synchronous class?",
+                    "answer": "A synchronous class is a class that takes place at a specific time and date, usually in a physical classroom or online through video conferencing software. Students are expected to attend in real-time."
+                  },
+                  {
+                    "question": "What is an asynchronous class?",
+                    "answer": "An asynchronous class is a class where students can access learning materials and complete assignments at any time. There may be deadlines for submitting work, but students are not expected to attend at a specific time."
+                  },
+                  {
+                    "question": "What is a blended learning course?",
+                    "answer": "A blended learning course combines both online and offline learning. It may involve a mix of synchronous and asynchronous classes, as well as in-person classes and activities."
+                  },
+                  {
+                    "question": "Can I change my timetable?",
+                    "answer": "It may be possible to change your timetable in certain circumstances, such as if you have a medical condition or other extenuating circumstance. You should speak to your course coordinator or the administration team if you need to request a change."
+                  },
+                  {
+                    "question": "What should I do if I am unable to attend a class?",
+                    "answer": "If you are unable to attend a class, you should let your tutor or course coordinator know as soon as possible. You may be able to access lecture notes or recordings to catch up on any missed material."
+                  },
+                  {
+                    "question": "What should I do if I have a timetable clash due to an exam or other university commitment?",
+                    "answer": "If you have a timetable clash due to an exam or other university commitment, you should speak to your course coordinator or the administration team as soon as possible. They may be able to arrange an alternative time or make other arrangements."
+                  },
+                  {
+                    "question": "What is a reading week?",
+                    "answer": "A reading week is a week during the semester or term where no classes or lectures are held, and students are expected to catch up on reading and independent study."
+                  },
+                  {
+                    "question": "What is the difference between a lecture and a seminar?",
+                    "answer": "A lecture is a formal presentation given by a lecturer to a large group of students, while a seminar is a smaller, more interactive class where students can discuss and ask questions."
+                  }                  
+              ]
+            }, 
+            {
+              "sub_section": "Interruption, Transfer & Withdrawal",
+              "faq": [
+                  {
+                    "question": "What is an interruption of studies?",
+                    "answer": "An interruption of studies is when a student takes a break from their studies for a certain period of time. This break is usually temporary and may be for a semester or a full academic year."
+                  },
+                  {
+                    "question": "How can I request an interruption of studies?",
+                    "answer": "To request an interruption of studies, you should speak to your academic advisor or the student services office. They will provide you with the necessary forms and guidance on the process."
+                  },
+                  {
+                    "question": "What is a transfer of program?",
+                    "answer": "A transfer of program is when a student moves from one degree program to another within the same university or to another university."
+                  },
+                  {
+                    "question": "Can I transfer to another university?",
+                    "answer": "Yes, you can transfer to another university. However, you should check with the university you plan to transfer to for their transfer policies and requirements."
+                  },
+                  {
+                    "question": "What is a withdrawal?",
+                    "answer": "A withdrawal is when a student decides to permanently leave their degree program before completing it."
+                  },
+                  {
+                    "question": "How do I withdraw from my degree program?",
+                    "answer": "To withdraw from your degree program, you should speak to your academic advisor or the student services office. They will provide you with the necessary forms and guidance on the process."
+                  },
+                  {
+                    "question": "Will I receive a refund if I withdraw from my degree program?",
+                    "answer": "Refunds for tuition fees depend on the university's policies and the timing of the withdrawal. You should check with the student services office for more information."
+                  },
+                  {
+                    "question": "What happens to my student visa if I withdraw from my degree program?",
+                    "answer": "If you withdraw from your degree program, your student visa may be affected. You should speak to the international student office or the student services office for more information."
+                  },
+                  {
+                    "question": "Can I resume my studies after an interruption?",
+                    "answer": "Yes, you can resume your studies after an interruption. You should speak to your academic advisor or the student services office for guidance on how to resume your studies."
+                  },
+                  {
+                    "question": "Can I transfer credits from my previous university?",
+                    "answer": "Transferring credits from your previous university depends on the university's policies and the courses you have taken. You should speak to your academic advisor or the student services office for more information."
+                  },
+                  {
+                    "question": "How long can I take an interruption of studies for?",
+                    "answer": "The length of time you can take an interruption of studies for varies depending on the university's policies and your degree program. You should speak to your academic advisor or the student services office for more information."
+                  },
+                  {
+                    "question": "Can I transfer to a different degree program within the same university?",
+                    "answer": "Yes, you can transfer to a different degree program within the same university. However, you should check with the student services office for the university's transfer policies and requirements."
+                  },
+                  {
+                    "question": "What is a release letter?",
+                    "answer": "A release letter is a document that allows you to transfer to another university. This document is usually required by the new university as proof that you have been released from your current university."
+                  },
+                  {
+                    "question": "Can I transfer to a different university in the middle of an academic year?",
+                    "answer": "Transferring to a different university in the middle of an academic year can be challenging as each university has their own policies and requirements. You should speak to the student services office for both universities for guidance on the process."
+                  },
+                  {
+                    "question": "What is the deadline to withdraw from my degree program?",
+                    "answer": "The deadline to withdraw from your degree program varies depending on the university's policies and your degree program. You should check with the student services office for the specific deadline for your program."
+                  },
+                  {
+                    "question": "Can I withdraw from individual courses instead of my entire degree program?",
+                    "answer": "Yes, you can withdraw from individual courses instead of your entire degree program. However, you should check with the student services office for the university's policies on withdrawing from individual courses."
+                  },
+                  {
+                    "question": "What happens to my student loans if I withdraw from my degree program?",
+                    "answer": "Withdrawing from your degree program may affect your student loans. You should check with your loan provider and the student services office for more information."
+                  },
+                  {
+                    "question": "Can I apply for an interruption of studies due to medical reasons?",
+                    "answer": "Yes, you can apply for an interruption of studies due to medical reasons. You should speak to your academic advisor or the student services office for guidance on the process."
+                  },
+                  {
+                    "question": "What is the process for transferring to a different university?",
+                    "answer": "The process for transferring to a different university varies depending on the universities' policies and requirements. You should speak to the student services office for both universities for guidance on the process."
+                  },
+                  {
+                    "question": "Can I withdraw from my degree program after the withdrawal deadline?",
+                    "answer": "Withdrawing from your degree program after the withdrawal deadline can be challenging as each university has their own policies and requirements. You should speak to the student services office for guidance on the process."
+                  }
+              ]
+            }
+        ]
+      },
+      {
+        "department": "Academic, Digital & Employability Skills",
+        "sub_sections": [
+          {
+            "sub_section": "Academic Skills",
+            "faq": [
+              {
+                "question": "What are academic skills?",
+                "answer": "Academic skills refer to the skills that are necessary for successful academic performance, such as critical thinking, time management, and research skills."
+              },
+              {
+                "question": "What support is available for academic skills?",
+                "answer": "Most universities offer support for academic skills, such as workshops, tutoring, and online resources. You should check with the academic support office for more information."
+              },
+              {
+                "question": "How can I improve my academic writing skills?",
+                "answer": "There are several ways to improve your academic writing skills, such as reading academic literature, practicing writing, and seeking feedback from your professors or tutors. You can also attend workshops or take courses on academic writing."
+              },
+              {
+                "question": "How can I improve my note-taking skills?",
+                "answer": "You can improve your note-taking skills by using techniques such as active listening, organizing your notes, and summarizing key points. You can also attend workshops or take courses on note-taking."
+              },
+              {
+                "question": "What is plagiarism?",
+                "answer": "Plagiarism is the act of using someone else's work or ideas without proper attribution. This can include copying and pasting from a source or paraphrasing without citing the original author."
+              },
+              {
+                "question": "How can I avoid plagiarism?",
+                "answer": "You can avoid plagiarism by properly citing your sources, paraphrasing in your own words, and using quotation marks when directly quoting someone else's work. You should also check with your university for their specific policies and guidelines on plagiarism."
+              },
+              {
+                "question": "What is critical thinking?",
+                "answer": "Critical thinking is the process of analyzing and evaluating information to form a judgment or decision. It involves questioning assumptions, evaluating evidence, and considering alternative perspectives."
+              },
+              {
+                "question": "How can I improve my critical thinking skills?",
+                "answer": "You can improve your critical thinking skills by practicing analyzing and evaluating information, asking questions, and considering alternative perspectives. You can also attend workshops or take courses on critical thinking."
+              },
+              {
+                "question": "What are time management skills?",
+                "answer": "Time management skills refer to the ability to prioritize tasks, organize your schedule, and manage your time effectively to meet deadlines and achieve goals."
+              },
+              {
+                "question": "How can I improve my time management skills?",
+                "answer": "You can improve your time management skills by setting goals, creating a schedule, prioritizing tasks, and eliminating distractions. You can also attend workshops or take courses on time management."
+              }
+            ]
+          }, 
+          {
+            "sub_section": "Digital Skills & Studying Online",
+            "faq": [
+              {
+                "question": "What are digital skills?",
+                "answer": "Digital skills refer to the skills necessary to effectively use technology, such as computer skills, social media skills, and online communication skills."
+              },
+              {
+                "question": "What support is available for digital skills?",
+                "answer": "Most universities offer support for digital skills, such as workshops, online resources, and IT help desks. You should check with your university's IT department or academic support office for more information."
+              },
+              {
+                "question": "What is online learning?",
+                "answer": "Online learning refers to the use of technology to deliver educational content and instruction remotely, without the need for physical classroom attendance."
+              },
+              {
+                "question": "What are the benefits of online learning?",
+                "answer": "Online learning can offer greater flexibility and convenience, as well as the ability to learn at your own pace. It can also provide access to a wider range of courses and instructors."
+              },
+              {
+                "question": "What are the challenges of online learning?",
+                "answer": "Online learning can require greater self-discipline and motivation, as well as the need for strong time-management and organizational skills. It can also require reliable internet access and technical proficiency."
+              },
+              {
+                "question": "What equipment do I need for online learning?",
+                "answer": "You will typically need a computer or laptop with reliable internet access, as well as any necessary software or applications required by your course or university."
+              },
+              {
+                "question": "How do I access online course materials?",
+                "answer": "Your university's online learning platform or virtual learning environment should provide access to course materials, such as lectures, readings, and assignments. You should check with your course instructor or academic support office for more information."
+              },
+              {
+                "question": "How do I communicate with my instructor and classmates online?",
+                "answer": "Your university's online learning platform or virtual learning environment should provide options for online communication, such as discussion boards, email, and video conferencing. You should check with your course instructor or academic support office for more information."
+              },
+              {
+                "question": "What are the best practices for online learning?",
+                "answer": "Best practices for online learning include setting aside dedicated time for coursework, establishing a routine, engaging actively with course materials and classmates, and seeking help when needed."
+              },
+              {
+                "question": "How can I stay motivated while studying online?",
+                "answer": "You can stay motivated while studying online by setting goals, breaking down tasks into manageable steps, seeking support from instructors and classmates, and creating a positive study environment."
+              },
+              {
+                "question": "What are the digital literacy skills?",
+                "answer": "Digital literacy skills refer to the ability to find, evaluate, and use information effectively and responsibly in a digital context. This can include searching for information online, evaluating sources for credibility, and using digital tools and applications."
+              },
+              {
+                "question": "How can I improve my digital literacy skills?",
+                "answer": "You can improve your digital literacy skills by practicing using digital tools and applications, seeking feedback on your work, and staying up-to-date with changes in technology and online resources. You can also attend workshops or take courses on digital literacy."
+              },
+              {
+                "question": "How do I access the university's online learning platform?",
+                "answer": "You can access the online learning platform by logging into the university portal using your student ID and password."
+              },
+              {
+                "question": "What software do I need to complete my online coursework?",
+                "answer": "The required software will depend on the specific coursework. Check the course syllabus or contact the instructor for more information."
+              },
+              {
+                "question": "What resources are available to help me improve my digital skills?",
+                "answer": "The university offers a variety of resources, such as online tutorials and workshops, to help students improve their digital skills. Contact the library or the academic skills center for more information."
+              },
+              {
+                "question": "How do I join an online study group?",
+                "answer": "You can join an online study group by contacting other students in your class or by using the discussion forum on the online learning platform."
+              },
+              {
+                "question": "What should I do if I experience technical issues during an online exam?",
+                "answer": "Contact your instructor or the university's IT helpdesk as soon as possible to report the issue and request assistance."
+              }      
+            ]             
+          },
+          {
+            "sub_section": "Employability & your career journey",
+            "faq": [
+              {
+                "question": "What services does the university offer to help me with my career?",
+                "answer": "The university offers a variety of services to help students with their career development, such as career counseling, job fairs, and networking events. Contact the careers service for more information."
+              },
+              {
+                "question": "How do I create a professional CV or resume?",
+                "answer": "The careers service can help you create a professional CV or resume. They can provide guidance on formatting, content, and tailoring your CV to specific job applications."
+              },
+              {
+                "question": "What should I include in my cover letter?",
+                "answer": "Your cover letter should highlight your qualifications, experience, and skills that make you a good fit for the job. It should also demonstrate your enthusiasm for the position and the company. The careers service can provide guidance on writing an effective cover letter."
+              },
+              {
+                "question": "How can I gain work experience while I'm still a student?",
+                "answer": "There are many ways to gain work experience while you're still a student, such as internships, part-time jobs, and volunteering. The careers service can provide guidance on finding opportunities that match your interests and skills."
+              },
+              {
+                "question": "What skills do employers look for in job candidates?",
+                "answer": "Employers look for a range of skills in job candidates, such as communication, teamwork, problem-solving, and adaptability. The careers service can provide guidance on how to develop and demonstrate these skills."
+              },
+              {
+                "question": "How can I prepare for a job interview?",
+                "answer": "Preparing for a job interview involves researching the company, practicing common interview questions, and developing your own questions to ask the interviewer. The careers service can provide guidance on how to prepare for an interview."
+              },
+              {
+                "question": "What should I wear to a job interview?",
+                "answer": "It's important to dress professionally for a job interview. This typically means wearing a suit or business attire. The careers service can provide guidance on appropriate dress for specific industries or companies."
+              },
+              {
+                "question": "How can I negotiate my salary?",
+                "answer": "Negotiating your salary involves researching typical salaries for your position, understanding your own value and experience, and developing a persuasive argument for why you deserve a higher salary. The careers service can provide guidance on how to negotiate your salary effectively."
+              },
+              {
+                "question": "What should I do if I'm not sure what career path to pursue?",
+                "answer": "The careers service can provide guidance on exploring different career options, assessing your interests and skills, and developing a career plan. They can also provide access to career assessments and tools to help you make informed decisions about your career."
+              },
+              {
+                "question": "How can I stay connected with the careers service after graduation?",
+                "answer": "The careers service offers support to alumni as well as current students. You can stay connected by attending alumni events, accessing online resources, and networking with other alumni in your field. Contact the careers service for more information on how to stay connected after graduation."
+              },
+              {
+                "question" : "What resources are available to help me prepare for job interviews?",
+                "answer" : "Our university's careers service offers mock interviews, interview preparation sessions, and a range of online resources to help you prepare for job interviews. You can book an appointment with a careers adviser to discuss your interview technique and receive feedback on your performance."
+              }, 
+              {
+                "question" : "How can I develop my networking skills?",
+                "answer" : "We offer a range of workshops and events to help you develop your networking skills, including employer networking sessions and alumni events. You can also join our student societies and attend industry events to expand your professional network."
+              },
+              {
+                "question" : "What support is available for international students who want to work in the UK after graduation?",
+                "answer" : "Our careers service offers support and advice to international students who want to work in the UK after graduation. We can provide information on visa requirements, job opportunities, and employer sponsorship, as well as offer guidance on job applications and interview techniques."
+              },
+              {
+                "question" : "How can I find work experience or internship opportunities?",
+                "answer" : "Our university's careers service advertises a range of work experience and internship opportunities on our online job board. You can also attend our employer events and careers fairs to meet with potential employers and learn about available opportunities."
+              },
+              {
+                "question" : "What skills are employers looking for?",
+                "answer" : "Employers are typically looking for candidates who can demonstrate a range of transferable skills, including communication, teamwork, problem-solving, and adaptability. Our university's careers service can provide advice on how to develop these skills and tailor your job applications to showcase your strengths."
+              }
+            ]
+          }
+        ]
+      },     
+      {
+        "department": "Appeals, Complaints & Misconduct",
+        "sub_sections": [
+          {
+            "sub_section": "Appeals",
+            "faq": [
+              {
+                "question": "What is an appeal?",
+                "answer": "An appeal is a request for a review of a decision made by the university, usually by an independent body."
+              },
+              {
+                "question": "Who can submit an appeal?",
+                "answer": "Any student who is affected by a decision made by the university, including those who have been disciplined, can submit an appeal."
+              },
+              {
+                "question": "What can I appeal?",
+                "answer": "You can appeal against any decision made by the university that affects you, such as a decision on your academic progression or the outcome of a disciplinary hearing."
+              },
+              {
+                "question": "What is the deadline for submitting an appeal?",
+                "answer": "The deadline for submitting an appeal is usually 28 days from the date of the decision you are appealing against. However, this may vary depending on the circumstances, so it is important to check with the university."
+              },
+              {
+                "question": "How do I submit an appeal?",
+                "answer": "You should follow the university's appeals procedure, which will usually involve submitting a written statement outlining your grounds for appeal."
+              },
+              {
+                "question": "What happens after I submit an appeal?",
+                "answer": "Your appeal will be reviewed by an independent body, which will make a decision on whether to uphold or reject your appeal. This decision is final and binding."
+              },
+              {
+                "question": "What should I do if my appeal is rejected?",
+                "answer": "If your appeal is rejected, you may have the right to submit a further appeal to a higher body, such as an ombudsman or external regulator."
+              },
+              {
+                "question": "What are the grounds for a successful appeal?",
+                "answer": "The grounds for a successful appeal will depend on the specific circumstances of your case, but may include procedural irregularities, the university failing to take into account relevant evidence, or the decision being unreasonable or disproportionate."
+              },
+              {
+                "question": "Can I get help with my appeal?",
+                "answer": "Yes, you should be able to access advice and support from the university's student union or welfare services, or from external organizations such as the Citizens Advice Bureau or a legal clinic."
+              },
+              {
+                "question": "How long does an appeal take to be resolved?",
+                "answer": "The length of time it takes to resolve an appeal will depend on the complexity of the case and the availability of the independent body reviewing the appeal. However, the university should provide you with an estimated timeframe for the process."
+              },
+              {
+                "question": "Can I attend my appeal hearing?",
+                "answer": "Yes, you should be given the opportunity to attend your appeal hearing and make representations in person or via video conferencing."
+              },
+              {
+                "question": "Will I be allowed to see the evidence against me?",
+                "answer": "Yes, you should be given the opportunity to see all of the evidence that will be considered during your appeal."
+              },
+              {
+                "question": "Will submitting an appeal affect my academic progress?",
+                "answer": "Submitting an appeal should not have any impact on your academic progress or future opportunities within the university."
+              },
+              {
+                "question": "Do I need legal representation for my appeal?",
+                "answer": "You do not necessarily need legal representation for your appeal, although you may choose to seek advice from a legal professional if you wish."
+              },
+              {
+                "question": "What is the difference between an appeal and a complaint?",
+                "answer": "An appeal is a request for a review of a specific decision made by the university, whereas a complaint is an expression of dissatisfaction with the university's policies or procedures, or with the conduct of staff or students."
+              }
+            ]
+          }, 
+          {
+            "sub_section": "Complaints",
+            "faq": [
+              {
+                "question": "What is a complaint?",
+                "answer": "A complaint is an expression of dissatisfaction with the university's policies or procedures, or with the conduct of staff or students."
+              },
+              {
+                "question": "Who can submit a complaint?",
+                "answer": "Any student or member of the public who has a concern or complaint about the university can submit a complaint."
+              },
+              {
+                "question": "What can I complain about?",
+                "answer": "You can complain about any aspect of the university's policies, procedures or conduct, including academic matters, welfare issues, accommodation, facilities, and services."
+              },
+              {
+                "question": "What is the deadline for submitting a complaint?",
+                "answer": "There is no set deadline for submitting a complaint, but it is generally advisable to do so as soon as possible after the incident or issue that you are complaining about."
+              },
+              {
+                "question": "How do I submit a complaint?",
+                "answer": "You should follow the university's complaints procedure, which will usually involve submitting a written statement outlining your complaint and the desired outcome."
+              },
+              {
+                "question": "What happens after I submit a complaint?",
+                "answer": "Your complaint will be investigated by the relevant department or member of staff, who will respond to your complaint in writing and provide an explanation or resolution where possible."
+              },
+              {
+                "question": "What should I do if I am not satisfied with the response to my complaint?",
+                "answer": "If you are not satisfied with the response to your complaint, you may have the right to escalate your complaint to a higher authority within the university or to an external regulator."
+              },
+              {
+                "question": "Can I get help with my complaint?",
+                "answer": "Yes, you should be able to access advice and support from the university's student union or welfare services, or from external organizations such as the Citizens Advice Bureau or a legal clinic."
+              },
+              {
+                "question": "Will submitting a complaint affect my relationship with the university?",
+                "answer": "Submitting a complaint should not have any negative impact on your relationship with the university, and you should be able to continue your studies or engagement with the university as normal."
+              },
+              {
+                "question" : "Can I submit an anonymous complaint?",
+                "answer" : "The university prefers complainants to provide their contact details, but anonymous complaints will be considered if they contain sufficient information to allow an investigation."
+              },
+              {
+                "question" : "What is the role of the Complaints Office?",
+                "answer" : "The Complaints Office provides advice and support to complainants, coordinates the investigation of complaints, and ensures that complaints are resolved in a timely and fair manner."
+              },
+              {
+                "question" : "Can I withdraw my complaint?",
+                "answer" : "Yes, you can withdraw your complaint at any time, but the university may still investigate if it considers the complaint to be in the public interest."
+              },
+              {
+                "question" : "What if my complaint involves a member of staff?",
+                "answer" : "If your complaint involves a member of staff, the university will take appropriate action, which may include disciplinary proceedings. The university also has a separate procedure for dealing with allegations of misconduct by staff."
+              }              
+            ]
+          }, 
+          {
+            "sub_section": "Misconduct",
+            "faq": [
+                {
+                  "question": "What is academic misconduct?",
+                  "answer": "Academic misconduct includes any actions that are contrary to the principles of academic integrity, such as plagiarism, cheating, or falsifying research data."
+                },
+                {
+                  "question": "What are the consequences of academic misconduct?",
+                  "answer": "The consequences of academic misconduct can vary, but typically include penalties such as a failing grade for the assignment or course, suspension or expulsion from the institution, and damage to your academic and professional reputation."
+                },
+                {
+                  "question": "How do I report academic misconduct?",
+                  "answer": "You should report academic misconduct to the relevant department or institution as soon as possible. You may need to provide evidence of the misconduct."
+                },
+                {
+                  "question": "What is the process for investigating academic misconduct?",
+                  "answer": "The process for investigating academic misconduct can vary depending on the institution and the severity of the misconduct. Typically, a committee or board will be formed to investigate the allegations and make a decision on the appropriate penalties."
+                },
+                {
+                  "question": "What support is available for students accused of academic misconduct?",
+                  "answer": "Students accused of academic misconduct may be entitled to support and advice from the institution's student services department, student union, or legal services."
+                },
+                {
+                  "question": "Can I appeal a decision related to academic misconduct?",
+                  "answer": "Yes, you may be able to appeal a decision related to academic misconduct. You should follow the institution's appeals process and provide evidence to support your appeal."
+                },
+                {
+                  "question": "What is professional misconduct?",
+                  "answer": "Professional misconduct includes any actions that are contrary to the principles of professional ethics, such as fraud, dishonesty, or breach of confidentiality."
+                },
+                {
+                  "question": "What are the consequences of professional misconduct?",
+                  "answer": "The consequences of professional misconduct can vary depending on the severity of the misconduct and the profession. Typically, they may include loss of employment, revocation of professional licenses, or legal action."
+                },
+                {
+                  "question": "How do I report professional misconduct?",
+                  "answer": "You should report professional misconduct to the relevant regulatory body or professional association as soon as possible. You may need to provide evidence of the misconduct."
+                },
+                {
+                  "question": "What is the process for investigating professional misconduct?",
+                  "answer": "The process for investigating professional misconduct can vary depending on the profession and the regulatory body or professional association. Typically, a committee or board will be formed to investigate the allegations and make a decision on the appropriate penalties."
+                },
+                {
+                  "question": "What is research misconduct?",
+                  "answer": "Research misconduct includes any actions that are contrary to the principles of research integrity, such as fabrication, falsification, or plagiarism of research data."
+                },
+                {
+                  "question": "What are the consequences of research misconduct?",
+                  "answer": "The consequences of research misconduct can vary, but typically include penalties such as retraction of published research, loss of funding, and damage to your academic and professional reputation."
+                },
+                {
+                  "question": "How do I report research misconduct?",
+                  "answer": "You should report research misconduct to the relevant department or institution as soon as possible. You may need to provide evidence of the misconduct."
+                },
+                {
+                  "question": "What is the process for investigating research misconduct?",
+                  "answer": "The process for investigating research misconduct can vary depending on the institution and the severity of the misconduct. Typically, a committee or board will be formed to investigate the allegations and make a decision on the appropriate penalties."
+                },
+                {
+                  "question": "What is the difference between academic and professional misconduct?",
+                  "answer": "Academic misconduct refers to actions that are contrary to the principles of academic integrity, while professional misconduct refers to actions that are contrary to the principles of professional ethics."
+                },
+                {
+                  "question": "What is the role of the institution in dealing with misconduct?",
+                  "answer": "The institution has a responsibility to investigate and address all allegations of misconduct, and to ensure that appropriate penalties are applied. They may also provide support and guidance to students and staff involved in the process."
+                },
+                {
+                  "question": "Can I be accused of misconduct for unintentional actions?",
+                  "answer": "Misconduct generally requires intent or negligence, so unintentional actions are unlikely to be considered misconduct. However, it is important to be aware of the relevant policies and guidelines to avoid unintentional breaches of academic or professional integrity."
+                },
+                {
+                  "question": "What is the importance of academic and professional integrity?",
+                  "answer": "Academic and professional integrity are essential for maintaining trust and credibility in academic and professional communities. Breaches of integrity can have serious consequences for individuals and the wider community, and can undermine the value of education and research."
+                },
+                {
+                  "question": "What is the responsibility of students and staff in maintaining academic and professional integrity?",
+                  "answer": "Students and staff have a responsibility to maintain academic and professional integrity by adhering to relevant policies and guidelines, and by reporting any suspected breaches of integrity. They should also seek support and guidance if they are unsure about how to maintain integrity in their work."
+                },
+                {
+                  "question": "What is the difference between misconduct and poor academic performance?",
+                  "answer": "Misconduct refers to intentional or negligent actions that are contrary to the principles of academic or professional integrity, while poor academic performance refers to a lack of academic achievement or progress. Poor academic performance is generally not considered misconduct, but may require support and guidance to improve."
+                }
+              ]
+          },
+          {
+            "sub_section" : "Fitness to practise",
+            "faq" : [
+                {
+                "question" : "What does 'fitness to practise' mean?",
+                "answer" : "Fitness to practise refers to a student's ability to meet the standards required for their chosen profession or course of study."
+                },
+                {
+                "question" : "What happens if a student is deemed unfit to practise?",
+                "answer" : "If a student is deemed unfit to practise, they may be subject to disciplinary action or prevented from continuing on their chosen course of study."
+                },
+                {
+                "question" : "What kinds of issues might lead to a fitness to practise concern?",
+                "answer" : "Issues such as ethical misconduct, lack of professionalism, or failure to meet academic or clinical standards may lead to a fitness to practise concern."
+                },
+                {
+                "question" : "What should I do if I have concerns about a student's fitness to practise?",
+                "answer" : "If you have concerns about a student's fitness to practise, you should report those concerns to the appropriate authorities at your institution."
+                },
+                {
+                "question" : "What kind of support is available to students who are struggling with fitness to practise issues?",
+                "answer" : "Most institutions have resources available to help students who are struggling with fitness to practise issues, such as counselling services or academic support programs."
+                }
+              ]
+          }
+        ]
+      },      
+      {
+        "department" : "Dignity & Inclusion",
+        "sub_sections" : [
+          {
+              "sub_section" : "Reporting incidents",
+              "faq" : [
+              {
+                "question" : "What kind of incidents should be reported to the Dignity & Inclusion department?",
+                "answer" : "Any incident that violates the university's policies on discrimination, harassment, or hate speech should be reported to the Dignity & Inclusion department."
+              },
+              {
+                "question" : "How do I report an incident?",
+               "answer" : "You can report an incident by contacting the Dignity & Inclusion department directly or through the university's online reporting system."
+              },
+              {
+                "question" : "Is reporting an incident confidential?",
+                "answer" : "The Dignity & Inclusion department will make every effort to keep your report confidential, but some information may need to be shared with other university officials in order to address the incident."
+              },
+              {
+                "question" : "What happens after I report an incident?",
+                "answer" : "The Dignity & Inclusion department will investigate the incident and take appropriate action, which may include disciplinary measures or providing support to those affected by the incident."
+              },
+              {
+                "question" : "What kind of support is available to those who report an incident?",
+                "answer" : "Most institutions have resources available to support individuals who have experienced discrimination, harassment, or other incidents. These may include counselling services, legal support, or advocacy programs."
+              },
+              {
+                "question" : "What can I do to support someone who has experienced an incident?",
+                "answer" : "If you know someone who has experienced an incident, you can offer your support by listening to them, validating their feelings, and helping them access the resources they need."
+              }
+              ]
+          },
+          {
+              "sub_section" : "Principles, Definitions & Policies",
+              "faq" : [
+                  {
+                  "question" : "What is dignity and inclusion?",
+                  "answer" : "Dignity and inclusion refers to the university's commitment to promoting an environment that is respectful, inclusive, and free from discrimination, harassment, and bullying."
+                  },
+                  {
+                  "question" : "What are the university's policies on dignity and inclusion?",
+                  "answer" : "The university has a number of policies that support its commitment to dignity and inclusion, including the Dignity at Work and Study Policy, the Harassment and Bullying Policy, and the Equal Opportunities Policy."
+                  },
+                  {
+                  "question" : "What is the role of the Dignity & Inclusion Office?",
+                  "answer" : "The Dignity & Inclusion Office provides advice and support to students and staff who have concerns or complaints related to discrimination, harassment, or bullying."
+                  },
+                  {
+                  "question" : "What is the definition of discrimination?",
+                  "answer" : "Discrimination is when someone is treated unfairly or differently because of a protected characteristic, such as age, disability, gender reassignment, marriage or civil partnership, pregnancy or maternity, race, religion or belief, sex, or sexual orientation."
+                  },
+                  {
+                  "question" : "What is the definition of harassment?",
+                  "answer" : "Harassment is when someone behaves in a way that is unwanted, offensive, or intimidating, and that violates someone's dignity or creates an intimidating, hostile, degrading, humiliating, or offensive environment."
+                  },
+                  {
+                  "question" : "What should I do if I experience discrimination or harassment?",
+                  "answer" : "You should report the incident to the Dignity & Inclusion Office as soon as possible. They will provide advice and support, and will investigate the incident in accordance with the university's policies."
+                  },
+                  {
+                  "question" : "What happens if I'm found to have breached the university's dignity and inclusion policies?",
+                  "answer" : "If you're found to have breached the university's dignity and inclusion policies, you may face disciplinary action, which could include a warning, suspension, or expulsion. The severity of the action will depend on the nature and severity of the breach."
+                  },
+                  {
+                  "question" : "What is the role of the Dignity & Inclusion Steering Group?",
+                  "answer" : "The Dignity & Inclusion Steering Group oversees the implementation of the university's dignity and inclusion policies and ensures that they are effective and up to date."
+                  },
+                  {
+                  "question" : "What is the difference between direct and indirect discrimination?",
+                  "answer" : "Direct discrimination is when someone is treated less favourably because of a protected characteristic. Indirect discrimination is when a policy or practice that applies to everyone puts someone with a protected characteristic at a disadvantage."
+                  },
+                  {
+                  "question" : "What is the definition of bullying?",
+                  "answer" : "Bullying is when someone repeatedly behaves unreasonably towards another person, and that behaviour creates a risk to the health, safety, or welfare of the person being bullied."
+                  }
+                ]
+          },
+          {
+              "sub_section" : "Supporting Diverse & Specific Needs",
+              "faq" : [
+                {
+                "question" : "What does the university do to support students with disabilities?",
+                "answer" : "The university has a Disability Support Service that provides advice, guidance, and support to students with disabilities. This includes arranging accommodations such as accessible accommodation, exam adjustments, and note-takers."
+                },
+                {
+                "question" : "What is neurodiversity and how does the university support neurodivergent students?",
+                "answer" : "Neurodiversity refers to the natural variation in how people's brains work, including conditions such as autism, ADHD, and dyslexia. The university has a Neurodiversity Support Service that provides support to neurodivergent students, including academic support and advice on accessing accommodations."
+                },
+                {
+                "question" : "What is the difference between a disability and a specific learning difficulty?",
+                "answer" : "A disability is a long-term or recurring condition that affects someone's ability to carry out normal day-to-day activities. A specific learning difficulty, such as dyslexia, is a condition that affects how someone learns and processes information, but does not necessarily affect their day-to-day activities. Both disabilities and specific learning difficulties may require accommodations and support."
+                },
+                {
+                "question" : "How can I access support for my specific learning difficulty?",
+                "answer" : "You can contact the Disability Support Service to arrange a needs assessment. This will help to identify the accommodations and support you may need, such as extra time in exams, assistive technology, or note-takers."
+                },
+                {
+                "question" : "What is the role of the Mental Health and Wellbeing team?",
+                "answer" : "The Mental Health and Wellbeing team provides support to students who are experiencing mental health difficulties. This includes counselling, wellbeing workshops, and advice on accessing other support services."
+                },
+                {
+                "question" : "How does the university support students from underrepresented backgrounds?",
+                "answer" : "The university has a number of initiatives to support students from underrepresented backgrounds, such as scholarships and bursaries, outreach programmes, and mentorship schemes."
+                },
+                {
+                "question" : "What is the role of the Faith and Spirituality Centre?",
+                "answer" : "The Faith and Spirituality Centre provides support and resources to students of all faiths and beliefs. This includes prayer spaces, religious events and celebrations, and support for spiritual wellbeing."
+                },
+                {
+                "question" : "What is the university's policy on gender identity and expression?",
+                "answer" : "The university is committed to promoting an environment that is inclusive and welcoming to people of all gender identities and expressions. This includes providing support and accommodations to trans and non-binary students, such as gender-neutral bathrooms and changing facilities."
+                },
+                {
+                "question" : "How does the university support students who are carers?",
+                "answer" : "The university has a Carers Network that provides support and advice to students who are caring for someone else, such as a family member or friend. This includes help with balancing caring responsibilities and academic work, and advice on accessing financial support."
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "department" : "Document & Letter Requests",
+        "sub_sections" : [
+          {
+            "sub_section" : "During Your Studies",
+            "faq" : [
+                {
+                "question" : "How do I request a transcript of my grades?",
+                "answer" : "You can request an official transcript of your grades through our online student portal. Simply log in and follow the instructions to place your request."
+                },
+                {
+                "question" : "How long does it take to receive a transcript?",
+                "answer" : "Transcript processing times vary, but you can expect to receive your official transcript within 7-10 business days from the date of your request."
+                },
+                {
+                "question" : "Can I request a letter of enrollment?",
+                "answer" : "Yes, you can request a letter of enrollment through our online student portal. This letter verifies that you are currently enrolled in our university and can be used for various purposes, such as visa applications or loan deferment requests."
+                },
+                {
+                "question" : "How long does it take to receive a letter of enrollment?",
+                "answer" : "Letter of enrollment processing times vary, but you can expect to receive your letter within 3-5 business days from the date of your request."
+                },
+                {
+                "question" : "Can I request a replacement degree certificate?",
+                "answer" : "Yes, you can request a replacement degree certificate if your original certificate has been lost, stolen, or damaged. Please note that there is a fee for this service."
+                },
+                {
+                "question" : "How do I request a replacement degree certificate?",
+                "answer" : "To request a replacement degree certificate, please contact the university's Registrar's Office and they will provide you with the necessary information and forms."
+                },
+                {
+                "question" : "Can I request a letter of recommendation from a professor?",
+                "answer" : "Yes, you can request a letter of recommendation from a professor. It is recommended that you make this request well in advance of any application deadlines, and that you provide your professor with ample time to write a strong letter."
+                },
+                {
+                "question" : "How do I request a letter of recommendation?",
+                "answer" : "To request a letter of recommendation, you should speak directly with the professor you would like to ask. Provide them with information about the program or opportunity you are applying for, as well as any relevant details about your academic or professional background."
+                },
+                {
+                "question" : "Can I request a certificate of attendance?",
+                "answer" : "Yes, you can request a certificate of attendance. This certificate verifies that you have attended a specific course or program at our university and can be used for various purposes, such as professional development or continuing education requirements."
+                },
+                {
+                "question" : "How long does it take to receive a certificate of attendance?",
+                "answer" : "Certificate of attendance processing times vary, but you can expect to receive your certificate within 3-5 business days from the date of your request."
+                },
+                {
+                  "question" : "Can I request a confirmation of award letter?",
+                  "answer" : "Yes, you can request a confirmation of award letter that verifies the details of your degree, including your program of study, degree classification, and graduation date. This letter can be used for various purposes, such as job applications or further education opportunities."
+                },
+                {
+                  "question" : "How long does it take to receive a confirmation of award letter?",
+                  "answer" : "Confirmation of award letter processing times vary, but you can expect to receive your letter within 7-10 business days from the date of your request."
+                },
+                {
+                  "question" : "Can I request a letter for council tax exemption?",
+                  "answer" : "Yes, you can request a letter that confirms your student status and eligibility for council tax exemption. This letter can be used to apply for a council tax exemption or reduction."
+                },
+                {
+                  "question" : "How do I request a letter for council tax exemption?",
+                  "answer" : "To request a letter for council tax exemption, please contact our student services team and they will provide you with the necessary information and forms."
+                },
+                {
+                  "question" : "Can I request a replacement student ID card?",
+                  "answer" : "Yes, you can request a replacement student ID card if your original card has been lost or stolen. Please note that there is a fee for this service."
+                },
+                {
+                  "question" : "How do I request a replacement student ID card?",
+                  "answer" : "To request a replacement student ID card, please contact our student services team and they will provide you with the necessary information and forms."
+                },
+                {
+                  "question" : "Can I request a letter of permission to study abroad?",
+                  "answer" : "Yes, you can request a letter of permission that confirms your eligibility to participate in a study abroad program. This letter can be used to apply for visas or other necessary documentation."
+                },
+                {
+                  "question" : "How do I request a letter of permission to study abroad?",
+                  "answer" : "To request a letter of permission to study abroad, please speak with the advisor in charge of study abroad programs and they will provide you with the necessary information and forms."
+                },
+                {
+                  "question" : "Can I request a letter for student housing?",
+                  "answer" : "Yes, you can request a letter that confirms your student status and eligibility for student housing. This letter can be used to apply for on-campus or off-campus housing options."
+                },
+                {
+                  "question" : "How do I request a letter for student housing?",
+                  "answer" : "To request a letter for student housing, please contact our student services team and they will provide you with the necessary information and forms."
+                }
+              ]
+          }, 
+          {
+            "sub_section": "Studying on a visa",
+              "faq": [
+                {
+                "question": "What documents do I need to provide to get a Confirmation of Acceptance for Studies (CAS)?",
+                "answer": "To get a CAS, you will need to provide us with your passport details, academic qualifications, and evidence of your English language proficiency. You may also need to provide evidence of your finances and immigration history."
+                },
+                {
+                "question": "How long does it take to process a CAS request?",
+                "answer": "It can take up to 10 working days to process a CAS request, so please ensure that you submit your request well in advance of your intended start date."
+                },
+                {
+                "question": "Can I request a CAS if I am a part-time student?",
+                "answer": "Yes, you can request a CAS if you are a part-time student, provided that you meet the eligibility criteria."
+                },
+                {
+                "question": "Can I request a CAS if I am an exchange student?",
+                "answer": "No, if you are an exchange student, you do not need a CAS, as you will be applying for a short-term study visa."
+                },
+                {
+                "question": "Do I need a police registration certificate to apply for a CAS?",
+                "answer": "If you are from a country that requires you to register with the police, you will need to provide a police registration certificate as part of your CAS request."
+                },
+                {
+                "question": "How do I request a letter to extend my visa?",
+                "answer": "To request a letter to extend your visa, please contact our visa team and provide them with the details of your current visa and the reason for your extension."
+                },
+                {
+                "question": "Can I request a letter to open a bank account?",
+                "answer": "Yes, you can request a letter to open a bank account. Please contact our student services team and provide them with the details of the bank you wish to open an account with."
+                },
+                {
+                "question": "How do I request a letter to invite my family to visit me in the UK?",
+                "answer": "To request a letter to invite your family to visit you in the UK, please contact our student services team and provide them with the details of your family members and the reason for their visit."
+                },
+                {
+                "question": "How long does it take to process a request for a visa letter?",
+                "answer": "It can take up to five working days to process a request for a visa letter, so please ensure that you submit your request well in advance of your intended use."
+                },
+                {
+                "question": "Can I request a letter to confirm my student status?",
+                "answer": "Yes, you can request a letter to confirm your student status. Please contact our student services team and provide them with the details of the institution or organization that requires the letter."
+                }, 
+                {
+                  "question": "What documents do I need to provide to request a confirmation of enrolment letter for my visa application?",
+                  "answer": "You will need to provide a copy of your passport, visa, and current residential address. If you are a new student, you will also need to provide proof of acceptance onto a course."
+                },
+                {
+                  "question": "Can I request a letter to extend my visa?",
+                  "answer": "We can provide a confirmation of enrolment letter to support a visa extension application. Please contact us for more information."
+                },
+                {
+                  "question": "How long does it take to process a visa letter request?",
+                  "answer": "We aim to process visa letter requests within 5 working days, but this may take longer during peak periods."
+                },
+                {
+                  "question": "Can I request a visa letter if I have not yet enrolled?",
+                  "answer": "We can only provide a visa letter once you have fully enrolled on a course. If you have not yet enrolled, please complete this process first and then contact us to request a letter."
+                },
+                {
+                  "question": "What is a CAS number and how can I get one?",
+                  "answer": "A Confirmation of Acceptance for Studies (CAS) number is required for a Tier 4 student visa application. Your university will issue a CAS number once you have met all the necessary conditions of your offer."
+                },
+                {
+                  "question": "Do I need to provide evidence of financial support when requesting a visa letter?",
+                  "answer": "We may ask for evidence of financial support when processing a visa letter request, as this is a requirement for Tier 4 visa applications. Please see our website for more information on financial requirements."
+                },
+                {
+                  "question": "Can I request a visa letter if I am a distance learning student?",
+                  "answer": "We can provide a visa letter for distance learning students, but please note that this may not be sufficient for a Tier 4 visa application. Please check the visa requirements carefully before applying."
+                },
+                {
+                  "question": "What should I do if my visa application is refused?",
+                  "answer": "If your visa application is refused, please let us know as soon as possible. We can provide advice and support to help you understand the reasons for the refusal and your options for appeal or reapplication."
+                },
+                {
+                  "question": "Can I request a visa letter for my dependants?",
+                  "answer": "We can provide visa letters for dependants of Tier 4 students, but please note that they will also need to meet the visa requirements and provide evidence of financial support."
+                }
+              ]
+          },
+          {
+            "sub_section": "Finishing your studies",
+              "faq": [
+                {
+                  "question": "How do I request a degree certificate?",
+                  "answer": "You can request a degree certificate through our online portal by logging into your student account and following the instructions for requesting a certificate."
+                },
+                {
+                  "question": "How long does it take to receive a degree certificate?",
+                  "answer": "It typically takes around 3-5 working days to process a degree certificate request, plus additional time for postage. If you require the certificate urgently, please contact us."
+                },
+                {
+                  "question": "How do I request a transcript of my academic record?",
+                  "answer": "You can request a transcript of your academic record through our online portal by logging into your student account and following the instructions for requesting a transcript."
+                },
+                {
+                  "question": "How long does it take to receive a transcript?",
+                  "answer": "It typically takes around 3-5 working days to process a transcript request, plus additional time for postage. If you require the transcript urgently, please contact us."
+                },
+                {
+                  "question": "Can I request a letter confirming my graduation?",
+                  "answer": "Yes, you can request a letter confirming your graduation through our online portal by logging into your student account and following the instructions for requesting a letter."
+                },
+                {
+                  "question": "How long does it take to receive a graduation confirmation letter?",
+                  "answer": "It typically takes around 3-5 working days to process a graduation confirmation letter request, plus additional time for postage. If you require the letter urgently, please contact us."
+                },
+                {
+                  "question": "Can I request a letter confirming my student status?",
+                  "answer": "Yes, you can request a letter confirming your student status through our online portal by logging into your student account and following the instructions for requesting a letter."
+                },
+                {
+                  "question": "How long does it take to receive a student status confirmation letter?",
+                  "answer": "It typically takes around 3-5 working days to process a student status confirmation letter request, plus additional time for postage. If you require the letter urgently, please contact us."
+                },
+                {
+                  "question": "Can I request a letter confirming my academic standing?",
+                  "answer": "Yes, you can request a letter confirming your academic standing through our online portal by logging into your student account and following the instructions for requesting a letter."
+                },
+                {
+                  "question": "How long does it take to receive an academic standing confirmation letter?",
+                  "answer": "It typically takes around 3-5 working days to process an academic standing confirmation letter request, plus additional time for postage. If you require the letter urgently, please contact us."
+                },
+                {
+                  "question": "How do I request a transcript of my grades?",
+                  "answer": "You can request a transcript of your grades through our online portal. Log in to the portal with your student account, go to the transcript request section, and follow the prompts. You may be required to pay a fee for this service."
+                },
+                {
+                  "question": "Can I request a letter confirming that I have completed my degree requirements?",
+                  "answer": "Yes, you can request a degree confirmation letter through our online portal. Log in to the portal with your student account, go to the degree confirmation letter request section, and follow the prompts. You may be required to pay a fee for this service."
+                },
+                {
+                  "question": "How long does it take to receive my degree certificate after I have completed my degree requirements?",
+                  "answer": "It typically takes 6-8 weeks after your degree has been awarded for your certificate to be printed and mailed to you. You will receive an email notification when your certificate has been mailed."
+                },
+                {
+                  "question": "Can I get a replacement degree certificate if I lose my original?",
+                  "answer": "Yes, you can request a replacement degree certificate through our online portal. Log in to the portal with your student account, go to the replacement degree certificate request section, and follow the prompts. You may be required to pay a fee for this service."
+                },
+                {
+                  "question": "How do I get a letter confirming that I have completed my studies early?",
+                  "answer": "You can request an early completion letter through our online portal. Log in to the portal with your student account, go to the early completion letter request section, and follow the prompts. You may be required to pay a fee for this service."
+                },
+                {
+                  "question": "Can I request a letter confirming that I have paid all outstanding fees?",
+                  "answer": "Yes, you can request a letter confirming that you have paid all outstanding fees through our online portal. Log in to the portal with your student account, go to the outstanding fees confirmation letter request section, and follow the prompts. You may be required to pay a fee for this service."
+                },
+                {
+                  "question": "How can I get a letter for my visa application?",
+                  "answer": "You can request a visa letter through our online portal. Log in to the portal with your student account, go to the visa letter request section, and follow the prompts. You may be required to provide specific information and pay a fee for this service."
+                }        
+              ]
+          }
+        ]
+      },
+      {
+        "department" : "Fees, funding & money advice",
+        "sub_sections" : [
+          {
+            "sub_section" : "Applying for funding, bursaries & scholarships",
+            "faq" : [
+              {
+                "question" : "What types of funding are available?",
+                "answer" : "There are different types of funding available such as scholarships, bursaries, grants, loans, and awards. Each funding opportunity has its own criteria and requirements."
+              }, 
+              {
+                "question" : "How do I apply for a scholarship?",
+                "answer" : "Scholarship applications typically require you to fill out an application form, submit a personal statement or essay, and provide references. Make sure to read the application instructions carefully and meet all the requirements before submitting your application."
+              },
+              {
+                "question" : "What are the eligibility requirements for a bursary?",
+                "answer" : "Eligibility requirements for bursaries can vary depending on the specific program, but typically they are based on financial need, academic merit, or other factors."
+              },
+              {
+                "question" : "How can I find funding opportunities?",
+                "answer" : "You can search for funding opportunities on the university's website or through external funding databases. You can also speak to your academic department or the student funding office for advice on available funding."
+              },
+              {
+                "question" : "What is the deadline to apply for scholarships?",
+                "answer" : "The deadline to apply for scholarships varies depending on the program. It is important to check the specific deadline for the scholarship you are interested in and make sure to submit your application before the deadline."
+              },
+              {
+                "question" : "What is the difference between a scholarship and a bursary?",
+                "answer" : "Scholarships are typically based on academic merit or other achievements, while bursaries are awarded based on financial need."
+              },
+              {
+                "question" : "Do I need to repay scholarships or bursaries?",
+                "answer" : "No, scholarships and bursaries are typically non-repayable funding. However, some awards may have conditions attached, such as maintaining a certain GPA or completing a specific research project."
+              },
+              {
+                "question" : "Can I apply for multiple scholarships and bursaries?",
+                "answer" : "Yes, you can apply for multiple scholarships and bursaries as long as you meet the eligibility requirements for each program. However, you may need to submit separate applications for each opportunity."
+              },
+              {
+                "question" : "Who can I contact for help with my funding application?",
+                "answer" : "You can contact the student funding office or the academic department for advice and guidance on your funding application."
+              },
+              {
+                "question" : "What should I do if I have missed the deadline for a scholarship or bursary?",
+                "answer" : "If you have missed the deadline for a scholarship or bursary, you may need to wait until the next application cycle. However, you can still explore other funding opportunities that may be available."
+              }
+            ]
+          }, 
+          {
+            "sub_section": "Money Advice",
+            "faq": [
+              {
+                "question": "What kind of financial advice can I receive from the university?",
+                "answer": "The university can provide advice on a range of financial matters, such as budgeting, managing debt, and accessing government financial support."
+              },
+              {
+                "question": "Is there a fee for the financial advice provided by the university?",
+                "answer": "No, the financial advice provided by the university is free of charge for students and staff."
+              },
+              {
+                "question": "What kind of financial support is available for students?",
+                "answer": "The university offers a range of financial support options for students, including scholarships, bursaries, and hardship funds."
+              },
+              {
+                "question": "How can I apply for financial support from the university?",
+                "answer": "You can apply for financial support by completing an application form and providing relevant evidence of your financial circumstances."
+              },
+              {
+                "question": "What should I do if I am struggling to pay my tuition fees?",
+                "answer": "You should contact the university's finance department as soon as possible to discuss your options, such as setting up a payment plan or applying for financial support."
+              },
+              {
+                "question": "Is there financial support available for international students?",
+                "answer": "Yes, the university offers financial support for international students, including scholarships and hardship funds."
+              },
+              {
+                "question": "Can I receive financial support if I am a part-time student?",
+                "answer": "Yes, part-time students may be eligible for financial support, depending on their circumstances and the specific support options available at the university."
+              },
+              {
+                "question": "Will my financial information be kept confidential?",
+                "answer": "Yes, the university will keep your financial information confidential and will only share it with relevant staff members on a need-to-know basis."
+              },
+              {
+                "question": "Can the university provide advice on managing my student loan?",
+                "answer": "Yes, the university can provide advice on managing your student loan, including repayment options and strategies for reducing your debt."
+              },
+              {
+                "question": "How can I contact the money advice team at the university?",
+                "answer": "You can contact the money advice team by phone, email, or in person at the university's student services office."
+              }
+            ]
+          },
+          {
+            "sub_section": "Paying Fees",
+            "faq": [
+              {
+                "question": "What payment methods are accepted for tuition fees?",
+                "answer": "The university accepts several payment methods for tuition fees, including online payments, bank transfers, and credit/debit card payments."
+              },
+              {
+                "question": "Can I pay my tuition fees in instalments?",
+                "answer": "Yes, the university offers the option to pay tuition fees in instalments, typically over three or four payments."
+              },
+              {
+                "question": "Is there a deadline for paying my tuition fees?",
+                "answer": "Yes, tuition fees must be paid by a specific deadline, which is usually stated in the offer letter or on the university's website."
+              },
+              {
+                "question": "What happens if I miss the deadline for paying my tuition fees?",
+                "answer": "If you miss the deadline for paying your tuition fees, you may incur late payment fees or risk having your enrolment cancelled."
+              },
+              {
+                "question": "Can I apply for a tuition fee loan to pay for my fees?",
+                "answer": "Yes, UK and EU students can apply for a tuition fee loan from the government to cover the cost of their tuition fees."
+              },
+              {
+                "question": "How do I apply for a tuition fee loan?",
+                "answer": "You can apply for a tuition fee loan through the government's student finance website."
+              },
+              {
+                "question": "Do I have to repay my tuition fee loan immediately after graduation?",
+                "answer": "No, you will only start repaying your tuition fee loan after you graduate and start earning above a certain threshold."
+              },
+              {
+                "question": "Can I get a discount on my tuition fees?",
+                "answer": "There may be discounts available for certain groups, such as siblings who are both studying at the university or students who pay their fees in full upfront. Check with the university's finance department for more information."
+              },
+              {
+                "question": "Can I get a refund for my tuition fees if I withdraw from my course?",
+                "answer": "It depends on the circumstances of your withdrawal and the university's refund policy. You should contact the university's finance department for more information."
+              },
+              {
+                "question": "What should I do if I am having difficulty paying my tuition fees?",
+                "answer": "You should contact the university's finance department as soon as possible to discuss your options, such as setting up a payment plan or applying for financial support."
+              }
+            ]
+          },
+          {
+            "sub_section": "Financial hardship",
+            "faq": [
+                {
+                 "question": "What is financial hardship?",
+                 "answer": "Financial hardship refers to a situation where you are experiencing difficulty in meeting your financial obligations, such as paying for tuition fees, accommodation, and living expenses."
+                },
+                {
+                 "question": "Who is eligible for financial hardship support?",
+                 "answer": "Each university has its own criteria for determining financial hardship eligibility. Generally, it is available to students who are experiencing unexpected financial difficulties that are impacting their ability to continue their studies."
+                },
+                {
+                 "question": "What types of financial support are available for students in financial hardship?",
+                 "answer": "Financial support for students in financial hardship can come in many forms, including emergency loans, bursaries, grants, scholarships, and hardship funds."
+                },
+                {
+                 "question": "How do I apply for financial hardship support?",
+                 "answer": "To apply for financial hardship support, you need to contact the university's student support services or financial aid office. They will provide you with the application form and guide you through the process."
+                },
+                {
+                 "question": "Is financial hardship support a loan or a grant?",
+                 "answer": "Financial hardship support can come in the form of a loan or a grant, depending on the university's policy. Some universities offer interest-free loans, while others provide non-repayable grants."
+                },
+                {
+                 "question": "How much financial hardship support can I receive?",
+                 "answer": "The amount of financial hardship support you can receive varies from university to university. The maximum amount you can receive is usually determined by your individual circumstances, such as your income and expenses."
+                },
+                {
+                 "question": "How long does it take to receive financial hardship support?",
+                 "answer": "The time it takes to receive financial hardship support varies depending on the university's policy and your individual circumstances. Some universities may provide emergency funds on the same day, while others may take several weeks to process your application."
+                },
+                {
+                 "question": "Will applying for financial hardship support affect my academic standing?",
+                 "answer": "No, applying for financial hardship support will not affect your academic standing. The university understands that financial difficulties can impact your ability to study, and they have support services in place to help you through these challenges."
+                },
+                {
+                 "question": "Can international students receive financial hardship support?",
+                 "answer": "Yes, international students are eligible for financial hardship support. However, the availability and amount of support may vary depending on the university's policy and the student's individual circumstances."
+                },
+                {
+                 "question": "What should I do if I am experiencing financial hardship but do not qualify for financial support?",
+                 "answer": "If you are experiencing financial hardship but do not qualify for financial support, you should contact the university's student support services or financial aid office. They may be able to provide you with advice on other sources of financial assistance or refer you to external organizations that can help."
+                }
+              ]
+          }
+        ]
+      },
+      {
+        "department": "Student Life",
+        "sub_sections": [
+          {
+            "sub_section": "Personal Tutoring",
+            "faq": [
+                  {
+                    "question": "What is personal tutoring and why is it important?",
+                    "answer": "Personal tutoring is a one-to-one support service offered by the university to help students make the most of their academic experience. Your personal tutor will offer guidance, advice, and support to help you manage your studies and achieve your goals."
+                  },
+                  {
+                    "question": "How do I find out who my personal tutor is?",
+                    "answer": "You can find out who your personal tutor is by checking your student portal or contacting the academic department for your course."
+                  },
+                  {
+                    "question": "What should I expect from my personal tutor?",
+                    "answer": "You should expect your personal tutor to provide academic and pastoral support throughout your time at the university. This may include guidance on your studies, advice on your career prospects, and support with any personal issues that may be affecting your academic performance."
+                  },
+                  {
+                    "question": "How often will I meet with my personal tutor?",
+                    "answer": "The frequency of meetings with your personal tutor will depend on your course and your individual needs. However, you can usually expect to meet with your tutor at least once a term, and more often if necessary."
+                  },
+                  {
+                    "question": "What should I do if I'm having problems with my personal tutor?",
+                    "answer": "If you are experiencing difficulties with your personal tutor, you should first try to resolve the issue directly with them. If this is not possible, you can speak to the head of department or the student support team for advice and guidance."
+                  },
+                  {
+                    "question": "What kind of support can I expect from my personal tutor?",
+                    "answer": "Your personal tutor can provide you with academic and pastoral support, including advice on how to manage your workload, feedback on your assignments, and guidance on career prospects."
+                  },
+                  {
+                    "question": "Can I choose my own personal tutor?",
+                    "answer": "No, personal tutors are assigned by the university based on your course and academic needs. However, if you have a specific request, you can contact the academic department to discuss your options."
+                  },
+                  {
+                    "question": "Can I change my personal tutor if I'm not happy with them?",
+                    "answer": "Yes, if you are not happy with your personal tutor, you can speak to the head of department or the student support team to request a change. However, it's important to try to resolve any issues with your tutor directly first."
+                  },
+                  {
+                    "question": "What should I do if I miss a meeting with my personal tutor?",
+                    "answer": "If you miss a meeting with your personal tutor, you should contact them as soon as possible to reschedule. It's important to attend all scheduled meetings with your tutor to make the most of the support they can offer."
+                  },
+                  {
+                    "question": "Can I contact my personal tutor outside of scheduled meetings?",
+                    "answer": "Yes, most personal tutors are happy to provide additional support via email or virtual meetings if necessary. However, it's important to respect their time and availability, and to arrange these additional meetings in advance."
+                  }
+            ]
+          }, 
+          {
+            "sub_section": "Campus Life & London",
+            "faq": [
+              {
+                "question": "What facilities are available on campus?",
+                "answer": "The university offers a wide range of facilities on campus, including libraries, computer labs, sports centers, cafes, and shops."
+              },
+              {
+                "question": "What events and activities are available on campus?",
+                "answer": "The university hosts a variety of events and activities throughout the year, including concerts, sports games, film screenings, and social events."
+              },
+              {
+                "question": "Is there accommodation available on campus?",
+                "answer": "Yes, the university offers a range of accommodation options on or near campus, including dormitories, shared apartments, and private rentals."
+              },
+              {
+                "question": "What transport options are available in London?",
+                "answer": "London has an extensive public transportation network, including buses, trains, and the famous Underground, or 'Tube' system."
+              },
+              {
+                "question": "What are some popular attractions in London?",
+                "answer": "Some popular attractions in London include the British Museum, the Tower of London, Buckingham Palace, and the West End theatre district."
+              },
+              {
+                "question": "How can I get involved in the local community?",
+                "answer": "The university offers a variety of volunteering and community service opportunities, and there are many local organizations and events that students can get involved with."
+              },
+              {
+                "question": "What is the nightlife like in London?",
+                "answer": "London has a vibrant nightlife scene, with many pubs, clubs, and live music venues open late into the night."
+              },
+              {
+                "question": "Is it expensive to live in London?",
+                "answer": "London can be an expensive city to live in, but the university offers a range of financial support options for students, including scholarships, bursaries, and loans."
+              },
+              {
+                "question": "What is the weather like in London?",
+                "answer": "London has a temperate maritime climate, with cool, wet winters and mild, damp summers."
+              },
+              {
+                "question": "What should I bring with me when I move to London?",
+                "answer": "You should bring appropriate clothing for the weather, any necessary travel documents, and any personal items that will help you feel at home in your new city."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "department": "Using Student Services Online",
+        "sub_sections": [
+          {
+            "sub_section": "System support & troubleshooting",
+            "faq": [
+              {
+                "question": "What is Student Services Online?",
+                "answer": "Student Services Online is a web-based system used by students to access a range of university services, including enrolment, course registration, exam results and fee payments."
+              },
+              {
+                "question": "How do I access Student Services Online?",
+                "answer": "You can access Student Services Online by logging in with your university username and password on the university's website."
+              },
+              {
+                "question": "What should I do if I can't log in to Student Services Online?",
+                "answer": "If you are having trouble logging in to Student Services Online, try resetting your password. If that doesn't work, contact the university's IT helpdesk for assistance."
+              },
+              {
+                "question": "I can't see a particular service on Student Services Online, what should I do?",
+                "answer": "If you can't see a particular service on Student Services Online, it may not be available to you yet. Contact the relevant department or service for more information."
+              },
+              {
+                "question": "Why am I getting an error message when I try to use Student Services Online?",
+                "answer": "There are several reasons why you might receive an error message when using Student Services Online, including network issues, browser problems, or system maintenance. Check the university's website for any updates or contact the IT helpdesk for assistance."
+              },
+              {
+                "question": "How do I troubleshoot technical issues with Student Services Online?",
+                "answer": "If you are experiencing technical issues with Student Services Online, try clearing your browser cache and cookies, or trying a different browser. If the problem persists, contact the IT helpdesk for assistance."
+              },
+              {
+                "question": "What do I do if I accidentally submit incorrect information on Student Services Online?",
+                "answer": "If you accidentally submit incorrect information on Student Services Online, contact the relevant department or service as soon as possible to rectify the mistake."
+              },
+              {
+                "question": "How can I provide feedback about Student Services Online?",
+                "answer": "The university may provide a feedback mechanism for Student Services Online, such as a survey or feedback form. Alternatively, you can contact the relevant department or service with your feedback."
+              },
+              {
+                "question": "What should I do if I suspect someone else has accessed my Student Services Online account?",
+                "answer": "If you suspect someone else has accessed your Student Services Online account, change your password immediately and contact the IT helpdesk for assistance."
+              },
+              {
+                "question": "Can I access Student Services Online after I have graduated?",
+                "answer": "Your access to Student Services Online may be limited or revoked after you have graduated. Contact the relevant department or service for more information."
+              }
+            ]
+          },  
+          {
+            "sub_section": "Reporting accessibility difficulties",
+              "faq": [
+              {
+              "question": "What should I do if I'm having difficulty accessing Student Services Online?",
+              "answer": "If you are having difficulty accessing Student Services Online due to accessibility issues, you should contact the university's accessibility team. They can provide advice and support on how to improve your experience."
+              },
+              {
+              "question": "What kind of accessibility issues can I report?",
+              "answer": "You can report any kind of accessibility issue you are experiencing when using Student Services Online. This could include issues with vision, hearing, mobility, or cognitive function."
+              },
+              {
+              "question": "How do I report an accessibility issue with Student Services Online?",
+              "answer": "You can report an accessibility issue with Student Services Online by contacting the university's accessibility team. They will be able to provide guidance on the process and any necessary steps to take."
+              },
+              {
+              "question": "What happens after I report an accessibility issue with Student Services Online?",
+              "answer": "After you report an accessibility issue with Student Services Online, the university's accessibility team will review your report and take any necessary actions to address the issue. They will also provide you with updates on the progress of the resolution."
+              },
+              {
+              "question": "Is there any support available to help me use Student Services Online with accessibility tools?",
+              "answer": "Yes, the university's accessibility team can provide advice and support on using Student Services Online with accessibility tools. They can also recommend tools and resources to help improve your experience."
+              },
+              {
+              "question": "Can I request alternative formats of Student Services Online materials?",
+              "answer": "Yes, if you require alternative formats of Student Services Online materials due to accessibility needs, you can request them from the university's accessibility team."
+              },
+              {
+              "question": "What is the university's policy on accessibility for online services?",
+              "answer": "The university is committed to providing accessible online services, including Student Services Online. They have a policy and framework in place to ensure that accessibility is considered throughout the development and implementation of online services."
+              },
+              {
+              "question": "Are there any training or workshops available on using Student Services Online with accessibility tools?",
+              "answer": "Yes, the university's accessibility team provides training and workshops on using Student Services Online with accessibility tools. You can contact them for more information on upcoming sessions."
+              }
+            ]
+          }    
+        ]
+      }
+    ]
+}
