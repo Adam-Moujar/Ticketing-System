@@ -6,7 +6,7 @@ from ticketing.forms.utility.mixins import (
     ExtendedUserFormMixin,
 )
 from ticketing.utility.model import *
-from ticketing.views import director_panel
+from ticketing.views.director import director_panel
 
 from django import forms
 

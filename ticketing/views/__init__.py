@@ -6,11 +6,11 @@ from . import specialist_claim_ticket
 from . import student_ticket
 from . import student_message
 from . import ticket_view
-from . import edit_department
+from . director import edit_department
 from . import change_password
-from . import edit_user
-from . import director_panel
-from . import department_manager
+from .director import edit_user
+from . director import director_panel
+from . director import department_manager
 from . import auth
 from . import home
 from . import specialist_inbox
