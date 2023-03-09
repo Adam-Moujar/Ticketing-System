@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1 style="display: inline-block;">Subject: {{ ticket.header }}</h1><br/>
-<h1 style="display: inline-block;">Department: {{ ticket.department }}</h1>
-<hr>
+<Title>{{ ticket.header }}</Title>
+<div class="specialist-banner dash-banner">
+    <div class="dash-title">
+        <h1 class="dash-header">Subject: {{ ticket.header }}<br>
+            Department: {{ ticket.department }}</h1>
+    </div>
+</div>
 {% if user.is_authenticated %}
-    <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Add comment">
-    </form>
+<form method="post" class="text-white" style="padding-top: 4%">{% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn btn-light btn-md bg-light text-dark" type="submit" value="Add comment">
+</form>
 {% endif %}
 <hr>
-
 <div hx-get="{% url 'message_list' pk=ticket.id %}" hx-trigger="load, every 2s">
-Loading...
+    Loading...
 </div>
-
-
-
 {% endblock %}
