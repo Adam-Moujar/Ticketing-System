@@ -11,7 +11,7 @@ urlpatterns = [
         auth.CustomLoginView.as_view(
             template_name='login.html',
             authentication_form=LoginForm,
-            redirect_authenticated_user=True,
+            redirect_authenticated_user=True
         ),
         name='login',
     ),
@@ -46,6 +46,11 @@ urlpatterns = [
         'specialist_claim_ticket/<int:pk>',
         specialist_claim_ticket.SpecialistClaimTicketView.as_view(),
         name='specialist_claim_ticket',
+    ),
+    path(
+        'specialist_message/<int:pk>', 
+        specialist_message.SpecialistMessageView.as_view(),
+        name='specialist_message'
     ),
     path(
         'create_ticket/',
@@ -85,7 +90,16 @@ urlpatterns = [
         name='student_message',
     ),
     path(
-        'director_panel/',
+        'specialist_message/<int:pk>',
+        specialist_message.SpecialistMessageView.as_view(),
+        name='specialist_message',
+    ),
+    path(
+        'message_list/<int:pk>',
+        message_list.MessageListView.as_view(),
+        name='message_list',
+    ),
+    path('director_panel/',
         director_panel.DirectorPanelView.as_view(),
         name='director_panel',
     ),
