@@ -26,6 +26,21 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def set_multiple_users_role(users, user_role, department_id):
+    '''
+    Sets the role of multiple users for the specific department.
+    
+    Args:
+        users: list of str
+            A list of user IDs as strings to update the role for.
+        user_role: str
+            The new role to assign to the users.
+        department_id: int 
+            The ID of the department to update the users' roles for 
+            
+    Returns:
+        bool
+            True if all users' roles were successfully updated, False otherwise.
+    '''
     problem_occured = False
 
     for user in users:
@@ -55,6 +70,18 @@ def set_multiple_users_role(users, user_role, department_id):
 
 
 def delete_users(user_id_strings):
+    '''
+    Deletes multiple users from the database.
+    
+    Args:
+        user_id_strings: list of str
+            A list of user IDs as strings to delete.
+    
+    Returns:
+        bool 
+            True if all users were successfully deleted, False otherwise
+            
+    '''
     problem_occured = False
 
     for id_str in user_id_strings:
@@ -99,6 +126,18 @@ class DirectorPanelView(
     filter_reset_url = 'director_panel'
 
     def setup(self, request):
+        '''
+        Initialises the view before processing the request.
+        
+        Args:
+            self: object
+                    An instance of the class that defines this method.
+            request: HttpRequest
+                The request object containing information about the request.
+        
+        Returns:
+            None
+        '''
 
         super().setup(request)
 
@@ -108,6 +147,18 @@ class DirectorPanelView(
         self.selected = []
 
     def get_queryset(self):
+        '''
+        Returns a filtered queryset of User objects filtered by a search criteria.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+        
+        Returns:
+            users: QuerySet
+                A quersyset of User objects filtered by the specific search criteria.
+
+        '''
 
         users = User.objects.filter(
             email__istartswith=self.filter_data['email'],
@@ -134,6 +185,23 @@ class DirectorPanelView(
         return ['director_panel.html']
 
     def get_context_data(self, *args, **kwargs):
+        '''
+        Returns a context dictionary for rendering the template.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+            *args : tuple
+                Positional arguments passed to the superclass's method.
+            **kwargs : dict
+                Keyword arguments passed to the superclass's method.
+        
+        Return:
+            context: dict
+                A dictionary of values to be used when rendering the template.
+                
+            
+        '''
         context = super().get_context_data(*args, **kwargs)
 
         if self.commands_form == None:
@@ -152,6 +220,32 @@ class DirectorPanelView(
         return context
 
     def post(self, request):
+        '''
+        Process POST requests to perform actions on selected users.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+            request: HttpRequest
+                A HttpRequest object containg the user's request data.
+            
+        Returns:
+            HttpResponse 
+        
+        Methods:
+                - Call the parent class's `get` method using the request object.
+                - Get the list of selected users from the request data.
+                - Get the value of the `edit` key from the request data.
+                - If `edit` is not None, redirect to the `edit_user` URL with the `edit_id` parameter set to the value of `edit`.
+                - If the `add` key is present in the request data, call the parent class's `post` method and return its result.
+                - If the `password` key is present in the request data, redirect to the `change_password` URL with the `change_id` parameter set to the value of `password`.
+                - If no users are selected, set `self.error` to True, add an error message to the request's message framework, and call `self.fixed_post` with the request object.
+                - If the `set_role` key is present in the request data, get the values of the `commands_role` and `commands_department` keys from the request data, and call `set_multiple_users_role` with the list of selected users, the role value, and the department value.
+                - If `set_multiple_users_role` returns False, set `self.error` to True, add an error message to the request's message framework, and call `self.fixed_post` with the request object.
+                - If the `delete` key is present in the request data, call `delete_users` with the list of selected users.
+                - If `delete_users` returns False, set `self.error` to True, add an error message to the request's message framework, and call `self.fixed_post` with the request object.
+                - Call `self.fixed_post` with the request object.
+        '''
 
         super().get(request)
 

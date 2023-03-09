@@ -39,7 +39,23 @@ class EditUserView(
         return ['edit_user.html']
 
     def post(self, request, *args, **kwargs):
-
+        '''
+        Process the post request
+        
+        Args:
+            self: object
+                An instance of the class that defines this method. 
+            request: HttpRequest
+                The request object sent by the client.
+            *args: tuple
+                Optional positional arguments passed to the parent method.
+            **kwargs: dict
+                Optional keyword arguments passed to the parent method.
+        
+        Returns:
+            HttpResponse
+                The response returned by the parent method for all other cases.     
+        '''
         if request.POST.get('cancel'):
             return get.redirect_to_director_panel_with_saved_params(request)
 

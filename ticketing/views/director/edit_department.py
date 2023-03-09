@@ -23,6 +23,25 @@ class EditDepartmentView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
         return ['edit_department.html']
 
     def post(self, request, *args, **kwargs):
+        '''
+        Handling the Http POST requests
+        
+        Args:
+            self: object
+                An instance of the class that defines this method. 
+            request: HttpRequest
+                The request object sent by the client.
+            *args: tuple
+                Optional positional arguments passed to the parent method.
+            **kwargs: dict
+                Optional keyword arguments passed to the parent method.
+        
+        Returns:
+            HttpResponseRedirect
+                A redirect response to the 'department_manager' view if the 'cancel' button is pressed.
+            HttpResponse
+                The response returned by the parent method for all other cases.
+        '''
 
         if request.POST.get('cancel'):
             return redirect('department_manager')
