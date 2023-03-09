@@ -13,6 +13,22 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     required_roles = ['SP']
 
     def get_queryset(self):
+        '''
+        Returning the queryset of tickets based on the selected ticket type.
+        
+        If the request method is POST, it gets the ticket type from the form and filters the tickets 
+        based on the type and the user. If the method is GET, it defaults to "personal" ticket type
+        and filters the tickets based on the user.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+                Used to get the currently logged in user.
+        Returns:
+            ticket_list: QuerySet
+                A queryset of tickets filtered based on the user and the ticket type.
+        
+        '''
         user = self.request.user
         ticket_list = []
 
@@ -27,6 +43,22 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         return ticket_list
 
     def get_context_data(self, **kwargs):
+        '''
+        Get the context data that will be passed into the template.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+            **kwargs: dict
+                Context dictionary to be passed into template:
+                    -context['ticket_type']= ticket_type //e.g. 'personal'
+                    -context['inbox_type']= self.set_formatted_inbox_name(ticket_type) //e.g. 'Personal', 'Archive', 'Department' etc.
+                    -context['department_name'] = self.get_department_name() //e.g. 'Accomodation'
+        Returns:
+            context: dict
+                Returning the context dictionary to the template.
+                
+        '''
         context = super().get_context_data(**kwargs)
         ticket_type = ''
 
@@ -38,7 +70,7 @@ class SpecialistInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         context['department_name'] = self.get_department_name()
         return context
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         ticket_type = self.request.POST.get('type_of_ticket')
         return render(
             request,
