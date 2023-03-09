@@ -107,4 +107,9 @@ urlpatterns = [
         edit_department.EditDepartmentView.as_view(),
         name='edit_department',
     ),
+    path(
+        'search_bar/',
+        search_bar.SearchBarView.as_view(),
+        name='search_bar',
+    ),
 ]

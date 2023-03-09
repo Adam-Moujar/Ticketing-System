@@ -24,3 +24,4 @@ from . import individual_specialist_faq
 from . import update_faq
 from . import delete_faq
 from . import specialist_department_faq
+from . import search_bar
