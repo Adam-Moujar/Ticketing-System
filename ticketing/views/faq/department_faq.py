@@ -12,6 +12,18 @@ class DepartmentFAQ(ListView):
     paginate_by = 25
 
     def get_queryset(self):
+        '''
+        Gets a QuerySet of FAQ objects filtered by department slug.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method. 
+        
+        Returns:
+            queryset: QuerySet
+                A QuerySet of FAQ objects sorted by question in ascending order.
+        
+        '''
         queryset = FAQ.objects.filter(
             department__slug=self.kwargs['department']
         )
@@ -19,6 +31,20 @@ class DepartmentFAQ(ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
+        '''
+        Adds additional context data to the template context.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+            **kwargs: dict
+                A dictionary of keyword arguments:
+                    -context['department_name']=department.name.
+                    -context['faq_dict']=faq_dict where faq_dict[{subsection}]=[faq].
+        Returns:
+            context: dict
+                A dictionary of context data.
+        '''
         context = super().get_context_data(**kwargs)
         department = get_object_or_404(
             Department, slug=self.kwargs['department']

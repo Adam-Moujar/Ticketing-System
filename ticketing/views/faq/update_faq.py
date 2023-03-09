@@ -17,5 +17,21 @@ class FAQUpdateFormView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
     model = FAQ
 
     def form_valid(self, form):
+        '''
+        Update a specific FAQ object that has already been 
+        created (Updating FAQ).
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+                This is used to get the logged in user.
+            form: ModelForm
+                A ModelForm instance containing the data submitted in the form.
+        Returns:
+            HttpResponseRedirect
+                A HTTP response that redirects the user to the success
+                URL specified by get_success_url()
+
+        '''
         form.save()
         return HttpResponseRedirect(self.get_success_url())

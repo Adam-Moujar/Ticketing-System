@@ -15,7 +15,19 @@ class SpecialistDepartmentFaq(LoginRequiredMixin, RoleRequiredMixin, ListView):
     paginate_by = 2
     context_object_name = 'faq_list'
 
-    def get_queryset(self, *args, **kwargs):
+    def get_queryset(self):
+        '''
+        Gets the QuerySet of FAQs of the currently logged in users Department.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+                This is used to get the logged in user.
+        Returns:
+            queryset: QuerySet
+                A queryset of all the FAQ objects that are of the logged in users Department.
+        
+        '''
         user = self.request.user
         department = SpecialistDepartment.objects.get(
             specialist=user
@@ -23,6 +35,22 @@ class SpecialistDepartmentFaq(LoginRequiredMixin, RoleRequiredMixin, ListView):
         return FAQ.objects.filter(department=department)
 
     def get_context_data(self, **kwargs):
+        '''
+        Returns context dictionary for the template to be used.
+        
+        Args:
+            self: object
+                An instance of the class that defines this method.
+                This is used to get the logged in user.
+            **kwargs: dict
+                Dictionary of keyword arguments:
+                    -context['department_name']=department.name
+        
+        Returns:
+            context: dict
+                Context dictionery for the use of the template.
+                
+        '''
         context = super().get_context_data(**kwargs)
         user = self.request.user
         specialist_dept = SpecialistDepartment.objects.get(
