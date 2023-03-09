@@ -3,12 +3,10 @@ from ticketing.utility.error_messages import *
 from ticketing.views.utility.mixins import ExtendableFormViewMixin, FilterView
 from ticketing.forms.department import DepartmentFilterForm
 
-from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
-from django.views import View
+from django.shortcuts import  redirect
+from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password
 from ticketing.forms import *
 from django.views.generic.edit import CreateView
 from ticketing.mixins import RoleRequiredMixin
