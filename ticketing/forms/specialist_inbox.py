@@ -5,17 +5,18 @@ from ticketing.forms.utility.mixins import (
     UserDepartmentFormMixin,
     ExtendedUserFormMixin,
 )
-from ticketing.forms.utility.base import FilterForm
 from ticketing.models.specialist import SpecialistDepartment
+from ticketing.forms.utility.base import FilterForm
 
 from django import forms
 
 import copy
 
 
-class DepartmentFilterForm(FilterForm):
-    id = copy.copy(form_fields.id)
-    id.required = False
+class SpecialistInboxFilterForm(FilterForm):
+    email = forms.CharField(label=form_fields.email.label, required=False)
 
-    name = copy.copy(form_fields.department_name)
-    name.required = False
+    header = forms.CharField(label='Header', required=False)
+
+    offer_filter_method = True
+    filter_method = form_fields.filter_method

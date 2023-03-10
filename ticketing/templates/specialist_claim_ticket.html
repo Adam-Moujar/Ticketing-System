@@ -15,7 +15,7 @@
             
             <button type = "submit" name = "accept_ticket" value = {{ticket.id}}> Claim</button>
             <button type = "button">
-                <a href  ="{% url 'specialist_dashboard' %}">Back</a>
+                <a href  ="{% url 'specialist_dashboard' ticket_type='personal' %}">Back</a>
             </button>
             
         </form>

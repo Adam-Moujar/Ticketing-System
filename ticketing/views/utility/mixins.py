@@ -1,4 +1,7 @@
 from django.shortcuts import redirect
+from django.urls import reverse
+from django.utils.http import urlencode
+import copy
 
 
 class ExtendableFormViewMixin:
@@ -56,12 +59,30 @@ class FilterView:
         super().setup(request)
 
         self.filter_form = self.filter_form_class(request.GET)
+
+        initial = copy.copy(request.GET)
+
+        get_filter_method = initial.get('filter_method', None)
+
+        if (
+            get_filter_method == None
+            and self.filter_form_class.offer_filter_method == True
+        ):
+            get_filter_method = 'filter'
+            initial['filter_method'] = get_filter_method
+
+        self.filter_form = self.filter_form_class(initial)
         self.filter_data = {}
 
         # We need to run is_valid so that we can get the cleaned data
         self.result = self.filter_form.is_valid()
 
+        self.filter_method = self.filter_form.cleaned_data.get(
+            'filter_method', 'filter'
+        )
+
         for field_name in self.filter_form.base_fields:
+
             self.filter_data.update(
                 {
                     field_name: self.filter_form.cleaned_data.get(
@@ -70,17 +91,9 @@ class FilterView:
                 }
             )
 
-        # self.get_name = self.filter_form.cleaned_data.get('name')
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
         context.update({'filter_form': self.filter_form})
 
         return context
-
-    def post(self, request, *args, **kwargs):
-        if request.POST.get('reset'):
-            return redirect(self.filter_reset_url)
-
-        return super().post(request, *args, **kwargs)
