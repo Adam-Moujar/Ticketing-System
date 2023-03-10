@@ -28,37 +28,49 @@
                 </button>
                 {% endif %}
                 {% if ticket_type == "personal" %}
-            <td>
-                <form class="reroute-dropdown" method="post" name="reroute" id="reroute">
-                    {% csrf_token %}
-                    <div>
-                        <select name="reroute" id="reroute" class="form-control">
-                            <option value="0" selected="selected">Reroute To...</option>
-                            {% for department in departments %}
-                            <option value="{{department.name}} {{ticket.id}}">{{department.name}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <button type="submit" id="submit_reroute" class="blue-link"
-                        style="padding:0; background:none; border:none;">Reroute</button>
-                </form>
-            </td>
-            <td>
-                <form method="post">
-                    {% csrf_token %}
-                    <button style="color:red; padding:0; background:none; border:none;" type="submit" name="unclaim"
-                        value="{{ticket.id}}">Unclaim</button>
-                </form>
-            </td>
-            <td style="padding-right:3vmin;">
-                <a class="blue-link" href="{% url 'specialist_message' pk=ticket.id %}">View</a>
-            </td>
-            {% endif %}
+                <td>
+                    <form class="reroute-dropdown" method="post" name="reroute" id="reroute">
+                        {% csrf_token %}
+                        <div>
+                            <select name="reroute" id="reroute" class="form-control">
+                                <option value="0" selected="selected">Reroute To...</option>
+                                {% for department in departments %}
+                                <option value="{{department.name}} {{ticket.id}}">{{department.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" id="submit_reroute" class="blue-link"
+                            style="padding:0; background:none; border:none;">Reroute</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button style="color:red; padding:0; background:none; border:none;" type="submit" name="unclaim"
+                            value="{{ticket.id}}">Unclaim</button>
+                    </form>
+                </td>
+                <td style="padding-right:3vmin;">
+
+                    <a class="blue-link" href="{% url 'specialist_message' pk=ticket.id %}">View</a>
+                </td>
+                {% endif %}
+                {% if ticket_type == "archived" %}
+                <td>
+                    <button type="button" style=" background:none; border:none;">
+                        <a class="blue-link" href="{% url 'specialist_create_faq_from_ticket' pk=ticket.id %}">Create FAQ</a>
+                    </button>
+                </td>
+                <td style="padding-right:3vmin;">
+
+                    <a class="blue-link" href="{% url 'specialist_message' pk=ticket.id %}">View</a>
+                </td>
+                {% endif %}
+
             {% endif %}
             </td>
         </tr>
         {% endfor %}
     </table>
-    {% include 'partials/paginator.html' %}
 </div>
 {% include 'partials/pagination.html' %}

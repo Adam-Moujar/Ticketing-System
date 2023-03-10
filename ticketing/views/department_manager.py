@@ -47,9 +47,15 @@ class DepartmentManagerView(
     filter_reset_url = 'department_manager'
 
     def get_queryset(self):
-        departments = Department.objects.filter(
-            name__istartswith=self.filter_data['name']
-        )
+
+        if self.filter_method == 'filter':
+            departments = Department.objects.filter(
+                name__istartswith=self.filter_data['name']
+            )
+        else:
+            departments = Department.objects.filter(
+                name__icontains=self.filter_data['name']
+            )
 
         if self.filter_data['id']:
             departments = departments.filter(id__exact=self.filter_data['id'])

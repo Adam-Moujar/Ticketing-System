@@ -29,8 +29,9 @@
             <form method="post" style="display: inline;">
             {% csrf_token %}
             {% include 'partials/bootstrap_form.html' with form=form %}
-
-            <input id="blue-btn" class="btn" type="submit" name="add" value="Add">
+            <div style="text-align:center;">
+              <input id="blue-btn" class="btn" type="submit" name="add" value="Add">
+            </div>
             </form>
           </div>
         </div>

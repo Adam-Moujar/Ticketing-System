@@ -15,6 +15,7 @@ from django.views.generic.edit import UpdateView, FormView
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 
 
 def change_password(user, new_password):
@@ -88,9 +89,19 @@ class ChangePasswordView(LoginRequiredMixin, RoleRequiredMixin, FormView):
 
             change_password(self.user, password)
 
-            return get.redirect_to_director_panel_with_saved_params(request)
+            if request.user.role == User.Role.DIRECTOR:
+                return get.redirect_to_director_panel_with_saved_params(
+                    request
+                )
+            else:
+                return redirect('login')
 
         elif request.POST.get('cancel'):
-            return get.redirect_to_director_panel_with_saved_params(request)
+            if request.user.role == User.Role.DIRECTOR:
+                return get.redirect_to_director_panel_with_saved_params(
+                    request
+                )
+            else:
+                return redirect('login')
 
         return super().post(request, pk=pk)
