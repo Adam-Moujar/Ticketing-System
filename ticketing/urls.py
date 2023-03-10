@@ -123,7 +123,7 @@ urlpatterns = [
     ),
 
     path(
-        'specialist_create_faq_from_ticket/',
+        'specialist_create_faq_from_ticket/<int:pk>',
         specialist_create_faq_from_ticket.SpecialistCreateFAQFromTicketView.as_view(),
         name='specialist_create_faq_from_ticket',
     ),

@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
+<div class = center>
+    {% include 'partials/message_list.html' %}
 
 
-<div>
-<h1>Creae a FAQ</h1>
+<h1>Create a FAQ</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Send</button>
+</form>
 
 <button type="button">
     <a href="{% url 'specialist_dashboard' ticket_type='archived' %}">Back</a>
 </button>
 </div>
-
 
 {% endblock %}
 

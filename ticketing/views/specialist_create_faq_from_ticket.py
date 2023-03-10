@@ -4,16 +4,15 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
 from django.shortcuts import redirect
-
+from itertools import chain
+from operator import attrgetter
 
 from django.views.generic import FormView
 from django.http import HttpResponseRedirect
 from ticketing.forms.specialist_faq import FAQForm
 from django.urls import reverse, reverse_lazy
-from ticketing.models.faq import FAQ
-from ticketing.models.users import User
-from ticketing.models.departments import Department
-from ticketing.models.specialist import SpecialistDepartment
+
+from ticketing.models import SpecialistDepartment,SpecialistMessage, FAQ, StudentMessage, Message
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
 
@@ -26,7 +25,7 @@ from ticketing.models import (
     Message,
 )
 
-class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView):
+class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView, ListView):
     template_name = 'specialist_create_faq_from_ticket.html'
     required_roles = ['SP']
     form_class = FAQForm
@@ -43,6 +42,35 @@ class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, F
             answer=form.cleaned_data['answer'],
         )
         return redirect('specialist_dashboard', ticket_type='personal')
+
+    # def get(self, request, *args, **kwargs):
+    #     user = request.user
+    #     # CHECK IF THE TICKET WE ARE VIEWING CAN BE VIEWED BY SPECIALIST
+    #     ticket = Ticket.objects.filter(id=self.kwargs['pk'])
+    #     messsages = Message.objects.filter(
+    #         ticket=self.kwargs['pk']
+    #     )
+
+    #     return super().get(request, *args, **kwargs)
+    
+    def get_queryset(self):
+        student_message = StudentMessage.objects.filter(
+            ticket=self.kwargs['pk']
+        )
+        specialist_message = SpecialistMessage.objects.filter(
+            ticket=self.kwargs['pk']
+        )
+        queryset = sorted(
+            chain(student_message, specialist_message),
+            key=attrgetter('date_time'),
+            reverse=True,
+        )
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ticket'] = Ticket.objects.get(id=self.kwargs['pk'])
+        return context
 
 
 

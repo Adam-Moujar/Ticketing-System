@@ -2,9 +2,8 @@ from django.test import TestCase, RequestFactory, Client
 from django.contrib.auth.models import AnonymousUser
 from django.utils.text import slugify
 from django.urls import reverse
-from ticketing.models.users import User
-from ticketing.models.departments import Department
-from ticketing.models.specialist import SpecialistDepartment
+
+from ticketing.models import SpecialistDepartment, Ticket, User
 from ticketing.models.faq import FAQ
 from ticketing.views.specialist_faq_form import FAQFormView
 
@@ -20,10 +19,16 @@ class FAQFormViewTest(TestCase):
     ]
 
     def setUp(self):
-        self.url = reverse('specialist_create_faq_from_ticket')
+        
         self.factory = RequestFactory()
         self.specialist = User.objects.filter(role = 'SP').first()
         self.department = SpecialistDepartment.objects.get(specialist = self.specialist).department
+        self.ticket = Ticket.objects.filter(department = self.department).first()
+        self.ticket.status = Ticket.Status.CLOSED
+        self.ticket.save()
+        self.url = reverse('specialist_create_faq_from_ticket',kwargs={"pk":self.ticket.id})
+        self.ticket_id = self.ticket.id
+
         self.faq = FAQ.objects.create(
             specialist=self.specialist,
             department=self.department,
@@ -37,10 +42,10 @@ class FAQFormViewTest(TestCase):
         }
 
     def test_faq_form_url(self):
-        self.assertEqual(self.url, reverse('specialist_create_faq_from_ticket'))
+        self.assertEqual(self.url, '/specialist_create_faq_from_ticket/'+str(self.ticket_id))
 
     def test_get_faq_form(self):
-        request = self.factory.get(reverse('specialist_create_faq_from_ticket'))
+        request = self.factory.get(self.url)
         request.user = self.specialist
         response = FAQFormView.as_view()(request)
         self.assertEqual(response.status_code, 200)
@@ -48,7 +53,7 @@ class FAQFormViewTest(TestCase):
 
     def test_post_valid_faq_form(self):
         request = self.factory.post(
-            reverse('specialist_create_faq_from_ticket'), data=self.form_data
+            self.url, data=self.form_data
         )
         request.user = self.specialist
         response = FAQFormView.as_view()(request)
@@ -56,24 +61,24 @@ class FAQFormViewTest(TestCase):
         self.assertEqual(FAQ.objects.count(), 2)
 
     def test_post_invalid_faq_form(self):
-        request = self.factory.post(reverse('specialist_create_faq_from_ticket'), data={})
+        request = self.factory.post(self.url, data={})
         request.user = self.specialist
         response = FAQFormView.as_view()(request)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(FAQ.objects.count(), 1)
 
     def test_log_in_required_to_access_faq_form(self):
-        request = self.factory.get(reverse('specialist_create_faq_from_ticket'))
+        request = self.factory.get(self.url)
         request.user = AnonymousUser()
         response = FAQFormView.as_view()(request)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            reverse('login') + '?next=' + reverse('specialist_create_faq_from_ticket'),
+            reverse('login') + '?next=' + self.url,
         )
 
     def test_role_required_to_access_faq_form(self):
-        request = self.factory.get(reverse('specialist_create_faq_from_ticket'))
+        request = self.factory.get(self.url)
         request.user = self.specialist
         response = FAQFormView.as_view()(request)
         self.assertEqual(response.status_code, 200)
@@ -82,20 +87,20 @@ class FAQFormViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_faq_form_view_uses_correct_template(self):
-        request = self.factory.get(reverse('specialist_create_faq_from_ticket'))
+        request = self.factory.get(self.url)
         request.user = self.specialist
         response = FAQFormView.as_view()(request)
         self.assertTemplateUsed('specialist_create_faq_from_ticket.html')
 
     def test_faq_form_has_context_data(self):
-        request = self.factory.get(reverse('specialist_create_faq_from_ticket'))
+        request = self.factory.get(self.url)
         request.user = self.specialist
         response = FAQFormView.as_view()(request)
         self.assertTrue('form' in response.context_data)
 
     def test_faq_form_submission_is_limited_to_specialists(self):
         request = self.factory.post(
-            reverse('specialist_create_faq_from_ticket'), data=self.form_data
+            self.url, data=self.form_data
         )
         request.user = AnonymousUser()
         response = FAQFormView.as_view()(request)
@@ -133,5 +138,7 @@ class FAQFormViewTest(TestCase):
         response = self.client.post(self.url, data = self.form_data, follow = True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'specialist_dashboard.html')
+
+    
 
     
