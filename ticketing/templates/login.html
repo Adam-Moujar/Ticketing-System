@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="form-card card">
+<div class="form-card card small-card">
     <h1>Login</h1>
         <form method="post">
             {% csrf_token %}
@@ -20,6 +20,6 @@
             <button id="blue-btn" class="btn" type="submit" style="margin-top: 2vmin;">Log In</button>
             <a id="red-btn" class="btn" type="input" href="{% url 'home' %}" style="margin-top: 2vmin;">Cancel</a>
         </form>
-</div> 
+</div>
 
 {% endblock %}
