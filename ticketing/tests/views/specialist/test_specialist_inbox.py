@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from ticketing.models import User, Department,SpecialistDepartment
+from ticketing.models import User, Department
 from ticketing.models.specialist import SpecialistInbox, SpecialistDepartment
 from ticketing.models.tickets import Ticket
 from ticketing.tests.helpers import (

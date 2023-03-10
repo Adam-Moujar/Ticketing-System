@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from ticketing.models import SpecialistDepartment, Ticket, User
 from ticketing.models.faq import FAQ
-from ticketing.views.specialist_faq_form import FAQFormView
+from ticketing.views.faq.specialist_faq_form import FAQFormView
 
 
 class FAQFormViewTest(TestCase):

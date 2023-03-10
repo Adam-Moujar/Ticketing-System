@@ -12,8 +12,9 @@ from . director import edit_user
 from . director import director_panel
 from . director import department_manager
 from . import message_list
-from .specialist import specialist_message
-from .specialist import specialist_claim_ticket
+from . specialist import specialist_message
+from . specialist import specialist_claim_ticket
+from . specialist import specialist_create_faq_from_ticket
 from .student import student_ticket
 from .faq import department_faq
 from .faq import base_faq

@@ -145,7 +145,7 @@ class SpecialistClaimTicketViewTestCase(TestCase):
 
         self.assertTemplateUsed(response, 'specialist_dashboard.html')
 
-    def test_specialist_claim_ticket_when_specialist_has_not_department(
+    def test_specialist_claim_ticket_when_specialist_has_no_department(
         self,
     ):
         self.client = Client()
