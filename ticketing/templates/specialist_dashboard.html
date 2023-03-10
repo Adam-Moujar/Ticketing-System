@@ -2,35 +2,51 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h1>Specialist dashboard</h1>
-    <h1>Inbox</h1>
-    <div>
-        <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='department' %}'"> Department </button>
-        <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='personal' %}'"> Personal </button>
-        <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='archived' %}'"> Archived </button>
-
-
+    <title>Dashboard</title>
+    <div class="specialist-banner dash-banner">
+        <div class="dash-title">
+            <i class="fa-solid fa-chart-line" style="padding-right:2vmin; font-size:4vmin; opacity: 0.5;"></i>
+            <h1 class="dash-header">Specialist Dashboard</h1>
+        </div>
+        <!-- Ask how to pass this in during meeting -->
+        <h4 class="dash-subtitle">{{department_name}}</h4>
     </div>
 
-    <h3>Filters</h3>
 
-    <form method="get" style="display: inline;">
-        {{ filter_form.as_p }}
+    <div class="container">
+        <div id="dash-card" class="card">
+            <div id="dash-card-header" class="card-header">
+                    <div style="padding-top:0.3vmin;">Tickets</div>
+                    <div class="user-filter container">
+                        <a id="dash-card-header-link" class="dropdown-toggle blue-link" data-bs-toggle="dropdown" aria-expanded="false">Filter</a>
+                        <div class="filter-dropdown dropdown-menu dropdown-menu-end"">
+                          <div class="container">
+                            <form method="get" style="display: inline;">
+                                {% include 'partials/bootstrap_auto_form.html' with form=filter_form %}
 
-        <input type="submit" value="Apply">
-
-    </form>
-
-    <button onclick="location.href='{{ request.path }}'">Reset</button>
-
-    <div>
-        {% include 'inbox.html' %}
+                                <div class="btn-container">
+                                    <input id="green-btn" class="btn" type="submit" value="Apply">
+                                    <button id="red-btn" class="btn"  onclick="location.href='{{ request.path }}'">Reset</button>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+            <div id="dash-card-body" class="card-body" style="padding-top:2px;">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <button class="nav-link" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='department' %}'" style="color:#475B63;"> Department </button>
+                            </li>
+                            <li class="nav-item">
+                            <button class="nav-link" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='personal' %}'" style="color:#475B63;"  > Personal </button>
+                            </li>
+                            <li class="nav-item">
+                            <button class="nav-link" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='archived' %}'" style="color:#475B63;"  > Archived </button>
+                            </li>
+                    </ul>
+                {% include 'inbox.html' %}
+            </div>
+        </div>
     </div>
-    <button hx-get="location.href='{{ request.path }}'"
-        hx-swap="outerHTML"
-        hx-trigger="click"
-        hx-target="#ticket-table"
-    >
-    Click Me
-    </button>
 {% endblock %}

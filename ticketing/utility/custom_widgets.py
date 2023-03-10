@@ -20,6 +20,8 @@ class NoLabelStyledRadioSelect(forms.RadioSelect):
 
         parent = divs[0]
 
+        parent.addClass('btn-group')
+
         for i in range(1, len(divs)):
 
             children = divs[i].getAllChildNodes()
@@ -27,6 +29,8 @@ class NoLabelStyledRadioSelect(forms.RadioSelect):
             divs[i].remove()
 
         for i in range(0, len(labels)):
+            labels[i].addClass('btn btn-outline-primary')
+            inputs[i].addClass('btn-check')
 
             parent.appendChild(inputs[i])
 
@@ -35,7 +39,7 @@ class NoLabelStyledRadioSelect(forms.RadioSelect):
             parent.appendChild(labels[i])
 
         parent.setStyle('padding-top', '0px;')
-        parent.setStyle('display', 'inline-block')
+        parent.setStyle('vertical-align', 'middle')
 
         html_result = parser.getFormattedHTML(indent='\n    ')
 

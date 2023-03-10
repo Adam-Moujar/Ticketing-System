@@ -1,8 +1,8 @@
-{%include 'partials/header.html' %}
-<h1>Update FAQ</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
-</form>
+{%extends 'base.html' %}
+{%block body%}
+<div class="form-card card">
+    <h1>Update FAQ</h1>
+    {%include 'partials/faq_form_partial.html'%}
+</div>
+{%endblock%}
 {%include 'partials/footer.html' %}
