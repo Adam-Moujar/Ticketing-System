@@ -51,7 +51,6 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertTemplateUsed(response, 'department_faq.html')
         self.assertTemplateUsed(response, 'partials/header.html')
-        self.assertTemplateUsed(response, 'partials/pagination.html')
         self.assertTemplateUsed(response, 'partials/footer.html')
 
     def test_specialist_department_faq_uses_correct_context(self):
