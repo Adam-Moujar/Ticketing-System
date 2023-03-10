@@ -49,6 +49,11 @@ urlpatterns = [
         name='specialist_claim_ticket',
     ),
     path(
+        'specialist_message/<int:pk>',
+        specialist_message.SpecialistMessageView.as_view(),
+        name='specialist_message',
+    ),
+    path(
         'create_ticket/',
         student_ticket.StudentTicketView.as_view(),
         name='create_ticket',
@@ -84,6 +89,16 @@ urlpatterns = [
         'ticket/<int:pk>/',
         student_message.StudentMessageView.as_view(),
         name='student_message',
+    ),
+    path(
+        'specialist_message/<int:pk>',
+        specialist_message.SpecialistMessageView.as_view(),
+        name='specialist_message',
+    ),
+    path(
+        'message_list/<int:pk>',
+        message_list.MessageListView.as_view(),
+        name='message_list',
     ),
     path(
         'director_panel/',

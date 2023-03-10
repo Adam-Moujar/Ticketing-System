@@ -38,19 +38,13 @@ class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         return context
 
     def post(self, request, *args, **kwargs):
-
         # request.GET["page"] = 1
-
         get_copy = copy.copy(request.GET)
         get_copy['page'] = 1
-
         request.GET = get_copy
-
         context = {
             'page_obj': self.get_queryset(),
             'type_of_ticket': self.request.POST.get('type_of_ticket'),
         }
-
         context.update(super().get(request).context_data)
-
         return render(request, 'student_dashboard.html', context)
