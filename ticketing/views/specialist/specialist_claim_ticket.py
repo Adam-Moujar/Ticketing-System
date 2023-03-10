@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from ticketing.models import SpecialistDepartment,Ticket
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
 from django.shortcuts import redirect
