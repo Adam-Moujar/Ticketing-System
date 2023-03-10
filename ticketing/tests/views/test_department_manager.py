@@ -12,8 +12,8 @@ from ticketing.tests.utility import test_data
 from ticketing.utility.user import *
 
 
-def make_department_filter_query(id, name):
-    return {'id': id, 'name': name}
+def make_department_filter_query(method, id, name):
+    return {'filter_method': method, 'id': id, 'name': name}
 
 
 def make_add_department_form_query(name):
@@ -159,24 +159,30 @@ class DepartmentManagerTestCase(TestCase):
             email=self.director.email, password='Password@123'
         )
 
+        methods = ['filter', 'search']
         current_departments = Department.objects.all()
 
-        for i in range(len(current_departments)):
+        for h in range(len(methods)):
+            for i in range(len(current_departments)):
 
-            query = make_department_filter_query(
-                current_departments[i].id, current_departments[i].name
-            )
+                query = make_department_filter_query(
+                    methods[h],
+                    current_departments[i].id,
+                    current_departments[i].name,
+                )
 
-            response = self.client.get(self.url, data=query)
+                response = self.client.get(self.url, data=query)
 
-            self.assertEqual(response.status_code, 200)
-            self.assertEqual(len(response.context['page_obj']), 1)
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(len(response.context['page_obj']), 1)
 
     def test_filter_one_by_one(self):
         self.client = Client()
         loggedin = self.client.login(
             email=self.director.email, password='Password@123'
         )
+
+        methods = ['filter', 'search']
 
         class Pointer:
             def __init__(self, value=None):
@@ -193,42 +199,47 @@ class DepartmentManagerTestCase(TestCase):
 
         pointers_array = [id_ptr, name_ptr]
 
-        for h in range(len(pointers_array)):
+        for g in range(len(methods)):
+            for h in range(len(pointers_array)):
 
-            query = make_department_filter_query(id_ptr.value, name_ptr.value)
-
-            # First with no filter to get before count
-            response = self.client.get(self.url)
-
-            before_page_count = response.context[
-                'page_obj'
-            ].paginator.num_pages
-
-            response = self.client.get(
-                self.url, data={'page': before_page_count}
-            )
-
-            before_last_page_count = len(response.context['page_obj'])
-
-            # Now with the filter to get after count
-            response = self.client.get(self.url, data=query)
-
-            after_page_count = response.context['page_obj'].paginator.num_pages
-
-            response = self.client.get(
-                self.url, data=query.update({'page': after_page_count})
-            )
-
-            after_last_page_count = len(response.context['page_obj'])
-
-            self.assertEqual(response.status_code, 200)
-
-            if before_page_count != after_page_count:
-                self.assertTrue(
-                    after_last_page_count != before_last_page_count
+                query = make_department_filter_query(
+                    methods[g], id_ptr.value, name_ptr.value
                 )
 
-            pointers_array[h].value = ''
+                # First with no filter to get before count
+                response = self.client.get(self.url)
+
+                before_page_count = response.context[
+                    'page_obj'
+                ].paginator.num_pages
+
+                response = self.client.get(
+                    self.url, data={'page': before_page_count}
+                )
+
+                before_last_page_count = len(response.context['page_obj'])
+
+                # Now with the filter to get after count
+                response = self.client.get(self.url, data=query)
+
+                after_page_count = response.context[
+                    'page_obj'
+                ].paginator.num_pages
+
+                response = self.client.get(
+                    self.url, data=query.update({'page': after_page_count})
+                )
+
+                after_last_page_count = len(response.context['page_obj'])
+
+                self.assertEqual(response.status_code, 200)
+
+                if before_page_count != after_page_count:
+                    self.assertTrue(
+                        after_last_page_count != before_last_page_count
+                    )
+
+                pointers_array[h].value = ''
 
     def test_edit_redirect(self):
         self.client = Client()

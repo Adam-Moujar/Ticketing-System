@@ -19,3 +19,6 @@ class DepartmentFilterForm(FilterForm):
 
     name = copy.copy(form_fields.department_name)
     name.required = False
+
+    offer_filter_method = True
+    filter_method = form_fields.filter_method
