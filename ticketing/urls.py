@@ -121,4 +121,11 @@ urlpatterns = [
         edit_department.EditDepartmentView.as_view(),
         name='edit_department',
     ),
+
+    path(
+        'specialist_create_faq_from_ticket/<int:pk>',
+        specialist_create_faq_from_ticket.SpecialistCreateFAQFromTicketView.as_view(),
+        name='specialist_create_faq_from_ticket',
+    ),
+
 ]

@@ -26,7 +26,7 @@
     <div>
         {% include 'inbox.html' %}
     </div>
-    <button hx-post="/specialist_dashboard"
+    <button hx-get="location.href='{{ request.path }}'"
         hx-swap="outerHTML"
         hx-trigger="click"
         hx-target="#ticket-table"

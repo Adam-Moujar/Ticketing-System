@@ -65,6 +65,9 @@
                     <button type="button">
                         <a href="{% url 'message_list' pk=ticket.id %}">To Ticket</a>
                     </button>
+                    <button type="button">
+                        <a href="{% url 'specialist_create_faq_from_ticket' pk=ticket.id %}">Create FAQ</a>
+                    </button>
                 {% endif %}
             {% endif %}
 
