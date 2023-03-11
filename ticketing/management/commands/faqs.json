@@ -1,7 +1,7 @@
 {
   "departments": [
     {
-      "department": "Health & Wellbeing",
+      "department": "Health",
       "sub_sections" : [
         {
           "sub_section" : "Physical health & sport",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "department": "Housing & accomodation support",
+      "department": "Accomodation",
       "sub_sections": [
         {
           "sub_section": "Student accomodation options",
@@ -506,7 +506,7 @@
       ]
     },
     {
-      "department": "Immigration & visa advice",
+      "department": "Visa",
       "sub_sections": [
       {
         "sub_section": "Confirmation of Acceptance for Studies",
@@ -1278,7 +1278,7 @@
       ]
     },
     {
-      "department": "Academic, Digital & Employability Skills",
+      "department": "Skills",
       "sub_sections": [
         {
           "sub_section": "Academic Skills",
@@ -1466,7 +1466,7 @@
       ]
     },
     {
-      "department": "Appeals, Complaints & Misconduct",
+      "department": "Complaints",
       "sub_sections": [
         {
           "sub_section": "Appeals",
@@ -1534,7 +1534,7 @@
           ]
         },
         {
-          "sub_section": "Complaints",
+          "sub_section": "Complaint",
           "faq": [
             {
               "question": "What is a complaint?",
@@ -1703,7 +1703,7 @@
       ]
     },
     {
-      "department" : "Dignity & Inclusion",
+      "department" : "Inclusion",
       "sub_sections" : [
         {
             "sub_section" : "Reporting incidents",
@@ -2067,7 +2067,7 @@
       ]
     },
     {
-      "department" : "Fees, funding & money advice",
+      "department" : "Money",
       "sub_sections" : [
         {
           "sub_section" : "Applying for funding, bursaries & scholarships",
@@ -2347,7 +2347,7 @@
       ]
     },
     {
-      "department": "Using Student Services Online",
+      "department": "Student Services Online",
       "sub_sections": [
         {
           "sub_section": "System support & troubleshooting",

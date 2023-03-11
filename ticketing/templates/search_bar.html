@@ -1,0 +1,53 @@
+{%include 'partials/header.html' %}
+{% block body %}
+<!-- search bar -->
+<div class="search_bar">   
+  <form action = "{% url 'search_bar' %}" method="GET">
+    <input type="text" name="query" placeholder="Search...">
+    <button type="submit">Search</button>
+  </form>
+</div>
+<!-- allow user to select top three departments -->
+{% if top_departments %}
+  <p>Select departments that match with your query:</p>
+  <div>
+    <form method="POST">
+      {% csrf_token %}
+      {% for department in top_departments %}
+        <button name = "department" type="submit" value = {{department}}>{{ department }}</button>
+      {% endfor %}
+    </form>
+    {% if low_score %}
+      <p>Either give us more information or create a ticket.</p>
+      <button type="button">
+        <a href="{% url 'create_ticket' %}">Create a Ticket</a>
+    </button>
+    {% endif %}
+  </div>
+{% endif %}
+
+<!-- allow user to select the subsections now. -->
+{% if sub_sections %}
+<p>Select a sub_section that match with your query:</p>
+  <div>
+    <form method="POST">
+      {% csrf_token %}
+      {% for sub_section in sub_sections %}
+        <button name = "sub_section" type="submit" value = {{sub_section}}>{{sub_section}}</button>
+      {% endfor %}
+    </form>
+  </div>
+{% endif %}
+
+<!-- now allow user to select the FAQs -->
+{% if FAQs %}
+  {% for FAQ in FAQs %}
+    <button name = "FAQ" type="submit" value = {{FAQ}}>{{FAQ.questions}}</button>
+  {% endfor %}
+  <p>Either give us more information or create a ticket.</p>
+    <button type="button">
+      <a href="{% url 'create_ticket' %}">Create a Ticket</a>
+{% endif %}
+<!-- {%include 'partials/pagination.html' %} -->
+{%include 'partials/footer.html' %}
+{%endblock%}
