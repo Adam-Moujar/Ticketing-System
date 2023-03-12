@@ -33,6 +33,16 @@ class ChangePasswordView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     form_class = ChangePasswordForm
 
     def get_form_kwargs(self):
+        '''
+        Return the keyword arguments for instantiating the form.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+        Returns:
+            _kwargs: dict
+                A dictionary of keyword arguments.
+        '''
         _kwargs = super().get_form_kwargs()
 
         _kwargs.update({'user': self.user})
@@ -50,7 +60,23 @@ class ChangePasswordView(LoginRequiredMixin, RoleRequiredMixin, FormView):
         return context
 
     def setup(self, request, pk):
-
+        '''
+        Set up the view with the given user ID and request.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            request: HttpRequest
+                The HTTP request object.
+            pk: int
+                The ID of the user to set up the view for.
+        Returns:
+            Http404
+                If no user is found matching the query or if an unauthorised user ID
+                is provided.
+            PermissionDenied
+                If the logged-in user is not the director and is not the user being viewed.
+        '''
         try:
             self.user = User.objects.get(pk=pk)
 
@@ -70,7 +96,17 @@ class ChangePasswordView(LoginRequiredMixin, RoleRequiredMixin, FormView):
         super().setup(request, pk=pk)
 
     def post(self, request, pk):
-
+        '''
+        Handles the HTTP POST request for changing the user's password or cancelling the request.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            request: HttpRequest
+                The HTTP request object.
+            pk: int
+                The primary key of the user whose password is being changed.
+        '''
         if request.POST.get('change'):
             self.form = ChangePasswordForm(request.POST, user=self.user)
 
