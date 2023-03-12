@@ -101,6 +101,19 @@ class SpecialistMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
         return context
 
     def get_form(self, form_class=None):
+        '''
+        Returns an instance of the form to be used in the view.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            form_class: class
+                The form class can be used in the view (default: None).
+        Returns:
+            form: object
+                An instance of the form to be used in the view, with modified
+                label and widget attributes.  
+        '''
         form = super().get_form(form_class=form_class)
         form.fields['content'].label = ''
         form.fields['content'].widget.attrs.update(
