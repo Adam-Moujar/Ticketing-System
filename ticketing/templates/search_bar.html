@@ -9,44 +9,51 @@
 </div>
 <!-- allow user to select top three departments -->
 {% if top_departments %}
+<div class = "department">
   <p>Select departments that match with your query:</p>
-  <div>
     <form method="POST">
       {% csrf_token %}
-      {% for department in top_departments %}
-        <button name = "department" type="submit" value = {{department}}>{{ department }}</button>
+      {% for department_name, department_id in top_departments.items %}
+        <button type="submit" name = department value="{{ department_id }}">{{ department_name }}</button>
       {% endfor %}
     </form>
-    {% if low_score %}
-      <p>Either give us more information or create a ticket.</p>
+    <p>Either give us more information or create a ticket.</p>
       <button type="button">
         <a href="{% url 'create_ticket' %}">Create a Ticket</a>
-    </button>
-    {% endif %}
-  </div>
+      </button>
+</div>
 {% endif %}
 
 <!-- allow user to select the subsections now. -->
-{% if sub_sections %}
-<p>Select a sub_section that match with your query:</p>
-  <div>
+{% if sub_sections_dict %}
+<div class = "subsections">
+  <p>Select a sub_section that match with your query:</p>
     <form method="POST">
       {% csrf_token %}
-      {% for sub_section in sub_sections %}
-        <button name = "sub_section" type="submit" value = {{sub_section}}>{{sub_section}}</button>
+      {% for sub_section_name, sub_section_value in sub_sections_dict.items %}
+        <button name = "sub_section" type="submit" value = {{sub_section_value}}> {{sub_section_name}}</button>
       {% endfor %}
+      <p>Either give us more information or create a ticket.</p>
+      <button type="button">
+        <a href="{% url 'create_ticket' %}">Create a Ticket</a>
+      </button>
     </form>
-  </div>
+</div>
 {% endif %}
 
 <!-- now allow user to select the FAQs -->
-{% if FAQs %}
-  {% for FAQ in FAQs %}
-    <button name = "FAQ" type="submit" value = {{FAQ}}>{{FAQ.questions}}</button>
-  {% endfor %}
-  <p>Either give us more information or create a ticket.</p>
-    <button type="button">
-      <a href="{% url 'create_ticket' %}">Create a Ticket</a>
+{% if top_FAQs %}
+<div class = "FAQs">
+  <p>Select a FAQs that match with your query:</p>
+    {% for FAQ in top_FAQs %}
+      <button name = "FAQ" type="submit" value = "hello">{{FAQ}}</button>
+    {% endfor %}
+    <p>Either give us more information or create a ticket.</p>
+      <button type="button">
+        <a href="{% url 'create_ticket' %}">Create a Ticket</a>
+      </button>
+</div>
+
 {% endif %}
 <!-- {%include 'partials/pagination.html' %} -->
 {%include 'partials/footer.html' %}

@@ -7,4 +7,7 @@ class TicketingConfig(AppConfig):
     name = 'ticketing'
 
     def ready(self):
-        load_classifier()
+        # print("load")
+        # load_classifier()
+        # print("end")
+        pass
