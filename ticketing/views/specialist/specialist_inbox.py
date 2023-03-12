@@ -160,9 +160,7 @@ class SpecialistInboxView(
             data_string = self.request.POST.get('reroute')
 
             if data_string == '0':
-                messages.info(
-                    request, 'A invalid option has not been selected!'
-                )
+                messages.info(request, 'Select a valid option!')
             else:
                 ticket_id = int(re.findall(r'\d+', data_string)[0])
                 department_name = ''.join(

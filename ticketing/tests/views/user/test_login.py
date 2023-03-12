@@ -76,7 +76,9 @@ class LoginViewTestCase(TestCase, LogInTester):
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
         response_url = reverse('student_dashboard')
-        self.assertRedirects(response, response_url, status_code=302, target_status_code=200)
+        self.assertRedirects(
+            response, response_url, status_code=302, target_status_code=200
+        )
         self.assertTemplateUsed(response, 'student_dashboard.html')
 
     def test_successful_specialist_log_in(self):
@@ -86,7 +88,9 @@ class LoginViewTestCase(TestCase, LogInTester):
         }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
-        response_url = reverse('specialist_dashboard', kwargs={"ticket_type": "personal"})
+        response_url = reverse(
+            'specialist_dashboard', kwargs={'ticket_type': 'personal'}
+        )
         self.assertRedirects(
             response, response_url, status_code=302, target_status_code=200
         )
@@ -99,11 +103,11 @@ class LoginViewTestCase(TestCase, LogInTester):
         }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
-        response_url = reverse('home')
+        response_url = reverse('director_panel')
         self.assertRedirects(
             response, response_url, status_code=302, target_status_code=200
         )
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'director_panel.html')
 
     def test_get_log_in_redirects_when_logged_in(self):
         form_input = {
@@ -112,7 +116,7 @@ class LoginViewTestCase(TestCase, LogInTester):
         }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
-        response_url = reverse('home')
+        response_url = reverse('director_panel')
         response2 = self.client.get(self.url)
         self.assertRedirects(response, response_url)
 
@@ -123,6 +127,6 @@ class LoginViewTestCase(TestCase, LogInTester):
         }
         response = self.client.post(self.url, form_input, follow=True)
         self.assertTrue(self._is_logged_in())
-        response_url = reverse('home')
+        response_url = reverse('director_panel')
         response2 = self.client.post(self.url, form_input, follow=True)
         self.assertRedirects(response, response_url)

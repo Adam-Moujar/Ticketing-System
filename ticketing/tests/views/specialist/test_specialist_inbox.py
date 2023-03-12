@@ -268,9 +268,7 @@ class SpecialistInboxViewTestCase(TestCase):
         )
 
         error_message = list(response.context['messages'])[0]
-        self.assertEqual(
-            'A invalid option has not been selected!', str(error_message)
-        )
+        self.assertEqual('Select a valid option!', str(error_message))
 
     def test_personal_inbox_filtering(self):
         self.client = Client()

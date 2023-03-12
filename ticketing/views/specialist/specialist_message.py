@@ -99,3 +99,16 @@ class SpecialistMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
             key=attrgetter('date_time'),
         )
         return context
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['content'].label = ''
+        form.fields['content'].widget.attrs.update(
+            {
+                'class': 'form-control',
+                'rows': 8,
+                'style': 'resize: none;',
+                'placeholder': 'Enter your message here',
+            }
+        )
+        return form

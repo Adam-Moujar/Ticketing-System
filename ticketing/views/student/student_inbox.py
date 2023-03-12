@@ -26,7 +26,7 @@ class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
                 case 'Closed':
                     return tickets.filter(status='Closed')
                 case default:
-                    return tickets
+                    return tickets.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
