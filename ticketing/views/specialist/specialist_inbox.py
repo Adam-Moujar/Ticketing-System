@@ -37,6 +37,16 @@ class SpecialistInboxView(
         super().setup(request, *args, **kwargs)
 
     def get_queryset(self):
+        '''
+        Retrieve and return a queryset of tickets based on the current filter and ticket type.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+        Returns:
+            ticket_list: [Ticket]
+                A list of tickets that match the current filter, and ticket type.
+        '''
         user = self.request.user
         ticket_list = []
 
@@ -73,6 +83,21 @@ class SpecialistInboxView(
         return ticket_list
 
     def get_context_data(self, **kwargs):
+        '''
+        Method to get the context data for the current request.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            **kwargs: dict
+                Arbitrary keyword argunents.
+        Returns:
+            context: dict
+                A dictionary containing the context data for the current request:
+                    -context['ticket_type'] = self.ticket_type // e.g. 'claimed'/'unclaimed' etc.
+                    -context['inbox_type'] = self.formatted_inbox_name(self.ticket_type) // e.g. 'personal', 'department', 'archived' etc.
+                    -context['department_name'] = self.get_department_name() // e.g. Immigration & Visa etc.
+        '''
         context = super().get_context_data(**kwargs)
 
         ticket_type = self.request.GET.get('type_of_ticket')
@@ -90,12 +115,44 @@ class SpecialistInboxView(
         return context
 
     def get(self, request, *args, **kwargs):
+        '''
+        Handling of the get request for this view.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            request: HttpRequest
+                The HTTP request object for the current request.
+            *args: tuple
+                Positional arguments passed to the method.
+            **kwargs: dict
+                Keyword arguments passed to the method.
+        Returns:
+            HttpResponse
+                The HTTP response for the current object.
+        '''
         if self.ticket_type not in ['personal', 'archived', 'department']:
             return redirect('specialist_dashboard', ticket_type='personal')
 
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        '''
+        Handling the post request for this view.
+        
+        Args:
+            self: object
+                An instance of the class that defines this object.
+            request: HttpRequest 
+                The HTTP request object for the current request.
+            *args: tuple
+                Positional arguments passed to the method.
+            *kwargs: dict
+                Keyword arguments passed to the method.
+        Returns:
+            HttpResponse
+                The HTTP response object for the current request.
+        '''
         if 'unclaim' in self.request.POST:
             self.ticket_type = 'personal'
 
@@ -123,6 +180,28 @@ class SpecialistInboxView(
         return super().get(request, *args, **kwargs)
 
     def get_tickets(self, user, ticket_type, full_ticket_list):
+        '''
+        Returns a lost of tickets based on the given ticket type and
+        the users permissions.
+        
+        Args:
+            self: object
+                An instance of a class that defines an object.
+            user: User
+                The user who is trying to retrieve the ticket.
+            ticket_type: str
+                The type of tickets that can be retrieved. Valid
+                values are:
+                    -'department'
+                    -'personal'
+                    -'archived'
+            full_ticket_list: QuerySet
+                The full list of tickets to filter.
+        Returns:
+            ticket_list=[Ticket]
+                A list of ticket objects corresponding to the given ticket type
+                and the user's permissions.
+        '''
         user_department = SpecialistDepartment.objects.filter(specialist=user)
         ticket_list = []
 

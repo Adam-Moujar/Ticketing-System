@@ -31,7 +31,18 @@ class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, F
     form_class = FAQForm
 
     def form_valid(self, form):
-
+        '''
+        Save the form data and redirect to the specialist dashboard.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            form : TicketForm
+                The validated form object containing the ticket data.
+        Returns:
+            response : HttpResponse
+                A redirect to the specialist dashboard with the ticket type parameter set to 'personal'.
+        '''
         form.custom_save(
             specialist=self.request.user,
             department=SpecialistDepartment.objects.get(
@@ -54,6 +65,16 @@ class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, F
     #     return super().get(request, *args, **kwargs)
     
     def get_queryset(self):
+        '''
+        Retrieve and return the message associated with the current ticket.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+        Returns:
+            queryset: [Message]
+                The messages associated with the current ticket, sorted by date and time in descending order.
+        '''
         student_message = StudentMessage.objects.filter(
             ticket=self.kwargs['pk']
         )
