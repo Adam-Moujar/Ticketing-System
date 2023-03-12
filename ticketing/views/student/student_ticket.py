@@ -15,6 +15,20 @@ class StudentTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     success_url = reverse_lazy('student_dashboard')
 
     def form_valid(self, form):
+        '''
+        Override the form_valid method to create a new ticket object
+        and save it to the database with the data submitted through the form.
+        Redirect to the success URL on successful form submission.
+
+        Args:
+            self: object
+                An instance of the class where the method is defined.
+            form : forms.Form
+                A form instance that is validated by Django's form validation system.
+        Returns:
+            HttpResponseRedirect
+                A redirection response to the success URL.
+        '''
         student = User.objects.get(id=self.request.user.id)
 
         form.custom_save(
