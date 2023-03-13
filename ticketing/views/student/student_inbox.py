@@ -9,7 +9,7 @@ import copy
 
 class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = Ticket
-    template_name = 'student_dashboard.html'
+    template_name = 'student/student_dashboard.html'
     paginate_by = 5  # if pagination is desired
     required_roles = ['ST']
 
@@ -90,4 +90,4 @@ class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
             'type_of_ticket': self.request.POST.get('type_of_ticket'),
         }
         context.update(super().get(request).context_data)
-        return render(request, 'student_dashboard.html', context)
+        return render(request, 'student/student_dashboard.html', context)

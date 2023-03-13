@@ -48,5 +48,5 @@ class StudentMessageViewTestCase(TestCase):
             email=self.student.email, password='Password@123'
         )
         response = self.client.get(self.url, follow=True)
-        self.assertTemplateUsed(response, 'student_dashboard.html')
+        self.assertTemplateUsed(response, 'student/student_dashboard.html')
     

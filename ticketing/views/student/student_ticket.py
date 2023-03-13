@@ -9,7 +9,7 @@ from ticketing.mixins import RoleRequiredMixin
 
 
 class StudentTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView):
-    template_name = 'student_ticket_form.html'
+    template_name = 'student/student_ticket_form.html'
     required_roles = ['ST']
     form_class = StudentTicketForm
     success_url = reverse_lazy('student_dashboard')

@@ -79,7 +79,7 @@ class LoginViewTestCase(TestCase, LogInTester):
         self.assertRedirects(
             response, response_url, status_code=302, target_status_code=200
         )
-        self.assertTemplateUsed(response, 'student_dashboard.html')
+        self.assertTemplateUsed(response, 'student/student_dashboard.html')
 
     def test_successful_specialist_log_in(self):
         form_input = {

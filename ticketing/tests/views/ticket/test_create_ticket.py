@@ -22,7 +22,7 @@ class CreateTicketViewTestCase(TestCase):
     def test_get_create_ticket(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'student_ticket_form.html')
+        self.assertTemplateUsed(response, 'student/student_ticket_form.html')
         form = response.context['form']
         self.assertTrue(isinstance(form, StudentTicketForm))
         self.assertFalse(form.is_bound)
@@ -56,7 +56,7 @@ class CreateTicketViewTestCase(TestCase):
         }
         response = self.client.post(self.url, form_input, follow=True)
         response_url = reverse('create_ticket')
-        self.assertTemplateUsed(response, 'student_ticket_form.html')
+        self.assertTemplateUsed(response, 'student/student_ticket_form.html')
         form = response.context['form']
         self.assertEqual(list(form.errors.keys()), ['department'])
         self.assertTrue(isinstance(form, StudentTicketForm))
@@ -70,7 +70,7 @@ class CreateTicketViewTestCase(TestCase):
         }
         response = self.client.post(self.url, form_input, follow=True)
         response_url = reverse('create_ticket')
-        self.assertTemplateUsed(response, 'student_ticket_form.html')
+        self.assertTemplateUsed(response, 'student/student_ticket_form.html')
         form = response.context['form']
         self.assertEqual(list(form.errors.keys()), ['header'])
         self.assertTrue(isinstance(form, StudentTicketForm))
@@ -84,7 +84,7 @@ class CreateTicketViewTestCase(TestCase):
         }
         response = self.client.post(self.url, form_input, follow=True)
         response_url = reverse('create_ticket')
-        self.assertTemplateUsed(response, 'student_ticket_form.html')
+        self.assertTemplateUsed(response, 'student/student_ticket_form.html')
         form = response.context['form']
         self.assertEqual(list(form.errors.keys()), ['content'])
         self.assertTrue(isinstance(form, StudentTicketForm))

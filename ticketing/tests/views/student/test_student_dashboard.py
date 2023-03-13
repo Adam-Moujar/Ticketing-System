@@ -21,4 +21,4 @@ class StudentDashboardViewTestCase(TestCase):
     def test_get_student_dashboard(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'student_dashboard.html')
+        self.assertTemplateUsed(response, 'student/student_dashboard.html')

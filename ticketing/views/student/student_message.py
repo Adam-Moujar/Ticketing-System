@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class StudentMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
     model = StudentMessage
-    template_name = 'student_message.html'
+    template_name = 'student/student_message.html'
     fields = ['content']
     required_roles = ['ST', 'SP']
 

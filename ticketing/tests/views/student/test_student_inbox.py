@@ -51,7 +51,7 @@ class StudentInboxViewTest(TestCase):
         )
         response=self.client.get(reverse('student_inbox'))
         self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response,'student_dashboard.html')
+        self.assertTemplateUsed(response,'student/student_dashboard.html')
         self.assertTemplateUsed(response,'base.html')
         self.assertTemplateUsed(response,'partials/header.html')
         self.assertTemplateUsed(response,'inbox.html')
