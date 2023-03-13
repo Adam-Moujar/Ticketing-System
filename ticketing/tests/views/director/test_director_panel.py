@@ -91,7 +91,7 @@ class DirectorPanelTestCase(TestCase):
 
         response = self.client.get(self.url, follow=True)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'director_panel.html')
+        self.assertTemplateUsed(response, 'director/director_panel.html')
 
     def test_get_dp_dashboard_as_specialist(self):
         self.client = Client()

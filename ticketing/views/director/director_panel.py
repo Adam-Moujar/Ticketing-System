@@ -189,7 +189,7 @@ class DirectorPanelView(
         return users
 
     def get_template_names(self):
-        return ['director_panel.html']
+        return ['director/director_panel.html']
 
     def get_context_data(self, *args, **kwargs):
         '''

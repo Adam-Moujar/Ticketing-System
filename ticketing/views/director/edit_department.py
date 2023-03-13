@@ -20,7 +20,7 @@ class EditDepartmentView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
     success_url = reverse_lazy('department_manager')
 
     def get_template_names(self):
-        return ['edit_department.html']
+        return ['director/edit_department.html']
 
     def post(self, request, *args, **kwargs):
         '''

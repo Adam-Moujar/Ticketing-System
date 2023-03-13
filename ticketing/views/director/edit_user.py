@@ -36,7 +36,7 @@ class EditUserView(
     form_class_maker = make_edit_user_form_class
 
     def get_template_names(self):
-        return ['edit_user.html']
+        return ['director/edit_user.html']
 
     def post(self, request, *args, **kwargs):
         '''

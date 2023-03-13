@@ -61,7 +61,7 @@ class DepartmentManagerTestCase(TestCase):
 
         response = self.client.get(self.url, follow=True)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'department_manager.html')
+        self.assertTemplateUsed(response, 'director/department_manager.html')
 
     def test_get_dp_dashboard_as_specialist(self):
         self.client = Client()

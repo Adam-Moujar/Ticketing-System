@@ -124,4 +124,4 @@ class DepartmentManagerView(
         return self.fixed_post(request, *args, **kwargs)
 
     def get_template_names(self):
-        return ['department_manager.html']
+        return ['director/department_manager.html']
