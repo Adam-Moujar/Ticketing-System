@@ -3,13 +3,14 @@ from django.views.generic import ListView
 from ticketing.nlp import ml_api
 from ticketing.models import Department, FAQ
  
-#  TODO
-    # what happens if there are less than three departments 
-    # do a regex to stop speciliast creating subsections with underscore
-    # return every FAQ but rank them.
-
+#TODO
+    # done - what happens if there are less than three departments 
+    # do a regex to stop specialist creating subsections with underscore
+    # done - return every FAQ but rank them.
+    # Change the model for faqs and department. 
 class SearchBarView(ListView):
     template_name = 'search_bar.html'
+    paginate_by = 5
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
@@ -74,11 +75,18 @@ class SearchBarView(ListView):
                 total_dict[values[i]] = department_list[i]            
         weights = list(total_dict.keys())
         weights.sort(reverse = True)
-        # name : id
-        context['top_departments'] = {total_dict[weights[0]] : self.get_department_id(total_dict[weights[0]]),
+    
+        # name : id  
+        if len(weights) > 3:       
+            context['top_departments'] = {
+                                      total_dict[weights[0]] : self.get_department_id(total_dict[weights[0]]),
                                       total_dict[weights[1]] : self.get_department_id(total_dict[weights[1]]),
                                       total_dict[weights[2]] : self.get_department_id(total_dict[weights[2]])
                                       }
+        else: 
+            for i in range(0, len(weights)): 
+                context['top_departments'][total_dict[weights[i]]]  =  self.get_department_id(total_dict[weights[i]])
+
         return context, weights
     
     def get_department_id(self, department_name):
@@ -112,7 +120,9 @@ class SearchBarView(ListView):
                 total_dict[values[i]] = FAQ_list[i]            
         weights = list(total_dict.keys())
         weights.sort(reverse = True)
-        context['top_FAQs'] = [total_dict[weights[0]], total_dict[weights[1]], total_dict[weights[2]]]
+        context['top_FAQs'] = []
+        for i in range(0, len(weights)): 
+            context['top_FAQs'].append(total_dict[weights[i]])
         return context, weights
     
     def FAQs_chunk_creator(self, filtered_FAQs):
