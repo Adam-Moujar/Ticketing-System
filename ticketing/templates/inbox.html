@@ -20,12 +20,13 @@
                 </td> -->
 
             {% if user.role == "SP" %}
-            <td style="text-align:right;">
                 {% if ticket_type == "department" %}
+                <td style="text-align:right;">
                 <button type="button" class="btn">
-                    <a class="stretched-link blue-link" href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View
+                    <a class=" blue-link" href="{% url 'specialist_claim_ticket' pk=ticket.id %}">View
                         ticket info →</a>
                 </button>
+                </td>
                 {% endif %}
                 {% if ticket_type == "personal" %}
                 <td>

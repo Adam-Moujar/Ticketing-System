@@ -21,3 +21,5 @@ from . import specialist_claim_ticket
 from . import individual_specialist_faq
 from . import specialist_department_faq
 from . import specialist_create_faq_from_ticket
+from . import specialist_statistics
+from . import director_statistics

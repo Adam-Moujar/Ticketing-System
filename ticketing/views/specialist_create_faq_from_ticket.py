@@ -20,9 +20,7 @@ from ticketing.mixins import RoleRequiredMixin
 
 from ticketing.models import (
     Ticket,
-    SpecialistInbox,
     SpecialistDepartment,
-    Message,
 )
 
 class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView, ListView):
