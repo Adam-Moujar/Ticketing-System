@@ -50,7 +50,7 @@ class ChangePasswordView(LoginRequiredMixin, RoleRequiredMixin, FormView):
         return _kwargs
 
     def get_template_names(self):
-        return ['change_password.html']
+        return ['user/change_password.html']
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

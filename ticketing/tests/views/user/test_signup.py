@@ -28,7 +28,7 @@ class SignUpViewTestCase(TestCase):
     def test_get_signup(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'signup.html')
+        self.assertTemplateUsed(response, 'user/signup.html')
         form = response.context['form']
         self.assertTrue(isinstance(form, SignupForm))
         self.assertFalse(form.is_bound)
@@ -62,7 +62,7 @@ class SignUpViewTestCase(TestCase):
         after_count = User.objects.count()
         self.assertEqual(after_count, before_count)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'signup.html')
+        self.assertTemplateUsed(response, 'user/signup.html')
         form = response.context['form']
         self.assertTrue(isinstance(form, SignupForm))
         self.assertTrue(form.is_bound)

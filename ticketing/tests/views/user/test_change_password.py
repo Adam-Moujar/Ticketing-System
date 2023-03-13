@@ -69,7 +69,7 @@ class ChangePasswordTestCase(TestCase):
 
         response = self.client.get(self.url, follow=True)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'change_password.html')
+        self.assertTemplateUsed(response, 'user/change_password.html')
 
     def test_get_change_password_as_specialist(self):
         self.client = Client()
@@ -118,7 +118,7 @@ class ChangePasswordTestCase(TestCase):
 
         response = self.client.get(url, follow=True)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'change_password.html')
+        self.assertTemplateUsed(response, 'user/change_password.html')
 
     def test_change_password_good(self):
         self.client = Client()

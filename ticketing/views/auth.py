@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 
 
 class SignupView(SuccessMessageMixin, CreateView):
-    template_name = 'signup.html'
+    template_name = 'user/signup.html'
     success_url = reverse_lazy('login')
     form_class = SignupForm
     success_message = 'Your account was created successfully'
