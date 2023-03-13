@@ -10,7 +10,7 @@ from ticketing.mixins import RoleRequiredMixin
 
 class SpecialistDepartmentFaq(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = FAQ
-    template_name = 'specialist_department_faq.html'
+    template_name = 'faq/specialist_department_faq.html'
     required_roles = ['SP', 'DI']
     paginate_by = 2
     context_object_name = 'faq_list'

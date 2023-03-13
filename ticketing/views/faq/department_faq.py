@@ -8,7 +8,7 @@ from ticketing.models.departments import Department
 
 class DepartmentFAQ(ListView):
     model = FAQ
-    template_name = 'department_faq.html'
+    template_name = 'faq/department_faq.html'
     paginate_by = 25
 
     def get_queryset(self):

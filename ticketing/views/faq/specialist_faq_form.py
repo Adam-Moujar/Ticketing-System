@@ -9,7 +9,7 @@ from ticketing.mixins import RoleRequiredMixin
 
 
 class FAQFormView(LoginRequiredMixin, RoleRequiredMixin, FormView):
-    template_name = 'faq_specialist_form.html'
+    template_name = 'faq/faq_specialist_form.html'
     required_roles = ['SP', 'DI']
     form_class = FAQForm
     success_url = reverse_lazy('home')

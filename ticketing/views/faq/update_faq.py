@@ -10,7 +10,7 @@ from django.views.generic.edit import UpdateView
 
 
 class FAQUpdateFormView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
-    template_name = 'faq_update.html'
+    template_name = 'faq/faq_update.html'
     required_roles = ['SP', 'DI']
     form_class = FAQForm
     success_url = reverse_lazy('home')
