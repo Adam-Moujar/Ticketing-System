@@ -26,7 +26,7 @@ from ticketing.models import (
 )
 
 class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView, ListView):
-    template_name = 'specialist_create_faq_from_ticket.html'
+    template_name = 'faq/specialist_create_faq_from_ticket.html'
     required_roles = ['SP']
     form_class = FAQForm
 

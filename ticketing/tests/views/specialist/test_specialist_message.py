@@ -50,7 +50,7 @@ class SpecialistMessageViewTestCase(TestCase):
             email=self.specialist.email, password='Password@123'
         )
         response = self.client.get(self.url, follow=True)
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')
     
     def test_getting_personal_dashboard(self):
         self.client = Client()

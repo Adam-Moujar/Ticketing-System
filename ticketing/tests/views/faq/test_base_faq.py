@@ -28,7 +28,7 @@ class BaseFaqTestCase(TestCase):
     
     def test_base_faq_view_uses_correct_template(self):
         response = self.client.get(self.url)
-        self.assertTemplateUsed(response, 'faq.html')
+        self.assertTemplateUsed(response, 'faq/faq.html')
         self.assertTemplateUsed(response, 'partials/header.html')
         self.assertTemplateUsed(response,'partials/pagination.html')
         self.assertTemplateUsed(response, 'partials/footer.html')

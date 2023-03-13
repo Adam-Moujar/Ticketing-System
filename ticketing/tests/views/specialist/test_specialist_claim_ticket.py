@@ -72,7 +72,7 @@ class SpecialistClaimTicketViewTestCase(TestCase):
         self.assertTrue(loggedin)
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'specialist_claim_ticket.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_claim_ticket.html')
 
     def test_get_specialist_dashboard_when_logged_out(self):
         redirect_url = reverse_with_next('login', self.url)
@@ -115,7 +115,7 @@ class SpecialistClaimTicketViewTestCase(TestCase):
         response = self.client.post(
             self.url, data={'accept_ticket': self.ticket.id}, follow=True
         )
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')
 
     def test_claim_ticket_that_does_not_exist(self):
         self.client = Client()
@@ -129,7 +129,7 @@ class SpecialistClaimTicketViewTestCase(TestCase):
         after_count = SpecialistInbox.objects.count()
 
         self.assertEqual(before_count, after_count)
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')
 
     def test_claim_ticket_that_does_not_exist_redirects_specialist_dashboard(
         self,
@@ -143,7 +143,7 @@ class SpecialistClaimTicketViewTestCase(TestCase):
 
         response = self.client.get(self.url, follow=True)
 
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')
 
     def test_specialist_claim_ticket_when_specialist_has_no_department(
         self,
@@ -154,4 +154,4 @@ class SpecialistClaimTicketViewTestCase(TestCase):
         )
         SpecialistDepartment.objects.get(specialist=self.specialist).delete()
         response = self.client.get(self.url, follow=True)
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')

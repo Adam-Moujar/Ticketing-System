@@ -16,7 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class SpecialistMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
     model = SpecialistMessage
-    template_name = 'specialist_message.html'
+    template_name = 'specialist/specialist_message.html'
     fields = ['content']
     required_roles = ['SP']
 

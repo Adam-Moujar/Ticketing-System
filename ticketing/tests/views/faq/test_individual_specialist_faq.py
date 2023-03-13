@@ -36,7 +36,7 @@ class SpecialistFAQListViewTest(TestCase):
             email='test.specialist@email.com', password='Password@123'
         )
         response = self.client.get(self.url)
-        self.assertTemplateUsed(response, 'individual_faq_list.html')
+        self.assertTemplateUsed(response, 'faq/individual_faq_list.html')
 
     def test_individual_faq_specialist_view_redirects_unauthorized_user(self):
         response = self.client.get(reverse('check_faq'))

@@ -23,7 +23,7 @@ class SpecialistInboxView(
     LoginRequiredMixin, RoleRequiredMixin, FilterView, ListView
 ):
     model = Ticket
-    template_name = 'specialist_dashboard.html'
+    template_name = 'specialist/specialist_dashboard.html'
     required_roles = ['SP']
 
     paginate_by = 10

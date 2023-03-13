@@ -65,7 +65,7 @@ class SpecialistInboxViewTestCase(TestCase):
         self.assertTrue(loggedin)
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')
 
     def test_get_specialist_dashboard_when_logged_out(self):
         redirect_url = reverse_with_next('login', self.url)

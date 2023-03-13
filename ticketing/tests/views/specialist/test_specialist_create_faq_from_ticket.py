@@ -116,7 +116,7 @@ class FAQFormViewTest(TestCase):
         self.assertTrue(loggedin)
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'specialist_create_faq_from_ticket.html')
+        self.assertTemplateUsed(response, 'faq/specialist_create_faq_from_ticket.html')
 
     def test_create_faq_from_archived_as_specialist(self):
         self.client = Client()
@@ -137,7 +137,7 @@ class FAQFormViewTest(TestCase):
      
         response = self.client.post(self.url, data = self.form_data, follow = True)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'specialist_dashboard.html')
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')
 
     
 

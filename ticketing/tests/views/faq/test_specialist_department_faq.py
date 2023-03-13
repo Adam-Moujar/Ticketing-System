@@ -49,7 +49,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
 
     def test_specialist_department_faq_view_uses_correct_template(self):
         response = self.client.get(self.url)
-        self.assertTemplateUsed(response, 'department_faq.html')
+        self.assertTemplateUsed(response, 'faq/department_faq.html')
         self.assertTemplateUsed(response, 'partials/header.html')
         self.assertTemplateUsed(response, 'partials/footer.html')
 

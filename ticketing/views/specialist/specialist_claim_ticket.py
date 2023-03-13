@@ -15,7 +15,7 @@ from ticketing.models import (
 
 
 class SpecialistClaimTicketView(LoginRequiredMixin, RoleRequiredMixin, View):
-    template_name = 'specialist_claim_ticket.html'
+    template_name = 'specialist/specialist_claim_ticket.html'
     required_roles = ['SP']
 
     def get(self, request, *args, **kwargs):
