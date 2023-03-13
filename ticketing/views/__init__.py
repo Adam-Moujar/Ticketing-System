@@ -25,3 +25,4 @@ from . import update_faq
 from . import delete_faq
 from . import specialist_department_faq
 from . import search_bar
+from . import specialist_subsection_create

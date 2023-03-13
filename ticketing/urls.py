@@ -112,4 +112,9 @@ urlpatterns = [
         search_bar.SearchBarView.as_view(),
         name='search_bar',
     ),
+    path( 
+        'create_subsection/', 
+        specialist_subsection_create.SpecialistSubSectionView.as_view(), 
+        name='create_subsection',
+    )
 ]

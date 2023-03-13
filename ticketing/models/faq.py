@@ -9,10 +9,11 @@ class FAQ(models.Model):
     department = models.ForeignKey(
         'Department', on_delete=models.CASCADE, db_column='department'
     )
-    # We have changed this field
-    subsection=models.CharField(max_length=50, blank=False)
+    subsection = models.ForeignKey(
+        'Subsection', on_delete=models.CASCADE, db_column='subsection'
+    )
     questions = models.CharField(max_length=250, blank=False)
     answer = models.CharField(max_length=250, blank=False)
 
     class Meta:
-        ordering = ['department','subsection', 'specialist']
+        ordering = ['department', 'subsection', 'specialist']

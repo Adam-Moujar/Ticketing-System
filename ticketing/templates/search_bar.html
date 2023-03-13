@@ -31,7 +31,7 @@
     <form method="POST">
       {% csrf_token %}
       {% for sub_section_name, sub_section_value in sub_sections_dict.items %}
-        <button name = "sub_section" type="submit" value = {{sub_section_value | encode}}> {{sub_section_name}}</button>
+        <button name = "sub_section" type="submit" value = {{sub_section_value}}> {{sub_section_name}}</button>
       {% endfor %}
       <p>Either give us more information or create a ticket.</p>
       <button type="button">

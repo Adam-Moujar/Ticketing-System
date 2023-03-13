@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from ticketing.models.departments import Subsection
 from wonderwords import RandomSentence
 from ticketing.models import *
 from datetime import *
@@ -9,13 +10,13 @@ import json
 from random import shuffle
 class Command(BaseCommand):
     # constant
-    DEPARTMENT = [
-        'Cost of living',
-        'Student wellbeing',
-        'Fees, Funding & Money',
-        'Immigration & visa advice',
-        'Accommodation',
-    ]
+    # DEPARTMENT = [
+    #     'Cost of living',
+    #     'Student wellbeing',
+    #     'Fees, Funding & Money',
+    #     'Immigration & visa advice',
+    #     'Accommodation',
+    # ]
     SUBSECTIONS=[
         'Contact',
         'What to do',
@@ -24,7 +25,7 @@ class Command(BaseCommand):
     SPECIALIST_COUNT = 0
     DEPARTMENT_COUNT = 0
     # can configure this
-    SEPCIALIST_PER_DEPARTMENT_COUNT = 3
+    SPECIALIST_PER_DEPARTMENT_COUNT = 3
     DIRECTOR_COUNT = 3
     PASSWORD = 'Password@123'
 
@@ -38,6 +39,7 @@ class Command(BaseCommand):
         Department.objects.all().delete()
         SpecialistDepartment.objects.all().delete()
         SpecialistInbox.objects.all().delete()
+        Subsection.objects.all().delete()
         SpecialistMessage.objects.all().delete()
         FAQ.objects.all().delete()
 
@@ -45,8 +47,6 @@ class Command(BaseCommand):
         self.create_student()
         print('students done')
 
-        self.create_specialist()
-        print('specialist done')
 
         self.create_director()
         print('directors done')
@@ -56,6 +56,11 @@ class Command(BaseCommand):
 
         self.create_department()
         print('department done')
+        
+        self.create_specialist()
+        print('specialist done')
+        self.create_subsections()
+        print('subsections done')
 
         self.create_specialist_department()
         print('specialist set to department')
@@ -128,8 +133,19 @@ class Command(BaseCommand):
             for dept in data['departments']:
                 department_name = dept['department']
                 department, _ = Department.objects.get_or_create(name=department_name)
-        self.DEPARTMENT_COUNT = Department.objects.count()   
+        self.DEPARTMENT_COUNT = Department.objects.count()  
 
+    def create_subsections(self):
+        with open('ticketing/management/commands/faqs.json') as json_file:
+            data = json.load(json_file)
+            for dept in data['departments']:
+                    department_name = dept['department']
+                    department, _ = Department.objects.get_or_create(name=department_name)
+                    for sub_sec in dept['sub_sections']:
+                        subsection_name = sub_sec['sub_section']
+                        Subsection.objects.get_or_create(name = subsection_name, 
+                                                         department = department)
+    
     def create_student(self):
         for _ in range(self.STUDENT_COUNT):
             info = self.set_up()
@@ -141,7 +157,7 @@ class Command(BaseCommand):
             )
 
     def create_specialist(self):
-        self.SEPCIALIST_COUNT = self.SEPCIALIST_PER_DEPARTMENT_COUNT * self.DEPARTMENT
+        self.SPECIALIST_COUNT = self.SPECIALIST_PER_DEPARTMENT_COUNT * self.DEPARTMENT_COUNT
         for _ in range(self.SPECIALIST_COUNT):
             info = self.set_up()
             User.objects.create_specialist(
@@ -175,8 +191,9 @@ class Command(BaseCommand):
         assignments = []
         for department in Department.objects.all():
             # Assign the chunk of specialists
-            chunck_size = self.SPECIALIST_COUNT/self.DEPARTMENT_COUNT
-            chunk_ids = specialist_ids[:]
+            chunk_size = self.SPECIALIST_COUNT//self.DEPARTMENT_COUNT
+            chunk_ids = specialist_ids[:chunk_size]
+            specialist_ids = specialist_ids[3:]
             # Create the specialist department assignments
             for spe_id in chunk_ids:
                 specialist = User.objects.get(id = spe_id)
@@ -194,17 +211,19 @@ class Command(BaseCommand):
             data = json.load(json_file)
             for dept in data['departments']:
                     department_name = dept['department']
-                    department, _ = Department.objects.get_or_create(name=department_name)
+                    department = Department.objects.get(name=department_name)
                     for sub_sec in dept['sub_sections']:
-                        sub_section_name = sub_sec['sub_section']
+                        subsection_name = sub_sec['sub_section']
+                        subsection = Subsection.objects.get(name=subsection_name)
                         for faq in sub_sec['faq']:
                             question = faq['question']
                             answer = faq['answer']
+                            print(SpecialistDepartment.objects.filter(department = department))
                             specialist = SpecialistDepartment.objects.filter(department = department).first().specialist
                             FAQ.objects.get_or_create(
                                 specialist = specialist,
                                 department=department,
-                                subsection=sub_section_name,
+                                subsection=subsection,
                                 questions=question,
                                 answer=answer
                             )
