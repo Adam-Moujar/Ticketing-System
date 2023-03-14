@@ -23,6 +23,22 @@ class MessageListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     # paginate_by = 5
 
     def dispatch(self, request, *args, **kwargs):
+        '''
+        Check if the logged-in user is authorized to access the specialist message view for a particular ticket.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            request: HttpRequest 
+                The HTTP request object containing all the metadata with the request.
+            *args: tuple 
+                Positional arguments passed to the method.
+            **kwargs: dict
+                Keyword arguments passed t the method.
+        Returns:
+            HttpResponseRedirect
+                A redirect to the student dashboard if the user is not authorized to access the specialist message view.
+        '''
         allowed_ids = list(
             SpecialistDepartment.objects.filter(
                 department=getattr(
@@ -42,6 +58,17 @@ class MessageListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
+        '''
+        Get messages associated with the ticket with the ID 
+        specified in the URL parameters.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+        Returns:
+            queryset=QuerySet
+                A queryset containing the messages for the ticket. Sorted by most recent created.
+        '''
         student_message = StudentMessage.objects.filter(
             ticket=self.kwargs['pk']
         )
@@ -56,6 +83,19 @@ class MessageListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         return queryset
 
     def get_context_data(self, **kwargs):
+        '''
+        Returning the context data to be displayed to the template.
+        
+        Args:
+            self: object
+                An instance of the class that defines the method.
+            **kwargs: dict
+                Keyword arguments passed onto the context_data method.
+        Rteurns 
+            context: dict
+                A dictionary containing the context data:
+                    -context['ticket']=Ticket.objects.get(id=self.kwargs['pk']) // all tickets related to user
+        '''
         context = super().get_context_data(**kwargs)
         context['ticket'] = Ticket.objects.get(id=self.kwargs['pk'])
         return context
