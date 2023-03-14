@@ -1,12 +1,9 @@
 from ticketing.utility import form_fields
-from ticketing.utility.user import user_exists_by_email
-from ticketing.models import User
-
 from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
-import copy
+
 
 
 class ChangePasswordForm(forms.Form):
