@@ -4,11 +4,13 @@ from django.views.generic import View, ListView
 from django.shortcuts import get_object_or_404
 from ticketing.models import *
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from ticketing.mixins import RoleRequiredMixin
 
-
-class SpecialistStatisticsView(ListView):
+class SpecialistStatisticsView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     # model = Department
     template_name = 'specialist_statistics.html'
+    required_roles = ['SP']
     # paginate_by = 10
     # paginate_by=25
     # def get_queryset(self):
