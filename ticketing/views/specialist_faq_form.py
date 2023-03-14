@@ -1,27 +1,25 @@
-from django.shortcuts import render, redirect
 from django.views.generic import FormView
-from django.views.generic.edit import FormMixin
 from django.http import HttpResponseRedirect
 from ticketing.forms.specialist_faq import FAQForm
 from django.urls import reverse, reverse_lazy
-from ticketing.models.faq import FAQ
-from ticketing.models.users import User
-from ticketing.models.departments import Department
 from ticketing.models.specialist import SpecialistDepartment
+from ticketing.models.departments import Subsection
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
 
 
-class FAQFormView(LoginRequiredMixin, RoleRequiredMixin, FormView, FormMixin):
+class FAQFormView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     template_name = 'faq_specialist_form.html'
     required_roles = ['SP', 'DI']
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('specialist_dashboard') 
     form_class = FAQForm
-    def get_context_data(self): 
-        FAQForm(department = SpecialistDepartment.objects.get
-                    (specialist=self.request.user).department
-                )
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        specialist_department = SpecialistDepartment.objects.get(specialist=self.request.user)
+        kwargs['department'] = specialist_department.department
+        return kwargs
+    
     def form_valid(self, form):
         form.custom_save(
             specialist=self.request.user,
