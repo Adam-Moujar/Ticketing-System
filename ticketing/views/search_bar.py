@@ -16,9 +16,11 @@ class SearchBarView(ListView):
         context = self.get_context_data()
         return render(request, 'search_bar.html', context)
     
+    
     def post(self, request):
         context = {}
         department_id = self.request.POST.get('department')
+
         if department_id != 0 and department_id != None:
             department_name = Department.objects.get(id = department_id)
             context['sub_sections_dict'] = self.get_subsections(department_name = department_name)
@@ -33,6 +35,7 @@ class SearchBarView(ListView):
     def get_queryset(self):
         return super().get_queryset()
     
+    # 
     def get_context_data(self, **kwargs):
         context = {}
         query = self.request.GET.get('query')
@@ -48,16 +51,26 @@ class SearchBarView(ListView):
         if query == None or query == "": 
             return True
 
+    # creates lists of size 10 to feed to the API
     def chunk_creator(self, list):
+        #result = []
+        #count = 0
+        #mid = []
+        #for i in range(0, len(list)):
+        #    if(count == 10):
+        #        count = 0
+        #        result.append(mid)
+        #        mid = []
+        #    mid.append(list[i])
+        #    count = count + 1
+
         result = []
-        count = 0
         mid = []
-        for i in range(0, len(list)):
-            if(count == 10):
-                count = 0
+        for count in range(0, len(list)):
+            if(count%10 == 0):
                 result.append(mid)
                 mid = []
-            mid.append(list[i])
+            mid.append(list[count])
             count = count + 1
         result.append(mid)
         return result
@@ -67,25 +80,31 @@ class SearchBarView(ListView):
         department_chunks = self.department_chunk_creator()
         total_dict = {}
         for chunk in department_chunks:
-            candidate_labels = chunk
-            data = ml_api.get_data(query, candidate_labels)
-            department_list = data['labels']
-            values = data['scores']
-            for i in range(0, len(department_list)):
-                total_dict[values[i]] = department_list[i]            
+            #candidate_labels = chunk
+            #data = ml_api.get_data(query, candidate_labels)
+            #department_list = data['labels']
+            #values = data['scores']
+            #for i in range(0, len(department_list)):
+            #    total_dict[values[i]] = department_list[i
+
+            total_dict = self.return_ranks_dict(query, chunk)
+          
         weights = list(total_dict.keys())
         weights.sort(reverse = True)
     
-        # name : id  
-        if len(weights) > 3:       
-            context['top_departments'] = {
-                                      total_dict[weights[0]] : self.get_department_id(total_dict[weights[0]]),
-                                      total_dict[weights[1]] : self.get_department_id(total_dict[weights[1]]),
-                                      total_dict[weights[2]] : self.get_department_id(total_dict[weights[2]])
-                                      }
-        else: 
-            for i in range(0, len(weights)): 
-                context['top_departments'][total_dict[weights[i]]]  =  self.get_department_id(total_dict[weights[i]])
+        
+        #if len(weights) > 3:       
+        #   context['top_departments'] = {
+        #                              total_dict[weights[0]] : self.get_department_id(total_dict[weights[0]]),
+        #                              total_dict[weights[1]] : self.get_department_id(total_dict[weights[1]]),
+        #                              total_dict[weights[2]] : self.get_department_id(total_dict[weights[2]])
+        #                              }
+        #else: 
+
+        # Retieves upto the 3 highest ranked departments for the query
+        for i in range(0, len(weights)): 
+            if i == 3: break
+            context['top_departments'][total_dict[weights[i]]]  =  self.get_department_id(total_dict[weights[i]])
 
         return context, weights
     
@@ -112,18 +131,23 @@ class SearchBarView(ListView):
         total_dict = {}
         query = self.request.GET.get('query')
         for chunk in FAQ_chunks:
-            candidate_labels = chunk
-            data = ml_api.get_data(query , candidate_labels)
-            FAQ_list = data['labels']
-            values = data['scores']
-            for i in range(0, len(FAQ_list)):
-                total_dict[values[i]] = FAQ_list[i]            
-        weights = list(total_dict.keys())
-        weights.sort(reverse = True)
-        context['top_FAQs'] = []
-        for i in range(0, len(weights)): 
-            context['top_FAQs'].append(total_dict[weights[i]])
-        return context, weights
+            #candidate_labels = chunk
+            #data = ml_api.get_data(query , candidate_labels)
+            #FAQ_list = data['labels']
+            #values = data['scores']
+            #for i in range(0, len(FAQ_list)):
+            #    total_dict[values[i]] = FAQ_list[i] 
+            
+            total_dict = self.return_ranks_dict(query, chunk) 
+
+        #weights = list(total_dict.keys())
+        #weights.sort(reverse = True)
+        #context['top_FAQs'] = []
+        #for i in range(0, len(weights)): 
+        #    context['top_FAQs'].append(total_dict[weights[i]])
+        #return context, weights
+    
+        return self.return_context_weight(total_dict, context, "top_FAQs")
     
     def FAQs_chunk_creator(self, filtered_FAQs):
         FAQ_list = filtered_FAQs.values_list("questions", flat = True)
@@ -134,3 +158,21 @@ class SearchBarView(ListView):
 
         return FAQ.objects.filter(subsection = sub_section_name)
     
+    def return_ranks_dict(self, query, chunk):
+        total_dict = {}
+        candidate_labels = chunk
+        data = ml_api.get_data(query, candidate_labels=candidate_labels)
+        data_list = data["labels"]
+        values =  data["values"]
+
+        for i in range(0, len(data_list)):
+                total_dict[values[i]] = data_list[i]  
+        return total_dict
+    
+    def return_context_weight(self, tmp_dict, context,  title):
+        weights = list(tmp_dict.keys())
+        weights.sort(reverse = True)
+        context[title] = []
+        for i in range(0, len(weights)): 
+            context[title].append(tmp_dict[weights[i]])
+        return context, weights
