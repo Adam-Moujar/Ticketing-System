@@ -1,3 +1,4 @@
+from django.shortcuts import redirect, render
 from django.views.generic import FormView
 from ticketing.models.departments import Subsection
 from ticketing.models.specialist import SpecialistDepartment
@@ -11,12 +12,12 @@ class SpecialistSubSectionView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     required_roles = ['SP']
     template_name = "create_subsection.html"
     form_class = SubsectionForm
-    success_url = reverse_lazy('home')
 
-    def formvalid(self, form):
+    def form_valid(self, form):
         form.custom_save(
             department=SpecialistDepartment.objects.get(
                 specialist=self.request.user
             ).department,
-            subsection=form.cleaned_data['subsection'],
+            subsection_name=form.cleaned_data['name'],
         )
+        return redirect('specialist_dashboard', ticket_type='personal')

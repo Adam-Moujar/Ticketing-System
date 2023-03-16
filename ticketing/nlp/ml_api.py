@@ -1,6 +1,4 @@
 import requests
-
-# TODO have three APIs
 API_URL = (
     'https://api-inference.huggingface.co/models/facebook/bart-large-mnli'
 )

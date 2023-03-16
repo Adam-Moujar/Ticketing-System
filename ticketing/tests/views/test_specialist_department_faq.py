@@ -3,6 +3,7 @@ from django.urls import reverse
 from ticketing.models import FAQ, Department, User, SpecialistDepartment
 from django.utils.text import slugify
 from ticketing.views.specialist_department_faq import SpecialistDepartmentFaq
+from ticketing.models.departments import Subsection
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from unittest.mock import Mock, patch
@@ -22,9 +23,13 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self.specialist_dept = SpecialistDepartment.objects.create(
             department=self.department, specialist=self.specialist
         )
+        self.subsection = Subsection.objects.create(
+            department=self.department, name='Help needed'
+        )
         self.faq = FAQ.objects.create(
             department=self.department,
             specialist=self.specialist,
+            subsection=self.subsection,
             questions='What is 9+10',
             answer='19',
         )
@@ -86,6 +91,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         FAQ.objects.create(
             department=self.department,
             specialist=self.specialist,
+            subsection=self.subsection,
             questions='Why am I tired?',
             answer='Get some sleep',
         )
@@ -110,9 +116,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
             FAQ.objects.filter(department=self.department).order_by('id'),
         )
 
-    def test_specialist_department_faq_view_returns_404_if_no_object_found(
-        self,
-    ):
+    def test_specialist_department_faq_view_returns_404_if_no_object_found(self):
         specialist_dept = SpecialistDepartment.objects.get(
             department=self.department
         ).department

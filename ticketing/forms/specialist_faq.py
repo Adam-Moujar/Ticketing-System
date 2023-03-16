@@ -4,7 +4,7 @@ from ticketing.models.departments import Subsection
 
 # TODO create a choice fields.
 class FAQForm(forms.ModelForm):
-    def __init__(self, data=None, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         department = kwargs.pop('department', None)
         super(FAQForm, self).__init__(*args, **kwargs)
         if department:
@@ -14,7 +14,7 @@ class FAQForm(forms.ModelForm):
                 choices=[(s.id, s.name) for s in subsections],
                 label='Select the Subsection',
             )
-        print(data)
+        
 
     def custom_save(
         self, specialist, department, questions, subsection, answer
@@ -28,6 +28,7 @@ class FAQForm(forms.ModelForm):
         )
 
     def clean(self):
+        
         cleaned_data = super().clean()
         subsection_id = cleaned_data.get('subsection')
         if subsection_id:

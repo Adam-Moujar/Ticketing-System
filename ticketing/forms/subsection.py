@@ -8,8 +8,8 @@ class SubsectionForm(forms.ModelForm): #
         widgets = {
             'subsection':forms.TextInput(attrs={'class':'form-control'})
         }
-    def custom_save(self, department, subsection): 
+    def custom_save(self, department, subsection_name): 
         Subsection.objects.create(
             department = department, 
-            subsection = subsection
+            name = subsection_name
         )

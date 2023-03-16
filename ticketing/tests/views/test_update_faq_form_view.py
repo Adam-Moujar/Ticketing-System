@@ -80,26 +80,27 @@ class UpdateFAQFormView(TestCase):
                 'answer': 'Updated answer',
             },
         )
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'faq_update.html')
 
     # def test_form_submission_updates_faq_object(self):
-    # self.client = Client()
-    # loggedin = self.client.login(
-    #     email=self.specialist.email,
-    #     password="Password@123"
-    # )
-    # self.assertTrue(loggedin)
-    # response = self.client.get(self.url, follow=True)
-    # subsection = Subsection.objects.create(name = 'Updated Pain', department = self.department)
+    #     self.client = Client()
+    #     loggedin = self.client.login(
+    #         email=self.specialist.email,
+    #         password="Password@123"
+    #     )
+    #     self.assertTrue(loggedin)
+    #     # response = self.client.get(self.url, follow=True)
+    #     subsection = Subsection.objects.create(name = 'Updated Pain', department = self.department)
 
-    # self.client.post(
-    #     self.url,
-    #     {'questions': 'Updated question?','subsection':subsection, 'answer': 'Updated answer'},
-    # )
+    #     self.client.post(
+    #         self.url,
+    #         {'questions': 'Updated question?','subsection':str(subsection.id), 'answer': 'Updated answer'},
+    #     )
 
-    # self.assertTemplateUsed(response, 'faq_update.html')
+    #     # self.assertTemplateUsed(response, 'faq_update.html')
 
-    # updated_faq = FAQ.objects.get(pk=self.faq.pk)
-    # self.assertEquals(updated_faq.questions, 'Updated question?')
-    # self.assertEquals(updated_faq.subsection,subsection)
-    # self.assertEquals(updated_faq.answer, 'Updated answer')
+    #     updated_faq = FAQ.objects.get(pk=self.faq.pk)
+    #     print(updated_faq.questions)
+    #     self.assertEquals(updated_faq.questions, 'Updated question?')
+    #     self.assertEquals(updated_faq.subsection,subsection)
+    #     self.assertEquals(updated_faq.answer, 'Updated answer')

@@ -1,178 +1,91 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import TemplateView, ListView
 from ticketing.nlp import ml_api
 from ticketing.models import Department, FAQ
- 
-#TODO
-    # done - what happens if there are less than three departments 
-    # do a regex to stop specialist creating subsections with underscore
-    # done - return every FAQ but rank them.
-    # Change the model for faqs and department. 
-class SearchBarView(ListView):
-    template_name = 'search_bar.html'
-    paginate_by = 5
+from ticketing.models.departments import Subsection
 
-    def get(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        return render(request, 'search_bar.html', context)
-    
-    
-    def post(self, request):
-        context = {}
-        department_id = self.request.POST.get('department')
+class SearchBarView(TemplateView):
+    template_name = 'search_bar.html' 
 
-        if department_id != 0 and department_id != None:
-            department_name = Department.objects.get(id = department_id)
-            context['sub_sections_dict'] = self.get_subsections(department_name = department_name)
-            
-        sub_section_with_underscore = self.request.POST.get('sub_section')
-        if sub_section_with_underscore != "" and sub_section_with_underscore != None: 
-            sub_section_name = sub_section_with_underscore.replace('_', ' ')
-            filtered_FAQs = self.get_filtered_FAQs(sub_section_name = sub_section_name)
-            self.rank_FAQs(context, filtered_FAQs = filtered_FAQs)
-        return render(request, 'search_bar.html', context)
-    
-    def get_queryset(self):
-        return super().get_queryset()
-    
-    # 
+    # handles the data
     def get_context_data(self, **kwargs):
-        context = {}
+        context = super().get_context_data(**kwargs)
         query = self.request.GET.get('query')
-        self.INITIAL_QUERY = query
-        if self.check_query_not_none_or_empty(query = query): 
-            return context
-        context, weights = self.rank_departments(query = query, context = context)
-        if weights[0] > 0.5 and weights[1] > 0.5:
-            context['low_score'] = True
+        department_id = self.request.GET.get('department')
+        subsection_id = self.request.GET.get('subsection')
+        
+        if query and not subsection_id and not department_id:
+            department_dict = self.rank_departments(query, result_size=3)
+            context['top_departments'] = department_dict
+            context['query'] = query
+
+        if department_id and not subsection_id:
+            subsection_dict = self.rank_subsections(query, department_id, result_size=3)
+            context['top_subsections'] = subsection_dict
+            context['query'] = query
+
+        if subsection_id and not department_id:
+            faqs = self.rank_faqs(query, subsection_id, result_size=8)
+            context['top_FAQs'] = faqs
         return context
     
-    def check_query_not_none_or_empty(self, query):
-        if query == None or query == "": 
-            return True
+    # helper functions
+    def rank_departments(self, query, result_size: int):
+        departments = Department.objects.all()
+        department_names = [department.name for department in departments]
+        department_dict = {}
+        # Split the department names into chunks of size 10
+        department_name_chunks = [department_names[i:i+10] for i in range(0, len(department_names), 10)]
+        for department_name_chunk in department_name_chunks:
+            data = ml_api.get_data(query, department_name_chunk)
+            for i in range (0, len(data['scores'])):
+                department_name = data['labels'][i]
+                department_dict[department_name] = data['scores'][i]
 
-    # creates lists of size 10 to feed to the API
-    def chunk_creator(self, list):
-        #result = []
-        #count = 0
-        #mid = []
-        #for i in range(0, len(list)):
-        #    if(count == 10):
-        #        count = 0
-        #        result.append(mid)
-        #        mid = []
-        #    mid.append(list[i])
-        #    count = count + 1
-
-        result = []
-        mid = []
-        for count in range(0, len(list)):
-            if(count%10 == 0):
-                result.append(mid)
-                mid = []
-            mid.append(list[count])
-            count = count + 1
-        result.append(mid)
-        return result
-    
-    # department functions
-    def rank_departments(self, query, context):
-        department_chunks = self.department_chunk_creator()
-        total_dict = {}
-        for chunk in department_chunks:
-            #candidate_labels = chunk
-            #data = ml_api.get_data(query, candidate_labels)
-            #department_list = data['labels']
-            #values = data['scores']
-            #for i in range(0, len(department_list)):
-            #    total_dict[values[i]] = department_list[i
-
-            total_dict = self.return_ranks_dict(query, chunk)
-          
-        weights = list(total_dict.keys())
-        weights.sort(reverse = True)
-    
+        # Sort the departments by score and return the top 3, format {department_names : score}
+        department_dict = dict(sorted(department_dict.items(), key=lambda x: x[1], reverse=True)[:result_size])
         
-        #if len(weights) > 3:       
-        #   context['top_departments'] = {
-        #                              total_dict[weights[0]] : self.get_department_id(total_dict[weights[0]]),
-        #                              total_dict[weights[1]] : self.get_department_id(total_dict[weights[1]]),
-        #                              total_dict[weights[2]] : self.get_department_id(total_dict[weights[2]])
-        #                              }
-        #else: 
+        # change values to ids -> department_dict {names : ids}
+        for key in department_dict.keys():
+            department_dict[key] = departments.get(name=key).id
+        return department_dict
 
-        # Retieves upto the 3 highest ranked departments for the query
-        for i in range(0, len(weights)): 
-            if i == 3: break
-            context['top_departments'][total_dict[weights[i]]]  =  self.get_department_id(total_dict[weights[i]])
+    def rank_subsections(self, query, department_id : int, result_size : int):
+        department_obj = Department.objects.get(id = department_id)
+        subsections = Subsection.objects.filter(department=department_obj)
+        subsection_names = [subsection.name for subsection in subsections]
+        subsection_dict = {}
+        # Split the subsections names into chunks of size 10
+        subsection_name_chunks = [subsection_names[i:i+10] for i in range(0, len(subsection_names), 10)]
+        for subsection_name_chunk in subsection_name_chunks:
+            data = ml_api.get_data(query, subsection_name_chunk)
+            for i in range (0, len(data['scores'])):
+                subsection_name = data['labels'][i]
+                subsection_dict[subsection_name] = data['scores'][i]
+        # Sort the subsections by score and return the top 3, format {names : score}        
+        subsection_dict = dict(sorted(subsection_dict.items(), key=lambda x: x[1], reverse=True)[:result_size])
 
-        return context, weights
+        # change values to ids -> subsections_dict {names : ids}
+        for subsection in subsection_dict.keys():
+            subsection_dict[subsection] = subsections.get(name=subsection_name).id 
+        return subsection_dict
     
-    def get_department_id(self, department_name):
-        return Department.objects.get(name = department_name).id
-    
-    def department_chunk_creator(self):
-        department_list = Department.objects.all().values_list("name", flat = True)
-        return self.chunk_creator(department_list)
+    def rank_faqs(self, query, subsection_id : int, result_size: int):
+        faqs = FAQ.objects.filter(subsection_id=subsection_id)
+        faq_questions = [faq.questions for faq in faqs]
+        faqs_dict = {}
+        # Split the faq names into chunks of size 10
+        faq_question_chunks = [faq_questions[i:i+10] for i in range(0, len(faq_questions), 10)]
+        for faq_question_chunk in faq_question_chunks:
+            data = ml_api.get_data(query, faq_question_chunk)
+            for i in range (0, len(data['scores'])):
+                faq_question = data['labels'][i]
+                faqs_dict[faq_question] = data['scores'][i]
 
-    # subsection functions
-    def get_subsections(self, department_name):
-        department = Department.objects.get(name = department_name)
-        subsections_set = set(list(FAQ.objects.filter(department = department).values_list("subsection", flat=True)))  
-        subsections_dict = {}
-        # {subsections_name : subsections_underscore}
-        for subsection in subsections_set: 
-            subsections_dict[subsection] = subsection.replace(' ', '_')
-        return subsections_dict     
-    
-    # FAQ functions
-    def rank_FAQs(self, context, filtered_FAQs): 
-        FAQ_chunks = self.FAQs_chunk_creator(filtered_FAQs=filtered_FAQs)
-        total_dict = {}
-        query = self.request.GET.get('query')
-        for chunk in FAQ_chunks:
-            #candidate_labels = chunk
-            #data = ml_api.get_data(query , candidate_labels)
-            #FAQ_list = data['labels']
-            #values = data['scores']
-            #for i in range(0, len(FAQ_list)):
-            #    total_dict[values[i]] = FAQ_list[i] 
-            
-            total_dict = self.return_ranks_dict(query, chunk) 
-
-        #weights = list(total_dict.keys())
-        #weights.sort(reverse = True)
-        #context['top_FAQs'] = []
-        #for i in range(0, len(weights)): 
-        #    context['top_FAQs'].append(total_dict[weights[i]])
-        #return context, weights
-    
-        return self.return_context_weight(total_dict, context, "top_FAQs")
-    
-    def FAQs_chunk_creator(self, filtered_FAQs):
-        FAQ_list = filtered_FAQs.values_list("questions", flat = True)
-        print(self.chunk_creator(FAQ_list))
-        return self.chunk_creator(FAQ_list)  
+        # Sort the FAQs by score and return the top 5, format {question : score}          
+        faqs_dict = dict(sorted(faqs_dict.items(), key=lambda x: x[1], reverse=True)[:result_size])
         
-    def get_filtered_FAQs(self, sub_section_name):
+        # change the value to answers -> Faq_dict {question : answer}
+        for questions in faqs_dict.keys(): 
+            faqs_dict[questions] = faqs.get(questions=faq_question).answer
+        return faqs_dict
 
-        return FAQ.objects.filter(subsection = sub_section_name)
-    
-    def return_ranks_dict(self, query, chunk):
-        total_dict = {}
-        candidate_labels = chunk
-        data = ml_api.get_data(query, candidate_labels=candidate_labels)
-        data_list = data["labels"]
-        values =  data["values"]
-
-        for i in range(0, len(data_list)):
-                total_dict[values[i]] = data_list[i]  
-        return total_dict
-    
-    def return_context_weight(self, tmp_dict, context,  title):
-        weights = list(tmp_dict.keys())
-        weights.sort(reverse = True)
-        context[title] = []
-        for i in range(0, len(weights)): 
-            context[title].append(tmp_dict[weights[i]])
-        return context, weights

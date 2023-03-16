@@ -15,7 +15,6 @@ class StudentTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     success_url = reverse_lazy('student_dashboard')
 
     def form_valid(self, form):
-        print('hi')
         student = User.objects.get(id=self.request.user.id)
         form.custom_save(
             student=student,
