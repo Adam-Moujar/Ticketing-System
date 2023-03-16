@@ -1,3 +1,4 @@
+{% include 'base.html' %}
 {% block body %}
 <h1>{{ department_name }}</h1>
 {% for subsection, faqs in faq_dict.items %}
@@ -17,4 +18,5 @@
 {% endfor %}
 {% include 'partials/pagination.html' %}
 {% include 'partials/footer.html' %} 
+{% endblock %}
 

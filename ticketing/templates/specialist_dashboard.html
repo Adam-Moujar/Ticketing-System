@@ -1,6 +1,4 @@
-
 {% extends 'base.html' %}
-
 {% block body %}
     <h1>Specialist dashboard</h1>
     <h1>Inbox</h1>
@@ -8,21 +6,13 @@
         <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='department' %}'"> Department </button>
         <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='personal' %}'"> Personal </button>
         <button type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='archived' %}'"> Archived </button>
-
-
     </div>
-
     <h3>Filters</h3>
-
     <form method="get" style="display: inline;">
         {{ filter_form.as_p }}
-
         <input type="submit" value="Apply">
-
     </form>
-
     <button onclick="location.href='{{ request.path }}'">Reset</button>
-
     <div>
         {% include 'inbox.html' %}
     </div>
@@ -33,4 +23,4 @@
     >
     Click Me
     </button>
-{% endblock %}
+{%endblock%}

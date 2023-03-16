@@ -46,15 +46,14 @@
       </button>
 </div>
 {% endif %}
-
 <!-- now allow user to select the FAQs -->
 {% if top_FAQs%}
 <div class = "GET">
   <p>Select a FAQs that match with your query:</p>
     <ol>
-      {% for FAQ in top_FAQs %}
+      {% for questions, answer in top_FAQs %}
         <li> 
-          <button name = "FAQ" type="submit" value = "hello">{{FAQ}}</button>
+          <button name = "FAQ" type="submit" value = "hello">{{questions}}</button>
         </li>
       {% endfor %}
     </ol>
@@ -63,6 +62,5 @@
         <a href="{% url 'create_ticket' %}">Create a Ticket</a>
       </button>
 </div>
-
 {% endif %}
 {%endblock%}
