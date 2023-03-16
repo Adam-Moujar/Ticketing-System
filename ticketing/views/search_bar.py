@@ -13,16 +13,19 @@ class SearchBarView(TemplateView):
         department_id = self.request.GET.get('department')
         subsection_id = self.request.GET.get('subsection')
         
+        # will return the top departments
         if query and not subsection_id and not department_id:
             department_dict = self.rank_departments(query, result_size=3)
             context['top_departments'] = department_dict
             context['query'] = query
 
+        # will return the top subsections
         if department_id and not subsection_id:
             subsection_dict = self.rank_subsections(query, department_id, result_size=3)
             context['top_subsections'] = subsection_dict
             context['query'] = query
 
+        # will return the top FAQs
         if subsection_id and not department_id:
             faqs = self.rank_faqs(query, subsection_id, result_size=8)
             context['top_FAQs'] = faqs
@@ -37,6 +40,8 @@ class SearchBarView(TemplateView):
         department_name_chunks = [department_names[i:i+10] for i in range(0, len(department_names), 10)]
         for department_name_chunk in department_name_chunks:
             data = ml_api.get_data(query, department_name_chunk)
+
+            # use the name and scores from zero shot classifier to upddate dictionary
             for i in range (0, len(data['scores'])):
                 department_name = data['labels'][i]
                 department_dict[department_name] = data['scores'][i]
@@ -45,8 +50,7 @@ class SearchBarView(TemplateView):
         department_dict = dict(sorted(department_dict.items(), key=lambda x: x[1], reverse=True)[:result_size])
         
         # change values to ids -> department_dict {names : ids}
-        for key in department_dict.keys():
-            department_dict[key] = departments.get(name=key).id
+        department_dict = {key: departments.get(name=key).id for key in department_dict.keys()}
         return department_dict
 
     def rank_subsections(self, query, department_id : int, result_size : int):
@@ -58,6 +62,7 @@ class SearchBarView(TemplateView):
         subsection_name_chunks = [subsection_names[i:i+10] for i in range(0, len(subsection_names), 10)]
         for subsection_name_chunk in subsection_name_chunks:
             data = ml_api.get_data(query, subsection_name_chunk)
+            # use the name and scores from zero shot classifier to upddate dictionary
             for i in range (0, len(data['scores'])):
                 subsection_name = data['labels'][i]
                 subsection_dict[subsection_name] = data['scores'][i]
@@ -65,8 +70,7 @@ class SearchBarView(TemplateView):
         subsection_dict = dict(sorted(subsection_dict.items(), key=lambda x: x[1], reverse=True)[:result_size])
 
         # change values to ids -> subsections_dict {names : ids}
-        for subsection in subsection_dict.keys():
-            subsection_dict[subsection] = subsections.get(name=subsection_name).id 
+        subsection_dict = {key : subsections.get(name=key).id for key in subsection_dict.keys()}
         return subsection_dict
     
     def rank_faqs(self, query, subsection_id : int, result_size: int):
@@ -77,6 +81,7 @@ class SearchBarView(TemplateView):
         faq_question_chunks = [faq_questions[i:i+10] for i in range(0, len(faq_questions), 10)]
         for faq_question_chunk in faq_question_chunks:
             data = ml_api.get_data(query, faq_question_chunk)
+            # use the name and scores from zero shot classifier to upddate dictionary
             for i in range (0, len(data['scores'])):
                 faq_question = data['labels'][i]
                 faqs_dict[faq_question] = data['scores'][i]
@@ -85,7 +90,6 @@ class SearchBarView(TemplateView):
         faqs_dict = dict(sorted(faqs_dict.items(), key=lambda x: x[1], reverse=True)[:result_size])
         
         # change the value to answers -> Faq_dict {question : answer}
-        for questions in faqs_dict.keys(): 
-            faqs_dict[questions] = faqs.get(questions=faq_question).answer
+        faqs_dict = {questions : faqs.get(questions=questions).answer for questions in faqs_dict.keys() }
         return faqs_dict
 

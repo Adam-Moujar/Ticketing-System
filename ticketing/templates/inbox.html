@@ -1,20 +1,15 @@
 
 <h2>Tickets</h2>
 <h1>{{inbox_type}}</h1>
-
-
 <div>
     <table id="ticket-table">
         <thead>
-
             {% if user.role != "ST" %}
                 <th>Student Email</th>
             {% endif %}
-
             {% if user.role == "ST" %}
                 <th>Department</th>
             {% endif %}
-
             <th>Header</th>
         </thead>
     {% for ticket in page_obj %}
@@ -22,7 +17,6 @@
             {% if user.role != "ST" %}
                 <td>{{ticket.student}}</td>
             {% endif %}
-
             {% if user.role == "ST" %}
                 <td>{{ticket.department.name}}</td>
             {% endif %}
@@ -67,7 +61,6 @@
                     </button>
                 {% endif %}
             {% endif %}
-
             {% if user.role == "ST" %}
             <button type="button">
                 <a href="{% url 'ticket' %}">To ticket</a>

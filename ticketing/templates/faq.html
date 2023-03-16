@@ -1,5 +1,5 @@
-
-{%include 'partials/header.html' %}
+{% include 'base.html' %}
+{% block body %}
 <table>
 <tr>
     {% for obj in object_list %}
@@ -11,6 +11,6 @@
     {% endfor %}
   </tr>
 </table>
-
 {%include 'partials/pagination.html' %}
 {%include 'partials/footer.html' %}
+{%endblock%}

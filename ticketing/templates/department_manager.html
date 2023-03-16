@@ -1,50 +1,32 @@
 {% extends 'base.html' %}
-
 {% block body %}
-
 <html>
   {% load user_role_filters %}
   {% load get_query_filters %}
   <head>
     <title> Department Manager </title>
   </head>
-
   <body>
-
-
     <h1>Department Manager</h1>
-
     <h3>Add Department</h3>
-
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit" name="add" value="Add">
     </form>
-
     <h3>Filters</h3>
-
     <form method="get" style="display: inline;">
         {{ filter_form.as_p }}
-
         <input type="submit" value="Apply">
-
     </form>
-
     <form method="post" style="display: inline;">
       {% csrf_token %}
-
-
       <input type="submit" name="reset" value="Reset">
-
     </form>
-
     <br>
     <br>
-
     <form method="post" style="display:inline;">
       {% csrf_token %}
-
       <table border="1">
         <thead>
             <th>ID</th>
@@ -61,11 +43,8 @@
         </tr>
         {% endfor %}
       </table>
-
       {% include 'partials/paginator.html' %}
     </form>
-
   </body>
-
 </html>
 {% endblock %}

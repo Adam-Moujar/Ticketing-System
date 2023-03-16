@@ -1,42 +1,25 @@
 {% extends 'base.html' %}
-
 {% block body %}
 <html>
-
   <head>
     <title> Edit Department </title>
   </head>
   <body>
-
-
     <h1>Edit Department</h1>
-
-
     {% if error_str|length > 0 %}
         {{ error_str }}
-
     {% else %}
-
       <form method="post" class="login-form" style="display: inline;">
         {% csrf_token %}
-
         ID: {{department.id}} <br>
         {{ form.as_p }}
-
         <input type="submit" name="save" value="Save">
       </form>
-
       <form method="post" style="display: inline;">
         {% csrf_token %}
-
         <input type="submit" name="cancel" value="Cancel">
-
-
       </form>
     {% endif %}
-
-
-
   </body>
 </html>
 {% endblock %}

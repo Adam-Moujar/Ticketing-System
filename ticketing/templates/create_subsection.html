@@ -1,7 +1,9 @@
-{%include 'base.html' %}
+{% extends 'base.html' %}
+{% block body %}
 <h1>Create a Subsection for you department FAQs</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Send</button>
 </form>
+{% endblock %}

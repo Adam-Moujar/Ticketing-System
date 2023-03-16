@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-
 {% block body %}
-
 <html>
   {% load user_role_filters %}
   {% load get_query_filters %}
@@ -10,16 +8,10 @@
   <head>
     <title> Director Panel </title>
   </head>
-
   <body>
-
-
     <h1>Director Panel</h1>
-
     <a href="{% url 'department_manager' %}">Departments</a>
-
     <h3>Add User</h3>
-
     <form method="post" style="display: inline;">
     {% csrf_token %}
     {% for field in form %}
@@ -27,39 +19,23 @@
                 {{ field.errors }}
                 {{ field.non_field_errors }}
                 {{ field.label_tag }} {{ field }}
-
             </div>
     {% endfor %}
-
-
     <input type="submit" name="add" value="Add">
-
     </form>
-
-
     <h3>Filters</h3>
-
     <form method="get" style="display: inline;">
         {{ filter_form.as_p }}
-
         <input type="submit" value="Apply">
-
     </form>
-
     <form method="post" style="display: inline;">
         {% csrf_token %}
-
-
         <input type="submit" name="reset" value="Reset">
-
     </form>
-
     <br>
     <br>
-
     <form method="post" style="display:inline;">
     {% csrf_token %}
-
     <table border="1">
         <thead>
             <th>ID</th>
@@ -89,23 +65,14 @@
             </form>
         </tr>
         {% endfor %}
-
     </table>
-
     {% include 'partials/paginator.html' %}
-
-
     <h3>Commands</h3>
     {{ commands_form.as_p }}
-
     <input type="submit" name="set_role" value="Set Account Role">
     <input type="submit" name="delete" value="Delete">
-
     <br><br>
-
     </form>
-
   </body>
-
 </html>
 {% endblock %}
