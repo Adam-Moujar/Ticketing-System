@@ -17,13 +17,13 @@ class FAQForm(forms.ModelForm):
         
 
     def custom_save(
-        self, specialist, department, questions, subsection, answer
+        self, specialist, department, question, subsection, answer
     ):
         FAQ.objects.create(
             specialist=specialist,
             department=department,
             subsection=subsection,
-            questions=questions,
+            question=question,
             answer=answer,
         )
 
@@ -41,8 +41,8 @@ class FAQForm(forms.ModelForm):
 
     class Meta:
         model = FAQ
-        fields = ['questions', 'subsection', 'answer']
+        fields = ['question', 'subsection', 'answer']
         widgets = {
-            'questions': forms.TextInput(),
+            'question': forms.TextInput(),
             'answer': forms.Textarea(),
         }

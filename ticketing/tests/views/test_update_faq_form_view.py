@@ -28,7 +28,7 @@ class UpdateFAQFormView(TestCase):
         self.faq = FAQ.objects.create(
             department=self.department,
             specialist=self.specialist,
-            questions='What is 9+10?',
+            question='What is 9+10?',
             subsection=self.subsection,
             answer='19',
         )
@@ -75,7 +75,7 @@ class UpdateFAQFormView(TestCase):
         response = self.client.post(
             self.url,
             {
-                'questions': 'Updated question?',
+                'question': 'Updated question?',
                 'subsection': str(subsection.id),
                 'answer': 'Updated answer',
             },
@@ -94,13 +94,13 @@ class UpdateFAQFormView(TestCase):
 
     #     self.client.post(
     #         self.url,
-    #         {'questions': 'Updated question?','subsection':str(subsection.id), 'answer': 'Updated answer'},
+    #         {'question': 'Updated question?','subsection':str(subsection.id), 'answer': 'Updated answer'},
     #     )
 
     #     # self.assertTemplateUsed(response, 'faq_update.html')
 
     #     updated_faq = FAQ.objects.get(pk=self.faq.pk)
-    #     print(updated_faq.questions)
-    #     self.assertEquals(updated_faq.questions, 'Updated question?')
+    #     print(updated_faq.question)
+    #     self.assertEquals(updated_faq.question, 'Updated question?')
     #     self.assertEquals(updated_faq.subsection,subsection)
     #     self.assertEquals(updated_faq.answer, 'Updated answer')

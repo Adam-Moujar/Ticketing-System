@@ -242,7 +242,7 @@ class Command(BaseCommand):
                             specialist=specialist,
                             department=department,
                             subsection=subsection,
-                            questions=question,
+                            question=question,
                             answer=answer,
                         )
 

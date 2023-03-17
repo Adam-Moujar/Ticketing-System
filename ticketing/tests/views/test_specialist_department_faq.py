@@ -30,7 +30,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
             department=self.department,
             specialist=self.specialist,
             subsection=self.subsection,
-            questions='What is 9+10',
+            question='What is 9+10',
             answer='19',
         )
         self.slug_string = slugify('Health and Safety')
@@ -63,8 +63,8 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            self.faq.questions,
-            [faq.questions for faq in response.context['object_list']],
+            self.faq.question,
+            [faq.question for faq in response.context['object_list']],
         )
         self.assertIn(
             self.faq.answer,
@@ -92,7 +92,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
             department=self.department,
             specialist=self.specialist,
             subsection=self.subsection,
-            questions='Why am I tired?',
+            question='Why am I tired?',
             answer='Get some sleep',
         )
         url = reverse(
@@ -100,7 +100,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         )
         response = self.client.get(url)
         self.assertEqual(len(response.context['object_list']), 2)
-        FAQ.objects.get(questions='Why am I tired?').delete()
+        FAQ.objects.get(question='Why am I tired?').delete()
         url = reverse(
             'department_faq', kwargs={'department': self.department.slug}
         )

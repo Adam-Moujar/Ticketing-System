@@ -17,7 +17,7 @@ class SpecialistFAQListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     def get_queryset(self):
         user = self.request.user
         queryset = FAQ.objects.filter(specialist=user)
-        queryset = queryset.order_by('questions')
+        queryset = queryset.order_by('question')
         return queryset
 
     def get_context_data(self, **kwargs):

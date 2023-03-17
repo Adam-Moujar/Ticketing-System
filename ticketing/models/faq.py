@@ -12,7 +12,7 @@ class FAQ(models.Model):
     subsection = models.ForeignKey(
         'Subsection', on_delete=models.CASCADE, db_column='subsection'
     )
-    questions = models.CharField(max_length=250, blank=False)
+    question = models.CharField(max_length=250, blank=False)
     answer = models.CharField(max_length=750, blank=False)
 
     class Meta:

@@ -5,7 +5,7 @@ from .forms import LoginForm, FAQForm
 from student_query_system import settings
 
 urlpatterns = [
-    path('', home.home, name='home'),
+    path('', home.SearchBarView.as_view(), name='home'),
     path(
         'login/',
         auth.CustomLoginView.as_view(
@@ -106,11 +106,6 @@ urlpatterns = [
         '<pk>/edit_department/',
         edit_department.EditDepartmentView.as_view(),
         name='edit_department',
-    ),
-    path(
-        'search_bar/',
-        search_bar.SearchBarView.as_view(),
-        name='search_bar',
     ),
     path( 
         'create_subsection/', 

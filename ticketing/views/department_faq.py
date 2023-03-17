@@ -15,7 +15,7 @@ class DepartmentFAQ(ListView):
         queryset = FAQ.objects.filter(
             department__slug=self.kwargs['department']
         )
-        queryset = queryset.order_by('questions')
+        queryset = queryset.order_by('question')
         return queryset
 
     def get_context_data(self, **kwargs):

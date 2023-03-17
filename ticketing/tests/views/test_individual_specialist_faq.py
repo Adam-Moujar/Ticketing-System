@@ -29,7 +29,7 @@ class SpecialistFAQListViewTest(TestCase):
             specialist=self.specialist,
             department=self.department,
             subsection=self.subsection,
-            questions='What is 9+10',
+            question='What is 9+10',
             answer='19',
         )
 

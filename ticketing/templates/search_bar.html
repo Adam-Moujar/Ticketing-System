@@ -1,4 +1,3 @@
-{%include 'base.html' %}
 {% block body %}
 <!-- search bar -->
 <div class="search_bar">   
@@ -53,7 +52,7 @@
     <ol>
       {% for question, answer in top_FAQs.items %}
         <li> 
-          <button name = "FAQ" type="submit" value = "hello">{{questions}}</button>
+          <button name = "FAQ" type="submit" value = "hello">{{question}}</button>
         </li>
       {% endfor %}
     </ol>
