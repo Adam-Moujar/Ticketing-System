@@ -1,26 +1,35 @@
 <h1>{{ department_name }}</h1>
+
+
 {% for obj in object_list %}
-<table >
-
-    <tr>
-
-      <td>
-        <div class="panel">
-          <div class="panel-title"><b>Question:</b> <br>{{ obj.question }}</div>
-          <div class="panel-content"><b>Subsection:</b><br> {{ obj.subsection }}<br></div>
-          <div class="panel-content"><b>Answer:</b><br> {{ obj.answer }}<br></div>
-          <div class="panel-buttons">
-            <a class="btn btn-primary" a href="{% url 'faq_update' obj.pk %}">  <input type="submit" value="Update" /></a>
-            {% if obj.pk %}
-            <form action="{% url 'faq_delete' obj.pk %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="Delete" />
-            </form>
-            {% endif %}
+<div class="card text-center mb-3" style="width: 25rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ obj.questions }}</h5>
+    <p class="card-text">{{obj.answer}}</p>
+    {% if obj.pk %}
+    <div class="btn-container" style="justify-content: center;">
+      <div class="equal-width-btns">
+        <button class="btn" id="blue-btn" onclick="window.location.href='{% url 'faq_update' obj.pk %}'">
+            <div class="icon-shift">
+              <i class="bi bi-check-lg"></i>
+              <span>Update</span>
+            </div>
+        </button>
+      </div>
+        <form action="{% url 'faq_delete' obj.pk %}" method="post">
+          {% csrf_token %}
+          <div class="equal-width-btns">
+              <button class="btn" id="red-btn" type="submit">
+                <div class="icon-shift">
+                  <i class="bi bi-x-lg"></i>
+                  <span>Delete</span>
+                </div>
+              </button>
           </div>
-        </div>
-      </td>
+        </form>
+    </div>
 
-    </tr>
-  </table>
-  {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{%endfor%}

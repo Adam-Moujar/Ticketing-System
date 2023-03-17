@@ -1,6 +1,6 @@
 from django.urls import reverse
 import json
-from ticketing.views.specialist_inbox import SpecialistInboxView
+from ticketing.views.specialist.specialist_inbox import SpecialistInboxView
 from ticketing.models.tickets import Ticket
 
 

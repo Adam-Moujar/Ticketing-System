@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
+<title>Home</title>
+<img src="{% static 'admin/img/logo.png' %}" style="display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;">
+
 <!-- search bar -->
 <div class="search_bar">   
     <form action = "{% url 'home' %}" method="GET">

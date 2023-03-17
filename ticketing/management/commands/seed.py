@@ -79,6 +79,15 @@ class Command(BaseCommand):
 
         self.create_closed_department_ticket()
         print('closed department tickets done')
+        
+        # self.create_student_message(ticket=Ticket.objects.get(id=101))
+        # print('student message done')
+
+        # self.create_specialist_message(
+        #     specialist_ticket=SpecialistInbox.objects.get(ticket=101)
+        # )
+        # print('specialist message done')
+
 
     def set_up(self):
         first_name = self.faker.unique.first_name()
@@ -249,7 +258,7 @@ class Command(BaseCommand):
     def create_specialist_inbox(self):
         for department in Department.objects.all():
             specialists = User.objects.filter(
-                id__in=SpecialistDepartment.objects.filter(
+                id__in = SpecialistDepartment.objects.filter(
                     department=department
                 ).values_list('specialist', flat=True)
             )

@@ -2,7 +2,7 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from ticketing.models.users import User
-from ticketing.tests.helpers import FixtureHelpers
+
 
 
 class UserModelTestCase(TestCase):

@@ -1,8 +1,9 @@
-from django.urls import path, include, reverse
+from django.urls import path
 from django.contrib.auth import views
 from .views import *
 from .forms import LoginForm, FAQForm
 from student_query_system import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', home.SearchBarView.as_view(), name='home'),
@@ -48,6 +49,11 @@ urlpatterns = [
         name='specialist_claim_ticket',
     ),
     path(
+        'specialist_message/<int:pk>',
+        specialist_message.SpecialistMessageView.as_view(),
+        name='specialist_message',
+    ),
+    path(
         'create_ticket/',
         student_ticket.StudentTicketView.as_view(),
         name='create_ticket',
@@ -58,7 +64,7 @@ urlpatterns = [
         name='check_faq',
     ),
     path(
-        'check_department_faq',
+        'check_department_faq/',
         specialist_department_faq.SpecialistDepartmentFaq.as_view(),
         name='specialist_department_faq',
     ),
@@ -83,6 +89,16 @@ urlpatterns = [
         'ticket/<int:pk>/',
         student_message.StudentMessageView.as_view(),
         name='student_message',
+    ),
+    path(
+        'specialist_message/<int:pk>',
+        specialist_message.SpecialistMessageView.as_view(),
+        name='specialist_message',
+    ),
+    path(
+        'message_list/<int:pk>',
+        message_list.MessageListView.as_view(),
+        name='message_list',
     ),
     path(
         'director_panel/',
@@ -113,3 +129,11 @@ urlpatterns = [
         name='create_subsection',
     )
 ]
+    path(
+        'specialist_create_faq_from_ticket/<int:pk>',
+        specialist_create_faq_from_ticket.SpecialistCreateFAQFromTicketView.as_view(),
+        name='specialist_create_faq_from_ticket',
+    ),
+] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+
+handler404 = 'ticketing.views.errors.error_404'
