@@ -45,6 +45,18 @@ class FixtureHelpers:
         data = json.load(f)
         return data
 
+    @staticmethod 
+    def get_all_faqs_from_fixture():
+        f = open('ticketing/test/fixtures/faq_fixtures.json')
+        data = json.load(f)
+        return data
+    
+    @staticmethod
+    def get_all_subsection_from_fixture():
+        f = open('ticketing/test/fixtures/subsection_fixtures.json')
+        data = json.load(f)
+        return data
+    
     @staticmethod
     def get_students_from_fixture():
         students = []
@@ -131,3 +143,5 @@ class FixtureHelpers:
     def get_message_from_fixture():
         messages = FixtureHelpers.get_messages_from_fixture()
         return messages[0]
+
+    
