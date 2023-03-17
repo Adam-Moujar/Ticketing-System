@@ -100,7 +100,6 @@ class DirectorStatisticsView(LoginRequiredMixin, RoleRequiredMixin, ListView):
                 specialist_message = messages[0]
                 student_message = StudentMessage.objects.filter(ticket=ticket).order_by('-date_time')[0]
                 total_time += specialist_message.date_time - student_message.date_time
-                print(total_time)
             
         if counter == 0:
             return "N/A"

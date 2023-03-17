@@ -79,10 +79,11 @@ class SpecialistStatisticsView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         user = self.request.user
         department = self.get_department()
         tickets = Ticket.objects.filter(department = department)
-
-        message = Message.objects.filter(ticket__in = tickets).latest("date_time")
-
-        return message.date_time
+        if Message.objects.count() > 0:
+            message = Message.objects.filter(ticket__in = tickets).latest("date_time")
+            return message.date_time
+        
+        return "N/A"
     
     def get_average_messages_per_ticket(self):
         user = self.request.user

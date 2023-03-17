@@ -1,6 +1,8 @@
 from django.urls import path
 from django.contrib.auth import views
 from .views import *
+from .views.specialist import specialist_statistics
+from .views.director import director_statistics
 from .forms import LoginForm, FAQForm
 from student_query_system import settings
 from django.conf.urls.static import static
