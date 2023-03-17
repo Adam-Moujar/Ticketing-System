@@ -22,9 +22,10 @@
                       Manage FAQs
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item"href="{% url 'specialist_department_faq' %}">Check Department FAQ</a></li>
-                      <li><a class="dropdown-item" href="{% url 'check_faq' %}">Check Your FAQs</a>
-                      <li><a class="dropdown-item" href="{% url 'faq_form_view'%}">Add FAQ</a></li>
+                        <li><a class="dropdown-item"href="{% url 'specialist_department_faq' %}">Check Department FAQ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'check_faq' %}">Check Your FAQs</a>
+                        <li><a class="dropdown-item" href="{% url 'faq_form_view'%}">Create FAQ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'create_subsection'%}">Create Subsection</a></li>
                     </ul>
                   </li>
                 {% endif %}

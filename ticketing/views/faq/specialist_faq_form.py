@@ -14,6 +14,14 @@ class FAQFormView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     form_class = FAQForm
     success_url = reverse_lazy('home')
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        specialist_department = SpecialistDepartment.objects.get(
+            specialist=self.request.user
+        )
+        kwargs['department'] = specialist_department.department
+        return kwargs
+
     def form_valid(self, form):
         '''
         Overrides the form_valid method from Django's FormView to

@@ -242,6 +242,13 @@ td {
     gap:2vmin;
 }
 
+/* Specialist Department FAQ View */
+.department-faq-grid {
+    display:grid;
+    gap:3vmin;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 /* Director Panel */
 .director-grid-container {
     margin:1.75vmin;

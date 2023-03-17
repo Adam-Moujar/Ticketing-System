@@ -1,6 +1,6 @@
-from django.test import TestCase, RequestFactory, Client
+from django.test import TestCase, RequestFactory
 from django.urls import reverse
-from ticketing.models import FAQ, Department, User, SpecialistDepartment, Subsection, Ticket
+from ticketing.models import FAQ, Department, User, SpecialistDepartment, Subsection
 from django.utils.text import slugify
 from ticketing.views.faq.specialist_department_faq import SpecialistDepartmentFaq
 from django.http import Http404
@@ -9,33 +9,32 @@ from django.shortcuts import get_object_or_404
 
 
 class SpecialistDepartmentFaqTestCase(TestCase):
-
-    fixtures = [
-        'ticketing/tests/fixtures/user_fixtures.json',
-        'ticketing/tests/fixtures/message_fixtures.json',
-        'ticketing/tests/fixtures/ticket_fixtures.json',
-        'ticketing/tests/fixtures/department_fixtures.json',
-        'ticketing/tests/fixtures/specialist_department_fixtures.json',
-        'ticketing/tests/fixtures/subsection_fixtures.json',
-    ]
-    
     def setUp(self):
-        self.factory = RequestFactory()
-        self.specialist = User.objects.filter(role = 'SP').first()
-        self.department = SpecialistDepartment.objects.get(specialist = self.specialist).department
-        self.subsection = Subsection.objects.filter(department = self.department).first()
-        self.ticket = Ticket.objects.filter(department = self.department).first()
-        self.url = reverse('specialist_create_faq_from_ticket',kwargs={"pk":self.ticket.id})
-        self.ticket_id = self.ticket.id
-
-        self.faq = FAQ.objects.create(
-            specialist=self.specialist,
-            subsection=self.subsection,
-            department=self.department,
-            question='What is the meaning of existence',
-            answer='This question cannot be computed... error',
+        self.department = Department.objects.create(
+            name='Health and Safety', slug=slugify('Health and Safety')
         )
-        self.slug_string = slugify(self.department.name)
+        self.specialist = User.objects.create_specialist(
+            email='john.doe@email.com',
+            first_name='John',
+            last_name='Doe',
+            password='password@123',
+        )
+        self.specialist_dept = SpecialistDepartment.objects.create(
+            department=self.department, specialist=self.specialist
+        )
+
+        self.subsection = Subsection.objects.create(
+            department = self.department,
+            name = "subsection_name"
+        )
+        self.faq = FAQ.objects.create(
+            department=self.department,
+            subsection=self.subsection,
+            specialist=self.specialist,
+            question='What is 9+10',
+            answer='19',
+        )
+        self.slug_string = slugify('Health and Safety')
         self.url = reverse(
             'department_faq', kwargs={'department': self.department.slug}
         )
@@ -75,11 +74,13 @@ class SpecialistDepartmentFaqTestCase(TestCase):
     def test_specialist_department_faq_view_contains_question_answer_text(
         self,
     ):
-        response = self.client.get(self.url, follow=True)
-        print(response.content)
-        self.assertContains(response, 'What is the meaning of existence')
-        self.assertContains(response, 'This question cannot be computed... error')
+        response = self.client.get(self.url)
+        self.assertContains(response, 'What is 9+10')
+        self.assertContains(response, '19')
 
+    def test_specialist_department_faq_view_contains_answer_text(self):
+        response = self.client.get(self.url)
+        self.assertContains(response, '19')
 
     def test_specialist_department_faq_view_no_pagination(self):
         url = reverse(
@@ -89,8 +90,8 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self.assertEqual(len(response.context['object_list']), 1)
         FAQ.objects.create(
             department=self.department,
-            specialist=self.specialist,
             subsection=self.subsection,
+            specialist=self.specialist,
             question='Why am I tired?',
             answer='Get some sleep',
         )
@@ -119,10 +120,10 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self,
     ):
         specialist_dept = SpecialistDepartment.objects.get(
-            specialist=self.specialist
+            department=self.department
         ).department
         with self.assertRaises(Http404):
-            get_object_or_404(Department, id=specialist_dept.id + 78899)
+            get_object_or_404(Department, id=specialist_dept.id + 1)
 
     def test_specialist_department_faq_view_returns_404_if_object_found(self):
         object = get_object_or_404(Department, id=self.department.id)
