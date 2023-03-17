@@ -26,11 +26,11 @@ class SpecialistCreateFAQFormViewTest(TestCase):
         self.faq = FAQ.objects.create(
             specialist=self.specialist,
             department=self.department,
-            questions='What is the meaning of existence',
+            question='What is the meaning of existence',
             answer='This question cannot be computed... error',
         )
         self.form_data = {
-            'questions': 'What is Django?',
+            'question': 'What is Django?',
             'subsection':'Coding Language',
             'answer': 'Django is a high-level Python web framework.',
         }

@@ -30,6 +30,14 @@ class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, F
     required_roles = ['SP']
     form_class = FAQForm
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        specialist_department = SpecialistDepartment.objects.get(
+            specialist=self.request.user
+        )
+        kwargs['department'] = specialist_department.department
+        return kwargs
+
     def form_valid(self, form):
         '''
         Save the form data and redirect to the specialist dashboard.
@@ -48,7 +56,7 @@ class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, F
             department=SpecialistDepartment.objects.get(
                 specialist=self.request.user
             ).department,
-            questions=form.cleaned_data['questions'],
+            question=form.cleaned_data['question'],
             subsection=form.cleaned_data['subsection'],
             answer=form.cleaned_data['answer'],
         )

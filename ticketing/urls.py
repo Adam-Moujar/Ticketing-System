@@ -127,8 +127,7 @@ urlpatterns = [
         'create_subsection/', 
         specialist_subsection_create.SpecialistSubSectionView.as_view(), 
         name='create_subsection',
-    )
-]
+    ),
     path(
         'specialist_create_faq_from_ticket/<int:pk>',
         specialist_create_faq_from_ticket.SpecialistCreateFAQFromTicketView.as_view(),

@@ -26,7 +26,7 @@ class Subsection(models.Model):
                 r'^\D+$',
                 'Only alphabetic characters are allowed in this field.'
             )])
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
   

@@ -37,7 +37,7 @@ class FAQFormView(LoginRequiredMixin, RoleRequiredMixin, FormView):
             department=SpecialistDepartment.objects.get(
                 specialist=self.request.user
             ).department,
-            questions=form.cleaned_data['questions'],
+            question=form.cleaned_data['question'],
             subsection=form.cleaned_data['subsection'],
             answer=form.cleaned_data['answer'],
         )

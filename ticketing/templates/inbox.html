@@ -5,25 +5,10 @@
     <table class="table table-hover">
         {% for ticket in object_list %}
         <tr class="position-relative">
-<h2>Tickets</h2>
-<h1>{{inbox_type}}</h1>
-<div>
-    <table id="ticket-table">
-        <thead>
             {% if user.role != "ST" %}
             <td style="padding-left:2vmin;">{{ticket.student}}</td>
             {% endif %}
             <td style="padding-left:2vmin;">{{ticket.header}}</td>
-            {% if user.role == "ST" %}
-                <th>Department</th>
-            {% endif %}
-            <th>Header</th>
-        </thead>
-    {% for ticket in page_obj %}
-        <tr>
-            {% if user.role != "ST" %}
-                <td>{{ticket.student}}</td>
-            {% endif %}
             {% if user.role == "ST" %}
             <td>{{ticket.department.name}}</td>
             <td style="text-align:right; padding-right: 5vmin;">
@@ -82,11 +67,6 @@
                 </td>
                 {% endif %}
 
-            {% endif %}
-            {% if user.role == "ST" %}
-            <button type="button">
-                <a href="{% url 'ticket' %}">To ticket</a>
-            </button>
             {% endif %}
             </td>
         </tr>

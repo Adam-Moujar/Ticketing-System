@@ -28,12 +28,17 @@ class FAQForm(forms.ModelForm):
         )
 
     def clean(self):
-        
         cleaned_data = super().clean()
         subsection_id = cleaned_data.get('subsection')
-        if subsection_id:
+        if isinstance(subsection_id, str):
             try:
                 subsection_obj = Subsection.objects.get(id=int(subsection_id))
+                cleaned_data['subsection'] = subsection_obj
+            except Subsection.DoesNotExist:
+                self.add_error('subsection', 'Invalid subsection selected')
+        elif isinstance(subsection_id, Subsection):
+            try:
+                subsection_obj = subsection_id
                 cleaned_data['subsection'] = subsection_obj
             except Subsection.DoesNotExist:
                 self.add_error('subsection', 'Invalid subsection selected')
