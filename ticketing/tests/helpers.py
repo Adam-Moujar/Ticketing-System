@@ -47,13 +47,13 @@ class FixtureHelpers:
 
     @staticmethod 
     def get_all_faqs_from_fixture():
-        f = open('ticketing/test/fixtures/faq_fixtures.json')
+        f = open('ticketing/tests/fixtures/faq_fixtures.json')
         data = json.load(f)
         return data
     
     @staticmethod
     def get_all_subsection_from_fixture():
-        f = open('ticketing/test/fixtures/subsection_fixtures.json')
+        f = open('ticketing/tests/fixtures/subsection_fixtures.json')
         data = json.load(f)
         return data
     

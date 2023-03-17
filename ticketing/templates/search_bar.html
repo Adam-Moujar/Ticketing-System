@@ -51,7 +51,7 @@
 <div class = "GET">
   <p>Select a FAQs that match with your query:</p>
     <ol>
-      {% for questions, answer in top_FAQs %}
+      {% for question, answer in top_FAQs.items %}
         <li> 
           <button name = "FAQ" type="submit" value = "hello">{{questions}}</button>
         </li>

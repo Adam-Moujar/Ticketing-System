@@ -38,5 +38,10 @@ class SerachBarViewTestCase(TestCase):
         self.url = reverse(
             'search_bar'
         )
+    
+    def test_search_bar_url(self):
+        self.assertEqual(self.url, '/search_bar/')
+
+    
 
     
