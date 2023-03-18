@@ -11,7 +11,7 @@
     </div>
 </div>
 {% if user.is_authenticated %}
-<form method="post" class="text-white" style="padding-top: 4%">{% csrf_token %}
+<form method="post" class="text-white" style="padding-top: 12%">{% csrf_token %}
     {{ form.as_p }}
     <input class="btn btn-light btn-md bg-light text-dark" type="submit" value="Add comment">
 </form>
