@@ -1,9 +1,9 @@
-<h1>{{ department_name }}</h1>
+<h1 >{{ department_name }}</h1>
 
 
 {% for obj in object_list %}
-<div class="card text-center mb-3" style="width: 25rem;">
-  <div class="card-body">
+<div class="card text-center mb-3 justify-content-center" style="width: 25rem;">
+  <div class="card-body ">
     <h5 class="card-title">{{ obj.questions }}</h5>
     <p class="card-text">{{obj.answer}}</p>
     {% if obj.pk %}
