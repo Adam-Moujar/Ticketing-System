@@ -35,6 +35,24 @@ body {
     cursor:pointer;
 }
 
+@media (max-width:767px) {
+    .blue-link{
+        font-size: 65%;
+    }
+}
+
+.red-link{
+    text-decoration: none;
+    color: var(--blue);
+    cursor:pointer;
+}
+
+@media (max-width:767px) {
+    .red-link{
+        font-size: 65%;
+    }
+}
+
 /* Navbar */
 .navbar {
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
@@ -491,9 +509,34 @@ td {
   
 @media (max-width: 767px) {
     .flex-item {
+      font-size: 95%;
       flex-direction: column;
     }
 }
+
+/* messages */
+.subject-title{
+    display: flex;
+}
+@media (max-width:963px) {
+    .subject-title{
+        font-size: 95%;
+    }
+}
+
+@media (max-width:767px) {
+    .subject-title{
+        font-size: 75%;
+    }
+}
+
+@media (max-width:767px) {
+    .nav-item{
+        font-size: 75%;
+    }
+}
+
+
 
 
   

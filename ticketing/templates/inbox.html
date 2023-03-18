@@ -33,9 +33,9 @@
                         {% csrf_token %}
                         <div>
                             <select name="reroute" id="reroute" class="form-control">
-                                <option value="0" selected="selected">Reroute To...</option>
+                                <option value="0" selected="selected" class="nav-item">Reroute To...</option>
                                 {% for department in departments %}
-                                <option value="{{department.name}} {{ticket.id}}">{{department.name}}</option>
+                                <option value="{{department.name}} {{ticket.id}}" class="nav-item">{{department.name}}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -46,7 +46,7 @@
                 <td>
                     <form method="post">
                         {% csrf_token %}
-                        <button style="color:red; padding:0; background:none; border:none;" type="submit" name="unclaim"
+                        <button style="color:red; padding:0; background:none; border:none;" class="red-link"type="submit" name="unclaim"
                             value="{{ticket.id}}">Unclaim</button>
                     </form>
                 </td>
