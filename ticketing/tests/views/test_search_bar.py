@@ -7,7 +7,7 @@ from ticketing.models.departments import Department, Subsection
 from ticketing.models.tickets import Ticket
 from ticketing.models.faq import FAQ
 from ticketing.models.specialist import SpecialistDepartment
-from ticketing.views.specialist_subsection_create import SpecialistSubSectionView
+from ticketing.views.specialist.specialist_subsection_create import SpecialistSubSectionView
 from ticketing.tests.helpers import (
     FixtureHelpers,
     reverse_with_next,

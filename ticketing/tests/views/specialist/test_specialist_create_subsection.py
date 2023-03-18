@@ -5,7 +5,7 @@ from django.urls import reverse
 from ticketing.models.users import User
 from ticketing.models.departments import Department, Subsection
 from ticketing.models.specialist import SpecialistDepartment
-from ticketing.views.specialist_subsection_create import SpecialistSubSectionView
+from ticketing.views.specialist.specialist_subsection_create import SpecialistSubSectionView
 
 class SpecialistSubSectionViewTest(TestCase):
     fixtures = [
