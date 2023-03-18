@@ -10,7 +10,7 @@ from django.urls import reverse, reverse_lazy
 class SpecialistSubSectionView(LoginRequiredMixin, RoleRequiredMixin, FormView): 
     model = Subsection
     required_roles = ['SP']
-    template_name = "create_subsection.html"
+    template_name = "specialist/create_subsection.html"
     form_class = SubsectionForm
     
     def form_valid(self, form):

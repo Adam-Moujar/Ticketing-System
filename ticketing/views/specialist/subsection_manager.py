@@ -17,7 +17,7 @@ class SubsectionManagerView(
     ListView, 
     CreateView
 ):
-    template_name = 'specialist/specialist_manager.html'
+    template_name = 'specialist/subsection_manager.html'
     required_roles = [User.Role.SPECIALIST]
     model = Subsection
     fields = ['name']
@@ -34,7 +34,7 @@ class SubsectionManagerView(
     
     def post(self, request, *args, **kwargs):
         '''
-        Handles HTTP POST requests for creating,editing, and deleting the Department objects.
+        Handles HTTP POST requests for creating,editing, and deleting the Subsections objects.
         Args:
             self: object
                 An instance of the class that defines the method

@@ -2,6 +2,7 @@ from django.test import TestCase, RequestFactory, Client
 from django.contrib.auth.models import AnonymousUser
 from django.utils.text import slugify
 from django.urls import reverse
+from ticketing.forms.subsection import SubsectionForm
 from ticketing.models.users import User
 from ticketing.models.departments import Department, Subsection
 from ticketing.models.specialist import SpecialistDepartment
@@ -31,7 +32,6 @@ class SpecialistSubSectionViewTest(TestCase):
         self.subsection = Subsection.objects.create(
             name='Updated Pain', department=self.department
         )
-
         self.data = {
             'name' : 'Science'
         }
@@ -55,8 +55,10 @@ class SpecialistSubSectionViewTest(TestCase):
         )
         response = self.client.get(self.url, follow=True)
         before_count = Subsection.objects.filter(department = self.department).count()
-        self.client.post(
+        response = self.client.post(
             self.url, 
-            {'name': 'hello there'}
+            data=self.data,
+            follow=True
         )
         self.assertEquals(Subsection.objects.filter(department = self.department).count(), before_count + 1)
+        self.assertTemplateUsed(response, 'specialist/subsection_manager.html')

@@ -16,16 +16,9 @@ class EditSubsectionView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
     template_name = "specialist/edit_subsection.html"
     form_class = SubsectionForm
     success_url = reverse_lazy('subsection_manager')
+    
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel'):
             return redirect('subsection_manager')
         return super().post(request, *args, **kwargs)
     
-    # def form_valid(self, form):
-    #     form.custom_save(
-    #         department=SpecialistDepartment.objects.get(
-    #             specialist=self.request.user
-    #         ).department,
-    #         subsection_name=form.cleaned_data['name'],
-    #     )
-    #     return redirect('subsection_manager')
