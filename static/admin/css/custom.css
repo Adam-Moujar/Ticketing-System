@@ -111,7 +111,26 @@ hr.solid {
     display: flex;
     justify-content: center;
     color: var(--blue);
-}
+    flex-wrap: wrap;
+   
+  }
+  
+  @media (max-width: 763px) {
+    .pagination {
+      flex-direction: column;
+      justify-content: center;
+      width: 5%;
+      text-align: center;
+      margin-left:50%; 
+      flex-wrap: wrap;
+    }
+    .pagination > li {
+      flex-grow: 1;
+      flex-basis:66.66%;
+    }
+  }
+  
+  
 
 .banner {
     background: linear-gradient(to right, rgb(93, 184, 140), rgb(57, 232, 238));
@@ -173,6 +192,14 @@ td {
     align-items: center;
     gap:2vmin;
 }
+.custom-btn{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 175px;
+    text-align: center;
+  }
+
 
   /* Card container */
 
@@ -243,6 +270,38 @@ td {
 }
 
 /* Director Panel */
+@media (max-width:1063px) {
+    .dashboard-card-title{
+        font-size: 65%;
+    }
+}
+@media (max-width:863px) {
+    .dashboard-card-title{
+        font-size: 55%;
+    }
+}
+@media (max-width:563px) {
+    .dashboard-card-title{
+        font-size: 50%;
+    }
+}
+
+.dashboard-department-name{
+    display: flex;
+    justify-content: center;
+}
+@media (max-width:563px) {
+    .dashboard-department-name{
+        font-size: 50%;
+    }
+}
+
+
+
+
+
+
+
 .director-grid-container {
     margin:1.75vmin;
     display: grid;
@@ -319,6 +378,11 @@ td {
     text-align: center;
     font-size: 7vmin;
     color: white;
+}
+@media (max-width:963px) {
+    .faq-header{
+        font-size: 6vmin;
+    }
 }
 
 .faq-icon {
@@ -417,3 +481,25 @@ td {
     80% { transform: translateX(10px); }
     100% { transform: translateX(0); }
   }
+
+/* boostrap form button layout */
+.flex-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+  
+@media (max-width: 767px) {
+    .flex-item {
+      flex-direction: column;
+    }
+}
+
+
+  
+  
+
+  
+  
+  
+  
