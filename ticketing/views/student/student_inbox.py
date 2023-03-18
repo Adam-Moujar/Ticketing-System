@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.views import LoginView
 from django.views.generic.list import ListView
 from ticketing.models import Ticket
@@ -81,6 +82,16 @@ class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
                     -context['page_obj']=self.queryset() //Messages queryset
                     -context['type_of_ticket']=self.request.POST.get('type_of_ticket')// e.g. 'personal'
         '''
+
+        if "view" in request.POST:
+            ticket = Ticket.objects.filter(id = request.POST["view"]).first()
+            if ticket.status == Ticket.Status.OPEN:
+                return redirect(reverse("student_message", kwargs={"pk": ticket.id}))
+            
+            elif ticket.status == Ticket.Status.CLOSED:
+                return redirect(reverse("message_list", kwargs={"pk": ticket.id}))
+
+        
         # request.GET["page"] = 1
         get_copy = copy.copy(request.GET)
         get_copy['page'] = 1

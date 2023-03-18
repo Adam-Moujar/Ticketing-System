@@ -1,7 +1,8 @@
 from ticketing.mixins import RoleRequiredMixin
-from ticketing.models import Message, Ticket, StudentMessage, SpecialistMessage
+from ticketing.models import Message, Ticket, StudentMessage, SpecialistMessage, SpecialistInbox
 from django.views.generic import DetailView, ListView, CreateView
 from itertools import chain
+from django.shortcuts import redirect
 from operator import attrgetter
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -33,6 +34,13 @@ class StudentMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
             HttpResponse
                 The HTTP response object returned by the view.
         '''
+        if request.method == "POST":
+            if "view" in request.POST:
+                ticket = Ticket.objects.filter(id = request.POST["view"]).first()
+                ticket.status = Ticket.Status.CLOSED
+                ticket.save()
+                SpecialistInbox.objects.filter(ticket = ticket).delete()
+                return redirect(reverse("student_inbox"))
         allowed_ids = []
         # TODO move this to a helper class
         allowed_ids.append(

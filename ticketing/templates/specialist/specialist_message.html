@@ -13,7 +13,10 @@
     {{ form.as_p }}
     <input class="btn btn-light btn-md bg-light text-dark" type="submit" value="Add comment">
 </form>
-<!-- TODO: Add button to archive ticket -->
+<form method="post" class="text-white" style="padding-top: 4%">{% csrf_token %}
+    <button name="view" class="btn btn-light btn-md bg-light text-dark" type="submit" value="{{ticket.id}}">Close Ticket</button>
+</form>
+
 {% endif %}
 <hr>
 <div hx-get="{% url 'message_list' pk=ticket.id %}" hx-trigger="load, every 2s">

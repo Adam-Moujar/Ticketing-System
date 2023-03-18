@@ -5,11 +5,13 @@ from ticketing.models import (
     StudentMessage,
     SpecialistMessage,
     SpecialistDepartment,
+    SpecialistInbox
 )
 from django.views.generic import DetailView, ListView, CreateView
 from itertools import chain
 from operator import attrgetter
 from django.urls import reverse
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -41,6 +43,15 @@ class SpecialistMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
         '''
         # TODO add all specialists ids to this
         # TODO move this to a helper class
+        if request.method == "POST":
+            if "view" in request.POST:
+                ticket = Ticket.objects.filter(id = request.POST["view"]).first()
+                ticket.status = Ticket.Status.CLOSED
+                ticket.save()
+                SpecialistInbox.objects.filter(ticket = ticket).delete()
+                return redirect(reverse("specialist_dashboard", kwargs={"ticket_type": "personal"}))
+
+
         department = getattr(
             Ticket.objects.get(id=self.kwargs['pk']), 'department'
         )

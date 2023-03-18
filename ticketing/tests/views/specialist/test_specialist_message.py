@@ -59,7 +59,27 @@ class SpecialistMessageViewTestCase(TestCase):
         )
         self.url = reverse('specialist_dashboard', kwargs={'ticket_type': 'personal'})
         response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
 
+
+    def test_close_ticket_archives_ticket(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        response = self.client.post(self.url, {"view": self.ticket.pk})
+        self.ticket = Ticket.objects.get(id=self.ticket.id)
+        self.assertEquals(self.ticket.status, Ticket.Status.CLOSED)
+        self.assertEqual(response.status_code, 302)
+    
+    def test_close_ticket_redirects_to_specialist_dashboard(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+        print(self.ticket.status)
+        response = self.client.post(self.url, {"view": self.ticket.pk}, follow=True)
+        self.assertTemplateUsed(response, 'specialist/specialist_dashboard.html')
         self.assertEqual(response.status_code, 200)
         
         
