@@ -12,7 +12,7 @@ class SpecialistSubSectionView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     required_roles = ['SP']
     template_name = "create_subsection.html"
     form_class = SubsectionForm
-
+    
     def form_valid(self, form):
         form.custom_save(
             department=SpecialistDepartment.objects.get(
@@ -20,4 +20,4 @@ class SpecialistSubSectionView(LoginRequiredMixin, RoleRequiredMixin, FormView):
             ).department,
             subsection_name=form.cleaned_data['name'],
         )
-        return redirect('specialist_dashboard', ticket_type='personal')
+        return redirect('subsection_manager')

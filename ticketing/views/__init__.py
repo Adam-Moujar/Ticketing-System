@@ -26,4 +26,6 @@ from . specialist import specialist_inbox
 from . specialist import specialist_message
 from . specialist import specialist_claim_ticket               
 from . specialist import specialist_subsection_create
+from . specialist import subsection_manager
 from . specialist import specialist_create_faq_from_ticket
+from . specialist import edit_subsection

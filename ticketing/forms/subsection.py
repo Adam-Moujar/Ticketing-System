@@ -1,7 +1,7 @@
 from django import forms
 from ticketing.models.departments import Subsection
  
-class SubsectionForm(forms.ModelForm): #
+class SubsectionForm(forms.ModelForm): 
     class Meta:
         model = Subsection
         fields = ['name']
