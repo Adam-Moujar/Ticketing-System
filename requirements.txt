@@ -8,4 +8,4 @@ python-slugify
 wonderwords
 tblib
 fontawesomefree==6.3.0
-
+requests
