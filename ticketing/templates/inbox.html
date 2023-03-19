@@ -12,7 +12,10 @@
             {% if user.role == "ST" %}
             <td>{{ticket.department.name}}</td>
             <td style="text-align:right; padding-right: 5vmin;">
-                <a class="stretched-link blue-link" href="{% url 'student_message' pk=ticket.id %}">View</a>
+                <!-- <a class="stretched-link blue-link" href="{% url 'student_message' pk=ticket.id %}">View</a> -->
+                <form method="post" class="text-white" style="padding-top: 4%">{% csrf_token %}
+                    <button class="blue-link" style="border:none; background-color:transparent;"name="view" type="submit" value="{{ticket.id}}">View Ticket</button>
+                </form>
             </td>
             {% endif %}
             <!-- <td style="text-align:right; padding-right: 5vmin;">
@@ -63,7 +66,7 @@
                 </td>
                 <td style="padding-right:3vmin;">
 
-                    <a class="blue-link" href="{% url 'specialist_message' pk=ticket.id %}">View</a>
+                    <a class="blue-link" href="{% url 'message_list' pk=ticket.id %}">View</a>
                 </td>
                 {% endif %}
 

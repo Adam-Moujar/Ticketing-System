@@ -54,7 +54,7 @@ class MessageListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         )
         if self.request.user.id not in allowed_ids:
             return HttpResponseRedirect(reverse('student_dashboard'))
-        print(self.request.user.id)
+        
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):

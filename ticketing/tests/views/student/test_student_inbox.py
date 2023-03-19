@@ -1,10 +1,19 @@
 from ticketing.models import Ticket,User,Department
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils.text import slugify
 from student_query_system import settings
 
 class StudentInboxViewTest(TestCase):
+    fixtures = [
+        'ticketing/tests/fixtures/user_fixtures.json',
+        'ticketing/tests/fixtures/message_fixtures.json',
+        'ticketing/tests/fixtures/ticket_fixtures.json',
+        'ticketing/tests/fixtures/department_fixtures.json',
+        'ticketing/tests/fixtures/specialist_inbox_fixtures.json',
+        'ticketing/tests/fixtures/specialist_department_fixtures.json',
+    ]
+
     def setUp(self):
         self.student=User.objects.create_user(
             email='student.user@email.com',
@@ -81,8 +90,9 @@ class StudentInboxViewTest(TestCase):
         )
         response = self.client.post(reverse('student_inbox'), {'type_of_ticket': 'Open'})
         self.assertQuerysetEqual(
-            response.context['page_obj'],Ticket.objects.filter(status='Open'), ordered=False)
+            response.context['page_obj'],Ticket.objects.filter(student=self.student, status='Open'), ordered=False)
         self.assertEqual(response.context['type_of_ticket'], 'Open')
+
     def test_student_inbox_view_post_close(self):
         self.client.login(
             email='student.user@email.com',
@@ -90,9 +100,10 @@ class StudentInboxViewTest(TestCase):
             last_name='Joestar',
             password='Password@123'
         )
+
         response = self.client.post(reverse('student_inbox'), {'type_of_ticket': 'Closed'})
         self.assertQuerysetEqual(
-            response.context['page_obj'],Ticket.objects.filter(status='Closed'), ordered=False)
+            response.context['page_obj'],Ticket.objects.filter(student=self.student, status='Closed'), ordered=False)
         self.assertEqual(response.context['type_of_ticket'], 'Closed')
     
     def test_student_inbox_view_post_invalid(self):
@@ -153,7 +164,43 @@ class StudentInboxViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context['is_paginated'])
         self.assertEqual(len(response.context['page_obj']), 0)
-    
+
+    def test_student_inbox_redirects_to_student_message(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.student.email, password='Password@123'
+        )
+
+        response = self.client.get(self.url)
+        tickets = response.context['object_list']
+        
+        current_ticket = None
+        for ticket in tickets:
+            if ticket.status == Ticket.Status.OPEN:
+                current_ticket = ticket
+                break
+
+        self.client.post(self.url, {"view": current_ticket.id}, follow=True)
+        self.assertTemplateUsed(response,'student/student_dashboard.html')
+
+    def test_student_inbox_redirects_to_message_list(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.student.email, password='Password@123'
+        )
+
+        response = self.client.get(self.url)
+        tickets = response.context['object_list']
+        
+        current_ticket = None
+        for ticket in tickets:
+            if ticket.status == Ticket.Status.CLOSED:
+                current_ticket = ticket
+                break
+
+        self.client.post(self.url, {"view": current_ticket.id}, follow=True)
+        self.assertTemplateUsed(response,'student/student_dashboard.html')
+
     
 
         
