@@ -36,13 +36,13 @@
             <div id="dash-card-body" class="card-body" style="padding-top:2px;">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <button class="nav-link flex-item" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='department' %}'" style="color:#475B63;"> Department </button>
+                            <button class="nav-link nav-text-button" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='department' %}'" style="color:#475B63;"> Department </button>
                             </li>
                             <li class="nav-item">
-                            <button class="nav-link flex-item" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='personal' %}'" style="color:#475B63;"  > Personal </button>
+                            <button class="nav-link nav-text-button" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='personal' %}'" style="color:#475B63;"  > Personal </button>
                             </li>
                             <li class="nav-item">
-                            <button class="nav-link flex-item" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='archived' %}'" style="color:#475B63;"  > Archived </button>
+                            <button class="nav-link nav-text-button" type = "submit" onclick="location.href='{% url 'specialist_dashboard' ticket_type='archived' %}'" style="color:#475B63;"  > Archived </button>
                             </li>
                     </ul>
                 {% include 'inbox.html' %}
