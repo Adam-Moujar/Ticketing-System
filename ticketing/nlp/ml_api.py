@@ -5,6 +5,7 @@ API_URL = (
 headers = {'Authorization': 'Bearer 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'}
 
 
+
 def query(payload):
     response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
