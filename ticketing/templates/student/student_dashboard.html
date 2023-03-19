@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
     <title>Dashboard</title>
     <div class="banner dash-banner">
         <div class="dash-title">
-            <i class="fa-solid fa-chart-line" style="padding-right:2vmin; font-size:4vmin; opacity: 0.5;"></i>
+            <img src="{% static 'admin/icons/line-chart.svg' %}" style="opacity:0.5; height:5vmin;">
             <h1 class="dash-header">Student Dashboard</h1>
         </div>
         <h4 class="dash-subtitle">View and Submit Tickets Here</h4>

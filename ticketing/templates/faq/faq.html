@@ -1,6 +1,6 @@
 
 {% extends 'base.html' %}
-
+{% load static %}
 {% block body %}
 <title>FAQs</title>
   {% comment %} <a href="{% url 'department_faq' obj.slug %}">
@@ -11,7 +11,7 @@
 <div class="banner faq-banner faq-banner-gradient">
   <h2 class="faq-header">
     Frequently Asked Questions
-    <i class="faq-icon fa-solid fa-location-arrow"></i>
+    <img src="{% static 'admin/icons/arrow.svg' %}" style="opacity:0.5; height:8vmin;">
   </h2>
 </div>
 
