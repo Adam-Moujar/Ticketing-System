@@ -480,6 +480,26 @@ td {
     font-size: 7vmin;
 }
 
+.faq-back{
+    font-size: 1rem;
+}
+@media (max-width:1063px) {
+    .dept-faq-title{
+        font-size: 5vmin;
+    }
+}
+@media (max-width:763px) {
+    .faq-back{
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width:563px) {
+    .faq-back{
+        padding-right: 55px;
+    }
+}
+
 .dept-faq-table {
     width: 100%;
     border-spacing: 15px;
