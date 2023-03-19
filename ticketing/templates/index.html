@@ -24,7 +24,6 @@
   <div class="department">
     <p>Select departments that match with your query:</p>
     <form method="GET" action="{% url 'home'%}" style="display: inline">
-      {% csrf_token %}
       {% for department_name, department_id in top_departments.items %}
       <button class="btn btn-primary" type="submit" name=department value="{{ department_id }}">{{department_name}}</button>
       {% endfor %}
@@ -44,7 +43,6 @@
   <div class="subsection">
     <p>Select a subsection that matches with your query:</p>
     <form method="GET">
-      {% csrf_token %}
       {% for subsection_name, subsection_id in top_subsections.items %}
       <button class="btn btn-primary" type="submit" name=subsection value="{{ subsection_id }}">{{ subsection_name}}</button>
       {% endfor %}

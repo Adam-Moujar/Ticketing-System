@@ -9,6 +9,15 @@ class SearchBarView(TemplateView):
     
     # handles the data
     def get_context_data(self, **kwargs):
+        """
+        Returns a dictionary of context data to be used in the template rendering process.
+
+        Keyword Arguments:
+        **kwargs -- additional keyword arguments that may be passed to the function.
+
+        Returns:
+        context -- a dictionary containing the context data for the template.
+        """
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get('query')
         department_id = self.request.GET.get('department')
@@ -33,6 +42,24 @@ class SearchBarView(TemplateView):
         return context
     
     def rank_items(self, request, query, model, queryset, result_size, faq_rank = False):
+        """
+        Ranks the items in the given queryset based on their similarity to the given query
+        using the ML model provided. Returns a dictionary containing the names of the top
+        ranking items and their corresponding IDs (if not FAQ items) or answers (if FAQ items).
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            query (str): The search query string.
+            model (object): The machine learning model to use for ranking items.
+            queryset (QuerySet): The queryset containing the items to rank.
+            result_size (int): The maximum number of top ranking items to return.
+            faq_rank (bool, optional): Indicates whether the queryset contains FAQ items or not.
+                Defaults to False.
+
+        Returns:
+            dict: A dictionary containing the names of the top ranking items and their
+                corresponding IDs or answers.
+        """
         items = queryset.all()
         if(not faq_rank):
             item_names = [item.name for item in items]
@@ -59,15 +86,54 @@ class SearchBarView(TemplateView):
         return item_dict
 
     def rank_departments(self,request, query, result_size: int):
+        """
+        Ranks the departments in the database based on their similarity to the given query.
+        Returns a dictionary containing the names of the top ranking departments and their IDs.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            query (str): The search query string.
+            result_size (int): The maximum number of top ranking departments to return.
+
+        Returns:
+            dict: A dictionary containing the names of the top ranking departments and their IDs.
+        """
         departments = Department.objects.all()
         return self.rank_items(request, query, ml_api, departments, result_size)
 
     def rank_subsections(self,request, query, department_id: int, result_size: int):
+        """
+        Ranks the subsections in the given department based on their similarity to the given query.
+        Returns a dictionary containing the names of the top ranking subsections and their IDs.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            query (str): The search query string.
+            department_id (int): The ID of the department to search within.
+            result_size (int): The maximum number of top ranking subsections to return.
+
+        Returns:
+            dict: A dictionary containing the names of the top ranking subsections and their IDs.
+        """
+        
         department_obj = Department.objects.get(id=department_id)
         subsections = Subsection.objects.filter(department=department_obj)
         return self.rank_items(request, query, ml_api, subsections, result_size)
 
     def rank_faqs(self,request, query, subsection_id: int, result_size: int):
+        """
+        Ranks the FAQs in the given subsection based on their similarity to the given query.
+        Returns a dictionary containing the questions of the top ranking FAQs and their answers.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            query (str): The search query string.
+            subsection_id (int): The ID of the subsection to search within.
+            result_size (int): The maximum number of top ranking FAQs to return.
+
+        Returns:
+            dict: A dictionary containing the questions of the top ranking FAQs and their answers.
+        """
         faqs = FAQ.objects.filter(subsection_id=subsection_id)
         faq_questions = [faq.question for faq in faqs]
         return self.rank_items(request, query, ml_api, faqs, result_size, faq_rank=True)

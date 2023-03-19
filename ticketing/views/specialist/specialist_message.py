@@ -39,8 +39,6 @@ class SpecialistMessageView(LoginRequiredMixin, RoleRequiredMixin, CreateView):
             HttpResponse
                 The HTTP response object returned by the view.
         '''
-        # TODO add all specialists ids to this
-        # TODO move this to a helper class
         department = getattr(
             Ticket.objects.get(id=self.kwargs['pk']), 'department'
         )

@@ -9,7 +9,3 @@ wonderwords
 tblib
 fontawesomefree==6.3.0
 
-transformers
-transformers[torch]
-sentencepiece
-protobuf

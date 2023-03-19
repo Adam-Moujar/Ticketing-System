@@ -23,6 +23,20 @@ class SubsectionManagerView(
     fields = ['name']
     
     def get_context_data(self, **kwargs):
+        """
+        Adds extra context data to the template context for rendering the subsection manager page. 
+        This method retrieves the department associated with the logged-in specialist user and 
+        filters the subsections to only include those belonging to that department.
+
+        Args:
+            self (SubsectionManagerView): An instance of the `SubsectionManagerView` class that defines 
+                the method.
+            **kwargs: Additional keyword arguments to be passed to the superclass method.
+
+        Returns:
+            dict: A dictionary containing the extra context data to be passed to the template, including 
+                a filtered list of subsections for the logged-in specialist user's department.
+        """
         context = {}
         specialist_department = SpecialistDepartment.objects.get(
             specialist=self.request.user

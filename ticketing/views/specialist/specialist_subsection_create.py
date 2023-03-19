@@ -14,6 +14,21 @@ class SpecialistSubSectionView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     form_class = SubsectionForm
     
     def form_valid(self, form):
+        """
+        Handles the form submission for creating a new subsection and performs additional logic to 
+        associate the subsection with the department of the logged-in specialist user. If the form is 
+        valid, it calls the `custom_save()` method of the form to save the new subsection and associate 
+        it with the correct department. Finally, it redirects the user to the subsection manager view.
+
+        Args:
+            self (SpecialistSubSectionView): An instance of the `SpecialistSubSectionView` class that 
+                defines the method.
+            form (SubsectionForm): An instance of the form that was submitted.
+
+        Returns:
+            HttpResponseRedirect: A redirect to the subsection manager view if the form is valid and 
+                the subsection is saved successfully.
+        """
         form.custom_save(
             department=SpecialistDepartment.objects.get(
                 specialist=self.request.user
