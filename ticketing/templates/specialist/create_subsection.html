@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>Create a Subsection for you department FAQs</h1>
+<div class="form-card card">
+<h1>Create a Subsection for your department's FAQs</h1>
+<hr>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Send</button>
+    {{ form }}
+    <button class="btn" id="blue-btn" type="submit">Create subsection</button>
 </form>
+</div>
 {% endblock %}
