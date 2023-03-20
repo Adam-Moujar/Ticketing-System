@@ -23,3 +23,4 @@ from .faq import individual_specialist_faq
 from .faq import update_faq
 from .faq import delete_faq
 from .faq import specialist_department_faq
+from . import archived_ticket

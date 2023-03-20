@@ -128,6 +128,11 @@ urlpatterns = [
         specialist_create_faq_from_ticket.SpecialistCreateFAQFromTicketView.as_view(),
         name='specialist_create_faq_from_ticket',
     ),
+    path(
+        'archived_ticket/<int:pk>',
+        archived_ticket.ArchivedTicketView.as_view(),
+        name="archived_ticket",
+    )
 ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
 handler404 = 'ticketing.views.errors.error_404'
