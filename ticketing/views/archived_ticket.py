@@ -7,6 +7,7 @@ from ticketing.models import (
     StudentMessage,
     SpecialistMessage,
     SpecialistDepartment,
+    User,
 )
 from django.views.generic import DetailView, ListView, CreateView
 from itertools import chain
@@ -16,9 +17,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class MessageListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
+class ArchivedTicketView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     model = Message
-    template_name = 'partials/message_list.html'
+    template_name = 'archived_ticket.html'
     required_roles = ['ST', 'SP']
     # paginate_by = 5
 
@@ -53,7 +54,10 @@ class MessageListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
             )
         )
         if self.request.user.id not in allowed_ids:
-            return HttpResponseRedirect(reverse('student_dashboard'))
+            if self.request.user.role == User.Role.STUDENT:
+                return HttpResponseRedirect(reverse('student_dashboard'))
+            elif self.request.user.role == User.Role.SPECIALIST:
+                return HttpResponseRedirect(reverse('specialist_dashboard',kwargs={"ticket_type": "personal"}))
         
         return super().dispatch(request, *args, **kwargs)
 

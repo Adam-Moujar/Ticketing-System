@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block body %}
 
 <html>
@@ -13,7 +13,7 @@
     <div class="dash-banner director-banner" style="height: 25vmin; margin-bottom:-11vmin;">
       <div class="dash-title" style="justify-content: space-between;">
         <div style="display:flex; align-items: center;">
-          <i class="fa-regular fa-list" style="padding-right:2vmin; font-size:4vmin; opacity:0.5;"></i>
+          <img src="{% static 'admin/icons/check-list.svg' %}" style="opacity:0.5; height:5vmin;">
           <h1 class="dept-manager-title">Department Manager</h1>
         </div>
         <a href="{% url 'director_panel' %}" style="opacity:0.8; text-decoration:none; color: white;">🢐 Back to Dashboard</a>

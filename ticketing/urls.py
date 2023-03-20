@@ -134,6 +134,11 @@ urlpatterns = [
         name='specialist_create_faq_from_ticket',
     ),
     path(
+        'archived_ticket/<int:pk>',
+        archived_ticket.ArchivedTicketView.as_view(),
+        name="archived_ticket",
+    ),
+    path(
         'subsection_manager/',
         subsection_manager.SubsectionManagerView.as_view(),
         name='subsection_manager',
