@@ -33,10 +33,7 @@
                       <input id="green-btn" class="btn" type="submit" value="Apply">
                   </form>
 
-                  <form method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <input id="red-btn" class="btn" type="submit" name="reset" value="Reset">
-                  </form>
+                  <button id="red-btn" class="btn" onclick="location.href='{{ request.path }}'">Reset</button>
                 </div>
               </div>
             </div>
