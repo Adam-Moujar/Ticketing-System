@@ -19,16 +19,14 @@
                     <div style="padding-top:0.3vmin;"class="flex-item">Tickets</div>
                     <div class="user-filter container">
                         <a id="dash-card-header-link" class="dropdown-toggle blue-link" data-bs-toggle="dropdown" aria-expanded="false">Filter</a>
-                        <div class="filter-dropdown dropdown-menu dropdown-menu-end">
+                        <div class="filter-dropdown dropdown-menu dropdown-menu-end"onclick="event.stopPropagation();">
                           <div class="container">
                             <form method="get" style="display: inline;">
                                 {% include 'partials/bootstrap_auto_form.html' with form=filter_form %}
 
-                                <div class="btn-container">
                                     <input id="green-btn" class="btn" type="submit" value="Apply">
-                                    <button id="red-btn" class="btn"  onclick="location.href='{{ request.path }}'">Reset</button>
-                                </div>
                             </form>
+                            <button id="red-btn" class="btn"  onclick="location.href='{{ request.path }}'">Reset</button>
                           </div>
                         </div>
                       </div>
