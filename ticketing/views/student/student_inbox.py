@@ -89,7 +89,7 @@ class StudentInboxView(LoginRequiredMixin, RoleRequiredMixin, ListView):
                 return redirect(reverse("student_message", kwargs={"pk": ticket.id}))
             
             elif ticket.status == Ticket.Status.CLOSED:
-                return redirect(reverse("message_list", kwargs={"pk": ticket.id}))
+                return redirect(reverse("archived_ticket", kwargs={"pk": ticket.id}))
 
         
         # request.GET["page"] = 1
