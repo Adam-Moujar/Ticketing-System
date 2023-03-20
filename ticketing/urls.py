@@ -8,7 +8,7 @@ from student_query_system import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', home.home, name='home'),
+    path('', home.SearchBarView.as_view(), name='home'),
     path(
         'login/',
         auth.CustomLoginView.as_view(
@@ -125,6 +125,11 @@ urlpatterns = [
         edit_department.EditDepartmentView.as_view(),
         name='edit_department',
     ),
+    path( 
+        'create_subsection/', 
+        specialist_subsection_create.SpecialistSubSectionView.as_view(), 
+        name='create_subsection',
+    ),
     path(
         'specialist_create_faq_from_ticket/<int:pk>',
         specialist_create_faq_from_ticket.SpecialistCreateFAQFromTicketView.as_view(),
@@ -138,7 +143,22 @@ urlpatterns = [
     path('director_statistics',
          director_statistics.DirectorStatisticsView.as_view(),
          name = 'director_statistics'
-         )
+    ),
+    path(
+        'archived_ticket/<int:pk>',
+        archived_ticket.ArchivedTicketView.as_view(),
+        name="archived_ticket",
+    ),
+    path(
+        'subsection_manager/',
+        subsection_manager.SubsectionManagerView.as_view(),
+        name='subsection_manager',
+    ),
+    path(
+        'edit_subsection/<pk>/',
+        edit_subsection.EditSubsectionView.as_view(),
+        name='edit_subsection',
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
 handler404 = 'ticketing.views.errors.error_404'

@@ -1,28 +1,33 @@
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
+from ticketing.models.departments import Subsection
+from wonderwords import RandomSentence
 from ticketing.models import *
 from datetime import *
 from faker import Faker
 import random
-from wonderwords import RandomSentence
+import json
+from random import shuffle
 
 
 class Command(BaseCommand):
     # constant
-    DEPARTMENT = [
-        'Cost of living',
-        'Student wellbeing',
-        'Fees, Funding & Money',
-        'Immigration & visa advice',
-        'Accommodation',
-    ]
-    SUBSECTIONS=[
+    # DEPARTMENT = [
+    #     'Cost of living',
+    #     'Student wellbeing',
+    #     'Fees, Funding & Money',
+    #     'Immigration & visa advice',
+    #     'Accommodation',
+    # ]
+    SUBSECTIONS = [
         'Contact',
         'What to do',
     ]
-    STUDENT_COUNT = 100
-    SPECIALIST_COUNT = 20
-    DEPARTMENT_COUNT = len(DEPARTMENT)
+    STUDENT_COUNT = 50
+    SPECIALIST_COUNT = 0
+    DEPARTMENT_COUNT = 0
+    # can configure this
+    SPECIALIST_PER_DEPARTMENT_COUNT = 3
     DIRECTOR_COUNT = 3
     PASSWORD = 'Password@123'
 
@@ -36,14 +41,12 @@ class Command(BaseCommand):
         Department.objects.all().delete()
         SpecialistDepartment.objects.all().delete()
         SpecialistInbox.objects.all().delete()
+        Subsection.objects.all().delete()
         SpecialistMessage.objects.all().delete()
         FAQ.objects.all().delete()
 
         self.create_student()
         print('students done')
-
-        self.create_specialist()
-        print('specialist done')
 
         self.create_director()
         print('directors done')
@@ -54,17 +57,22 @@ class Command(BaseCommand):
         self.create_department()
         print('department done')
 
+        self.create_specialist()
+        print('specialist done')
+        self.create_subsections()
+        print('subsections done')
+
         self.create_specialist_department()
         print('specialist set to department')
+
+        self.create_FAQs()
+        print('create FAQs')
 
         self.create_student_ticket()
         print('student ticket done')
 
         self.create_specialist_inbox()
         print('specialist inbox done')
-
-        self.create_department_faq()
-        print('department faq done')
 
         self.create_open_department_ticket()
         print('open department tickets done')
@@ -82,8 +90,8 @@ class Command(BaseCommand):
 
 
     def set_up(self):
-        first_name = self.faker.first_name()
-        last_name = self.faker.last_name()
+        first_name = self.faker.unique.first_name()
+        last_name = self.faker.unique.last_name()
         email = (f'{first_name}.{last_name}@example.com').lower()
         return [first_name, last_name, email]
 
@@ -128,6 +136,30 @@ class Command(BaseCommand):
             last_name=director_last_name,
         )
 
+    def create_department(self):
+        with open('ticketing/management/commands/faqs.json') as json_file:
+            data = json.load(json_file)
+            for dept in data['departments']:
+                department_name = dept['department']
+                department, _ = Department.objects.get_or_create(
+                    name=department_name
+                )
+        self.DEPARTMENT_COUNT = Department.objects.count()
+
+    def create_subsections(self):
+        with open('ticketing/management/commands/faqs.json') as json_file:
+            data = json.load(json_file)
+            for dept in data['departments']:
+                department_name = dept['department']
+                department, _ = Department.objects.get_or_create(
+                    name=department_name
+                )
+                for sub_sec in dept['sub_sections']:
+                    subsection_name = sub_sec['sub_section']
+                    Subsection.objects.get_or_create(
+                        name=subsection_name, department=department
+                    )
+
     def create_student(self):
         for _ in range(self.STUDENT_COUNT):
             info = self.set_up()
@@ -139,6 +171,9 @@ class Command(BaseCommand):
             )
 
     def create_specialist(self):
+        self.SPECIALIST_COUNT = (
+            self.SPECIALIST_PER_DEPARTMENT_COUNT * self.DEPARTMENT_COUNT
+        )
         for _ in range(self.SPECIALIST_COUNT):
             info = self.set_up()
             User.objects.create_specialist(
@@ -158,10 +193,6 @@ class Command(BaseCommand):
                 last_name=info[1],
             )
 
-    def create_department(self):
-        for dep_name in self.DEPARTMENT:
-            Department.objects.create(name=dep_name)
-
     def create_student_ticket(self):
         for student in User.objects.filter(role=User.Role.STUDENT):
             self.create_ticket_for_student(student)
@@ -172,8 +203,57 @@ class Command(BaseCommand):
         )
 
     def create_specialist_department(self):
-        for specialist in User.objects.filter(role=User.Role.SPECIALIST):
-            self.assign_specialist_to_department(specialist)
+        specialist_ids = list(
+            User.objects.filter(role=User.Role.SPECIALIST).values_list(
+                'id', flat=True
+            )
+        )
+        assignments = []
+        for department in Department.objects.all():
+            # Assign the chunk of specialists
+            chunk_size = self.SPECIALIST_COUNT // self.DEPARTMENT_COUNT
+            chunk_ids = specialist_ids[:chunk_size]
+            specialist_ids = specialist_ids[3:]
+            # Create the specialist department assignments
+            for spe_id in chunk_ids:
+                specialist = User.objects.get(id=spe_id)
+                assignments.append(
+                    {
+                        'specialist': specialist,
+                        'department': department,
+                    }
+                )
+        # Create the SpecialistDepartment instances
+        for assignment in assignments:
+            specialist_department = SpecialistDepartment(**assignment)
+            specialist_department.save()
+
+    def create_FAQs(self):
+        with open('ticketing/management/commands/faqs.json') as json_file:
+            data = json.load(json_file)
+            for dept in data['departments']:
+                department_name = dept['department']
+                department = Department.objects.get(name=department_name)
+                for sub_sec in dept['sub_sections']:
+                    subsection_name = sub_sec['sub_section']
+                    subsection = Subsection.objects.get(name=subsection_name)
+                    for faq in sub_sec['faq']:
+                        question = faq['question']
+                        answer = faq['answer']
+                        specialist = (
+                            SpecialistDepartment.objects.filter(
+                                department=department
+                            )
+                            .first()
+                            .specialist
+                        )
+                        FAQ.objects.get_or_create(
+                            specialist=specialist,
+                            department=department,
+                            subsection=subsection,
+                            question=question,
+                            answer=answer,
+                        )
 
     def create_specialist_inbox(self):
         for department in Department.objects.all():
@@ -210,31 +290,6 @@ class Command(BaseCommand):
             header=self.faker.sentence()[0:100],
         )
         self.create_student_message(ticket)
-
-    def assign_specialist_to_department(self, specialist):
-        department_list = Department.objects.all()
-        rand_dep = department_list[
-            random.randint(0, self.DEPARTMENT_COUNT - 1)
-        ]
-        SpecialistDepartment.objects.create(
-            specialist=specialist, department=rand_dep
-        )
-
-    def create_department_faq(self):
-        for dept in self.DEPARTMENT:
-            dept = Department.objects.filter(name=dept).first()
-            user = User.objects.filter(role='SP').first()
-            for i in range(10):
-                question = f'{self.wonder_words.sentence()}?'
-                answer = f'{self.wonder_words.bare_bone_with_adjective()}'
-                
-                FAQ.objects.create(
-                    specialist=user,
-                    department=dept,
-                    subsection=random.choice(self.SUBSECTIONS),
-                    questions=question,
-                    answer=answer,
-                )
 
     def create_open_department_ticket(self):
         self.create_student_ticket()

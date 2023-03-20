@@ -13,8 +13,8 @@
                     <a class="nav-link" href="{% url 'faq' %}">FAQs</a>
                 </li>
                 {% if user.role == 'SP' %}
-                 <li class="nav-item active">
-                <a class="nav-link" href="{% url 'specialist_dashboard' ticket_type='personal' %}">Dashboard</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'specialist_dashboard' ticket_type='personal' %}">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'specialist_statistics' %}">Statistics</a>
@@ -25,9 +25,10 @@
                     </a>
                     
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item"href="{% url 'specialist_department_faq' %}">Check Department FAQ</a></li>
-                      <li><a class="dropdown-item" href="{% url 'check_faq' %}">Check Your FAQs</a>
-                      <li><a class="dropdown-item" href="{% url 'faq_form_view'%}">Add FAQ</a></li>
+                        <li><a class="dropdown-item"href="{% url 'specialist_department_faq' %}">Check Department FAQ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'check_faq' %}">Check Your FAQs</a></li>
+                        <li><a class="dropdown-item" href="{% url 'faq_form_view'%}">Create FAQ</a></li>
+                        <li><a class="dropdown-item" href="{% url 'subsection_manager' %}">Manage Subsection</a></li>
                     </ul>
                   </li>
                 {% endif %}
@@ -74,7 +75,7 @@
                 <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{% url 'signup' %}">SignUp</a>
+                <a class="nav-link" href="{% url 'signup' %}">Signup</a>
                 </li>
                 {% endif %}
             </ul>

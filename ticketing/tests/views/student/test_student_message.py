@@ -49,4 +49,30 @@ class StudentMessageViewTestCase(TestCase):
         )
         response = self.client.get(self.url, follow=True)
         self.assertTemplateUsed(response, 'student/student_dashboard.html')
+
+    def test_close_ticket_archives_ticket(self):
+        self.client = Client()
+        self.url = reverse('student_message', kwargs={'pk' : self.ticket.pk})
+        loggedin = self.client.login(
+            email=self.student.email, password='Password@123'
+        )
+        response = self.client.post(self.url,{"view":self.ticket.pk})
+        self.assertEquals(self.ticket.status, Ticket.Status.CLOSED)
+
+
+    def test_close_ticket_redirects_to_student_dashboard(self):
+        self.client = Client()
+        self.url = reverse('student_message', kwargs={'pk' : self.ticket.pk})
+        loggedin = self.client.login(
+            email=self.student.email, password='Password@123'
+        )
+        response = self.client.post(self.url,{"view":self.ticket.pk}, follow=True)
+        self.assertTemplateUsed(response, 'student/student_dashboard.html')
+        self.assertEqual(response.status_code, 200)
+
+
+    
+
+
+ 
     

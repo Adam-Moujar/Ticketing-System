@@ -30,7 +30,6 @@ class StudentTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView):
                 A redirection response to the success URL.
         '''
         student = User.objects.get(id=self.request.user.id)
-
         form.custom_save(
             student=student,
             department=form.cleaned_data['department'],
@@ -40,5 +39,4 @@ class StudentTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView):
         return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form, **kwargs):
-        # print(form.errors.as_data())
         return self.render_to_response(self.get_context_data())

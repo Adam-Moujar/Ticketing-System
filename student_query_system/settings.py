@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django_htmx',
     'ticketing',
     'widget_tweaks',
-    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

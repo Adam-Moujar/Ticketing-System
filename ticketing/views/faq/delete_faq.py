@@ -7,4 +7,4 @@ from django.http import HttpResponseRedirect
 
 class FAQDeleteView(DeleteView):
     model = FAQ
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('specialist_department_faq')

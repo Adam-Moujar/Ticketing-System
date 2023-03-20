@@ -3,7 +3,7 @@ from django.urls import reverse
 from slugify import slugify
 from ticketing.models.faq import FAQ
 from ticketing.models.users import User
-from ticketing.models.departments import Department
+from ticketing.models.departments import Department, Subsection
 from ticketing.models.specialist import SpecialistDepartment
 
 
@@ -21,10 +21,14 @@ class SpecialistFAQListViewTest(TestCase):
         self.specialist_dept = SpecialistDepartment.objects.create(
             specialist=self.specialist, department=self.department
         )
+        self.subsection = Subsection.objects.create(
+            department=self.department, name='Help needed'
+        )
         self.faq = FAQ.objects.create(
             specialist=self.specialist,
             department=self.department,
-            questions='What is 9+10',
+            subsection=self.subsection,
+            question='What is 9+10',
             answer='19',
         )
 
