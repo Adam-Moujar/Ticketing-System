@@ -324,21 +324,7 @@ td {
 }
 
 /* Director Panel */
-@media (max-width:1063px) {
-    .dashboard-card-title{
-        font-size: 65%;
-    }
-}
-@media (max-width:863px) {
-    .dashboard-card-title{
-        font-size: 55%;
-    }
-}
-@media (max-width:563px) {
-    .dashboard-card-title{
-        font-size: 50%;
-    }
-}
+
 
 .dashboard-department-name{
     display: flex;
@@ -346,7 +332,7 @@ td {
 }
 @media (max-width:563px) {
     .dashboard-department-name{
-        font-size: 50%;
+        font-size: 95%;
     }
 }
 
@@ -602,6 +588,8 @@ td {
     }
 
 }
+
+
 
   
   
