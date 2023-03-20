@@ -1,7 +1,7 @@
 {% load get_query_filters %}
 <br>
   <nav>
-    <ul class="pagination">
+    <ul class="pagination ">
       {% if page_obj.has_previous %}
         <li class="page-item">
           <a class="page-link" href="{% set_url_param request.META.QUERY_STRING 'page=' page_obj.previous_page_number %}" aria-label="Previous">
