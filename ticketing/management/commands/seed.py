@@ -23,7 +23,7 @@ class Command(BaseCommand):
         'Contact',
         'What to do',
     ]
-    STUDENT_COUNT = 50
+    STUDENT_COUNT = 100
     SPECIALIST_COUNT = 0
     DEPARTMENT_COUNT = 0
     # can configure this
@@ -194,8 +194,9 @@ class Command(BaseCommand):
             )
 
     def create_student_ticket(self):
-        for student in User.objects.filter(role=User.Role.STUDENT):
-            self.create_ticket_for_student(student)
+        for i in range(0,3): # WE WANT 3 TIMES THE TICKET FOR MANUAL TESTING PURPOSES
+            for student in User.objects.filter(role=User.Role.STUDENT):
+                self.create_ticket_for_student(student)
 
     def create_student_message(self, ticket):
         StudentMessage.objects.create(

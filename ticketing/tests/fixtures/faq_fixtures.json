@@ -742,8 +742,8 @@
   "fields": {
     "specialist": 55,
     "department": 2,
-    "subsection": 6,
-    "question": "uests to my accommodation?",
+    "subsection": 5,
+    "question": "Can I bring guests to my accommodation?",
     "answer": "Most universities have rules about guests in accommodation, so you should check with your chosen university's accommodation office for their policy. In general, overnight guests are not allowed, and daytime guests may be allowed but with restrictions."
   }
 },

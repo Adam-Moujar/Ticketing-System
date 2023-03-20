@@ -25,7 +25,6 @@ class SpecialistInboxViewTestCase(TestCase):
         self.url = reverse(
             'specialist_dashboard', kwargs={'ticket_type': 'personal'}
         )
-
         self.specialist = User.objects.filter(role='SP').first()
         self.student = User.objects.filter(role='ST').first()
         self.director = User.objects.filter(role='DI').first()
