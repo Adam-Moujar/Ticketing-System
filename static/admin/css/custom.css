@@ -35,6 +35,18 @@ body {
     cursor:pointer;
 }
 
+
+
+
+@media (max-width:767px) {
+    .blue-link{
+        font-size: 65%;
+    }
+    .unclaim-link{
+        font-size: 65%;
+    }
+}
+
 /* Navbar */
 .navbar {
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
@@ -111,7 +123,26 @@ hr.solid {
     display: flex;
     justify-content: center;
     color: var(--blue);
-}
+    flex-wrap: wrap;
+   
+  }
+  
+  @media (max-width: 563px) {
+    .pagination {
+      flex-direction: column;
+      justify-content: center;
+      width: 5%;
+      text-align: center;
+      margin-left:50%; 
+      flex-wrap: wrap;
+    }
+    .pagination > li {
+      flex-grow: 1;
+      flex-basis:66.66%;
+    }
+  }
+  
+  
 
 .banner {
     background: linear-gradient(to right, rgb(93, 184, 140), rgb(57, 232, 238));
@@ -128,6 +159,7 @@ hr.solid {
 ul {
     list-style-type: none;
 }
+
 
 /* Tables */
 td {
@@ -173,6 +205,14 @@ td {
     align-items: center;
     gap:2vmin;
 }
+.custom-btn{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 175px;
+    text-align: center;
+  }
+
 
   /* Card container */
 
@@ -204,12 +244,53 @@ td {
     margin-bottom: 0px;
     color: white;
     align-items: center;
+   
 }
-
+.dash-header{
+    display: flex;
+  
+}
+@media (max-width:1063px) {
+    .dash-header{
+        font-size: 1.75rem;
+    }
+}
+@media (max-width:863px) {
+    .dash-header{
+        font-size: 1rem;
+    }
+}
+@media (max-width:763px) {
+    .dash-header{
+        font-size: 0.95rem;
+    }
+}
+@media (max-height:563px) {
+    h1.dash-header{
+        font-size: 0.95rem;
+        padding-top: 6px;
+    }
+}
 .dash-subtitle {
-    padding-top: 1vmin;
+    padding-top: 1vmin;    
     color: white;
     opacity: 0.5;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+@media (max-height: 567px){
+.dash-subtitle {
+    font-size: 75%;
+    /* margin-top: inherit; */
+    margin-top: -30px;
+}
+}
+
+@media (max-width:767px) {
+    .dash-subtitle{
+        font-size: 40%;
+    }
 }
 
 #dash-card {
@@ -243,6 +324,18 @@ td {
 }
 
 /* Director Panel */
+
+
+.dashboard-department-name{
+    display: flex;
+    justify-content: center;
+}
+@media (max-width:563px) {
+    .dashboard-department-name{
+        font-size: 95%;
+    }
+}
+
 .director-grid-container {
     margin:1.75vmin;
     display: grid;
@@ -320,6 +413,11 @@ td {
     font-size: 7vmin;
     color: white;
 }
+@media (max-width:963px) {
+    .faq-header{
+        font-size: 6vmin;
+    }
+}
 
 .faq-icon {
     opacity: 0.5;
@@ -366,6 +464,26 @@ td {
 
 .dept-faq-title {
     font-size: 7vmin;
+}
+
+.faq-back{
+    font-size: 1rem;
+}
+@media (max-width:1063px) {
+    .dept-faq-title{
+        font-size: 5vmin;
+    }
+}
+@media (max-width:763px) {
+    .faq-back{
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width:563px) {
+    .faq-back{
+        padding-right: 55px;
+    }
 }
 
 .dept-faq-table {
@@ -417,3 +535,66 @@ td {
     80% { transform: translateX(10px); }
     100% { transform: translateX(0); }
   }
+
+/* boostrap form button layout */
+.flex-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+  
+@media (max-width: 767px) {
+    .flex-item {
+      font-size: 95%;
+      flex-direction: column;
+    }
+}
+
+/* messages */
+.subject-title{
+    display: flex;
+}
+
+
+
+
+@media (max-width:767px) {
+    .nav-item{
+        font-size: 75%;
+    }
+}
+/* specialist dashboard tickets */ 
+
+.ticket-header{
+    display: flex;
+}
+.ticket-student{
+    display: flex;
+}
+#reroute{
+   width: 100%;
+   box-sizing: border-box; 
+}
+
+@media (max-width:763px) and (max-height:550px) {
+    .ticket-header{
+        font-size: 45%;
+    }
+    .ticket-student{
+        font-size: 45%;;
+    }
+    #reroute{
+        font-size: 45%;
+    }
+
+}
+
+
+
+  
+  
+
+  
+  
+  
+  
