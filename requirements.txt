@@ -5,6 +5,5 @@ AdvancedHTMLParser
 Faker
 django-htmx
 python-slugify
-wonderwords
 tblib
 requests
