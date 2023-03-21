@@ -22,7 +22,7 @@
 {% endif %}
 <hr>
 
-<div hx-get="{% url 'message_list' pk=ticket.id %}" hx-trigger="load, every 2s">
+<div style="word-wrap: break-word" hx-get="{% url 'message_list' pk=ticket.id %}" hx-trigger="load, every 2s">
     Loading...
 </div>
 {% endblock %}
