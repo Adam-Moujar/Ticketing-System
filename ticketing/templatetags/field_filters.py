@@ -1,9 +1,7 @@
 from ticketing.models import User
 from ticketing.utility import user
-
 from django import template
 from django import forms
-
 register = template.Library()
 
 

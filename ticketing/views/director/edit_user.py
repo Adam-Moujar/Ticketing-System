@@ -24,15 +24,11 @@ class EditUserView(
     DynamicCustomFormClassMixin,
     UpdateView,
 ):
-
     required_roles = [User.Role.DIRECTOR]
-
     model = User
-
     # We will dynamically add the other fields (role, department) later, so they are missing from this list
     fields = ['email', 'first_name', 'last_name']
     success_url = reverse_lazy('director_panel')
-
     form_class_maker = make_edit_user_form_class
 
     def get_template_names(self):
@@ -58,5 +54,4 @@ class EditUserView(
         '''
         if request.POST.get('cancel'):
             return get.redirect_to_director_panel_with_saved_params(request)
-
         return super().post(request, *args, **kwargs)

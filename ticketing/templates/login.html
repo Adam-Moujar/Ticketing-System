@@ -9,9 +9,6 @@
                     {{ field.label_tag }} {{ field }}
                     <span style="padding-top:5px;">{{ field.errors }}</span>
                     <span style="padding-top:5px;">{{ field.non_field_errors }}</span>
-                    <!-- {% if field.help_text %}
-                    <p class="help">{{ field.help_text | safe }}</p>
-                    {% endif %} -->
                 </div>
             {% endfor %}
             {% if form.errors %}
@@ -21,5 +18,4 @@
             <a id="red-btn" class="btn" type="input" href="{% url 'home' %}" style="margin-top: 2vmin;">Cancel</a>
         </form>
 </div>
-
 {% endblock %}

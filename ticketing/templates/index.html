@@ -2,7 +2,6 @@
 {% load static %}
 {% block body %}
 <title>Home</title>
-
 <div class="faq-banner dept-faq-banner">
   <div class="dept-faq-header container">
     <h3 class="dept-faq-title faq-header">Welcome to HelpdeskX</h3>
@@ -31,10 +30,10 @@
       <input type="hidden" name="query" value="{{ query }}">
       {% endif %}
     </form>
-    <p>If you feel that none of these options are what you're looking for, create a ticket using the button below.</p>
-    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'create_ticket' %}'">Create a ticket
-    </button>
-    </button>
+    {% if user.role != "SP" and user.role != "DI"%}
+      <p>If you feel that none of these options are what you're looking for, create a ticket using the button below.</p>
+      <button type="button" class="btn btn-primary" onclick="location.href='{% url 'create_ticket' %}'">Create a ticket</button>
+    {% endif %}
   </div>
   {% endif %}
 
@@ -50,9 +49,10 @@
       <input type="hidden" name="query" value="{{ query }}">
       {% endif %}
     </form>
-    <p>If you feel that none of these options are what you're looking for, create a ticket using the button below.</p>
-    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'create_ticket' %}'">Create a ticket
-    </button>
+    {% if user.role != "SP" and user.role != "DI"%}
+      <p>If you feel that none of these options are what you're looking for, create a ticket using the button below.</p>
+      <button type="button" class="btn btn-primary" onclick="location.href='{% url 'create_ticket' %}'">Create a ticket</button>
+    {% endif %}
   </div>
   {% endif %}
   <!-- now allow user to select the FAQs -->
@@ -74,9 +74,11 @@
       {% endfor %}
     </div>
     <br/>
-    <p>If you feel that none of these options are what you're looking for, create a ticket using the button below.</p>
-    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'create_ticket' %}'">Create a ticket
-    </button>
+    {% if user.role != "SP" and user.role != "DI"%}
+      <p>If you feel that none of these options are what you're looking for, create a ticket using the button below.</p>
+      <button type="button" class="btn btn-primary" onclick="location.href='{% url 'create_ticket' %}'">Create a ticket
+      </button>
+    {% endif %}
   </div>
   {% endif %}
 </div>

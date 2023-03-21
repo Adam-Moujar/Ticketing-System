@@ -32,6 +32,3 @@ class ChangePasswordForm(forms.Form):
                 )
             except ValidationError as error:
                 self.add_error('confirm_password', error)
-
-    # def _post_clean(self):
-    #     super()._post_clean

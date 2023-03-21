@@ -13,7 +13,6 @@ class SpecialistFAQListView(LoginRequiredMixin, RoleRequiredMixin, ListView):
     template_name = 'faq/individual_faq_list.html'
     required_roles = ['SP', 'DI']
     paginate_by = 6
-
     def get_queryset(self):
         """
         Gets the QuerySet of FAQs made by the currently logged in user.

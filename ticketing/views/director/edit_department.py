@@ -14,7 +14,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class EditDepartmentView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
     required_roles = [User.Role.DIRECTOR]
-
     model = Department
     fields = ['name']
     success_url = reverse_lazy('department_manager')
@@ -42,8 +41,6 @@ class EditDepartmentView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
             HttpResponse
                 The response returned by the parent method for all other cases.
         '''
-
         if request.POST.get('cancel'):
             return redirect('department_manager')
-
         return super().post(request, *args, **kwargs)

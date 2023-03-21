@@ -28,11 +28,8 @@ def delete_department(id):
     """
     try:
         department = Department.objects.get(id=id)
-
         department.delete()
-
         return True
-
     except Department.DoesNotExist:
         return False
 
@@ -46,12 +43,10 @@ class DepartmentManagerView(
     ListView,
 ):
     required_roles = [User.Role.DIRECTOR]
-
     paginate_by = 10
     model = Department
     fields = ['name']
     success_url = reverse_lazy('department_manager')
-
     filter_form_class = DepartmentFilterForm
     filter_reset_url = 'department_manager'
 
@@ -81,10 +76,8 @@ class DepartmentManagerView(
             departments = Department.objects.filter(
                 name__icontains=self.filter_data['name']
             )
-
         if self.filter_data['id']:
             departments = departments.filter(id__exact=self.filter_data['id'])
-
         return departments
 
     def post(self, request, *args, **kwargs):
@@ -109,23 +102,17 @@ class DepartmentManagerView(
 
         edit_id = request.POST.get('edit')
         delete_id = request.POST.get('delete')
-
         if request.POST.get('add'):
             return super().post(request, *args, **kwargs)
-
         elif edit_id:
             response = redirect('edit_department', pk=edit_id)
-
             return response
-
         elif delete_id:
             result = delete_department(delete_id)
-
             if result == False:
                 messages.add_message(
                     request, messages.ERROR, USER_NO_EXIST_MESSAGE
                 )
-
         return self.fixed_post(request, *args, **kwargs)
 
     def get_template_names(self):
