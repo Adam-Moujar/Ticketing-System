@@ -33,7 +33,7 @@ class DirectorStatisticsView(LoginRequiredMixin, RoleRequiredMixin, ListView):
                     
                             },
                             {
-                                "name": "Department with most unasnwered tickets",
+                                "name": "Department with most unanswered tickets",
                                 "value": self.get_name_of_department_with_least_answered_tickets()
                             }   
                         ]

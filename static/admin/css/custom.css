@@ -244,31 +244,45 @@ td {
     margin-bottom: 0px;
     color: white;
     align-items: center;
+
    
 }
 .dash-header{
     display: flex;
-  
+    font-size: 2rem;
 }
-@media (max-width:1063px) {
-    .dash-header{
-        font-size: 1.75rem;
-    }
-}
+
 @media (max-width:863px) {
     .dash-header{
         font-size: 1rem;
     }
-}
-@media (max-width:763px) {
-    .dash-header{
+    .dash-title{
         font-size: 0.95rem;
     }
 }
+@media (max-width:763px)  {
+    .dash-header{
+        font-size: 0.95rem;
+    }
+    .dash-title{
+        font-size: 0.45rem
+    }
+}
 @media (max-height:563px) {
-    h1.dash-header{
+    .dash-header{
         font-size: 0.95rem;
         padding-top: 6px;
+    }
+    .dash-title{
+        font-size: 0.35rem;
+    }
+}
+@media (max-width:263px) {
+    .dash-header{
+        font-size: 0.25rem;
+    }
+    .dash-title{
+        font-size:0.25rem;
     }
 }
 .dash-subtitle {
