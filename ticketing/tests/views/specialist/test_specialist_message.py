@@ -83,14 +83,8 @@ class SpecialistMessageViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_wrong_pk_when_post(self):
-       
-        self.student = User.objects.filter(role=User.Role.STUDENT).first()
-        self.header = "GG?"
-        self.department= Department.objects.first()
-        self.ticket = Ticket.objects.create(student= self.student, header = self.header, department = self.department)
-        Ticket.objects.all().exclude(header = self.header).delete()
         self.client = Client()
-        self.url = reverse('specialist_message', kwargs={'pk' : self.ticket.id})
+        self.url = reverse('specialist_message', kwargs={'pk' :  self.ticket_from_different_department.id})
         loggedin = self.client.login(
             email=self.specialist.email, password='Password@123'
         )

@@ -7,3 +7,4 @@ django-htmx
 python-slugify
 wonderwords
 tblib
+requests

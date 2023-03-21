@@ -51,6 +51,12 @@ Seed the development database with:
 $ python3 manage.py seed
 ```
 
+Unseed the development database with:
+
+```
+$ python3 manage.py unseed
+```
+
 Run all tests with:
 ```
 $ python3 manage.py test
@@ -58,3 +64,10 @@ $ python3 manage.py test
 
 ## Sources
 The packages used by this application are specified in `requirements.txt`
+The packages exclusively used by the developers are specified in `dev-requirements.txt`
+
+## API
+
+For the AI natural language processing, we used an API to an already trained model
+The URL for the model is https://huggingface.co/facebook/bart-large-mnli
+The API has been used in ticketing.nlp.ml_api.py

@@ -26,17 +26,14 @@
           <div class="dept-manager-table-btns">
             <div class="dept-filter container">
               <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration:none; font-size:2vmin; cursor: pointer;">Filter</a>
-              <div class="filter-dropdown dropdown-menu dropdown-menu-end">
+              <div class="filter-dropdown dropdown-menu dropdown-menu-end" onclick="event.stopPropagation();">
                 <div class="card-body container" style="margin-top:0; margin-bottom:0;">
                   <form method="get" style="display: inline;">
                     {% include 'partials/bootstrap_auto_form.html' with form=filter_form %}
                       <input id="green-btn" class="btn" type="submit" value="Apply">
                   </form>
 
-                  <form method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <input id="red-btn" class="btn" type="submit" name="reset" value="Reset">
-                  </form>
+                  <button id="red-btn" class="btn" onclick="location.href='{{ request.path }}'">Reset</button>
                 </div>
               </div>
             </div>

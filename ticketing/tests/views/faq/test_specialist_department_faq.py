@@ -1,6 +1,6 @@
 from django.test import TestCase, RequestFactory
 from django.urls import reverse
-from ticketing.models import FAQ, Department, User, SpecialistDepartment
+from ticketing.models import FAQ, Department, User, SpecialistDepartment, Subsection
 from django.utils.text import slugify
 from ticketing.views.faq.specialist_department_faq import SpecialistDepartmentFaq
 from django.http import Http404
@@ -22,10 +22,16 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self.specialist_dept = SpecialistDepartment.objects.create(
             department=self.department, specialist=self.specialist
         )
+
+        self.subsection = Subsection.objects.create(
+            department = self.department,
+            name = "subsection_name"
+        )
         self.faq = FAQ.objects.create(
             department=self.department,
+            subsection=self.subsection,
             specialist=self.specialist,
-            questions='What is 9+10',
+            question='What is 9+10',
             answer='19',
         )
         self.slug_string = slugify('Health and Safety')
@@ -57,8 +63,8 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            self.faq.questions,
-            [faq.questions for faq in response.context['object_list']],
+            self.faq.question,
+            [faq.question for faq in response.context['object_list']],
         )
         self.assertIn(
             self.faq.answer,
@@ -84,8 +90,9 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         self.assertEqual(len(response.context['object_list']), 1)
         FAQ.objects.create(
             department=self.department,
+            subsection=self.subsection,
             specialist=self.specialist,
-            questions='Why am I tired?',
+            question='Why am I tired?',
             answer='Get some sleep',
         )
         url = reverse(
@@ -93,7 +100,7 @@ class SpecialistDepartmentFaqTestCase(TestCase):
         )
         response = self.client.get(url)
         self.assertEqual(len(response.context['object_list']), 2)
-        FAQ.objects.get(questions='Why am I tired?').delete()
+        FAQ.objects.get(question='Why am I tired?').delete()
         url = reverse(
             'department_faq', kwargs={'department': self.department.slug}
         )

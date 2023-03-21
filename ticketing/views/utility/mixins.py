@@ -32,38 +32,27 @@ class ExtendableFormViewMixin:
 
         old_get_form_kwargs = self.get_form_kwargs
         self.get_form_kwargs = self.custom_get_form_kwargs
-
         result = super().post(request, *args, **kwargs)
-
         self.get_form_kwargs = old_get_form_kwargs
-
         return result
 
 
 class DynamicCustomFormClassMixin:
     def get_form(self, form_class=None):
-
         form_class = self.get_form_class()
-
         # self.form_class_maker is bound to pass self automatically so use __func__ to just get the pure
         # function pointer
         _class = self.form_class_maker.__func__(form_class)
-
         form = _class(**self.get_form_kwargs())
-
         return form
 
 
 class FilterView:
     def setup(self, request):
         super().setup(request)
-
         self.filter_form = self.filter_form_class(request.GET)
-
         initial = copy.copy(request.GET)
-
         get_filter_method = initial.get('filter_method', None)
-
         if (
             get_filter_method == None
             and self.filter_form_class.offer_filter_method == True
@@ -73,16 +62,12 @@ class FilterView:
 
         self.filter_form = self.filter_form_class(initial)
         self.filter_data = {}
-
         # We need to run is_valid so that we can get the cleaned data
         self.result = self.filter_form.is_valid()
-
         self.filter_method = self.filter_form.cleaned_data.get(
             'filter_method', 'filter'
         )
-
         for field_name in self.filter_form.base_fields:
-
             self.filter_data.update(
                 {
                     field_name: self.filter_form.cleaned_data.get(
@@ -93,7 +78,5 @@ class FilterView:
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-
         context.update({'filter_form': self.filter_form})
-
         return context

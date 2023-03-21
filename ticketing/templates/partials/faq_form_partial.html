@@ -1,15 +1,13 @@
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% include 'partials/bootstrap_form.html' with form=form %}
   <div class="btn-container">
     <div class="equal-width-btns">
             <button class="btn" id="blue-btn" type="submit">
             {% if request.resolver_match.url_name == 'faq_update' %}
-
               <div class="icon-shift">
                 <i class="bi bi-check-lg"></i>
                 <span>Update</span>
-
               </div>
               {% else %}
               <div class="icon-shift">

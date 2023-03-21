@@ -25,13 +25,12 @@ class SpecialistInboxViewTestCase(TestCase):
         self.url = reverse(
             'specialist_dashboard', kwargs={'ticket_type': 'personal'}
         )
-
         self.specialist = User.objects.filter(role='SP').first()
         self.student = User.objects.filter(role='ST').first()
         self.director = User.objects.filter(role='DI').first()
 
-    def make_ticket_filter_query(self, email, header):
-        return {'email': email, 'header': header}
+    def make_ticket_filter_query(self, email, header, filter_method):
+        return {'email': email, 'header': header, 'filter_method': filter_method}
 
     def test_specialist_dashboard_url(self):
         self.assertEqual(self.url, '/specialist_dashboard/personal/')
@@ -287,7 +286,49 @@ class SpecialistInboxViewTestCase(TestCase):
             reverse(
                 'specialist_dashboard', kwargs={'ticket_type': 'personal'}
             ),
-            data=self.make_ticket_filter_query(input_email, input_header),
+            data=self.make_ticket_filter_query(input_email, input_header, 'filter'),
+        )
+
+        view_table = response.context['object_list']
+        after_count = len(view_table)
+        self.assertNotEquals(before_count, after_count)
+        self.assertEqual(after_count, 1)
+
+        ticket = view_table[0]
+        self.assertEqual(ticket.student.email, input_email)
+        self.assertEqual(ticket.header, input_header)
+
+    def test_order_of_ticket_is_descending_in_inbox(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+
+        response = self.client.get(self.url)
+        tickets = response.context['object_list']
+
+        if (len(tickets) >= 2):
+            for i in range(1, len(tickets)):
+                self.assertLess(tickets[i-1].id, tickets[i].id)
+
+    def test_personal_inbox_searching(self):
+        self.client = Client()
+        loggedin = self.client.login(
+            email=self.specialist.email, password='Password@123'
+        )
+
+        response = self.client.get(self.url)
+        view_table = response.context['object_list']
+        before_count = len(view_table)
+
+        input_email = view_table[0].student.email
+        input_header = view_table[0].header
+
+        response = self.client.get(
+            reverse(
+                'specialist_dashboard', kwargs={'ticket_type': 'personal'}
+            ),
+            data=self.make_ticket_filter_query(input_email, input_header, 'search'),
         )
 
         view_table = response.context['object_list']

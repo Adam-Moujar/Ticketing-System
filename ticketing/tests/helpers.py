@@ -8,17 +8,14 @@ class LogInTester:
     def _is_logged_in(self):
         return '_auth_user_id' in self.client.session.keys()
 
-
 def reverse_with_next(url_name, next_url):
     url = reverse(url_name)
     url += f'?next={next_url}'
     return url
 
-
 def get_tickets(user, ticket_type):
     dummy_object = SpecialistInboxView()
     return dummy_object.get_tickets(user, ticket_type, Ticket.objects.all())
-
 
 class FixtureHelpers:
     @staticmethod
@@ -45,6 +42,18 @@ class FixtureHelpers:
         data = json.load(f)
         return data
 
+    @staticmethod 
+    def get_all_faqs_from_fixture():
+        f = open('ticketing/tests/fixtures/faq_fixtures.json')
+        data = json.load(f)
+        return data
+    
+    @staticmethod
+    def get_all_subsection_from_fixture():
+        f = open('ticketing/tests/fixtures/subsection_fixtures.json')
+        data = json.load(f)
+        return data
+    
     @staticmethod
     def get_students_from_fixture():
         students = []
@@ -131,3 +140,5 @@ class FixtureHelpers:
     def get_message_from_fixture():
         messages = FixtureHelpers.get_messages_from_fixture()
         return messages[0]
+
+    

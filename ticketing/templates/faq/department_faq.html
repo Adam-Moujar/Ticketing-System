@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block body %}
 <title>{{ department_name }}</title>
 <div class="faq-banner dept-faq-banner">
@@ -11,7 +10,6 @@
   </div>
 </div>
 <hr>
-
 {% for subsection, faqs in faq_dict.items %}
 <div class="accordion" id="outerAccordion-{{forloop.counter}}">
   <div class="accordion-item">
@@ -27,7 +25,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="innerAccordionHeading-{{forloop.parentloop.counter}}-{{forloop.counter}}">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#innerAccordionCollapse-{{forloop.parentloop.counter}}-{{forloop.counter}}" aria-expanded="false" aria-controls="innerAccordionCollapse-{{forloop.parentloop.counter}}-{{forloop.counter}}">
-                Q: {{ faq.questions }}
+                Q: {{ faq.question }}
               </button>
             </h2>
             <div id="innerAccordionCollapse-{{forloop.parentloop.counter}}-{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="innerAccordionHeading-{{forloop.parentloop.counter}}-{{forloop.counter}}" data-bs-parent="#innerAccordion-{{forloop.parentloop.counter}}-{{forloop.counter}}">
@@ -43,8 +41,5 @@
   </div>
 </div>
 {% endfor %}
-
-
 {% endblock %}
 
-{% include 'partials/footer.html' %}

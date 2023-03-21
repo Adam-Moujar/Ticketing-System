@@ -3,7 +3,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.utils.text import slugify
 from django.urls import reverse
 from ticketing.models.users import User
-from ticketing.models.departments import Department
+from ticketing.models.departments import Department, Subsection
 from ticketing.models.specialist import SpecialistDepartment
 from ticketing.models.faq import FAQ
 from ticketing.views.faq.specialist_faq_form import FAQFormView
@@ -16,6 +16,7 @@ class SpecialistCreateFAQFormViewTest(TestCase):
         'ticketing/tests/fixtures/ticket_fixtures.json',
         'ticketing/tests/fixtures/department_fixtures.json',
         'ticketing/tests/fixtures/specialist_department_fixtures.json',
+        'ticketing/tests/fixtures/subsection_fixtures.json'
     ]
 
     def setUp(self):
@@ -23,15 +24,17 @@ class SpecialistCreateFAQFormViewTest(TestCase):
         self.factory = RequestFactory()
         self.specialist = User.objects.filter(role = 'SP').first()
         self.department = SpecialistDepartment.objects.get(specialist = self.specialist).department
+        self.subsection = Subsection.objects.filter(department = self.department).first()
         self.faq = FAQ.objects.create(
             specialist=self.specialist,
             department=self.department,
-            questions='What is the meaning of existence',
+            subsection=self.subsection,
+            question='What is the meaning of existence',
             answer='This question cannot be computed... error',
         )
         self.form_data = {
-            'questions': 'What is Django?',
-            'subsection':'Coding Language',
+            'question': 'What is Django?',
+            'subsection':str(self.subsection.id),
             'answer': 'Django is a high-level Python web framework.',
         }
 

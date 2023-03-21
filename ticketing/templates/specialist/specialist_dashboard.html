@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
@@ -11,24 +10,19 @@
         <!-- Ask how to pass this in during meeting -->
         <h4 class="dash-subtitle">{{department_name}}</h4>
     </div>
-
-
     <div class="container">
         <div id="dash-card" class="card">
             <div id="dash-card-header" class="card-header">
                     <div style="padding-top:0.3vmin;"class="flex-item">Tickets</div>
                     <div class="user-filter container">
                         <a id="dash-card-header-link" class="dropdown-toggle blue-link" data-bs-toggle="dropdown" aria-expanded="false">Filter</a>
-                        <div class="filter-dropdown dropdown-menu dropdown-menu-end">
+                        <div class="filter-dropdown dropdown-menu dropdown-menu-end"onclick="event.stopPropagation();">
                           <div class="container">
                             <form method="get" style="display: inline;">
                                 {% include 'partials/bootstrap_auto_form.html' with form=filter_form %}
-
-                                <div class="btn-container">
                                     <input id="green-btn" class="btn" type="submit" value="Apply">
-                                    <button id="red-btn" class="btn"  onclick="location.href='{{ request.path }}'">Reset</button>
-                                </div>
                             </form>
+                            <button id="red-btn" class="btn"  onclick="location.href='{{ request.path }}'">Reset</button>
                           </div>
                         </div>
                       </div>

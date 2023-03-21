@@ -13,7 +13,7 @@
                 {% csrf_token %}
                 <div class="btn-container">
                     <button type = "submit" name = "accept_ticket" value = {{ticket.id}} id="green-btn" class="btn custom-btn">Claim</button>
-                    <a href  ="{% url 'specialist_dashboard' ticket_type='personal' %}" id="blue-btn" class="btn custom-btn">Back</a>
+                    <a href  ="{% url 'specialist_dashboard' ticket_type='department' %}" id="blue-btn" class="btn custom-btn">Back</a>
                 </div>
             </form>
         </div>

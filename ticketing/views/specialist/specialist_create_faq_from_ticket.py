@@ -20,15 +20,21 @@ from ticketing.mixins import RoleRequiredMixin
 
 from ticketing.models import (
     Ticket,
-    SpecialistInbox,
     SpecialistDepartment,
-    Message,
 )
 
 class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, FormView, ListView):
     template_name = 'faq/specialist_create_faq_from_ticket.html'
     required_roles = ['SP']
     form_class = FAQForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        specialist_department = SpecialistDepartment.objects.get(
+            specialist=self.request.user
+        )
+        kwargs['department'] = specialist_department.department
+        return kwargs
 
     def form_valid(self, form):
         '''
@@ -48,22 +54,12 @@ class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, F
             department=SpecialistDepartment.objects.get(
                 specialist=self.request.user
             ).department,
-            questions=form.cleaned_data['questions'],
+            question=form.cleaned_data['question'],
             subsection=form.cleaned_data['subsection'],
             answer=form.cleaned_data['answer'],
         )
         return redirect('specialist_dashboard', ticket_type='personal')
 
-    # def get(self, request, *args, **kwargs):
-    #     user = request.user
-    #     # CHECK IF THE TICKET WE ARE VIEWING CAN BE VIEWED BY SPECIALIST
-    #     ticket = Ticket.objects.filter(id=self.kwargs['pk'])
-    #     messsages = Message.objects.filter(
-    #         ticket=self.kwargs['pk']
-    #     )
-
-    #     return super().get(request, *args, **kwargs)
-    
     def get_queryset(self):
         '''
         Retrieve and return the message associated with the current ticket.
@@ -88,57 +84,15 @@ class SpecialistCreateFAQFromTicketView(LoginRequiredMixin, RoleRequiredMixin, F
         )
         return queryset
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
         context['ticket'] = Ticket.objects.get(id=self.kwargs['pk'])
         return context
 
+    def post(self, *args, **kwargs):
+        super().get(self, *args, **kwargs)
+        return super().post(*args, **kwargs)
 
-
-
-
-
-
-
-    
-    # required_roles = ['SP']
-
-    # def get(self, request,*args, **kwargs):
-    #     user = request.user
-    #     # CHECK IF THE TICKET WE ARE VIEWING CAN BE VIEWED BY SPECIALIST
-    #     department = (
-    #         SpecialistDepartment.objects.filter(specialist=user).first()
-    #     ).department
-    #     ticket = Ticket.objects.filter(id=self.kwargs['pk'])
-    #     #return render(request, self.template_name)
-    #     return self.validate_view_ticket(user, department, ticket, request)
-    
-    # def validate_view_ticket(self, user, department, ticket, request):
-    #     if len(ticket) > 0 and department == ticket[0].department:
-    #         message = Message.objects.filter(ticket=ticket.first()).first()
-    #         return render(
-    #             request,
-    #             self.template_name,
-    #             {
-    #                 'ticket': ticket.first(),
-    #                 'message': message,
-    #                 'department_name': self.get_department_name(),
-    #             },
-    #         )
-    #     else:
-
-    #         return redirect('specialist_dashboard', ticket_type="department")
-        
-    # def get_department_name(self):
-    #     try:
-    #         user = self.request.user
-    #         specialist_department = SpecialistDepartment.objects.filter(
-    #             specialist=user
-    #         )
-    #         return specialist_department.first().department.name
-    #     except:
-    #         return 'Department has not been found'
-    
 
     
     
