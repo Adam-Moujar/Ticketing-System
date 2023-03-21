@@ -56,9 +56,13 @@ def update_specialist_department(user, old_role, new_role, department):
                 SpecialistDepartment, specialist=user.id
             )
 
-            specialist_department.department = department
+            if specialist_department != None:
+                specialist_department.department = department
+                
+                specialist_department.save()
+            else:
+                SpecialistDepartment(specialist=user, department=department).save()
 
-            specialist_department.save()
 
     elif new_role == User.Role.SPECIALIST:
         # We will only get here is old_role is != SPECIALIST and new_role is == SPECIALIST

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
     <div class="card" style="min-width:18vmin; margin-top: 10vmin; margin-bottom: 10vmin;">
-        <div class="card-header" style="font-size: 3vmin;">
+        <div class="card-header">
             Ticket #{{ticket.id}}: {{ticket.header}}
             <p class="card-text text-muted" style="font-size: 2vmin;">Submitted By: {{ticket.student.first_name}} {{ticket.student.last_name}}</p>
         </div>
