@@ -12,7 +12,7 @@ class FAQFormView(LoginRequiredMixin, RoleRequiredMixin, FormView):
     template_name = 'faq/faq_specialist_form.html'
     required_roles = ['SP', 'DI']
     form_class = FAQForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('check_faq')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
