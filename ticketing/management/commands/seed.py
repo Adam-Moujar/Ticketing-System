@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
 from ticketing.models.departments import Subsection
-from wonderwords import RandomSentence
 from ticketing.models import *
 from datetime import *
 from faker import Faker
@@ -12,13 +11,6 @@ from random import shuffle
 
 class Command(BaseCommand):
     # constant
-    # DEPARTMENT = [
-    #     'Cost of living',
-    #     'Student wellbeing',
-    #     'Fees, Funding & Money',
-    #     'Immigration & visa advice',
-    #     'Accommodation',
-    # ]
     SUBSECTIONS = [
         'Contact',
         'What to do',
@@ -34,7 +26,6 @@ class Command(BaseCommand):
     def __init__(self):
         super().__init__()
         self.faker = Faker('en_GB')
-        self.wonder_words = RandomSentence()
 
     def handle(self, *args, **options):
         User.objects.all().delete()
@@ -80,13 +71,6 @@ class Command(BaseCommand):
         self.create_closed_department_ticket()
         print('closed department tickets done')
         
-        # self.create_student_message(ticket=Ticket.objects.get(id=101))
-        # print('student message done')
-
-        # self.create_specialist_message(
-        #     specialist_ticket=SpecialistInbox.objects.get(ticket=101)
-        # )
-        # print('specialist message done')
 
 
     def set_up(self):
