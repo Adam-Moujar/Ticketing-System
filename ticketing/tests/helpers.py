@@ -8,17 +8,14 @@ class LogInTester:
     def _is_logged_in(self):
         return '_auth_user_id' in self.client.session.keys()
 
-
 def reverse_with_next(url_name, next_url):
     url = reverse(url_name)
     url += f'?next={next_url}'
     return url
 
-
 def get_tickets(user, ticket_type):
     dummy_object = SpecialistInboxView()
     return dummy_object.get_tickets(user, ticket_type, Ticket.objects.all())
-
 
 class FixtureHelpers:
     @staticmethod

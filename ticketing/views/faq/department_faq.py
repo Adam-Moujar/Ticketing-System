@@ -53,7 +53,6 @@ class DepartmentFAQ(ListView):
              context['department_name'] = department.name
         else:
             context['department_name']=''
-            
         faqs=FAQ.objects.filter(department=department)
         faq_dict={}
         for faq in faqs:
@@ -61,5 +60,4 @@ class DepartmentFAQ(ListView):
                 faq_dict[faq.subsection]=[]
             faq_dict[faq.subsection].append(faq)
         context['faq_dict']=faq_dict
-            
         return context

@@ -19,7 +19,6 @@
 <form method="post" class="text-white" style="padding-top: 1%">{% csrf_token %}
     <button name="view" class="btn btn-light btn-md bg-light text-dark" type="submit" value="{{ticket.id}}">Close Ticket</button>
 </form>
-
 {% endif %}
 <hr>
 <div style="word-wrap: break-word" hx-get="{% url 'message_list' pk=ticket.id %}" hx-trigger="load, every 2s">

@@ -8,13 +8,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from ticketing.mixins import RoleRequiredMixin
 
 class SpecialistStatisticsView(LoginRequiredMixin, RoleRequiredMixin, ListView):
-    # model = Department
     template_name = 'specialist_statistics.html'
     required_roles = ['SP']
-    # paginate_by = 10
-    # paginate_by=25
-    # def get_queryset(self):
-    #     return Department.objects.all()
+    
 
     def get_queryset(self):
         user = self.request.user
@@ -100,44 +96,3 @@ class SpecialistStatisticsView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         else:
             return 0
 
-        
-        # message_list = []
-        # for ticket in tickets:
-        #     messages = Message.objects.filter(ticket = ticket)
-        #     for message in messages:
-        #         message_list.append(message)
-
-
-
-    
-
-
-            
-
-
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-
-    #     ticket_type = self.request.GET.get('type_of_ticket')
-
-    #     if ticket_type == None:
-    #         ticket_type = 'personal'
-
-    #     context['ticket_type'] = self.ticket_type
-    #     context['inbox_type'] = self.set_formatted_inbox_name(self.ticket_type)
-    #     context['department_name'] = self.get_department_name()
-
-    #     if ticket_type == 'personal':
-    #         context['departments'] = self.get_other_departments()
-
-    #     return context
-        
-    
-
-
-    # def get(self, request, *args, **kwargs):
-    #     return render(request, self.template_name)
-    
-    # def get_template_names(self):
-    #     return ['director_panel.html']

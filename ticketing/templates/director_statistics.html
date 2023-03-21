@@ -1,6 +1,4 @@
-
 {% extends 'base.html' %}
-
 {% block body %}
 <title>FAQs</title>
   {% comment %} <a href="{% url 'department_faq' obj.slug %}">
@@ -14,11 +12,8 @@
     <i class="faq-icon fa-solid fa-location-arrow"></i>
   </h2>
 </div>
-
 <div class="faq-grid">
-
   {%for obj in object_list %}
-
       <div class="card faq-card">
         <div class="card-body">
           <h3 class="card-title" style="font-size:3vmin;">{{obj.title}}</h3>
@@ -27,10 +22,8 @@
           {% endfor %}
         </div>
       </div>
-
   {%endfor%}
 </div>
-
 {%include 'partials/pagination.html' %}
 {% endblock %}
-{%include 'partials/footer.html' %}
+
