@@ -41,4 +41,4 @@ class FAQUpdateFormView(LoginRequiredMixin, RoleRequiredMixin, UpdateView):
 
         '''
         form.save()
-        return HttpResponseRedirect(self.get_success_url())
+        return redirect('specialist_department_faq')
