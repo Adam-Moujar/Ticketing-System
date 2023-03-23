@@ -105,7 +105,7 @@
                           <td >{{user|user_department_string}}</td>
                           <td ><input type="checkbox" id="select" name="select" value="{{user.id}}" {% if selected|is_selected:user.id %}checked{% endif %}></td>
                           <form method="post" style="display:inline;">
-                         
+                            {% csrf_token %}
                           <td ><button id="blue-btn" class="btn" type="submit" name="edit" value={{user.id}}>✎</button></td>
                           <td  style="justify-content: center;" >
                             <button id="blue-btn" class="btn" type="submit" name="password" value={{user.id}}>
