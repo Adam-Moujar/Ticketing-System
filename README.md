@@ -17,7 +17,7 @@ The members of the team are:<br />
 The project is called `student_query_system` (Student Query System).  It currently consists of a single app `ticketing` where all functionality resides.
 
 ## Deployed version of the application
-The deployed version of the application can be found at *<[enter URL here](URL)>*.
+The deployed version of the application can be found at *<[https://k21003979.pythonanywhere.com/](URL)>*.
 
 ## Installation instructions
 To install the software and use it in your local development environment, you must first set up and activate a local development environment.  From the root of the project:
