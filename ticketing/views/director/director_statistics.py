@@ -97,10 +97,9 @@ class DirectorStatisticsView(LoginRequiredMixin, RoleRequiredMixin, ListView):
         else:
             # return total_time / counter
             time = total_time / counter
-            print(time.total_seconds())
             hours = time.total_seconds() // (60*60)
-            mins = (time.total_seconds() - hours*60*60 ) // 60
-            secs = (time.total_seconds() - hours*60*60 - mins*60) 
+            mins = (time.total_seconds() - (hours*60*60) ) // 60
+            secs = (time.total_seconds() - (hours*60*60) - (mins*60)) 
             return f"{hours} hours {mins} mins { round(secs, 1)} secs"
            
     

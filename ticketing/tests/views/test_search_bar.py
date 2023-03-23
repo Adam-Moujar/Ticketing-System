@@ -72,3 +72,18 @@ class SerachBarViewTestCase(TestCase):
         FAQ_from_current_subsection = FAQ.objects.filter(subsection=current_subsection).values_list('question', flat=True)
         questions_from_FAQ = response.context['top_FAQs'].keys()
         self.assertTrue(set(questions_from_FAQ) <= set(FAQ_from_current_subsection))
+
+    """Run this to benchmark!"""
+    # def test_is_department_present_in_top_three_department_score(self): 
+    #     true_pos = 0
+    #     num_of_question = 30
+    #     question_department_dict = {}
+    #     # true pos check
+    #     for faq in FAQ.objects.all()[:num_of_question]:
+    #         question_department_dict[faq.question] = faq.department 
+    #     for question, department in question_department_dict.items(): 
+    #         response = self.client.get(self.url, {'query' : question})
+    #         department_ids = list(response.context['top_departments'].values())
+    #         if department.id in department_ids: 
+    #             true_pos = true_pos + 1
+    #     print(f" Department present score : {true_pos/num_of_question}")
