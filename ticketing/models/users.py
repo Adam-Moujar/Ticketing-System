@@ -124,8 +124,8 @@ class User(AbstractUser):
         max_length=50,
         validators=[
             RegexValidator(
-                regex=r'^[A-Za-z\s]{3,}$',
-                message='First Name must consist of 3-50 letters',
+                regex=r'^[A-Za-z\s]{1,}$',
+                message='First Name must consist of 1-50 letters',
             )
         ],
     )
@@ -136,8 +136,8 @@ class User(AbstractUser):
         max_length=50,
         validators=[
             RegexValidator(
-                regex=r'^[A-Za-z\s]{3,}$',
-                message='Last Name must consist of 3-50 letters',
+                regex=r'^[A-Za-z\s]{1,}$',
+                message='Last Name must consist of 1-50 letters',
             )
         ],
     )

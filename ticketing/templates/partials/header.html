@@ -12,7 +12,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'faq' %}">FAQs</a>
                 </li>
-                {% if user.role == 'SP' %}
+                {% if request.user.role == 'SP' %}
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'specialist_dashboard' ticket_type='personal' %}">Dashboard</a>
                 </li>
@@ -32,12 +32,12 @@
                     </ul>
                   </li>
                 {% endif %}
-                {% if user.role == 'ST' %}
+                {% if request.user.role == 'ST' %}
                 <li class="nav-item">
                 <a class="nav-link" href="{% url 'student_dashboard' %}">Dashboard</a>
                 </li>
                 {% endif %}
-                {% if user.role == 'DI' %}
+                {% if request.user.role == 'DI' %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'director_panel' %}">Dashboard</a>
                 </li>
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="{% url 'director_statistics' %}">Statistics</a>
                 </li>
                 {% endif %}
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                 <li id="navatar-spacing" class="nav-item"></li>
                 <li class="nav-item">
                 <a id="navatar" class="nav-link"
@@ -57,13 +57,13 @@
                     aria-labelledby="navatar"
                     >
                     <lh class="dropdown-item">
-                        <p class="dropdown-name">{{user.first_name}} {{user.last_name}}</p>
-                        <p class="dropdown-sub dropdown-email">{{user.email}}</p>
-                        <p class="dropdown-sub dropdown-role">{{user.get_role_display}}</p>
+                        <p class="dropdown-name">{{request.user.first_name}} {{request.user.last_name}}</p>
+                        <p class="dropdown-sub dropdown-email">{{request.user.email}}</p>
+                        <p class="dropdown-sub dropdown-role">{{request.user.get_role_display}}</p>
                     </lh>
                     <hr class="solid">
                     <li>
-                        <a class="dropdown-item" href="/{{user.id}}/change_password/">Change Password</a>
+                        <a class="dropdown-item" href="/{{request.user.id}}/change_password/">Change Password</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
